@@ -7,7 +7,12 @@
     <title>Document</title>
 </head>
 <body>
+<<<<<<< HEAD
     <h1>Hello World!!</h1>
     <h2> </h2>
+=======
+    <h1>Hello World</h1>
+    <p> Haluuu </p>
+>>>>>>> 773d1c0fbfc65e0d11a7811db50d3cbe6fd0c1de
 </body>
 </html>
