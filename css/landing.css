@@ -1,0 +1,17 @@
+#logo-sec,
+#footer-container{
+    display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#fixed-footer{
+    background-color:  rgba(94, 94, 94, 0.3);
+}
+
+#btn-get-started{
+    border-radius: 25px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
