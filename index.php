@@ -1,1 +1,0 @@
-<?php header("location:php/landing.php");?>
