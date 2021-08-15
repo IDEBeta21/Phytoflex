@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { FlatList, StyleSheet, Text, TextInput, View , Image , Button, Alert} from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, Text, TextInput, View , Image , TouchableOpacity, Alert, ScrollView} from 'react-native';
 
 // Functions
 const hello = () => {
@@ -11,40 +11,49 @@ const hello = () => {
 export default function App() {
   return (
     <View style={styles.container}>
+      {/* Make the view scrollable */}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
+        {/* To detect virtual keyboard */}
+        <KeyboardAvoidingView
+        behavior={Platform.OS === "android" ? "padding" : "height"}
+      >
+        {/* Logo area */}
+        <View style={styles.header}>
+          <Image
+            style = {styles.logo}
+            source={{
+              uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
+            }}
+          />
+          <Text style={styles.headerText}>PHYTOFLEX</Text>
+        </View>
+        
+        {/* Text Area */}
+        <Text style={styles.label}>Username</Text>
+        <TextInput
+          style={styles.textbox}
+          placeholder="i.e. NameIsDev21"
+        ></TextInput>
 
-      <View style={styles.header}>
-        <Image
-          style = {styles.logo}
-          source={{
-            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
-          }}
-        />
-        <Text style={styles.headerText}>PHYTOFLEX</Text>
-      </View>
-      
-      <Text style={styles.label}>Username</Text>
-      <TextInput
-        style={styles.textbox}
-        placeholder="i.e. NameIsDev21"
-      ></TextInput>
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.textbox}
+          placeholder="Password"
+        ></TextInput>
 
-      <Text style={styles.label}>Password</Text>
-      <TextInput
-        style={styles.textbox}
-        placeholder="Password"
-      ></TextInput>
-      <View style={styles.button}>
-        <Button 
-          title = 'LOGIN'
-          color = 'black'
-          onPress = {hello}
-        />
-      </View>
-      
-      <StatusBar style="auto" />
+        {/* Button Area */}
+        <TouchableOpacity onPress={hello}>
+          <View style={styles.buttonArea}>
+            <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
+          </View>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+      </ScrollView>
+
     </View>
-
-    
   );
 }
 
@@ -53,10 +62,10 @@ const styles = StyleSheet.create({
   container: { 
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 10,
-    marginVertical: 40 ,
+    marginVertical: 0 ,
+    paddingHorizontal: 20,
     borderRadius: 12,
-    margin: 10,
+    marginTop: 0,
   },
   header: {
     alignItems: 'center',
@@ -78,10 +87,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 200,
   },
-  button: {
-    marginTop: 25,
+  buttonArea: {
+    marginTop: 40,
+    backgroundColor: 'green',
+    alignItems: 'center', 
+    justifyContent: 'center',
+    borderRadius: 15,
+    padding: 15,
   }
 });
