@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, View , Image , TouchableOpacity, Alert, ScrollView} from 'react-native';
+import Header from './components/header'
 
 // Functions
 const hello = () => {
@@ -8,30 +8,35 @@ const hello = () => {
 }
 
 // Layouts
-export default function App() {
-    return (
-        <View style={styles.loginContainer}>
-            {/* Make the view scrollable */}
-            <ScrollView
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-            >
-                {/* To detect virtual keyboard */}
-                <KeyboardAvoidingView
+const MainScreen = () => (
+    <View style={styles.loginContainer}>
+        {/* Display Header */}
+        <Header/>
+
+        {/* Make the view scrollable */}
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+        >
+
+            {/* To detect virtual keyboard */}
+            <KeyboardAvoidingView
                 behavior={Platform.OS === "android" ? "padding" : "height"}
-                >
-                    {/* Logo area */}
-                    <View style={styles.header}>
-                        <Image
-                            style = {styles.logo}
-                            source={{
-                                uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
-                            }}
-                            />
-                        <Text style={styles.headerText}>PHYTOFLEX</Text>
-                    </View>
-                    
-                    {/* Text Area */}
+            >
+
+                {/* Logo area */}
+                <View style={styles.logoView}>
+                    <Image
+                        style = {styles.logo}
+                        source={{
+                            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
+                        }}
+                    />
+                    <Text style={styles.headerText}>PHYTOFLEX</Text>
+                </View>
+
+                <View style={({paddingHorizontal: 30})}> 
+                    {/* Text Input Area */}
                     <Text style={styles.label}>Username</Text>
                     <TextInput
                         style={styles.textbox}
@@ -50,12 +55,13 @@ export default function App() {
                             <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
                         </View>
                     </TouchableOpacity>
-                </KeyboardAvoidingView>
-            </ScrollView>
-
-        </View>
-    );
-}
+                </View>
+                
+            </KeyboardAvoidingView>
+        </ScrollView>
+    </View>
+    
+);
 
 // Styles
 //Login form Styles
@@ -64,13 +70,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         marginVertical: 0 ,
-        paddingHorizontal: 20,
         borderRadius: 12,
         marginTop: 0,
     },
-    header: {
+    logoView: {
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 50,
     },
     headerText: {
         fontSize: 30,
@@ -78,9 +84,9 @@ const styles = StyleSheet.create({
     },
     textbox: {
         borderColor: 'black',
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 10,
-        padding: 15,
+        padding: 10,
         fontSize: 15,
     },
     label:{
@@ -100,3 +106,5 @@ const styles = StyleSheet.create({
         padding: 15,
     }
 });
+
+export default MainScreen;
