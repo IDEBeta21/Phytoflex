@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import React , {useState}from 'react';
+import * as React from 'react';
+import {useState}from 'react';
 import { render } from 'react-dom';
 import { 
   KeyboardAvoidingView, StyleSheet, Text, 
@@ -7,8 +8,19 @@ import {
   TouchableOpacity, Alert, ScrollView
 } from 'react-native';
 import Header from './components/header'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// import {StackNavigator} from 'react-navigation';
 
-const App = () => {
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+    </View>
+  );
+}
+
+function initApp() {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -18,13 +30,17 @@ const App = () => {
   )
 }
 
-const loginScreen = () => {
+function loginScreen({ navigation }){
     
   const [userName, setUserName] = useState('adfasdf');
   const [userPass, setUserPass] = useState('');
   
   const hello = ({userName}) => {
     Alert.alert('hello world: ' + {userName});
+  }
+
+  const toOtherFrom = () => {
+
   }
   
   return(
@@ -70,7 +86,7 @@ const loginScreen = () => {
               placeholder="Password"
             ></TextInput>
             
-            <TouchableOpacity onPress={() => navigation.navigate('Main')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Hello')}>
               <View style={styles.buttonArea}>
                 <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
               </View>
@@ -84,6 +100,21 @@ const loginScreen = () => {
     
 }
 
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="LoginScreen">
+        <Stack.Screen options={{headerShown: false}} name="Phytoflex" component={loginScreen} />
+        <Stack.Screen name="Hello" component={initApp} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -94,7 +125,7 @@ const styles = StyleSheet.create({
   logoView: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 30
+    paddingVertical: 25
   },
   headerText: {
     fontSize: 30,
@@ -138,7 +169,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// export default MainScreen;
-// export default testScreen;
-export default loginScreen;
-// export default App;
+// export default loginScreen;
+// export default initApp;
+export default App;
