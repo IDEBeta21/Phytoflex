@@ -67,7 +67,7 @@ function loginScreen({ navigation }){
                 uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
               }}
             />
-            <Text style={styles.headerText}>For Plantitios and </Text>
+            <Text style={styles.headerText}>For Plantitos and </Text>
             <Text style={styles.headerText}>Plantitas</Text>
           </View>
           
