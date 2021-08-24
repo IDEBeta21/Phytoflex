@@ -30,6 +30,7 @@ function initApp() {
   )
 }
 
+// Login Screen
 function loginScreen({ navigation }){
     
   const [userName, setUserName] = useState('adfasdf');
@@ -97,7 +98,6 @@ function loginScreen({ navigation }){
       </ScrollView>
     </View>
   ); 
-    
 }
 
 const Stack = createNativeStackNavigator();
@@ -113,8 +113,7 @@ function App() {
   );
 }
 
-
-
+// STYLES
 const styles = StyleSheet.create({
   container: {
     flex: 1,
