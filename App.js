@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -17,7 +16,7 @@ function forumScreen() {
 // Login Screen
 function loginScreen({navigation}){
   const loginClick = () => {
-    navigation.navigate('forum')
+    navigation.navigate('Forum')
   }
 
   return(
@@ -32,7 +31,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen options={{headerShown: false}} name="Phytoflex" component={loginScreen} />
-        <Stack.Screen name="forum" component={forumScreen} />
+        <Stack.Screen name="Forum" component={forumScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
