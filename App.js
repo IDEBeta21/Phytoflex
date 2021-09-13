@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import Screens
 import LoginScreen from './screens/login';
 import Forum from './screens/forum';
-import { View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
 
 // Forum Screen
 function forumScreen() {

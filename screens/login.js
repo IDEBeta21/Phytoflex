@@ -19,12 +19,11 @@ export default function LoginScreen({gotoForum}){
   
   const testInput = () => {
     if(userName == def_usrname && userPass == def_pass){
-      gotoForum;
+      gotoForum();
     }else{
-      // Alert.alert('Wrong Input/s' + userName);
+      Alert.alert('Wrong Input/s' + userName);
       setUserName('');
       setUserPass('');
-      gotoForum;
     }
   }
 
