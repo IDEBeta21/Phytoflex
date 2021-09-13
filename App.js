@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import Screens
 import LoginScreen from './screens/login';
 import Forum from './screens/forum';
+import { View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 
 // Forum Screen
 function forumScreen() {
@@ -15,12 +16,12 @@ function forumScreen() {
 
 // Login Screen
 function loginScreen({navigation}){
-  const loginClick = () => {
-    navigation.navigate('Forum')
+  const gotoForum = () => {
+    navigation.navigate('Forum');
   }
 
   return(
-    <LoginScreen loginClick={loginClick}/>
+    <LoginScreen gotoForum={gotoForum}/>
   );
 }
 
@@ -38,3 +39,25 @@ function App() {
 }
 
 export default App;
+
+const styles = StyleSheet.create({
+    buttonArea: {
+      marginTop: 40,
+      padding: 15,
+      
+      backgroundColor: 'green',
+      borderRadius: 15,
+      
+      alignItems: 'center', 
+      justifyContent: 'center',
+      
+      shadowColor: "black",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 1,
+      elevation: 5,
+    },
+});
