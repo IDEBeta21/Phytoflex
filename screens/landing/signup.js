@@ -7,11 +7,12 @@ import {
     StyleSheet,
     Alert
 } from 'react-native';
-import Header from '../components/header';
+import Header from '../../components/header';
 
-export default function LoginScreen({gotoForum}){
+import firebase from 'firebase';
+
+export default function SignUpScreen({gotoForum, firebaseConfig}){
     
-    const def_pass = "pass1";
     const def_usrname = "admin1"
     
     const [userName, setUserName] = useState('');
@@ -27,10 +28,10 @@ export default function LoginScreen({gotoForum}){
         }
     }
     
-    return(
+    return (
         <View style={styles.loginContainer}>
             {/* Display Header */}
-            <Header/>
+            <Header text={"Sign Up"}/>
             
             {/* Make the view scrollable */}
             <ScrollView
@@ -83,9 +84,10 @@ export default function LoginScreen({gotoForum}){
                 </KeyboardAvoidingView>
             </ScrollView>
         </View>
-    ); 
-}
+    )
     
+}
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

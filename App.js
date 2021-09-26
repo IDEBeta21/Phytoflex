@@ -17,18 +17,14 @@ const firebaseConfig = {
     messagingSenderId: "437461344883",
     appId: "1:437461344883:web:5388696aaa0445c758c006"
 };
+if (firebase.apps.length == 0) {
+    firebase.initializeApp(firebaseConfig);
+}
 
 // import Screens
-import LoginScreen from './screens/login';
+import LoginScreen from './screens/landing/login';
+import SignUpScreen from './screens/landing/signup';
 import Forum from './screens/forum';
-import { View, TouchableOpacity, Text, StyleSheet, Alert} from 'react-native';
-
-// Forum Screen
-function forumScreen() {
-    return (
-        <Forum/>
-    );
-}
 
 // Login Screen
 function loginScreen({navigation}){
@@ -37,18 +33,48 @@ function loginScreen({navigation}){
     }
     
     return(
-        <LoginScreen gotoForum={gotoForum}/>
+        <LoginScreen
+            gotoForum={gotoForum} 
+            firebaseConfig={firebaseConfig}/>
+    );
+}
+
+// Sign Up Screens
+function signUpScreen({navigation}) {
+    const gotoForum = () => {
+        navigation.navigate('Forum');
+    }
+
+    return(
+        <SignUpScreen
+            gotoForum={gotoForum} 
+            firebaseConfig={firebaseConfig}/>
     );
 }
     
+// Forum Screen
+function forumScreen() {
+    return (
+        <Forum/>
+    );
+}
+
 const Stack = createNativeStackNavigator();
 
 function App() {
+    
+    const [signInStat, setsignInStat] = useState(true);
+
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen options={{headerShown: false}} name="Phytoflex" component={forumScreen} />
-                <Stack.Screen name="Forum" component={forumScreen} />
+                <Stack.Screen 
+                    options={{headerShown: false}} 
+                    name="Phytoflex" 
+                    component={loginScreen} />
+                <Stack.Screen 
+                    name="Forum" 
+                    component={forumScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
