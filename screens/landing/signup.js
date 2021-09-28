@@ -7,88 +7,88 @@ import {
     StyleSheet,
     Alert
 } from 'react-native';
-import Header from '../../components/header';
 
 import firebase from 'firebase';
+import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
 
-export default function SignUpScreen({gotoForum, firebaseConfig}){
+export default function SignUpScreen(){
     
     const def_usrname = "admin1"
     
-    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
     const [userPass, setUserPass] = useState('');
     
-    const testInput = () => {
-        if(userName == def_usrname && userPass == def_pass){
-            gotoForum();
-        }else{
-            Alert.alert('Wrong Input/s' + userName);
-            setUserName('');
-            setUserPass('');
-        }
+
+    function signUpClick() {
+        const auth = firebase.auth();
+        firebase.auth().createUserWithEmailAndPassword(userEmail, userPass)
+            .then((result) => {
+                Alert.alert(result.message);
+                console.log(result);
+            })
+            .catch((error) => {
+                Alert.alert(error.message);
+                console.log(error);
+            });
     }
     
     return (
         <View style={styles.loginContainer}>
             {/* Display Header */}
-            <Header text={"Sign Up"}/>
             
             {/* Make the view scrollable */}
-            <ScrollView
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-            >
+            {/* To detect virtual keyboard */}
+            {/* <KeyboardAvoidingView
+            behavior={Platform.OS === "android" ? "padding" : "height"}
+            > */}
                 
-                {/* To detect virtual keyboard */}
-                <KeyboardAvoidingView
-                behavior={Platform.OS === "android" ? "padding" : "height"}
-                >
+                {/* Logo area */}
+                <View style={styles.logoView}>
+                    <Image
+                    style = {styles.logo}
+                    source={{
+                        uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
+                    }}
+                    />
+                    <Text style={styles.headerText}>For Plantitos </Text>
+                    <Text style={styles.headerText}> and Plantitas</Text>
+                </View>
+                
+                <View style={({paddingHorizontal: 30, flex: 1})}> 
+                    {/* Text Input Area */}
+                    <Text style={styles.label}>Username</Text>
+                    <TextInput
+                    style={styles.textbox}
+                    placeholder="i.e. NameIsDev21"
+                    onChangeText = {(text) => setUserEmail(text)}
+                    value={userEmail}
+                    ></TextInput>
                     
-                    {/* Logo area */}
-                    <View style={styles.logoView}>
-                        <Image
-                        style = {styles.logo}
-                        source={{
-                            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
-                        }}
-                        />
-                        <Text style={styles.headerText}>For Plantitos </Text>
-                        <Text style={styles.headerText}> and Plantitas</Text>
-                    </View>
+                    <Text style={styles.label}>Password</Text>
+                    <TextInput
+                    style={styles.textbox}
+                    placeholder="Password"
+                    onChangeText = {(text) => setUserPass(text)}
+                    value={userPass}
+                    ></TextInput>
                     
-                    <View style={({paddingHorizontal: 30})}> 
-                        {/* Text Input Area */}
-                        <Text style={styles.label}>Username</Text>
-                        <TextInput
-                        style={styles.textbox}
-                        placeholder="i.e. NameIsDev21"
-                        onChangeText = {(text) => setUserName(text)}
-                        value={userName}
-                        ></TextInput>
-                        
-                        <Text style={styles.label}>Password</Text>
-                        <TextInput
-                        style={styles.textbox}
-                        placeholder="Password"
-                        onChangeText = {(text) => setUserPass(text)}
-                        value={userPass}
-                        ></TextInput>
-                        
-                        <TouchableOpacity onPress={() => testInput()}>
-                            <View style={styles.buttonArea}>
-                                <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    
-                </KeyboardAvoidingView>
-            </ScrollView>
+                    <TouchableOpacity onPress={() => signUpClick()}>
+                        <View style={styles.buttonArea}>
+                            <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                
+            {/* </KeyboardAvoidingView> */}
         </View>
     )
     
 }
 
 const styles = StyleSheet.create({
+    loginContainer:{
+        flex: 1,
+    },
     container: {
         flex: 1,
         backgroundColor: '#fff',

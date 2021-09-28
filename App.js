@@ -5,8 +5,12 @@ import { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+// Import stack navigator
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+
 // Import firebase
-import firebase, { initializeApp } from 'firebase/app';
+import firebase from 'firebase';
 
 // firebase config
 const firebaseConfig = {
@@ -24,60 +28,83 @@ if (firebase.apps.length == 0) {
 // import Screens
 import LoginScreen from './screens/landing/login';
 import SignUpScreen from './screens/landing/signup';
-import Forum from './screens/forum';
+import ForumScreen from './screens/forum';
+import { NavigationActions } from 'react-navigation';
 
-// Login Screen
-function loginScreen({navigation}){
-    const gotoForum = () => {
-        navigation.navigate('Forum');
-    }
-    
-    return(
-        <LoginScreen
-            gotoForum={gotoForum} 
-            firebaseConfig={firebaseConfig}/>
+   
+// Forum Screen
+function forumScreen() {
+    return (
+        <ForumScreen/>
     );
 }
 
 // Sign Up Screens
-function signUpScreen({navigation}) {
+function signUpScreen() {
+    return(
+        <SignUpScreen/>
+    );
+}
+
+// Login Screen
+function loginScreen({navigation}){
     const gotoForum = () => {
-        navigation.navigate('Forum');
+        navigation.navigate('ForumScreen');
+    }
+    
+    const gotoSignUp = () => {
+        navigation.navigate('SignUpScreen');
     }
 
     return(
-        <SignUpScreen
+        <LoginScreen
             gotoForum={gotoForum} 
+            gotoSignUp={gotoSignUp}
             firebaseConfig={firebaseConfig}/>
-    );
-}
-    
-// Forum Screen
-function forumScreen() {
-    return (
-        <Forum/>
     );
 }
 
 const Stack = createNativeStackNavigator();
 
-function App() {
+function testUser(userIsSignedIn){
     
-    const [signInStat, setsignInStat] = useState(true);
-
-    return (
-        <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen 
-                    options={{headerShown: false}} 
-                    name="Phytoflex" 
-                    component={loginScreen} />
-                <Stack.Screen 
-                    name="Forum" 
-                    component={forumScreen} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+    if (!userIsSignedIn) {
+        this.props.navigation.navigate('SignUpScreen');
+    } else {
+       this.props.navigation.navigate('ForumScreen');
+    }
 }
+
+
+
+
+
+function App() {
+    const [userIsSignedIn, setuserIsSignedIn] = useState(false);
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+            setuserIsSignedIn(false);
+        } else {
+            setuserIsSignedIn(true);
+        }
+    });
+}
+
+const Screens = {
+    LoginScreen:{
+        screen: LoginScreen
+    },
+    ForumScreen:{
+        screen: ForumScreen
+    },
+    SignUpScreen:{
+        screen: SignUpScreen
+    }
+}
+
+const screenStack = createStackNavigator(Screens);
+
+export default createAppContainer(screenStack);
         
-export default App;
+// export default App;

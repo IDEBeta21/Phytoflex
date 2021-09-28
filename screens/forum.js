@@ -4,11 +4,14 @@ import {ScrollView, View, Text, StyleSheet} from 'react-native';
 export default function Forum(){
     
     return(
-        <ScrollView>
-            <View style={styles.container}>
-                <Text>Open up App.js to start working on your app!</Text>
-            </View>
-        </ScrollView>
+        <View style={{flex: 1}}>
+            {/* <ScrollView> */}
+                <View style={styles.container}>
+                    <Text>Open up App.js to start working on your app!</Text>
+                </View>
+            {/* </ScrollView> */}
+        </View>
+        
     );
 }
     
