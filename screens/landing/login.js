@@ -11,7 +11,6 @@ import {
 import firebase from 'firebase';
 import SignUpScreen from '../../screens/landing/signup';
 
-
 export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navigation}){
     
     const [userEmail, setuserEmail] = useState('');
@@ -91,22 +90,6 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
         </View>
     ); 
 
-        
-
-    // return (
-    //     <NavigationContainer independent={true}>
-    //         <Stack.Navigator>
-    //             <Stack.Screen 
-    //                 options={{headerShown: false}} 
-    //                 name="Phytoflex" 
-    //                 component={main} />  
-    //             <Stack.Screen 
-    //                     name="Sign Up" 
-    //                     component={toSignUp} />
-    //         </Stack.Navigator>
-    //     </NavigationContainer>
-        
-    // );
 }
     
 const styles = StyleSheet.create({
