@@ -58,18 +58,18 @@ export default function SignUpScreen(){
                     {/* Text Input Area */}
                     <Text style={styles.label}>Username</Text>
                     <TextInput
-                    style={styles.textbox}
-                    placeholder="i.e. NameIsDev21"
-                    onChangeText = {(text) => setUserEmail(text)}
-                    value={userEmail}
+                        style={styles.textbox}
+                        placeholder="i.e. NameIsDev21"
+                        onChangeText = {(text) => setUserEmail(text)}
+                        value={userEmail}
                     ></TextInput>
                     
                     <Text style={styles.label}>Password</Text>
                     <TextInput
-                    style={styles.textbox}
-                    placeholder="Password"
-                    onChangeText = {(text) => setUserPass(text)}
-                    value={userPass}
+                        style={styles.textbox}
+                        placeholder="Password"
+                        onChangeText = {(text) => setUserPass(text)}
+                        value={userPass}
                     ></TextInput>
                     
                     <TouchableOpacity onPress={() => signUpClick()}>

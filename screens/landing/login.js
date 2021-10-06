@@ -16,12 +16,14 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
     const [userEmail, setuserEmail] = useState('');
     const [userPass, setUserPass] = useState('');
 
+
     function logInClick() {
         const auth = firebase.auth();
         firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
             .then((result) => {
                 Alert.alert(result.message);
                 console.log(result);
+                toForum();
             })
             .catch((error) => {
                 Alert.alert(error.message);
@@ -31,6 +33,10 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
     const toSignUp = () =>{
         navigation.push('SignUpScreen');
+    }
+
+    const toForum = () => {
+        navigation.push('ForumScreen');
     }
 
     return(
@@ -59,18 +65,18 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
                     <Text style={styles.label}>YOUR EMAIL</Text>
                     <TextInput
-                    style={styles.textbox}
-                    placeholder="i.e. NameIsDev21"
-                    onChangeText = {(text) => setuserEmail(text)}
-                    value={userEmail}
+                        style={styles.textbox}
+                        placeholder="i.e. NameIsDev21"
+                        onChangeText = {(text) => setuserEmail(text)}
+                        value={userEmail}
                     ></TextInput>
                     
                     <Text style={styles.label}>PASSWORD</Text>
                     <TextInput
-                    style={styles.textbox}
-                    placeholder="Password"
-                    onChangeText = {(text) => setUserPass(text)}
-                    value={userPass}
+                        style={styles.textbox}
+                        placeholder="Password"
+                        onChangeText = {(text) => setUserPass(text)}
+                        value={userPass}
                     ></TextInput>
 
                     <TouchableOpacity onPress={toSignUp}>
