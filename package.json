@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "@react-native-firebase/app": "^12.8.0",
+    "@react-native-firebase/storage": "^13.0.1",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/native-stack": "^6.1.0",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "firebase": "8.2.3",
+    "galio-framework": "^0.8.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",

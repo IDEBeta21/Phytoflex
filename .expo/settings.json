@@ -3,7 +3,7 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
-  "urlRandomness": null,
+  "urlRandomness": "ek-j6i",
   "https": false,
   "scheme": null,
   "devClient": false

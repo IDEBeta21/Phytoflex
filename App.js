@@ -18,7 +18,7 @@ const firebaseConfig = {
     appId: "1:437461344883:web:5388696aaa0445c758c006"
 };
 if (firebase.apps.length == 0) {
-    firebase.initializeApp(firebaseConfig);
+    const firebaseApp = firebase.initializeApp(firebaseConfig);
 }
 
 // import Screens
@@ -52,7 +52,7 @@ const Screen1 = {
         screen: SignUpScreen
     }
 }
-  
+
 const Stacks = (firebase.auth().onAuthStateChanged((user) => {return user}) ? createStackNavigator(Screens) : createStackNavigator(Screen1));
 
 export default createAppContainer(Stacks);

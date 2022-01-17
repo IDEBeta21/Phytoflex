@@ -3,7 +3,7 @@ import {useState}from 'react';
 import { render } from 'react-dom';
 import { 
     View, ScrollView, KeyboardAvoidingView, 
-    Image, Text, TextInput, TouchableOpacity,  
+    Image, TextInput, TouchableOpacity,  
     StyleSheet,
     Alert
 } from 'react-native';
@@ -11,12 +11,39 @@ import {
 import firebase from 'firebase';
 import SignUpScreen from '../../screens/landing/signup';
 
+//  Galio Framework
+import { Text, Button } from 'galio-framework'
+
+
+// // // firestore storage
+// import { getStorage, ref } from "firebase/storage";
+
+// // // Get a reference to the storage service, which is used to create references in your storage bucket
+// const storage = getStorage();
+
+// // Create a child reference
+// const imagesRef = ref(storage, 'assets/clipart879058.png');
+// // imagesRef now points to 'images'
+
+// import storage from '@react-native-firebase/storage';
+
+// const reference = storage().ref('black-t-shirt-sm.png');
+
+
+
+
+// const refe = firebase.storage().ref('gs://phytoflex-3f53f.appspot.com/assets/clipart879058.png');
+// const url =  ref.getDownloadURL();
+
+
 export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navigation}){
     
     const [userEmail, setuserEmail] = useState('');
     const [userPass, setUserPass] = useState('');
 
 
+
+    
     function logInClick() {
         const auth = firebase.auth();
         firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
@@ -54,7 +81,9 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                     <Image
                         style = {styles.logo}
                         source={{
-                            uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
+                            // uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
+                            // uri: 'assets/img/jspic.png',
+                            uri: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/assets%2Fclipart879058.png?alt=media&token=11145a26-a723-49bf-b158-86ab34bf4505',
                         }}
                     />
                 </View>
@@ -89,6 +118,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         <View style={styles.buttonArea}>
                             <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
                         </View>
+                        <Button color="success">success</Button>
                     </TouchableOpacity>
                 </View>
                 
@@ -146,7 +176,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     logo: {
-        width: 200,
+        width: 180,
         height: 200,
         backgroundColor: 'white',
         borderRadius: 12
