@@ -25,6 +25,8 @@ if (firebase.apps.length == 0) {
 import LoginScreen from './screens/landing/login';
 import SignUpScreen from './screens/landing/signup';
 import ForumScreen from './screens/forum';
+import PlantCare from './screens/plantcare/mainPlantCare';
+import MyComponent from './screens/global/bottomNav';
 
 const Screens = {
     LoginScreen:{
@@ -40,6 +42,21 @@ const Screens = {
         screen: SignUpScreen
     }
 }
+
+// const Screens = {
+//     MyComponent:{
+//         screen: MyComponent,
+//         navigationOptions: {
+//             header: false
+//         }
+//     },
+//     ForumScreen:{
+//         screen: ForumScreen
+//     },
+//     SignUpScreen:{
+//         screen: SignUpScreen
+//     }
+// }
 
 const Screen1 = {
     ForumScreen:{

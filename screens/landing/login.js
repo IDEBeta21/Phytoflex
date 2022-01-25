@@ -12,7 +12,7 @@ import firebase from 'firebase';
 import SignUpScreen from '../../screens/landing/signup';
 
 //  Galio Framework
-import { Text, Button } from 'galio-framework'
+import { Text, Button } from 'galio-framework';
 
 
 // // // firestore storage
@@ -45,18 +45,22 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
     
     function logInClick() {
-        const auth = firebase.auth();
-        firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
-            .then((result) => {
-                Alert.alert(result.message);
-                console.log(result);
-                toForum();
-            })
-            .catch((error) => {
-                Alert.alert(error.message);
-                console.log(error);
-            });
+        // const auth = firebase.auth();
+        // firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
+        //     .then((result) => {
+        //         Alert.alert(result.message);
+        //         console.log(result);
+        //         toForum();
+        //     })
+        //     .catch((error) => {
+        //         Alert.alert(error.message);
+        //         console.log(error);
+        //     });
+
+        toForum();
     }
+
+    
 
     const toSignUp = () =>{
         navigation.push('SignUpScreen');
@@ -118,7 +122,6 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         <View style={styles.buttonArea}>
                             <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
                         </View>
-                        <Button color="success">success</Button>
                     </TouchableOpacity>
                 </View>
                 
