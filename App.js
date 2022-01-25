@@ -26,21 +26,27 @@ import LoginScreen from './screens/landing/login';
 import SignUpScreen from './screens/landing/signup';
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
-import MyComponent from './screens/global/bottomNav';
+import MyTabs from './screens/global/bottomNav';
 
 const Screens = {
-    LoginScreen:{
-        screen: LoginScreen,
-        navigationOptions: {
-            header: false
-        }
-    },
-    ForumScreen:{
-        screen: ForumScreen
-    },
-    SignUpScreen:{
-        screen: SignUpScreen
+  LoginScreen:{
+    screen: LoginScreen,
+    navigationOptions: {
+        header: false
     }
+  },
+  MyTabs:{
+    screen: MyTabs,
+    navigationOptions: {
+        header: false
+    }
+  },
+  ForumScreen:{
+    screen: ForumScreen
+  },
+  SignUpScreen:{
+    screen: SignUpScreen
+  }
 }
 
 // const Screens = {
@@ -59,15 +65,15 @@ const Screens = {
 // }
 
 const Screen1 = {
-    ForumScreen:{
-        screen: ForumScreen
-    },
-    LoginScreen:{
-        screen: LoginScreen
-    },
-    SignUpScreen:{
-        screen: SignUpScreen
-    }
+  ForumScreen:{
+    screen: ForumScreen
+  },
+  LoginScreen:{
+    screen: LoginScreen
+  },
+  SignUpScreen:{
+    screen: SignUpScreen
+  }
 }
 
 const Stacks = (firebase.auth().onAuthStateChanged((user) => {return user}) ? createStackNavigator(Screens) : createStackNavigator(Screen1));

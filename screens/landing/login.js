@@ -10,6 +10,7 @@ import {
 
 import firebase from 'firebase';
 import SignUpScreen from '../../screens/landing/signup';
+import MyTabs from '../global/bottomNav';
 
 //  Galio Framework
 import { Text, Button } from 'galio-framework';
@@ -57,7 +58,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
         //         console.log(error);
         //     });
 
-        toForum();
+        toTabs();
     }
 
     
@@ -68,6 +69,10 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
     const toForum = () => {
         navigation.push('ForumScreen');
+    }
+
+    const toTabs = () => {
+        navigation.push('MyTabs');
     }
 
     return(

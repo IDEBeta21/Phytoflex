@@ -1,30 +1,36 @@
 import * as React from 'react';
-import { Appbar } from 'react-native-paper';
-import { StyleSheet, Text } from 'react-native';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
-const MyComponent = () => (
+// 
+import Forum from '../forum';
+import LoginScreen from '../landing/login';
+import PlantCare from '../plantcare/mainPlantCare';
 
-  <Appbar style={styles.bottom}>
-    <Appbar.Action
-      icon="archive"
-      onPress={() => console.log('Pressed archive')}
-    />
-    <Appbar.Action icon="mail" onPress={() => console.log('Pressed mail')} />
-    <Appbar.Action icon="label" onPress={() => console.log('Pressed label')} />
-    <Appbar.Action
-      icon="delete"
-      onPress={() => console.log('Pressed delete')}
-    />
-  </Appbar>
- );
 
-export default MyComponent
+function ForumScreen() {
+  return (
+    <Forum/>
+  );
+}
 
-const styles = StyleSheet.create({
-  bottom: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-});
+function DiscussionScreen() {
+  return (
+    <PlantCare/>
+  );
+}
+
+const Tab = createMaterialBottomTabNavigator();
+
+export default function MyTabs() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        barStyle={{backgroundColor: 'green'}}>
+        <Tab.Screen name="Forum" component={ForumScreen} />
+        <Tab.Screen name="Plant Care" component={DiscussionScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
