@@ -38,9 +38,9 @@ import { View } from 'react-native-web';
 import { Text } from 'react-native';
 
 const getFonts = () => Font.loadAsync({
-  'poppins-semiBold': fetch('https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/assets%2Ffonts%2FPoppins-SemiBold.ttf?alt=media&token=e163858a-4d46-4fd3-a165-bedb7c8cb1bc'),
-  'poppins-regular': fetch('https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/assets%2Ffonts%2FPoppins-Regular.ttf?alt=media&token=06217080-1636-4cda-8b5f-714832d08e3e'),
-  'poppins-ligth': fetch('https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/assets%2Ffonts%2FPoppins-Light.ttf?alt=media&token=a851373a-3aa8-4c52-a56d-ede6ac4a461c')
+  'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
+  'poppins-semiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
+  'poppins-ligth': require('./assets/fonts/Poppins-Light.ttf')
 })
 
 // Naviagting functions
