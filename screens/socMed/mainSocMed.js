@@ -7,7 +7,7 @@ export default function SocialMedia(){
     <View style={{flex: 1}}>
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
-        <Text>This is the Disscusion Page</Text>
+        <Text>This is the Social Media Page</Text>
       </View>
     </View>
       

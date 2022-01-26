@@ -11,7 +11,7 @@ import {
 import firebase from 'firebase';
 import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
 
-export default function SignUpScreen(){
+export default function SignUpScreen({navigation}){
     
     const def_usrname = "admin1"
     
@@ -74,7 +74,7 @@ export default function SignUpScreen(){
                     
                     <TouchableOpacity onPress={() => signUpClick()}>
                         <View style={styles.buttonArea}>
-                            <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
+                            <Text style={{ color: 'white', fontSize: 20, }}>SIGN UP</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

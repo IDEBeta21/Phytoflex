@@ -5,26 +5,27 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 // 
 import LoginScreen from '../landing/login';
-import Forum from '../forum';
+// import Forum from '../forum';
+import Discussion from '../discussion/mainDiscussion';
 import PlantCare from '../plantcare/mainPlantCare';
 import SocialMedia from '../socMed/mainSocMed';
 import Shop from '../eCommerce/mainECommerce';
 
 function ForumScreen() {
   return (
-    <Forum/>
+    <SocialMedia/>
+  );
+}
+
+function DiscussionScreen() {
+  return (
+    <Discussion/>
   );
 }
 
 function MyGardenScreen() {
   return (
     <PlantCare/>
-  );
-}
-
-function DiscussionScreen() {
-  return (
-    <SocialMedia/>
   );
 }
 
@@ -39,16 +40,14 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        barStyle={{backgroundColor: '#1D4123'}}
-        shifting={false}
-        >
-        <Tab.Screen name="Forum" component={ForumScreen} />
-        <Tab.Screen name="Discussion" component={DiscussionScreen} />
-        <Tab.Screen name="Garden" component={MyGardenScreen} />
-        <Tab.Screen name="Shop" component={ShopScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      barStyle={{backgroundColor: '#1D4123'}}
+      shifting={false}
+      >
+      <Tab.Screen name="Home" component={ForumScreen} />
+      <Tab.Screen name="Discussion" component={DiscussionScreen} />
+      <Tab.Screen name="Garden" component={MyGardenScreen} />
+      <Tab.Screen name="Shop" component={ShopScreen} />
+    </Tab.Navigator>
   );
 }
