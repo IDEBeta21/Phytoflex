@@ -35,34 +35,25 @@ const Screens = {
         header: false
     }
   },
+  ForumScreen:{
+    screen: ForumScreen
+  },
+  SignUpScreen:{
+    screen: SignUpScreen
+  },
   MyTabs:{
     screen: MyTabs,
     navigationOptions: {
         header: false
     }
   },
-  ForumScreen:{
-    screen: ForumScreen
-  },
-  SignUpScreen:{
-    screen: SignUpScreen
+  PlantCare:{
+    screen: PlantCare
   }
 }
 
-// const Screens = {
-//     MyComponent:{
-//         screen: MyComponent,
-//         navigationOptions: {
-//             header: false
-//         }
-//     },
-//     ForumScreen:{
-//         screen: ForumScreen
-//     },
-//     SignUpScreen:{
-//         screen: SignUpScreen
-//     }
-// }
+
+
 
 const Screen1 = {
   ForumScreen:{
@@ -73,6 +64,15 @@ const Screen1 = {
   },
   SignUpScreen:{
     screen: SignUpScreen
+  },
+  MyTabs:{
+    screen: MyTabs,
+    navigationOptions: {
+        header: false
+    }
+  },
+  PlantCare:{
+    screen: PlantCare
   }
 }
 
