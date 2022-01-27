@@ -40,10 +40,10 @@ import { Text } from 'react-native';
 const getFonts = () => Font.loadAsync({
   'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
   'poppins-semiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
-  'poppins-ligth': require('./assets/fonts/Poppins-Light.ttf')
+  'poppins-light': require('./assets/fonts/Poppins-Light.ttf')
 })
 
-// Naviagting functions
+// Navigating functions
 function funcLoginScreen({ navigation }) {
   return (
     <LoginScreen navigation={navigation}/>

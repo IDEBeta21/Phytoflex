@@ -6,7 +6,8 @@ export default function Discussion(){
   return(
     <View style={{flex: 1}}>
       <View style={styles.container}>
-        <Text style={{fontFamily: 'poppins-regular'}}>Open up App.js to start working on your app!</Text>
+        <Text style={{fontFamily: 'poppins-regular'}}>
+        Open up App.js to start working on your app!</Text>
         <Text>This is the Discussion Page</Text>
       </View>
     </View>
