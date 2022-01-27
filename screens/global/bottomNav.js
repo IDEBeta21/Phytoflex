@@ -43,18 +43,21 @@ export default function MyTabs() {
     <Tab.Navigator
       barStyle={{backgroundColor: '#1D4123', fontFamily: 'poppins-regular'}}
       shifting={true}
+      initialRouteName="Home"
       //labeled={false}
       >
       <Tab.Screen name="Home" component={ForumScreen}
       options={{
+        tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Home </Text> ,
         tabBarIcon: ({focused}) => (
-          <View style={{alignItems: 'center', justifyContent: 'center', top: 2}}>
+          <View style={{alignItems: 'center', justifyContent: 'center'}}>
           <Image
           source={require('../global/Home.png')}
           resizeMode='contain'
           style={{
             width: 25,
             height: 25,
+            padding: 5,
             tintColor: focused ? '#FFFFFF' : '#888E78' }}/>
           {/* <Text 
           style={{
@@ -68,6 +71,7 @@ export default function MyTabs() {
       }} />
       <Tab.Screen name="Discussion" component={DiscussionScreen}
       options={{
+        tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Discussion </Text> ,
         tabBarIcon: ({focused}) => (
           <View style={{alignItems: 'center', justifyContent: 'center', top: 2}}>
           <Image
@@ -75,13 +79,15 @@ export default function MyTabs() {
           resizeMode='contain'
           style={{
             width: 25,
-            height: 23,
+            height: 25,
+            padding: 5,
             tintColor: focused ? '#FFFFFF' : '#888E78' }}/>
           </View>
         ),
       }}  />
       <Tab.Screen name="Garden" component={MyGardenScreen} 
       options={{
+        tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Garden </Text> ,
         tabBarIcon: ({focused}) => (
           <View style={{alignItems: 'center', justifyContent: 'center', top: 2}}>
           <Image
@@ -90,6 +96,7 @@ export default function MyTabs() {
           style={{
             width: 25,
             height: 25,
+            padding: 5,
             tintColor: focused ? '#FFFFFF' : '#888E78' }}/>
           </View>
         ),
@@ -97,6 +104,7 @@ export default function MyTabs() {
       />
       <Tab.Screen name="Shop" component={ShopScreen}
       options={{
+        tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Shop </Text> ,
         tabBarIcon: ({focused}) => (
           <View style={{alignItems: 'center', justifyContent: 'center', top: 2}}>
           <Image
@@ -105,6 +113,7 @@ export default function MyTabs() {
           style={{
             width: 25,
             height: 25,
+            padding: 5,
             tintColor: focused ? '#FFFFFF' : '#888E78' }}/>
           </View>
         ),
