@@ -1,25 +1,18 @@
 import * as React from "react";
 import {ScrollView, View, Text, StyleSheet} from 'react-native';
+import { globalStyles } from '../global/globalStyles';
 
 export default function Discussion(){
     
   return(
-    <View style={{flex: 1}}>
-      <View style={styles.container}>
-        <Text style={{fontFamily: 'poppins-regular'}}>
-        Open up App.js to start working on your app!</Text>
-        <Text>This is the Discussion Page</Text>
-      </View>
+    <View style={ globalStyles.textContainer }>
+      <Text style={ globalStyles.titleText }>
+        This is the Discussion Page
+      </Text>
+       <Text style={ globalStyles.paragraphText }>
+        Open up App.js to start working on your app!
+      </Text>
     </View>
       
   );
 }
-    
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
