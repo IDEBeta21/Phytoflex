@@ -6,32 +6,43 @@ import { globalStyles } from '../global/globalStyles';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
-function HomeScreen({ navigation }) {
+import PlantCareHomePage from "../../screens/plantcare/plantCareHomePage";
+import PlantCareSearchPage from "./plantCareSearch";
+import { createStackNavigator } from "react-navigation-stack";
+
+function PlantCareHomeScreen({ navigation }) {
   return (
-    <View style={ globalStyles.textContainer }>
-      <Text style={ globalStyles.titleText }>
-        This is the Plant Care Page
-      </Text>
-       <Text style={ globalStyles.paragraphText }>
-        Open up App.js to start working on your app!
-      </Text>
-    </View>
+    <PlantCareHomePage navigation={navigation}/>
   );
 }
 
-function NotificationsScreen({ navigation }) {
+function PlantCareSearhScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
+    <PlantCareSearchPage navigation={navigation}/>
   );
 }
 
 const Drawer = createDrawerNavigator();
+// const PlantCareStack = createStackNavigator();
 
 export default function PlantCare(){
     
   return(
+    // <PlantCareStack.Navigator 
+    //   initialRouteName="Plant Care"
+    //   screenOptions={{
+    //     // drawerStyle:{
+    //     //   backgroundColor: '#1D4123',
+    //     // },
+    //     // drawerInactiveTintColor: 'grey',
+    //     // drawerActiveTintColor: 'white',
+    //     headerShown: false
+    //   }}>
+    //   <PlantCareStack.Screen name="Plant Care" component={PlantCareHomeScreen} />
+    //   <PlantCareStack.Screen name="Search" component={PlantCareSearhScreen} />
+    // </PlantCareStack.Navigator>
+    
+
     <Drawer.Navigator 
       initialRouteName="Home"
       screenOptions={{
@@ -41,9 +52,8 @@ export default function PlantCare(){
         drawerInactiveTintColor: 'grey',
         drawerActiveTintColor: 'white',
       }}>
-      <Drawer.Screen name="Plant Care" component={HomeScreen} />
-      <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+      <Drawer.Screen name="PlantCare" component={PlantCareHomeScreen} />
+      <Drawer.Screen name="Search" component={PlantCareSearhScreen} />
     </Drawer.Navigator>
-      
   );
 }
