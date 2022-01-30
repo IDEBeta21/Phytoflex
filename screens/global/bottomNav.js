@@ -11,6 +11,8 @@ import PlantCare from '../plantcare/mainPlantCare';
 import SocialMedia from '../socMed/mainSocMed';
 import Shop from '../eCommerce/mainECommerce';
 
+import SideDrawer from './Drawer';
+
 function ForumScreen() {
   return (
     <SocialMedia/>
@@ -20,6 +22,7 @@ function ForumScreen() {
 function DiscussionScreen() {
   return (
     <Discussion/>
+    // <SideDrawer/>
   );
 }
 
@@ -35,18 +38,19 @@ function ShopScreen() {
   );
 }
 
-const Tab = createMaterialBottomTabNavigator();
+const ButtomNavTab = createMaterialBottomTabNavigator();
 // const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-    <Tab.Navigator
+
+    <ButtomNavTab.Navigator
       barStyle={{backgroundColor: '#1D4123', fontFamily: 'poppins-regular'}}
       shifting={true}
       initialRouteName="Home"
       //labeled={false}
       >
-      <Tab.Screen name="Home" component={ForumScreen}
+      <ButtomNavTab.Screen name="Home" component={ForumScreen}
       options={{
         tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Home </Text> ,
         tabBarIcon: ({focused}) => (
@@ -69,7 +73,7 @@ export default function MyTabs() {
           </View>
         ),
       }} />
-      <Tab.Screen name="Discussion" component={DiscussionScreen}
+      <ButtomNavTab.Screen name="Discussion" component={DiscussionScreen}
       options={{
         tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Discussion </Text> ,
         tabBarIcon: ({focused}) => (
@@ -85,7 +89,7 @@ export default function MyTabs() {
           </View>
         ),
       }}  />
-      <Tab.Screen name="Garden" component={MyGardenScreen} 
+      <ButtomNavTab.Screen name="Garden" component={MyGardenScreen} 
       options={{
         tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Garden </Text> ,
         tabBarIcon: ({focused}) => (
@@ -102,7 +106,7 @@ export default function MyTabs() {
         ),
       }}
       />
-      <Tab.Screen name="Shop" component={ShopScreen}
+      <ButtomNavTab.Screen name="Shop" component={ShopScreen}
       options={{
         tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Shop </Text> ,
         tabBarIcon: ({focused}) => (
@@ -118,6 +122,6 @@ export default function MyTabs() {
           </View>
         ),
       }} />
-    </Tab.Navigator>
+    </ButtomNavTab.Navigator>
   );
 }

@@ -62,7 +62,7 @@ function funcBottomNav({navigation}) {
   );
 }
 
-const Stack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
 
 function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -70,15 +70,15 @@ function App() {
   if (fontsLoaded) {
     return (
       <NavigationContainer navigationOption={{header:false}}>
-        <Stack.Navigator 
+        <AuthStack.Navigator 
           initialRouteName={firebase.auth().onAuthStateChanged((user) => {return user}) ? "Login" : "SignUpScreen"}  
           screenOptions={{
             headerShown: false
           }}>
-          <Stack.Screen name="Login" component={funcLoginScreen} />
-          <Stack.Screen name="SignUpScreen" component={funcSignupScreen} />
-          <Stack.Screen name="MyTabs" component={funcBottomNav} />
-        </Stack.Navigator>
+          <AuthStack.Screen name="Login" component={funcLoginScreen} />
+          <AuthStack.Screen name="SignUpScreen" component={funcSignupScreen} />
+          <AuthStack.Screen name="MyTabs" component={funcBottomNav} />
+        </AuthStack.Navigator>
       </NavigationContainer>
     );
   } else {
