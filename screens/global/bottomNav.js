@@ -13,9 +13,6 @@ import Shop from '../eCommerce/mainECommerce';
 
 import SideDrawer from './Drawer';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
-// import { NavigationContainer } from '@react-navigation/native';
-
 function ForumScreen() {
   return (
     <SocialMedia/>
@@ -42,13 +39,10 @@ function ShopScreen() {
 }
 
 const ButtomNavTab = createMaterialBottomTabNavigator();
-const Drawer = createDrawerNavigator();
 // const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-
-    
 
     <ButtomNavTab.Navigator
       barStyle={{backgroundColor: '#1D4123', fontFamily: 'poppins-regular'}}
@@ -129,6 +123,5 @@ export default function MyTabs() {
         ),
       }} />
     </ButtomNavTab.Navigator>
-    
   );
 }
