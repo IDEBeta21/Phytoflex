@@ -5,7 +5,7 @@ import {
     View, ScrollView, KeyboardAvoidingView, 
     Image, TextInput, TouchableOpacity,  
     StyleSheet,
-    Alert
+    Alert, Button
 } from 'react-native';
 
 import firebase from 'firebase';
@@ -13,7 +13,7 @@ import SignUpScreen from '../../screens/landing/signup';
 import MyTabs from '../global/bottomNav';
 
 //  Galio Framework
-import { Text, Button } from 'galio-framework';
+import { Text } from 'galio-framework';
 
 
 // // // firestore storage
@@ -46,22 +46,24 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
     
     function logInClick() {
-        // const auth = firebase.auth();
-        // firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
-        //     .then((result) => {
-        //         Alert.alert(result.message);
-        //         console.log(result);
-        //         toForum();
-        //     })
-        //     .catch((error) => {
-        //         Alert.alert(error.message);
-        //         console.log(error);
-        //     });
+        const auth = firebase.auth();
+        firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
+            .then((result) => {
+                Alert.alert(result.message);
+                console.log(result);
+                toForum();
+            })
+            .catch((error) => {
+                Alert.alert(error.message);
+                console.log(error);
+            });
 
-        toTabs();
+        // toTabs();
     }
 
-    
+    function gotoHome() {
+        toTabs();
+    }
 
     const toSignUp = () =>{
         navigation.push('SignUpScreen');
@@ -126,6 +128,12 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                     <TouchableOpacity onPress={() => logInClick()}>
                         <View style={styles.buttonArea}>
                             <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
+                        </View>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity onPress={() => gotoHome()}>
+                        <View style={styles.buttonArea}>
+                            <Text style={{ color: 'white', fontSize: 20, }}>Home</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
