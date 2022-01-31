@@ -1,6 +1,10 @@
+import React from 'react';
+
 // Importing screens
 import PlantCareHomePage from "../../screens/plantcare/plantCareHomePage";
 import PlantCareSearchPage from "./plantCareSearch";
+
+import Header from "../global/Header";
 
 // importing for Navigation
 import { createStackNavigator } from "react-navigation-stack";
@@ -10,14 +14,18 @@ import { createAppContainer } from 'react-navigation';
 const PlantCareScreen = {
   PlantCareHome: {
     screen: PlantCareHomePage,
-    navigationOptions:{
-      headerShown: false
+    navigationOptions: ({navigation}) => {
+      return{
+        headerTitle: () => <Header title={'Plant Care'}/>
+      }
     }
   },
   PlantCareSearch: {
     screen: PlantCareSearchPage,
-    navigationOptions:{
-      headerShown: false
+    navigationOptions: ({navigation}) => {
+      return{
+        headerTitle: () => <Header title={'Plant Care'}/>
+      }
     }
   }
 }
