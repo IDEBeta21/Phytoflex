@@ -2,22 +2,22 @@ import { Button, Text, View } from 'react-native';
 import React, { Component } from 'react';
 import { globalStyles } from '../global/globalStyles';
 
-export default function ShopHomePage({navigation}) {
+export default function SocialMediaHomePage({navigation}) {
 
-  function toShopSearch() {
-    navigation.navigate('ShopSearch');
+  const toSocialMediaHome = () => {
+    navigation.navigate('SocialMediaHome');
   }
 
   return (
     <View style={ globalStyles.textContainer }>
       <Text style={ globalStyles.titleText }>
-        This is the Shop Main Page
+        This is the Social Media Search Page
       </Text>
       <Text style={ globalStyles.paragraphText }>
-        Open up ShopMainPage.js to start working on your app!
+        Open up SocialMediaSearch.js to start working on your app!
       </Text>
       
-      <Button onPress={() => toShopSearch()} title="Shop Search"></Button>
+      <Button onPress={() => toSocialMediaHome()} title="Social Media Home"></Button>
     </View>
   );
 }

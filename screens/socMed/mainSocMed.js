@@ -1,18 +1,27 @@
-import * as React from "react";
-import {ScrollView, View, Text, StyleSheet} from 'react-native';
-import { globalStyles } from '../global/globalStyles';
+// Importing screens
+import SocialMediaHomePage from "./SocialMediaHome";
+import SocialMediaSearchPage from "./SocialMediaSearch";
 
-export default function SocialMedia(){
-    
-  return(
-    <View style={ globalStyles.textContainer }>
-      <Text style={ globalStyles.titleText }>
-        This is the Social Media Page
-      </Text>
-       <Text style={ globalStyles.paragraphText }>
-        Open up App.js to start working on your app!
-      </Text>
-    </View>
-      
-  );
+// importing for Navigation
+import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from 'react-navigation';
+
+// const Drawer = createDrawerNavigator();
+const SocialMediaScreen = {
+  SocialMediaHome: {
+    screen: SocialMediaHomePage,
+    navigationOptions:{
+      headerShown: false
+    }
+  },
+  SocialMediaSearch: {
+    screen: SocialMediaSearchPage,
+    navigationOptions:{
+      headerShown: false
+    }
+  }
 }
+
+const SocialMediaStack = createStackNavigator(SocialMediaScreen);
+
+export default createAppContainer(SocialMediaStack);

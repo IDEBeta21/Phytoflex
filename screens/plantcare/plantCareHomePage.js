@@ -17,7 +17,7 @@ export default function PlantCareHomePage({navigation}) {
         Open up plantCareHomePage.js to start working on your app!
       </Text>
 
-      <Button onPress={() => toPlantCareSearch()} title="Click"></Button>
+      <Button onPress={() => toPlantCareSearch()} title="Plant Care Search"></Button>
     </View>
   );
 }
