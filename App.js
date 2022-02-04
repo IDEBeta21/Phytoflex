@@ -29,6 +29,7 @@ import SignUpScreen from './screens/landing/signup';
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
 import MyTabs from './screens/global/bottomNav';
+import HeaderContent from './screens/global/Header';
 
 // 
 // import { AppLoading } from 'expo';\
@@ -58,26 +59,52 @@ function funcSignupScreen({ navigation }) {
 
 function funcBottomNav({navigation}) {
   return(
-    <MyTabs/>
+    <MyTabs navigation={navigation}/>
   );
 }
 
 const AuthStack = createNativeStackNavigator();
+
+
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { DrawerContent } from './screens/global/Drawer';
+const Drawer = createDrawerNavigator();
+function SideBar(){
+  return(
+      // <NavigationContainer independent={true}>
+      <Drawer.Navigator
+        screenOptions={{
+          headerShown: false,
+          // headerTransparent:true,
+          drawerActiveTintColor: 'white',
+          drawerStyle: {
+            backgroundColor: '#1D4123',
+            width: 240,
+          },
+        }}
+        drawerContent={props => <DrawerContent {...props}/>}
+      >
+        <Drawer.Screen name="Post" component={funcBottomNav}/>
+        <Drawer.Screen name="Login" component={funcLoginScreen} />
+      </Drawer.Navigator>
+    // </NavigationContainer>s
+  );
+}
 
 function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   if (fontsLoaded) {
     return (
-      <NavigationContainer navigationOption={{header:false}}>
+      <NavigationContainer independent={true}>
         <AuthStack.Navigator 
           initialRouteName={firebase.auth().onAuthStateChanged((user) => {return user}) ? "Login" : "SignUpScreen"}  
-          screenOptions={{
-            headerShown: false
-          }}>
-          <AuthStack.Screen name="Login" component={funcLoginScreen} />
-          <AuthStack.Screen name="SignUpScreen" component={funcSignupScreen} />
-          <AuthStack.Screen name="MyTabs" component={funcBottomNav} />
+          screenOptions={{headerShown: false}}
+        >
+          <AuthStack.Screen name="Login" component={funcLoginScreen}/>
+          <AuthStack.Screen name="SignUpScreen" component={funcSignupScreen}/>
+          <AuthStack.Screen name="MyTabs" component={SideBar}/>
+          {/* <AuthStack.Screen name="MyTabs" component={funcBottomNav} /> */}
         </AuthStack.Navigator>
       </NavigationContainer>
     );

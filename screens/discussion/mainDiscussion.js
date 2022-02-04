@@ -1,27 +1,46 @@
-// Importing screens
+import * as React from 'react';
+import { View, Text, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import DiscussionHomePage from "./DiscussionHomePage";
 import DiscussionSearchPage from "./DiscussionSearchPage"
 
-// importing for Navigation
-import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from 'react-navigation';
+import Header from '../global/Header';
 
-// const Drawer = createDrawerNavigator();
-const DiscussionScreens = {
-  DiscussionHome: {
-    screen: DiscussionHomePage,
-    navigationOptions:{
-      headerShown: false
-    }
-  },
-  DiscussionSearch: {
-    screen: DiscussionSearchPage,
-    navigationOptions:{
-      headerShown: false
-    }
-  }
+function funcDiscussionHome({navigation}) {
+  return (
+    <DiscussionHomePage navigation={navigation}/>
+  );
 }
 
-const DiscussionStack = createStackNavigator(DiscussionScreens);
+function funcDiscussionSearch({navigation}) {
+  return (
+    <DiscussionSearchPage navigation={navigation}/>
+  );
+}
 
-export default createAppContainer(DiscussionStack);
+const Stack = createNativeStackNavigator();
+
+function App({navigation}) {
+  return (
+    // <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="DiscussionHome"
+          component={funcDiscussionHome}
+          options={{ headerTitle: (props) => <Header title={'Discussion'} navigation={navigation} /> }}
+        />
+        <Stack.Screen
+          name="DiscussionSearch"
+          component={funcDiscussionSearch}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ headerTitle: "Discussion" }}
+        />
+        
+      </Stack.Navigator>
+    // </NavigationContainer>
+  );
+}
+
+export default App;

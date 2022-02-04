@@ -11,33 +11,36 @@ import PlantCare from '../plantcare/mainPlantCare';
 import SocialMedia from '../socMed/mainSocMed';
 import Shop from '../eCommerce/mainECommerce';
 
-import SideDrawer from './Drawer';
+// import SideDrawer from './Drawer';
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 // import { NavigationContainer } from '@react-navigation/native';
 
-function ForumScreen() {
+function ForumScreen({navigation}) {
   return (
-    <SocialMedia/>
+    <SocialMedia navigation={navigation}/>
+    // <SocialMedia/>
   );
 }
 
-function DiscussionScreen() {
+function DiscussionScreen({navigation}) {
   return (
-    <Discussion/>
+    <Discussion navigation={navigation}/>
     // <SideDrawer/>
   );
 }
 
-function MyGardenScreen() {
+function MyGardenScreen({navigation}) {
   return (
-    <PlantCare/>
+    <PlantCare navigation={navigation}/>
+    // <PlantCare />
   );
 }
 
-function ShopScreen() {
+function ShopScreen({navigation}) {
   return (
-    <Shop/>
+    <Shop navigation={navigation}/>
+    // <Shop/>
   );
 }
 
@@ -45,7 +48,7 @@ const ButtomNavTab = createMaterialBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 // const Tab = createBottomTabNavigator();
 
-export default function MyTabs() {
+export default function MyTabs({navigation}) {
   return (
 
     
@@ -95,7 +98,7 @@ export default function MyTabs() {
           </View>
         ),
       }}  />
-      <ButtomNavTab.Screen name="Garden" component={MyGardenScreen} 
+      <ButtomNavTab.Screen name="Garden" component={MyGardenScreen}
       options={{
         tabBarLabel: <Text style={{ fontSize: 12, fontFamily: 'poppins-regular' }}> Garden </Text> ,
         tabBarIcon: ({focused}) => (

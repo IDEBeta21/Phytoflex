@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import React, { Component } from 'react';
 // import * as React from 'react';
 
-export default function Header({ title }) {
+export default function Header({ title, navigation }) {
     return (
       <View style={style.header}>
+        <Button title='lll' onPress={() => navigation.toggleDrawer()}/>
         <Text>{title}</Text>
       </View>
     );
