@@ -3,14 +3,12 @@ import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// import PlantCareHomePage from "../../screens/plantcare/plantCareHomePage";
-// import PlantCareSearchPage from "./plantCareSearch";
-
 import SocialMediaHomePage from "./SocialMediaHome";
 import SocialMediaSearchPage from "./SocialMediaSearch";
 
 import Header from '../global/Header';
 
+// functions for calling screens
 function funcPlantCareHome({navigation}) {
   return (
     <SocialMediaHomePage navigation={navigation}/>
@@ -25,6 +23,7 @@ function funcPlantCareSearch({navigation}) {
 
 const Stack = createNativeStackNavigator();
 
+// Stacking screens
 function App({navigation}) {
   return (
     // <NavigationContainer>

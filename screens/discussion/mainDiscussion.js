@@ -8,6 +8,7 @@ import DiscussionSearchPage from "./DiscussionSearchPage"
 
 import Header from '../global/Header';
 
+// Function for calling the screens
 function funcDiscussionHome({navigation}) {
   return (
     <DiscussionHomePage navigation={navigation}/>
@@ -22,6 +23,7 @@ function funcDiscussionSearch({navigation}) {
 
 const Stack = createNativeStackNavigator();
 
+// Stacking the screens
 function App({navigation}) {
   return (
     // <NavigationContainer>

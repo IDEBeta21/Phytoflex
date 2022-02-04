@@ -8,6 +8,7 @@ import ShopSearchPage from "./ShopSearchPage"
 
 import Header from '../global/Header';
 
+// Functions for calling the screens
 function funcShopHome({navigation}) {
   return (
     <ShopHomePage navigation={navigation}/>
@@ -21,7 +22,7 @@ function funcShopSearch({navigation}) {
 }
 
 const Stack = createNativeStackNavigator();
-
+// Stacking the Screens
 function App({navigation}) {
   return (
     // <NavigationContainer>

@@ -8,6 +8,7 @@ import PlantCareSearchPage from "./plantCareSearch";
 
 import Header from '../global/Header';
 
+// functions to call screens
 function funcPlantCareHome({navigation}) {
   return (
     <PlantCareHomePage navigation={navigation}/>
@@ -22,6 +23,7 @@ function funcPlantCareSearch({navigation}) {
 
 const Stack = createNativeStackNavigator();
 
+// Stacking Screens
 function App({navigation}) {
   return (
     // <NavigationContainer>
