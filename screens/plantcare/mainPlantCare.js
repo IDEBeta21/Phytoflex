@@ -25,24 +25,38 @@ const Stack = createNativeStackNavigator();
 
 // Stacking Screens
 function App({navigation}) {
+
   return (
     // <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
           name="PlantCareHome"
           component={funcPlantCareHome}
-          options={{ headerTitle: (props) => <Header title={'Plant Care'} navigation={navigation} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Plant Care'} navigation={navigation} boolHome={true}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
         />
         <Stack.Screen
           name="PlantCareSearch"
           component={funcPlantCareSearch}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ headerTitle: "Plant Care" }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Plant Care'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
         />
         
       </Stack.Navigator>
     // </NavigationContainer>
   );
+
 }
 
 export default App;

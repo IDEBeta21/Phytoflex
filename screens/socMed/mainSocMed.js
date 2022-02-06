@@ -31,13 +31,25 @@ function App({navigation}) {
         <Stack.Screen
           name="SocialMediaHome"
           component={funcPlantCareHome}
-          options={{ headerTitle: (props) => <Header title={'Social Media'} navigation={navigation} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Social Media'} navigation={navigation} boolHome={true}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
         />
         <Stack.Screen
           name="SocialMediaSearch"
           component={funcPlantCareSearch}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ headerTitle: "Social Media" }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Social Media'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
         />
         
       </Stack.Navigator>

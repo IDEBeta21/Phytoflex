@@ -30,13 +30,25 @@ function App({navigation}) {
         <Stack.Screen
           name="ShopHome"
           component={funcShopHome}
-          options={{ headerTitle: (props) => <Header title={'Shop'} navigation={navigation} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Shop'} navigation={navigation} boolHome={true}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
         />
         <Stack.Screen
           name="ShopSearch"
           component={funcShopSearch}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ headerTitle: "Shop" }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Shop'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
         />
         
       </Stack.Navigator>

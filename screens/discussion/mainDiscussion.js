@@ -31,13 +31,25 @@ function App({navigation}) {
         <Stack.Screen
           name="DiscussionHome"
           component={funcDiscussionHome}
-          options={{ headerTitle: (props) => <Header title={'Discussion'} navigation={navigation} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Discussion'} navigation={navigation} boolHome={true}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
         />
         <Stack.Screen
           name="DiscussionSearch"
           component={funcDiscussionSearch}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ headerTitle: "Discussion" }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Discussion'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
         />
         
       </Stack.Navigator>
