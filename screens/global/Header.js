@@ -3,9 +3,11 @@ import React, { Component } from 'react';
 // import * as React from 'react';
 
 export default function Header({ title, navigation, boolHome }) {
+
   return (
     <View style={style.header}>
       
+      {/* Test if the displayed screen is a home screen */}
       {boolHome ? 
         <Pressable onPress={() => navigation.toggleDrawer()}>
           <Image
@@ -17,6 +19,24 @@ export default function Header({ title, navigation, boolHome }) {
         
       {/* <Button title='lll' onPress={() => navigation.toggleDrawer()}/> */}
       <Text style={style.headerTitle}>{title}</Text>
+
+      {/* Top right corner icons */}
+      {title == 'Plant Care' ? /* rendering icons for plant care*/
+        <View style={style.headerIconContainer}>
+          <Pressable onPress={() => navigation.toggleDrawer()} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/plantCareIcons/healthCare.png')}
+            />
+          </Pressable>
+          <Pressable onPress={() => navigation.toggleDrawer()} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/plantCareIcons/opportunity.png')}
+            />
+          </Pressable>
+        </View> : null
+      }
     </View>
   );
 } 
@@ -39,4 +59,16 @@ const style = StyleSheet.create({
     paddingHorizontal: 0,
     marginHorizontal: 0,
   },
+  headerIconContainer:{
+    flex: 1,
+    justifyContent: 'flex-end', 
+    alignItems: 'flex-end', 
+    paddingRight: 20, 
+    flexDirection: 'row'
+  },
+  headerIcons:{
+    height: 35, 
+    width: 35, 
+    marginLeft: 10,
+  }
 });
