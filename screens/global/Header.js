@@ -21,15 +21,15 @@ export default function Header({ title, navigation, boolHome }) {
       <Text style={style.headerTitle}>{title}</Text>
 
       {/* Top right corner icons */}
-      {title == 'Plant Care' ? /* rendering icons for plant care*/
+      {title == 'Plant Care' && boolHome? /* rendering icons for plant care*/
         <View style={style.headerIconContainer}>
-          <Pressable onPress={() => navigation.toggleDrawer()} >
+          <Pressable onPress={() => navigation.navigate('PlantCareHealthCare')} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/plantCareIcons/healthCare.png')}
             />
           </Pressable>
-          <Pressable onPress={() => navigation.toggleDrawer()} >
+          <Pressable onPress={() => navigation.navigate('PlantCareOpportunity')} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/plantCareIcons/opportunity.png')}

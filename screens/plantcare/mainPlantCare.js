@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import PlantCareHomePage from "../../screens/plantcare/plantCareHomePage";
 import PlantCareSearchPage from "./plantCareSearch";
+import PlantCareHealtCarePage from './plantCareHealthCare';
+import PlantCareOpportunityPage from './plantCareOpportunity';
 
 import Header from '../global/Header';
 
@@ -18,6 +20,18 @@ function funcPlantCareHome({navigation}) {
 function funcPlantCareSearch({navigation}) {
   return (
     <PlantCareSearchPage navigation={navigation}/>
+  );
+}
+
+function funcPlantCareHealthCare({navigation}) {
+  return (
+    <PlantCareHealtCarePage navigation={navigation}/>
+  );
+}
+
+function funcPlantCareOpportunity({navigation}) {
+  return (
+    <PlantCareOpportunityPage navigation={navigation}/>
   );
 }
 
@@ -52,7 +66,30 @@ function App({navigation}) {
             headerTintColor: 'white'
           }}
         />
-        
+        <Stack.Screen
+          name="PlantCareHealthCare"
+          component={funcPlantCareHealthCare}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Plant Care'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+        <Stack.Screen
+          name="PlantCareOpportunity"
+          component={funcPlantCareOpportunity}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Plant Care'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
       </Stack.Navigator>
     // </NavigationContainer>
   );
