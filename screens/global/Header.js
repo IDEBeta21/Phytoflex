@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native';
 import React, { Component } from 'react';
 // import * as React from 'react';
 
@@ -57,6 +57,24 @@ export default function Header({ title, navigation, boolHome }) {
       
       {title == 'Search' ? /* rendering icons for plant care*/
         <View style={style.headerIconContainer}>
+          <TextInput style={style.input} placeholder= "Search"/>
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../global/Home.png')}
+            />
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../global/Discussion.png')}
+            />
+          </Pressable>
+        </View> : null
+      }
+
+      {title == 'Notification'? /* rendering icons for plant care*/
+        <View style={style.headerIconContainer}>
           <Pressable onPress={() => navigation.navigate('ShopSearchHeader')} >
             <Image
               style={style.headerIcons}
@@ -76,6 +94,18 @@ export default function Header({ title, navigation, boolHome }) {
 } 
 
 const style = StyleSheet.create({
+  input: {
+    borderColor: 'gray',
+    width: '100%',
+    borderWidth: 1,
+    borderRadius: 20,
+    padding: 4,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start', 
+    fontFamily: 'poppins-light',
+    fontSize: 12,
+    color: '#1D4123'
+  },
   headerTitle: {
     color: 'white', 
     fontFamily: 'poppins-semiBold',
@@ -116,4 +146,5 @@ const style = StyleSheet.create({
     paddingHorizontal: 0,
     marginHorizontal: 0,
   }
+  
 });
