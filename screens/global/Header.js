@@ -54,6 +54,23 @@ export default function Header({ title, navigation, boolHome }) {
           </Pressable>
         </View> : null
       }
+      {title == 'Social Media' && boolHome? /* rendering icons for plant care*/
+        <View style={style.headerIconContainer}>
+          <Pressable onPress={() => navigation.navigate('SocMedSearch')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/shopIcons/search.png')}
+            />
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('SocMedInboxZone')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/shopIcons/bell.png')}
+            />
+          </Pressable>
+        </View> : null
+      }
+      
       
       {title == 'Search' ? /* rendering icons for plant care*/
         <View style={style.headerIconContainer}>
