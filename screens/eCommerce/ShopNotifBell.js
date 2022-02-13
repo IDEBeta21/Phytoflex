@@ -2,23 +2,21 @@ import { Button, Text, View } from 'react-native';
 import React, { Component } from 'react';
 import { globalStyles } from '../global/globalStyles';
 
-export default function ShopSearchPage({navigation}) {
+import { DrawerContent } from '../global/Drawer';
 
-  const toShopHome = () => {
-    navigation.navigate('ShopHome');
-  }
-
+export default function ShopNotifBellPage({navigation}) {
+  // Calling Plantcare search screen
+  
   return (
     <View style={ globalStyles.textContainer }>
       <Text style={ globalStyles.titleText }>
-        This is the Shop Search Page
+        Naks Lumilipat hahaha
       </Text>
       <Text style={ globalStyles.paragraphText }>
-        Open up ShopSearchPage.js to start working on your app!
+        Di ko na alam sunod hahaha
       </Text>
-      
-      <Button onPress={() => toShopHome()} title="Shop Home Page"></Button>
+
+    
     </View>
   );
 }
-``

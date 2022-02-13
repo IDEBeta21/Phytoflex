@@ -11,7 +11,7 @@ export default function Header({ title, navigation, boolHome }) {
       {boolHome ? 
         <Pressable onPress={() => navigation.toggleDrawer()}>
           <Image
-            style={{height: 30, width: 30}}
+            style={{height: 25, width: 25, marginEnd: 32, marginStart:4 }}
             source={require('../../assets/drawerIcons/menu.png')}
           />
         </Pressable> : null
@@ -37,6 +37,40 @@ export default function Header({ title, navigation, boolHome }) {
           </Pressable>
         </View> : null
       }
+
+      {title == 'Shop' && boolHome? /* rendering icons for plant care*/
+        <View style={style.headerIconContainer}>
+          <Pressable onPress={() => navigation.navigate('ShopSearchHeader')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/shopIcons/search.png')}
+            />
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/shopIcons/bell.png')}
+            />
+          </Pressable>
+        </View> : null
+      }
+      
+      {title == 'Search' ? /* rendering icons for plant care*/
+        <View style={style.headerIconContainer}>
+          <Pressable onPress={() => navigation.navigate('ShopSearchHeader')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/shopIcons/search.png')}
+            />
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/shopIcons/bell.png')}
+            />
+          </Pressable>
+        </View> : null
+      }
     </View>
   );
 } 
@@ -44,15 +78,14 @@ export default function Header({ title, navigation, boolHome }) {
 const style = StyleSheet.create({
   headerTitle: {
     color: 'white', 
-    fontSize: 20, 
-    paddingLeft: 10
+    fontFamily: 'poppins-semiBold',
+    fontSize: 18,
+    paddingTop: 4
   },
   header: {
-    backgroundColor: '#1D4123',
-    color: 'white',
     flex: 1,
     width: '100%',
-    height: 50,
+    height: 45,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -63,12 +96,24 @@ const style = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end', 
     alignItems: 'flex-end', 
-    paddingRight: 20, 
+    paddingRight: 32, 
     flexDirection: 'row'
   },
   headerIcons:{
-    height: 35, 
-    width: 35, 
-    marginLeft: 10,
+    height: 24, 
+    width: 24, 
+    marginLeft: 16,
+  },
+  whiteHeader: {
+    backgroundColor: 'white',
+    color: '#1D4123',
+    flex: 1,
+    width: '100%',
+    height: 45,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 0,
+    marginHorizontal: 0,
   }
 });
