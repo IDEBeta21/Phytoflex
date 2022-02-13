@@ -73,39 +73,25 @@ export default function Header({ title, navigation, boolHome }) {
       
       
       {title == 'Search' ? /* rendering icons for plant care*/
-        <View style={style.headerIconContainer}>
+        <View style={style.whiteHeaderIconContainer}>
           <TextInput style={style.input} placeholder= "Search"/>
           <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
             <Image
-              style={style.headerIcons}
-              source={require('../global/Home.png')}
+              style={style.whiteHeaderIcons}
+              source={require('../global/icons/filter.png')}
+              resizeMode='contain'
             />
           </Pressable>
           <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
             <Image
-              style={style.headerIcons}
-              source={require('../global/Discussion.png')}
+              style={style.whiteHeaderIcons}
+              source={require('../global/icons/cart.png')}
+              resizeMode='contain'
             />
           </Pressable>
         </View> : null
       }
 
-      {title == 'Notification'? /* rendering icons for plant care*/
-        <View style={style.headerIconContainer}>
-          <Pressable onPress={() => navigation.navigate('ShopSearchHeader')} >
-            <Image
-              style={style.headerIcons}
-              source={require('../../assets/drawerIcons/shopIcons/search.png')}
-            />
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
-            <Image
-              style={style.headerIcons}
-              source={require('../../assets/drawerIcons/shopIcons/bell.png')}
-            />
-          </Pressable>
-        </View> : null
-      }
     </View>
   );
 } 
@@ -116,12 +102,13 @@ const style = StyleSheet.create({
     width: '100%',
     borderWidth: 1,
     borderRadius: 20,
-    padding: 4,
+    padding: 2,
+    paddingStart: 16,
     justifyContent: 'flex-start',
     alignItems: 'flex-start', 
     fontFamily: 'poppins-light',
     fontSize: 12,
-    color: '#1D4123'
+    color: '#1D4123',
   },
   headerTitle: {
     color: 'white', 
@@ -146,10 +133,23 @@ const style = StyleSheet.create({
     paddingRight: 32, 
     flexDirection: 'row'
   },
+  whiteHeaderIconContainer:{
+    flex: 1,
+    justifyContent: 'flex-end', 
+    alignItems: 'flex-end', 
+    paddingRight: 85, 
+    flexDirection: 'row'
+  },
   headerIcons:{
     height: 24, 
     width: 24, 
     marginLeft: 16,
+  },
+  whiteHeaderIcons:{
+    height: 25, 
+    width: 25, 
+    marginLeft: 16,
+    marginBottom: 4
   },
   whiteHeader: {
     backgroundColor: 'white',
