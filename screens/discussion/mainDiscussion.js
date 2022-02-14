@@ -3,47 +3,39 @@ import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import DiscussionHomePage from "./DiscussionHomePage";
-import DiscussionSearchPage from "./DiscussionSearchPage";
-import DiscussionSearchIconPage from "./DiscussionSearchIcon";
-import DiscussionNotifPage from "./DiscussionNotif";
-
+import DiscussionHomePage from "./discussionMainPage";
+//import ShopSearchPage from "./ShopSearchPage"
+import DiscussionNotifBellPage from './discussionNotifBell';
+import DiscussionSearchHeaderPage from './discussionSearchHeader';
 import Header from '../global/Header';
 
-// Function for calling the screens
+// Functions for calling the screens
 function funcDiscussionHome({navigation}) {
   return (
     <DiscussionHomePage navigation={navigation}/>
   );
 }
 
-function funcDiscussionSearch({navigation}) {
+function funcDiscussionSearchHeader({navigation}) {
   return (
-    <DiscussionSearchPage navigation={navigation}/>
+    <DiscussionSearchHeaderPage navigation={navigation}/>
   );
 }
 
-function funcDiscussionSearchIcon({navigation}) {
+function funcDiscussionNotifBell({navigation}) {
   return (
-    <DiscussionSearchIconPage navigation={navigation}/>
-  );
-}
-
-function funcDiscussionNotif({navigation}) {
-  return (
-    <DiscussionNotifPage navigation={navigation}/>
+    <DiscussionNotifBellPage navigation={navigation}/>
   );
 }
 
 const Stack = createNativeStackNavigator();
-
-// Stacking the screens
+// Stacking the Screens
 function App({navigation}) {
   return (
     // <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="DiscussionHome"
+          name="DiscussionHomePage"
           component={funcDiscussionHome}
           options={{ 
             headerTitle: (props) => <Header title={'Discussion'} navigation={navigation} boolHome={true}/>, 
@@ -55,50 +47,52 @@ function App({navigation}) {
         />
 
         <Stack.Screen
-          name="DiscussionSearch"
-          component={funcDiscussionSearch}
+          name="DiscussionSearchHeaderPage"
+          component={funcDiscussionSearchHeader}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'Discussion'} navigation={navigation}/>, 
+            headerTitle: (props) => <Header title={'dscSearch'} navigation={navigation}/>, 
             headerStyle: {
-              backgroundColor: '#1D4123'
+              backgroundColor: 'white'
             },
-            headerTintColor: 'white'
+              headerTintColor: '#1D4123'
           }}
-        />
+        />  
 
         <Stack.Screen
-          name="DiscussionSearchIcon"
-          component={funcDiscussionSearchIcon}
-          // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ 
-            headerTitle: (props) => <Header title={'Search'} navigation={navigation}/>, 
-            headerStyle: {
-              backgroundColor: '#1D4123'
-            },
-              headerTintColor: 'white'
-          }}
-        /> 
-       
-        <Stack.Screen
-          name="DiscussionNotif"
-          component={funcDiscussionNotif}
+          name="DiscussionNotifBellPage"
+          component={funcDiscussionNotifBell}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Inbox'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },
-              headerTintColor: 'white'
+            headerTintColor: 'white'
           }}
-        />  
-
+        />
       </Stack.Navigator>
     // </NavigationContainer>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // Importing screens
 // import ShopHomePage from "./ShopMainPage";

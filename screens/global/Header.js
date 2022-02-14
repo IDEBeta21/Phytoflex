@@ -11,7 +11,7 @@ export default function Header({ title, navigation, boolHome }) {
       {boolHome ? 
         <Pressable onPress={() => navigation.toggleDrawer()}>
           <Image
-            style={{height: 25, width: 25, marginEnd: 32, marginStart:4 }}
+            style={{height: 25, width: 25, marginEnd: 32, marginStart: 4 }}
             source={require('../../assets/drawerIcons/menu.png')}
           />
         </Pressable> : null
@@ -25,81 +25,68 @@ export default function Header({ title, navigation, boolHome }) {
         <View style={style.headerIconContainer}>
           <Pressable onPress={() => navigation.navigate('PlantCareHealthCare')} >
             <Image
-              style={style.headerIcons}
+              style={style.plantCareHeaderIcons}
               source={require('../../assets/drawerIcons/plantCareIcons/healthCare.png')}
+              resizeMode='contain'
             />
           </Pressable>
           <Pressable onPress={() => navigation.navigate('PlantCareOpportunity')} >
             <Image
-              style={style.headerIcons}
+              style={style.plantCareHeaderIcons}
               source={require('../../assets/drawerIcons/plantCareIcons/opportunity.png')}
+              resizeMode='contain'
             />
           </Pressable>
         </View> : null
       }
 
-      {title == 'Shop' && boolHome? /* rendering icons for plant care*/
+      {title == 'Shop' && boolHome? /*Shop Main Page*/
         <View style={style.headerIconContainer}>
           <Pressable onPress={() => navigation.navigate('ShopSearchHeader')} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/shopIcons/search.png')}
+              resizeMode='contain'
             />
           </Pressable>
           <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/shopIcons/bell.png')}
+              resizeMode='contain'
             />
           </Pressable>
         </View> : null
       }
-      {title == 'Social Media' && boolHome? /* rendering icons for plant care*/
+      {title == 'Social Media' && boolHome? /*Social Media Main Page*/
         <View style={style.headerIconContainer}>
           <Pressable onPress={() => navigation.navigate('SocMedSearch')} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/shopIcons/search.png')}
+              resizeMode='contain'
             />
           </Pressable>
           <Pressable onPress={() => navigation.navigate('SocMedInboxZone')} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/shopIcons/bell.png')}
-            />
-          </Pressable>
-        </View> : null
-      }
-      {title == 'Search' ? /* rendering icons for plant care*/
-        <View style={style.whiteHeaderIconContainer}>
-          <TextInput style={style.input} placeholder= "Search"/>
-          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
-            <Image
-              style={style.whiteHeaderIcons}
-              source={require('../global/icons/filter.png')}
-              resizeMode='contain'
-            />
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
-            <Image
-              style={style.whiteHeaderIcons}
-              source={require('../global/icons/cart.png')}
               resizeMode='contain'
             />
           </Pressable>
         </View> : null
       }
 
-      {title == 'Discussion' && boolHome? /* rendering icons for plant care*/
+      {title == 'Discussion' && boolHome? /*Discussion Main Page*/
         <View style={style.headerIconContainer}>
-          <Pressable onPress={() => navigation.navigate('DiscussionSearchIcon')} >
+          <Pressable onPress={() => navigation.navigate('DiscussionSearchHeaderPage')} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/discussionIcons/search.png')}
               resizeMode='contain'
             />
           </Pressable>
-          <Pressable onPress={() => navigation.navigate('DiscussionNotif')} >
+          <Pressable onPress={() => navigation.navigate('DiscussionNotifBellPage')} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/discussionIcons/notifbell.png')}
@@ -108,7 +95,89 @@ export default function Header({ title, navigation, boolHome }) {
           </Pressable>
         </View> : null
       }
-    
+
+      {title == 'Search' ? /*Shop Search*/
+        <View style={style.whiteHeaderIconContainer}>
+          <TextInput style={style.input} placeholder= "Search"/>
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/shopIcons/filter.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/shopIcons/cart.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+        </View> : null
+      }
+
+      {title == 'dscSearch' ? /*Discussion Search*/
+        <View style={style.searchIconContainer}>
+          <TextInput style={style.input} placeholder= "Search"/>
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/cancel.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+          <Pressable>
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/wSearch.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+           <Pressable>
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/wSearch.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+          
+        </View> : null
+      }
+
+      {title == 'socMedSearch' ? /*Social Media Search*/
+        <View style={style.searchIconContainer}>
+          <TextInput style={style.input} placeholder= "Search"/>
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/cancel.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+          <Pressable>
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/wSearch.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+           <Pressable>
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/wSearch.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+          <Pressable>
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/wSearch.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+        </View> : null
+      }
+
     </View>
   );
 } 
@@ -116,12 +185,13 @@ export default function Header({ title, navigation, boolHome }) {
 
 const style = StyleSheet.create({
   input: {
-    borderColor: 'gray',
+    borderColor: '#1D4123',
     width: '100%',
     borderWidth: 1,
     borderRadius: 20,
     padding: 2,
-    paddingStart: 16,
+    paddingStart: 10,
+    paddingEnd: 10,
     justifyContent: 'flex-start',
     alignItems: 'flex-start', 
     fontFamily: 'poppins-light',
@@ -153,9 +223,18 @@ const style = StyleSheet.create({
   },
   whiteHeaderIconContainer:{
     flex: 1,
+    width: '100%',
     justifyContent: 'flex-end', 
     alignItems: 'flex-end', 
-    paddingRight: 85, 
+    paddingRight: 92, 
+    flexDirection: 'row'
+  },
+  searchIconContainer:{
+    flex: 1,
+    width: '100%',
+    justifyContent: 'flex-end', 
+    alignItems: 'flex-end', 
+    paddingRight: 12, 
     flexDirection: 'row'
   },
   headerIcons:{
@@ -163,23 +242,16 @@ const style = StyleSheet.create({
     width: 24, 
     marginLeft: 16,
   },
+  plantCareHeaderIcons:{
+    height: 27, 
+    width: 27, 
+    marginLeft: 14,
+  },
   whiteHeaderIcons:{
-    height: 25, 
-    width: 25, 
+    height: 24, 
+    width: 24, 
     marginLeft: 16,
     marginBottom: 4
   },
-  whiteHeader: {
-    backgroundColor: 'white',
-    color: '#1D4123',
-    flex: 1,
-    width: '100%',
-    height: 45,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingHorizontal: 0,
-    marginHorizontal: 0,
-  }
   
 });

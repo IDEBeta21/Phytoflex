@@ -4,15 +4,14 @@ import { globalStyles } from '../global/globalStyles';
 
 import { DrawerContent } from '../global/Drawer';
 
-export default function DiscussionSearchIconPage({navigation}) {
-  // Calling My Partner
+export default function DiscussionNotifBellPage({navigation}) {
   
   return (
     <View style={ globalStyles.textContainer }>
       <Text style={ globalStyles.titleText }>
-            Kopya lang ulit HAHAHAH    </Text>
+            Yown Gumana din hahaha      </Text>
       <Text style={ globalStyles.paragraphText }>
-            Kopya ulit HAHAH   </Text>
+            Hello Hello Testing      </Text>
 
     
     </View>

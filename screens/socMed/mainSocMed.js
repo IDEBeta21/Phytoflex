@@ -79,11 +79,11 @@ function App({navigation}) {
           component={funcSocMedSearch}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'Search'} navigation={navigation}/>, 
+            headerTitle: (props) => <Header title={'socMedSearch'} navigation={navigation}/>, 
             headerStyle: {
-              backgroundColor: '#1D4123'
+              backgroundColor: 'white'
             },
-            headerTintColor: 'white'
+            headerTintColor: '#1D4123'
           }}
         />
       </Stack.Navigator>

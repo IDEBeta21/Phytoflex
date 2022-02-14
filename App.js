@@ -41,7 +41,8 @@ import { Text } from 'react-native';
 const getFonts = () => Font.loadAsync({
   'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
   'poppins-semiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
-  'poppins-light': require('./assets/fonts/Poppins-Light.ttf')
+  'poppins-light': require('./assets/fonts/Poppins-Light.ttf'),
+  'poppins-italic': require('./assets/fonts/Poppins-Italic.ttf'),
 })
 
 // Navigating functions

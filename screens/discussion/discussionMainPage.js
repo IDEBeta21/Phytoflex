@@ -2,21 +2,22 @@ import { Button, Text, View } from 'react-native';
 import React, { Component } from 'react';
 import { globalStyles } from '../global/globalStyles';
 
-import { DrawerContent } from '../global/Drawer';
+export default function discussionHomePage({navigation}) {
 
-export default function DiscussionNotifPage({navigation}) {
-  // Calling My Partner
-  
+  function toDiscussionSearch() {
+    navigation.navigate('DiscussionSearch');
+  }
+
   return (
     <View style={ globalStyles.textContainer }>
       <Text style={ globalStyles.titleText }>
-        Kopya lang muna...
+        This is the Discussion Main Page
       </Text>
       <Text style={ globalStyles.paragraphText }>
-        Kopya lang ulit...
+        Open up discussionMainPage.js to start working on your app!
       </Text>
-
-    
+      
+      
     </View>
   );
 }

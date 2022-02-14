@@ -77,6 +77,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
         navigation.push('MyTabs');
     }
 
+
     return(
         <View style={styles.loginContainer}>
             {/* Display Header */}
