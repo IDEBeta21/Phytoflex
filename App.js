@@ -79,8 +79,7 @@ function SideBar(){
           drawerActiveTintColor: 'white',
           drawerStyle: {
             backgroundColor: '#1D4123',
-            width: 280,
-            paddingEnd: 16
+            width: 240,
           },
         }}
         drawerContent={props => <DrawerContent {...props}/>}

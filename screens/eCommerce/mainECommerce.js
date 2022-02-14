@@ -4,9 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ShopHomePage from "./ShopMainPage";
-//import ShopSearchPage from "./ShopSearchPage"
-import ShopNotifBellPage from './ShopNotifBell';
-import ShopSearchHeaderPage from './ShopSearchHeader';
+import ShopSearchPage from "./ShopSearchPage"
+
 import Header from '../global/Header';
 
 // Functions for calling the screens
@@ -16,15 +15,9 @@ function funcShopHome({navigation}) {
   );
 }
 
-function funcShopSearchHeader({navigation}) {
+function funcShopSearch({navigation}) {
   return (
-    <ShopSearchHeaderPage navigation={navigation}/>
-  );
-}
-
-function funcShopNotifBell({navigation}) {
-  return (
-    <ShopNotifBellPage navigation={navigation}/>
+    <ShopSearchPage navigation={navigation}/>
   );
 }
 
@@ -45,32 +38,19 @@ function App({navigation}) {
             headerTintColor: 'white'
           }}
         />
-
         <Stack.Screen
-          name="ShopSearchHeader"
-          component={funcShopSearchHeader}
+          name="ShopSearch"
+          component={funcShopSearch}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'Search'} navigation={navigation}/>, 
-            headerStyle: {
-              backgroundColor: 'white'
-            },
-              headerTintColor: '#1D4123'
-          }}
-        />  
-
-        <Stack.Screen
-          name="ShopNotifBell"
-          component={funcShopNotifBell}
-          // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ 
-            headerTitle: (props) => <Header title={'Notification'} navigation={navigation}/>, 
+            headerTitle: (props) => <Header title={'Shop'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },
             headerTintColor: 'white'
           }}
         />
+        
       </Stack.Navigator>
     // </NavigationContainer>
   );

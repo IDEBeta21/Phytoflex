@@ -51,6 +51,8 @@ const Drawer = createDrawerNavigator();
 export default function MyTabs({navigation}) {
   return (
 
+    
+
     <ButtomNavTab.Navigator
       barStyle={{backgroundColor: '#1D4123', fontFamily: 'poppins-regular'}}
       shifting={true}

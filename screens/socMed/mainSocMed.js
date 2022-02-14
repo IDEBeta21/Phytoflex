@@ -5,8 +5,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import SocialMediaHomePage from "./SocialMediaHome";
 import SocialMediaSearchPage from "./SocialMediaSearch";
-import InboxZonePage from './SocMedInboxZone';
-import SocMedSearchPage from './SocMedSearch';
 
 import Header from '../global/Header';
 
@@ -16,19 +14,10 @@ function funcPlantCareHome({navigation}) {
     <SocialMediaHomePage navigation={navigation}/>
   );
 }
+
 function funcPlantCareSearch({navigation}) {
   return (
     <SocialMediaSearchPage navigation={navigation}/>
-  );
-}
-function funcInbox({navigation}) {
-  return (
-    <InboxZonePage navigation={navigation}/>
-  );
-}
-function funcSocMedSearch({navigation}) {
-  return (
-    <SocMedSearchPage navigation={navigation}/>
   );
 }
 
@@ -62,30 +51,7 @@ function App({navigation}) {
             headerTintColor: 'white'
           }}
         />
-        <Stack.Screen
-          name="SocMedInboxZone"
-          component={funcInbox}
-          // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ 
-            headerTitle: (props) => <Header title={'Inbox'} navigation={navigation}/>, 
-            headerStyle: {
-              backgroundColor: '#1D4123'
-            },
-            headerTintColor: 'white'
-          }}
-        />
-        <Stack.Screen
-          name="SocMedSearch"
-          component={funcSocMedSearch}
-          // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ 
-            headerTitle: (props) => <Header title={'Search'} navigation={navigation}/>, 
-            headerStyle: {
-              backgroundColor: '#1D4123'
-            },
-            headerTintColor: 'white'
-          }}
-        />
+        
       </Stack.Navigator>
     // </NavigationContainer>
   );
