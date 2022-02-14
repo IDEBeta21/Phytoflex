@@ -5,7 +5,7 @@ import {
     View, ScrollView, KeyboardAvoidingView, 
     Image, TextInput, TouchableOpacity,  
     StyleSheet,
-    Alert, Button
+    Alert, Button, ImageBackground
 } from 'react-native';
 
 import firebase from 'firebase';
@@ -79,7 +79,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
 
     return(
-        <View style={styles.loginContainer}>
+        <ImageBackground source={require('../../assets/img/login/loginBackground.png')} style={styles.loginContainer}>
             {/* Display Header */}
             
             {/* Make the view scrollable */}
@@ -89,20 +89,20 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
             > */}
                 
                 {/* Logo area */}
-                <View style={styles.bgPic}>
-                    <Image
+                {/* <View style={styles.bgPic}>
+                    {/* <Image
                         style = {styles.logo}
                         source={{
                             // uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
                             // uri: 'assets/img/jspic.png',
                             uri: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/assets%2Fclipart879058.png?alt=media&token=11145a26-a723-49bf-b158-86ab34bf4505',
                         }}
-                    />
-                </View>
+                    /> 
+                </View> */}
                 
                 <View style={(styles.loginView)}> 
                     {/* Text Input Area */}
-                    <Text style={styles.headerText}>Log In</Text>
+                    <Text style={styles.headerText}>Welcome Back!</Text>
 
                     <Text style={styles.label}>YOUR EMAIL</Text>
                     <TextInput
@@ -120,45 +120,63 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         value={userPass}
                     ></TextInput>
 
-                    <TouchableOpacity onPress={toSignUp}>
-                        <View style={{color: 'white', justifyContent: 'center'}}>
-                            <Text style={{color: 'white'}}>Sign Up</Text>
+                    <TouchableOpacity>
+                        <View style={{color: 'white', justifyContent: 'center', alignItems: 'flex-end'}}>
+                            <Text style={{color: 'white', fontFamily: 'poppins-regular'}}>Forgot Password?</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => gotoHome()}>
+                        <View style={styles.guestButtonArea}>
+                            <Text style={{ color: 'white', fontSize: 20, fontFamily: 'poppins-regular'}}>Continue as Guest</Text>
                         </View>
                     </TouchableOpacity>
                     
                     <TouchableOpacity onPress={() => logInClick()}>
                         <View style={styles.buttonArea}>
-                            <Text style={{ color: 'white', fontSize: 20, }}>LOGIN</Text>
+                            <Text style={{ color: 'white', fontSize: 20, fontFamily: 'poppins-regular'}}>LOGIN</Text>
                         </View>
                     </TouchableOpacity>
+
+                    <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center'}}>
+                        <Text style={{color: 'white'}}>Dont have an Account Yet?</Text>
+                        <TouchableOpacity onPress={toSignUp}>
+                            <View style={{color: 'white'}}>
+                                <Text style={{color: '#639D04', fontFamily: 'poppins-regular', paddingHorizontal: 10}}>Sign Up</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                     
-                    <TouchableOpacity onPress={() => gotoHome()}>
-                        <View style={styles.buttonArea}>
-                            <Text style={{ color: 'white', fontSize: 20, }}>Home</Text>
+                    
+                    {/* <TouchableOpacity onPress={() => gotoHome()}>
+                        <View style={{}}>
+                            <Text style={{ color: 'white', fontSize: 20, fontFamily: 'poppins-regular'}}>Home</Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
                 
             {/* </KeyboardAvoidingView> */}
-        </View>
+        </ImageBackground>
     ); 
 
 }
     
 const styles = StyleSheet.create({
     loginContainer:{
-        backgroundColor: 'white',
-        justifyContent: 'space-around',
+        flex: 1,
+        justifyContent: 'flex-end',
         alignItems: 'stretch',
-        flex: 1
+        fontFamily: 'poppins-regular'
     },
     loginView: {
-        backgroundColor: '#040',
+        // backgroundColor: '#040',
         paddingHorizontal: 30, 
-        paddingTop: 30, 
-        borderTopLeftRadius: 35, 
-        borderTopRightRadius: 35,
-        flex: 1
+        paddingTop: 0, 
+        // borderTopLeftRadius: 35, 
+        // borderTopRightRadius: 35,
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingBottom: 50
     },
     container: {
         flex: 1,
@@ -177,7 +195,8 @@ const styles = StyleSheet.create({
         color: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 40
+        paddingBottom: 5,
+        fontFamily: 'poppins-regular'
     },
     textbox: {
         borderColor: 'black',
@@ -186,11 +205,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         fontSize: 15,
+        fontFamily: 'poppins-regular'
     },
     label:{
         color: 'white',
         marginTop: 20,
         fontSize: 15,
+        fontFamily: 'poppins-regular'
     },
     logo: {
         width: 180,
@@ -199,10 +220,10 @@ const styles = StyleSheet.create({
         borderRadius: 12
     },
     buttonArea: {
-        marginTop: 40,
+        marginTop: 20,
         padding: 10,
         
-        backgroundColor: 'green',
+        backgroundColor: '#639D04',
         borderRadius: 35,
         
         alignItems: 'center', 
@@ -216,5 +237,31 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 1,
         elevation: 5,
+
+        fontFamily: 'poppins-regular'
     },
+    guestButtonArea: {
+        marginTop: 20,
+        padding: 10,
+        
+        // backgroundColor: 'green',
+        borderRadius: 35,
+        
+        alignItems: 'center', 
+        justifyContent: 'center',
+        
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 1,
+        elevation: 5,
+
+        borderWidth: 2,
+        borderColor: 'white',
+
+        fontFamily: 'poppins-regular'
+    }
 });
