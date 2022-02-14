@@ -31,28 +31,27 @@ export function DrawerContent(props) {
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
-            <View style={{flexDirection:'row',marginTop: 15}}>
+            <View style={{flexDirection:'row',marginTop: 16}}>
               <Avatar.Image 
                 source={{
                   uri: 'https://www.directive.com/images/easyblog_shared/July_2018/7-4-18/b2ap3_large_totw_network_profile_400.jpg'
                 }}
-                size={50}
+                size={55}
               />
-              <View style={{marginLeft:15, flexDirection:'column'}}>
+              <View style={{flexDirection:'column', alignSelf: "flex-start", padding: 8}}>
                   <Title style={styles.title}>Peter Flores</Title>
-                  <Caption style={styles.caption}>@Peter_Flores</Caption>
+                  <Caption style={styles.caption}>@peterflores</Caption>
               </View>
-              <View style={{flex: 1, alignContent: 'flex-end', alignItems: 'flex-end', paddingRight: 10}}>
+              {/* <View style={{flex: 1, alignContent: 'flex-end', alignItems: 'flex-end', paddingRight: 16}}>
                 <Image
                   style={{height: 30, width: 30}}
                   source={require('../../assets/drawerIcons/menu.png')}
                 /> 
-              </View>
+              </View> */}
 
             </View>
-
-            
-            <View style={styles.row}>
+           
+            {/* <View style={styles.row}>
               <View style={styles.section}>
                 <Paragraph style={[styles.paragraph, styles.caption]}>80</Paragraph>
                 <Caption style={styles.caption}>Following</Caption>
@@ -61,10 +60,8 @@ export function DrawerContent(props) {
                 <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
                 <Caption style={styles.caption}>Followers</Caption>
               </View>
-            </View>
+            </View> */}
           </View>
-
-                
 
           <Drawer.Section style={styles.drawerSection}>
               {/* <TouchableRipple onPress={() => {toggleTheme()}}> */}
@@ -74,7 +71,17 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/posts.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>Post</Text>
+                    <Text style={styles.textStyles}>My Profile</Text>
+                  </View>
+              </TouchableRipple>
+
+              <TouchableRipple>
+                  <View style={styles.drawerItems}>
+                    <Image
+                      style={styles.tinyLogo}
+                      source={require('../../assets/drawerIcons/posts.png')}
+                    /> 
+                    <Text style={styles.textStyles}>Post</Text>
                   </View>
               </TouchableRipple>
 
@@ -84,7 +91,7 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/swapHistory.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>Swap History</Text>
+                    <Text style={styles.textStyles}>Swap History</Text>
                   </View>
               </TouchableRipple>
 
@@ -94,7 +101,7 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/threads.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>Threads</Text>
+                    <Text style={styles.textStyles}>Threads</Text>
                   </View>
               </TouchableRipple>
               
@@ -104,7 +111,7 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/activityLogs.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>Activity Logs</Text>
+                    <Text style={styles.textStyles}>Activity Logs</Text>
                   </View>
             </TouchableRipple>
           </Drawer.Section>
@@ -116,7 +123,7 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/trackOrders.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>Track your orders</Text>
+                    <Text style={styles.textStyles}>Track your orders</Text>
                   </View>
               </TouchableRipple>
 
@@ -126,7 +133,7 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/selling.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>Selling</Text>
+                    <Text style={styles.textStyles}>Selling</Text>
                   </View>
               </TouchableRipple>
 
@@ -139,7 +146,7 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/settings.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>Settings</Text>
+                    <Text style={styles.textStyles}>Settings</Text>
                   </View>
               </TouchableRipple>
 
@@ -149,7 +156,7 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/rate.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>Love the app?</Text>
+                    <Text style={styles.textStyles}>Love the app?</Text>
                   </View>
               </TouchableRipple>
 
@@ -159,7 +166,7 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/aboutUs.png')}
                     /> 
-                    <Text style={{color: 'white', alignItems: 'center'}}>About</Text>
+                    <Text style={styles.textStyles}>About</Text>
                   </View>
               </TouchableRipple>
 
@@ -191,15 +198,17 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   title: {
-    fontSize: 16,
     marginTop: 3,
-    fontWeight: 'bold',
-    color: 'white'
+    fontFamily: 'poppins-semiBold', 
+    fontSize: 18,
+    lineHeight: 20,
+    color: 'white',
   },
   caption: {
-    fontSize: 14,
     lineHeight: 14,
-    color: 'white'
+    color: 'white', 
+    fontFamily: 'poppins-light', 
+    fontSize: 12,
   },
   row: {
     marginTop: 20,
@@ -216,25 +225,32 @@ const styles = StyleSheet.create({
     marginRight: 3,
   },
   drawerSection: {
-    marginTop: 10,
+    marginTop: 8,
+    marginBottom: 8,
   },
   bottomDrawerSection: {
-      marginBottom: 15,
+      marginBottom: 16,
       // borderTopColor: '#f4f4f4',
       // borderTopWidth: 1
   },
   drawerItems: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingVertical: 12,
-    paddingHorizontal: 5,
-    paddingLeft: 40,
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    paddingLeft: 45,
     color: 'white'
   },
   tinyLogo: {
-    marginRight: 5,
-    width: 20,
-    height: 20
+    marginRight: 16,
+    width: 24,
+    height: 24
+  },
+  textStyles: {
+    color: 'white', 
+    alignItems: 'center', 
+    fontFamily: 'poppins-regular', 
+    fontSize: 14,
   }
 });
 
