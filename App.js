@@ -82,6 +82,7 @@ function SideBar(){
             width: 280,
             paddingEnd: 16
           },
+          gestureEnabled: false
         }}
         drawerContent={props => <DrawerContent {...props}/>}
       >

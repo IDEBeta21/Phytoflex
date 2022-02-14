@@ -15,6 +15,8 @@ import {
   DrawerContentScrollView,
   DrawerItem
 } from '@react-navigation/drawer';
+import firebase from 'firebase';
+import { StackActions, NavigationActions, NavigationEvents } from 'react-navigation';
 
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -24,8 +26,23 @@ export function DrawerContent(props) {
 
   const paperTheme = useTheme();
 
-  // const { signOut, toggleTheme } = React.useContext(AuthContext);
+  // const resetAction = StackActions.reset({
+  //   index: 0,
+  //   actions: [NavigationActions.navigate({ routeName: 'Login' })],
+  // });
 
+  function signout(props) {
+    firebase.auth().signOut;
+    // props.navigation.dispatch(resetAction);
+    // props.navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: 'Login' }],
+    // });
+    props.navigation.goBack('Login');
+  }
+
+  // const { signOut, toggleTheme } = React.useContext(AuthContext);
+ 
   return(
     <View style={{flex:1}}>
       <DrawerContentScrollView {...props}>
@@ -185,6 +202,15 @@ export function DrawerContent(props) {
           label="Sign Out"
           onPress={() => {signOut()}}
       /> */}
+        <TouchableRipple onPress={() => signout(props)}>
+          <View style={styles.drawerItems}>
+            <Image
+              style={styles.tinyLogo}
+              source={require('../../assets/drawerIcons/aboutUs.png')}
+            /> 
+            <Text style={styles.textStyles}>Logout</Text>
+          </View>
+        </TouchableRipple>
       </Drawer.Section>
     </View>
   );
@@ -236,6 +262,7 @@ const styles = StyleSheet.create({
   drawerItems: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
+    alignContent: 'center',
     paddingVertical: 8,
     paddingHorizontal: 8,
     paddingLeft: 45,
@@ -248,43 +275,8 @@ const styles = StyleSheet.create({
   },
   textStyles: {
     color: 'white', 
-    alignItems: 'center', 
+    alignItems: 'center',
     fontFamily: 'poppins-regular', 
-    fontSize: 14,
+    fontSize: 15,
   }
 });
-
-
-
-
-
-
-
-
-
-// import { View, StyleSheet } from 'react-native';
-// import React, { Component } from 'react';
-
-// import { 
-//   Avatar, Title, Caption, Paragraph, 
-//   Text, TouchableRipple, Switch  
-// } from 'react-native-paper';
-
-// import {
-//   DrawerContentScrollView,
-//   DrawerItem
-// } from '@react-navigation/drawer';
-
-// export function DrawerContent(props) {
-//   return (
-//     <View style={{flex: 1}}>
-//       <DrawerContentScrollView {...props}>
-//         <View>
-//           <Text style={{color: 'white'}}>Main Content</Text>
-//         </View>
-//       </DrawerContentScrollView>
-//     </View>
-//   );
-// }
-
-

@@ -51,7 +51,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
             .then((result) => {
                 Alert.alert(result.message);
                 console.log(result);
-                toForum();
+                toTabs();
             })
             .catch((error) => {
                 Alert.alert(error.message);
