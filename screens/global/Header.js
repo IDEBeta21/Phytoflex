@@ -70,8 +70,6 @@ export default function Header({ title, navigation, boolHome }) {
           </Pressable>
         </View> : null
       }
-      
-      
       {title == 'Search' ? /* rendering icons for plant care*/
         <View style={style.whiteHeaderIconContainer}>
           <TextInput style={style.input} placeholder= "Search"/>
@@ -92,9 +90,29 @@ export default function Header({ title, navigation, boolHome }) {
         </View> : null
       }
 
+      {title == 'Discussion' && boolHome? /* rendering icons for plant care*/
+        <View style={style.headerIconContainer}>
+          <Pressable onPress={() => navigation.navigate('DiscussionSearchIcon')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/discussionIcons/search.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('DiscussionNotif')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/discussionIcons/notifbell.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+        </View> : null
+      }
+    
     </View>
   );
 } 
+
 
 const style = StyleSheet.create({
   input: {
