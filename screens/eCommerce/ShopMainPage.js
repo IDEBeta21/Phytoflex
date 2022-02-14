@@ -17,7 +17,7 @@ export default function ShopHomePage({navigation}) {
         Open up ShopMainPage.js to start working on your app!
       </Text>
       
-      <Button onPress={() => toShopSearch()} title="Shop Search"></Button>
+      
     </View>
   );
 }
