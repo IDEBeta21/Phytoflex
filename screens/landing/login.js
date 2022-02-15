@@ -79,7 +79,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
 
     return(
-        <ImageBackground source={require('../../assets/img/login/loginBackground.png')} style={styles.loginContainer}>
+        <ImageBackground source={require('../../assets/drawerIcons/login.png')} resizeMode= "cover" style={styles.loginContainer}>
             {/* Display Header */}
             
             {/* Make the view scrollable */}
@@ -114,35 +114,35 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                     
                     <Text style={styles.label}>PASSWORD</Text>
                     <TextInput
-                        style={styles.textbox}
+                        style={styles.pwtextbox}
                         placeholder="Password"
                         onChangeText = {(text) => setUserPass(text)}
                         value={userPass}
                     ></TextInput>
 
                     <TouchableOpacity>
-                        <View style={{color: 'white', justifyContent: 'center', alignItems: 'flex-end'}}>
-                            <Text style={{color: 'white', fontFamily: 'poppins-regular'}}>Forgot Password?</Text>
+                        <View style={{color: 'white', justifyContent: 'center', alignItems: 'flex-end', marginBottom: 10, marginEnd: 11}}>
+                            <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 12}}>Forgot Password?</Text>
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => gotoHome()}>
                         <View style={styles.guestButtonArea}>
-                            <Text style={{ color: 'white', fontSize: 20, fontFamily: 'poppins-regular'}}>Continue as Guest</Text>
+                            <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-regular'}}>CONTINUE AS A GUEST</Text>
                         </View>
                     </TouchableOpacity>
                     
                     <TouchableOpacity onPress={() => logInClick()}>
                         <View style={styles.buttonArea}>
-                            <Text style={{ color: 'white', fontSize: 20, fontFamily: 'poppins-regular'}}>LOGIN</Text>
+                            <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>LOGIN</Text>
                         </View>
                     </TouchableOpacity>
 
-                    <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'center'}}>
-                        <Text style={{color: 'white'}}>Dont have an Account Yet?</Text>
+                    <View style={{ flexDirection: 'row', marginTop: 16, justifyContent: 'center', marginBottom: 10}}>
+                        <Text style={{color: 'white', fontFamily: 'poppins-light'}}>Don't have an account yet?</Text>
                         <TouchableOpacity onPress={toSignUp}>
-                            <View style={{color: 'white'}}>
-                                <Text style={{color: '#639D04', fontFamily: 'poppins-regular', paddingHorizontal: 10}}>Sign Up</Text>
+                            <View style={{color: 'white', }}>
+                                <Text style={{color: '#639D04', fontFamily: 'poppins-semiBold', paddingHorizontal: 14}}>Sign Up</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -164,9 +164,9 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 const styles = StyleSheet.create({
     loginContainer:{
         flex: 1,
+        fontFamily: 'poppins-regular',
         justifyContent: 'flex-end',
         alignItems: 'stretch',
-        fontFamily: 'poppins-regular'
     },
     loginView: {
         // backgroundColor: '#040',
@@ -191,27 +191,48 @@ const styles = StyleSheet.create({
         paddingVertical: 25,
     },
     headerText: {
-        fontSize: 30,
+        fontSize: 24,
         color: 'white',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 5,
-        fontFamily: 'poppins-regular'
+        paddingStart: 8,
+        paddingBottom: 0,
+        fontFamily: 'poppins-semiBold'
     },
     textbox: {
-        borderColor: 'black',
+        borderColor: '#1D4123',
         backgroundColor: 'white',
-        borderRadius: 12,
+        borderRadius: 15,
         borderWidth: 1,
+        marginBottom: 0,
         padding: 10,
-        fontSize: 15,
-        fontFamily: 'poppins-regular'
+        fontSize: 16,
+        fontFamily: 'poppins-light',
+        marginStart: 8,
+        marginEnd: 8,
+        alignItems: 'center'
     },
     label:{
         color: 'white',
-        marginTop: 20,
-        fontSize: 15,
+        marginTop: 12,
+        paddingStart: 8,
+        paddingBottom: 4,
+        fontSize: 14,
         fontFamily: 'poppins-regular'
+    },
+    pwtextbox: {
+        borderColor: '#1D4123',
+        backgroundColor: 'white',
+        borderRadius: 15,
+        borderWidth: 1,
+        marginBottom: 8,
+        marginTop: 0,
+        padding: 10,
+        fontSize: 16,
+        fontFamily: 'poppins-light',
+        marginStart: 8,
+        marginEnd: 8,
+        alignItems: 'center'
     },
     logo: {
         width: 180,
@@ -220,11 +241,13 @@ const styles = StyleSheet.create({
         borderRadius: 12
     },
     buttonArea: {
-        marginTop: 20,
+        marginTop: 16,
         padding: 10,
+        marginStart: 14,
+        marginEnd: 14,
         
         backgroundColor: '#639D04',
-        borderRadius: 35,
+        borderRadius: 40,
         
         alignItems: 'center', 
         justifyContent: 'center',
@@ -238,14 +261,15 @@ const styles = StyleSheet.create({
         shadowRadius: 1,
         elevation: 5,
 
-        fontFamily: 'poppins-regular'
     },
     guestButtonArea: {
-        marginTop: 20,
-        padding: 10,
+        marginTop: 32,
+        padding: 8,
+        marginStart: 14,
+        marginEnd: 14,
         
         // backgroundColor: 'green',
-        borderRadius: 35,
+        borderRadius: 40,
         
         alignItems: 'center', 
         justifyContent: 'center',

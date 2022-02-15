@@ -5,7 +5,7 @@ import {
   View, ScrollView, KeyboardAvoidingView, 
   Image, Text, TextInput, TouchableOpacity,  
   StyleSheet,
-  Alert
+  Alert, ImageBackground
 } from 'react-native';
 
 import firebase from 'firebase';
@@ -45,6 +45,7 @@ export default function SignUpScreen({navigation}){
   }
   
   return (
+    <ImageBackground source={require('../../assets/drawerIcons/register.png')} resizeMode= "cover" style={styles.loginContainer}>
       <View style={styles.loginContainer}>
         {/* Display Header */}
         
@@ -65,7 +66,16 @@ export default function SignUpScreen({navigation}){
         <Text style={styles.headerText}>For Plantitos </Text>
         <Text style={styles.headerText}> and Plantitas</Text>
       </View> */}
-      
+        <TouchableOpacity >
+            <View style={{color: 'white', alignItems: 'flex-end', flex: 1, marginEnd: 8, paddingTop: 48}}>
+                <Text style={{color: 'white', fontFamily: 'poppins-regular', paddingHorizontal: 14, fontSize: 14}}>Cancel</Text>
+            </View>
+        </TouchableOpacity>
+
+        <View style={{ flexDirection: 'row', paddingTop: 48, paddingBottom: 2, alignItems: 'flex-end', flexDirection: 'column', marginEnd: 48}}>
+            <Text style={{color: 'white', fontFamily: 'poppins-semiBold', fontSize: 20}}>Join the Community</Text>
+        </View>          
+              
       <View style={({paddingHorizontal: 30, paddingHorizontal: 40})}> 
         {/* Text Input Area */}
         <Text style={styles.label}>FIRST NAME</Text>
@@ -112,80 +122,164 @@ export default function SignUpScreen({navigation}){
             value={userPass}
           >
         </TextInput>
+
+        <View style={{ flexDirection: 'row', marginTop: 16, justifyContent: 'center', marginBottom: 0}}>
+            <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 8.5}}>By signing up you agree to our terms and conditions and privacy policy</Text>
+        </View>        
         
         <TouchableOpacity onPress={() => signUpClick()}>
           <View style={styles.buttonArea}>
-            <Text style={{ color: 'white', fontSize: 20, }}>SIGN UP</Text>
+            <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold' }}>SIGN UP</Text>
           </View>
         </TouchableOpacity>
       </View>
+                    
+      <TouchableOpacity>
+        <View style={styles.guestButtonArea}>
+        <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-regular'}}>CONTINUE AS A GUEST</Text>
+            </View>
+      </TouchableOpacity>
+
+            <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'center', marginBottom: 10}}>
+                <Text style={{color: 'white', fontFamily: 'poppins-light'}}>Already signed up?</Text>
+                    <TouchableOpacity >
+                      <View style={{color: 'white', }}>
+                          <Text style={{color: '#639D04', fontFamily: 'poppins-semiBold', paddingHorizontal: 14}}>Log In</Text>
+                      </View>
+                    </TouchableOpacity>
+            </View>      
       
       {/* </KeyboardAvoidingView> */}
     </View>
+  </ImageBackground>
   )
-  
 }
 
 const styles = StyleSheet.create({
   loginContainer:{
-    flex: 1,
-    // alignItems: 'center',
-    backgroundColor: '#040',
-    justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoView: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 25
-  },
-  headerText: {
-    fontSize: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textbox: {
-    borderColor: 'black',
-    borderBottomWidth: 1,
-    backgroundColor: 'white',
-    borderRadius: 8,
-    padding: 10,
-    fontSize: 15,
-  },
-  label:{
-    marginVertical: 10,
-    marginTop: 20,
-    fontSize: 14,
-    color: 'white'
-  },
-  logo: {
-    width: 200,
-    height: 200,
-    backgroundColor: '#040',
-    borderRadius: 12
-  },
-  buttonArea: {
-    marginTop: 40,
-    padding: 12,
-    
-    backgroundColor: '#639D04',
-    borderRadius: 25,
-    
-    alignItems: 'center', 
-    justifyContent: 'center',
-    
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 5,
+        flex: 1,
+        fontFamily: 'poppins-regular',
+        justifyContent: 'flex-start',
+        alignItems: 'stretch',
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 1,
-    elevation: 5,
-  },
+    loginView: {
+        // backgroundColor: '#040',
+        paddingHorizontal: 30, 
+        paddingTop: 0, 
+        // borderTopLeftRadius: 35, 
+        // borderTopRightRadius: 35,
+        flex: 1,
+        justifyContent: 'flex-end',
+        paddingBottom: 50
+    },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    bgPic: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        paddingVertical: 25,
+    },
+    headerText: {
+        fontSize: 24,
+        color: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingStart: 8,
+        paddingBottom: 0,
+        fontFamily: 'poppins-semiBold'
+    },
+    textbox: {
+        borderColor: '#1D4123',
+        backgroundColor: 'white',
+        borderRadius: 15,
+        borderWidth: 1,
+        marginBottom: 0,
+        padding: 8,
+        fontSize: 14,
+        fontFamily: 'poppins-light',
+        marginStart: 8,
+        marginEnd: 8,
+        alignItems: 'center'
+    },
+    label:{
+        color: 'white',
+        marginTop:6,
+        paddingStart: 8,
+        paddingBottom: 5,
+        fontSize: 13,
+        fontFamily: 'poppins-regular'
+    },
+    pwtextbox: {
+        borderColor: '#1D4123',
+        backgroundColor: 'white',
+        borderRadius: 15,
+        borderWidth: 1,
+        marginBottom: 8,
+        marginTop: 0,
+        padding: 10,
+        fontSize: 16,
+        fontFamily: 'poppins-light',
+        marginStart: 8,
+        marginEnd: 8,
+        alignItems: 'center'
+    },
+    logo: {
+        width: 180,
+        height: 200,
+        backgroundColor: 'white',
+        borderRadius: 12
+    },
+    buttonArea: {
+        marginTop: 12,
+        padding: 10,
+        marginStart: 8,
+        marginEnd: 8,
+        
+        backgroundColor: '#639D04',
+        borderRadius: 40,
+        
+        alignItems: 'center', 
+        justifyContent: 'center',
+        
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 1,
+        elevation: 5,
+
+    },
+    guestButtonArea: {
+        marginTop: 34,
+        padding: 8,
+        marginStart: 48,
+        marginEnd: 48,
+        
+        // backgroundColor: 'green',
+        borderRadius: 40,
+        
+        alignItems: 'center', 
+        justifyContent: 'center',
+        
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 1,
+        elevation: 5,
+
+        borderWidth: 2,
+        borderColor: 'white',
+
+        fontFamily: 'poppins-regular'
+    }
 });
