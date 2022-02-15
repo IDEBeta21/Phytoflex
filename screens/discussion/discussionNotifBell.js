@@ -4,55 +4,49 @@ import * as React from 'react';
 import { Text, View, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import DscNotif from '../discussion/DscNotif'
+import DscMessages from '../discussion/DscMessages'
 
 import { DrawerContent } from '../global/Drawer';
 
-function DscNotificationsScreen() {
+function funcDiscNotifScreen({navigation}) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Notifications</Text>
-    </View>
+    <DscNotif navigation={navigation}/>
   );
 }
 
-function DscMessagesScreen() {
+function funcDiscMessagesScreen({navigation}) {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Messages</Text>
-    </View>
+    <DscMessages navigation={navigation}/>
   );
 }
 
 const Tab = createMaterialTopTabNavigator();
 
-function MyTopTabs() {
+function MyTopTabs({navigation}) {
   return (
     <Tab.Navigator
       initialRouteName="DscNotifications"
       screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
-        tabBarLabelStyle: { fontSize: 12 },
-        tabBarStyle: { backgroundColor: 'powderblue' },
+        tabBarActiveTintColor: '#1D4123',
+        tabBarInactiveTintColor: 'white',
+        tabBarLabelStyle: { fontSize: 15, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
+        tabBarStyle: { backgroundColor: '#1D4123', elevation:0  },
+        tabBarIndicatorStyle: {backgroundColor: 'white', borderColor: 'white', height: '100%'}
       }}
     >
       <Tab.Screen
         name="DscNotifications"
-        component={FeedScreen}
+        component={funcDiscNotifScreen}
         options={{ tabBarLabel: 'Notifications' }}
       />
       <Tab.Screen
         name="DscMessages"
-        component={NotificationsScreen}
+        component={funcDiscMessagesScreen}
         options={{ tabBarLabel: 'Messages' }}
       />
     </Tab.Navigator>
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyTopTabs />
-    </NavigationContainer>
-  );
-}
+export default MyTopTabs;

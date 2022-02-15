@@ -66,9 +66,10 @@ function App({navigation}) {
           options={{ 
             headerTitle: (props) => <Header title={'Inbox'} navigation={navigation}/>, 
             headerStyle: {
-              backgroundColor: '#1D4123'
+              backgroundColor: '#1D4123',
             },
-            headerTintColor: 'white'
+            headerTintColor: 'white',
+            headerShadowVisible: false
           }}
         />
       </Stack.Navigator>
