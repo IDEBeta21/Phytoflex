@@ -7,6 +7,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import DscNotif from '../discussion/DscNotif'
 import DscMessages from '../discussion/DscMessages'
 
+
 import { DrawerContent } from '../global/Drawer';
 
 function funcDiscNotifScreen({navigation}) {

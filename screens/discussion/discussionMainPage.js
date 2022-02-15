@@ -1,23 +1,23 @@
-import { Button, Text, View } from 'react-native';
+import { Button, Text, View, Image } from 'react-native';
 import React, { Component } from 'react';
 import { globalStyles } from '../global/globalStyles';
+import { FAB } from 'react-native-elements';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 export default function discussionHomePage({navigation}) {
 
-  function toDiscussionSearch() {
-    navigation.navigate('DiscussionSearch');
-  }
-
   return (
-    <View style={ globalStyles.textContainer }>
-      <Text style={ globalStyles.titleText }>
-        This is the Discussion Main Page
-      </Text>
-      <Text style={ globalStyles.paragraphText }>
-        Open up discussionMainPage.js to start working on your app!
-      </Text>
-      
-      
+    <View style={ globalStyles.FABContainer }>
+      <FAB 
+          title = "Ask Community" 
+          placement= "right" 
+          size= "large" 
+          upperCase
+          icon= { <FontAwesome5 name="question-circle" size={24} color="white" /> }
+          buttonStyle= {{ backgroundColor: "#639D04" }}
+          titleStyle= {{ fontFamily: 'poppins-semiBold', fontSize: 15, paddingLeft: 6, marginTop:2 }}
+      />
     </View>
   );
 }
+

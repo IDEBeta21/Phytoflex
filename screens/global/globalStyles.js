@@ -32,5 +32,11 @@ export const globalStyles = StyleSheet.create ({
         fontFamily: 'poppins-semiBold',
         fontSize: 14,
         color: '#1D4123'
+    },
+    FABContainer: {
+        alignItems: 'center',
+        paddingVertical: 5,
+        flexGrow: 1,
+        backgroundColor: 'white'
     }
 })
