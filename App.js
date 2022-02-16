@@ -1,4 +1,5 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
 
 // Import stack navigator
@@ -33,17 +34,12 @@ import HeaderContent from './screens/global/Header';
 
 // 
 // import { AppLoading } from 'expo';\
-import { AppLoading } from 'expo';
-import * as Font from 'expo-font';
-import { View } from 'react-native-web';
-import { Text } from 'react-native';
-
-const getFonts = () => Font.loadAsync({
-  'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
-  'poppins-semiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
-  'poppins-light': require('./assets/fonts/Poppins-Light.ttf'),
-  'poppins-italic': require('./assets/fonts/Poppins-Italic.ttf'),
-})
+// import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
+// import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
+// import { View } from 'react-native-web';
+// import { Text } from 'react-native';
 
 // Navigating functions
 function funcLoginScreen({ navigation }) {
@@ -70,6 +66,7 @@ const AuthStack = createNativeStackNavigator();
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContent } from './screens/global/Drawer';
 const Drawer = createDrawerNavigator();
+
 function SideBar(){
   return(
       // <NavigationContainer independent={true}>
@@ -95,7 +92,13 @@ function SideBar(){
 }
 
 function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  let [ fontsLoaded ] = useFonts({
+    'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
+    'poppins-semiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
+    'poppins-light': require('./assets/fonts/Poppins-Light.ttf'),
+    'poppins-italic': require('./assets/fonts/Poppins-Italic.ttf'),
+  })
 
   if (fontsLoaded) {
     return (
@@ -112,9 +115,10 @@ function App() {
       </NavigationContainer>
     );
   } else {
-    getFonts();
-    setFontsLoaded(true);
-    console.log("Font is good");
+    // getFonts();
+    // setFontsLoaded(true);
+    // console.log("Font is good");
+    return (<AppLoading/>);
   }
 }
 
