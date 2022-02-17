@@ -1,9 +1,11 @@
-import { Button, StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, Pressable, TextInput} from 'react-native';
 import React, { Component } from 'react';
+import{ useState } from 'react';
 // import * as React from 'react';
 
-export default function Header({ title, navigation, boolHome }) {
 
+export default function Header({ title, navigation, boolHome }) {
+  const [text, setText] = useState("");
   return (
     <View style={style.header}>
       
@@ -119,6 +121,7 @@ export default function Header({ title, navigation, boolHome }) {
       {title == 'dscSearch' ? /*Discussion Search*/
         <View style={style.searchIconContainer}>
           <TextInput style={style.input} placeholder= "Search"/>
+          {/* <Pressable onPress={() => navigation.navigate('ShopNotifBell')} > */}
           <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
             <Image
               style={style.whiteHeaderIcons}
@@ -143,11 +146,12 @@ export default function Header({ title, navigation, boolHome }) {
           
         </View> : null
       }
-
       {title == 'socMedSearch' ? /*Social Media Search*/
         <View style={style.searchIconContainer}>
-          <TextInput style={style.input} placeholder= "Search"/>
-          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+          <TextInput style={style.input} value={text}
+            onChangeText={(value) => setText(value)}
+            placeholder= "Search"/>
+          <Pressable onPress={() => setText("")} >
             <Image
               style={style.whiteHeaderIcons}
               source={require('../../assets/drawerIcons/cancel.png')}
