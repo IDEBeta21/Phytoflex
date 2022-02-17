@@ -5,7 +5,8 @@ import{ useState } from 'react';
 
 
 export default function Header({ title, navigation, boolHome }) {
-  const [text, setText] = useState("");
+  
+  const [text, setText] = useState(""); //for resetting text field/text input
   return (
     <View style={style.header}>
       
