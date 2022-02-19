@@ -4,7 +4,7 @@ import { FAB } from 'react-native-paper';
 import { globalStyles } from '../global/globalStyles';
 
 // global import
-import PFText from '../../components/PFText';
+import { PFText , PFTextInput } from '../../components';
 import Colors from '../../utils/globalColors';
 
 import { DrawerContent } from '../global/Drawer';
@@ -26,10 +26,15 @@ export default function PlantCareHomePage({navigation}) {
         />
       </View>
 
-      <PFText style={ styles.titleText } color={Colors.primary}>
+      <PFTextInput
+        label='Your answer'
+        // disabled={disabled}
+      />
+
+      <PFText style={ styles.titleText } color={Colors.primary} weight={'italic'}>
         This is the Plant Care Main Page
       </PFText>
-      
+
       <Text style={ styles.paragraphText }>
         Open up plantCareHomePage.js to start working on your app!
       </Text>
@@ -64,7 +69,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12
   },
   titleText: {
-    fontFamily: 'poppins-semiBold',
+    // fontFamily: 'poppins-semiBold',
     fontSize: 14,
     color: '#1D4123'
   },

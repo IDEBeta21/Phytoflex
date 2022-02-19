@@ -22,7 +22,7 @@ export const PFText = ({children, style, weight = 'light', color, center, size, 
             fontStyle = 'poppins-regular'
             break;
         default:
-            fontStyle = 'poppins-regular'
+            fontStyle = 'poppins-light'
     }
 
 
@@ -37,4 +37,4 @@ export const PFText = ({children, style, weight = 'light', color, center, size, 
     )
 }
 
-export default PFText;
+// export default PFText;
