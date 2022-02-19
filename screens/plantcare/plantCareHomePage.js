@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import { FAB } from 'react-native-paper';
 import { globalStyles } from '../global/globalStyles';
 
+// global import
+import PFText from '../../components/PFText';
+import Colors from '../../utils/globalColors';
+
 import { DrawerContent } from '../global/Drawer';
 
 export default function PlantCareHomePage({navigation}) {
@@ -21,9 +25,11 @@ export default function PlantCareHomePage({navigation}) {
           placeholder='Search'
         />
       </View>
-      <Text style={ styles.titleText }>
+
+      <PFText style={ styles.titleText } color={Colors.primary}>
         This is the Plant Care Main Page
-      </Text>
+      </PFText>
+      
       <Text style={ styles.paragraphText }>
         Open up plantCareHomePage.js to start working on your app!
       </Text>
