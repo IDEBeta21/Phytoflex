@@ -4,7 +4,7 @@ import Colors from '../utils/globalColors';
 
 export const PFText = ({children, style, weight = 'light', color, center, size, numberOfLines,adjustsFontSizeToFit}) => {
     let fontStyle = ''
-    let fontColor = color ? { color: color } : { color: Colors.black }
+    let fontColor = color ? { color: color } : { color: Colors.primary }
     let fontSize = size ? { fontSize: size } : {}
     let fontCenter = center ? { textAlign: 'center' } : {}
 

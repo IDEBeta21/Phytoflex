@@ -19,7 +19,7 @@ export const PFTextInput = (props) => {
 const styles = StyleSheet.create({
     textInput: {
         borderColor: '#1D4123',
-        backgroundColor: 'white',
+        backgroundColor: 'white', 
         borderRadius: 15,
         borderWidth: 1,
         marginBottom: 0,
