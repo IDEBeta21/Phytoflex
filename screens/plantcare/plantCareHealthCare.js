@@ -5,7 +5,7 @@ import { globalStyles } from '../global/globalStyles';
 import { DrawerContent } from '../global/Drawer';
 
 import firebase from 'firebase';
-import PFModalLogin from '../../components/Modals/PFModalLogin';
+import {PFModalLogin} from '../../components/Modals';
 
 export default function PlantCareHealtCarePage({navigation}) {
   // Calling Plantcare search screen
