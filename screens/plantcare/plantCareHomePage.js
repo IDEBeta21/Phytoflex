@@ -8,10 +8,7 @@ import { PFText , PFTextInput} from '../../components';
 import Colors from '../../utils/globalColors';
 
 import { DrawerContent } from '../global/Drawer';
-
-// import PFModalPrompt from '../../components/Modals/PFModalPrompt';
-// import PFModalAlert from '../../components/Modals/PFModalAlert';
-// import PFModalLogin from '../../components/Modals/PFModalLogin';
+ 
 import {PFModalLogin , PFModalAlert, PFModalPrompt} from '../../components/Modals';
 
 export default function PlantCareHomePage({navigation}) {
@@ -20,6 +17,8 @@ export default function PlantCareHomePage({navigation}) {
   const [loginVisible, setloginVisible] = useState(false)
   const [confirmVisible, setconfirmVisible] = useState(false)
   const [alertVisible, setalerVisible] = useState(false)
+
+  const [inpText, setinpText] = useState("")
 
   return (
     <View style={ styles.mainContainer }>
@@ -36,7 +35,15 @@ export default function PlantCareHomePage({navigation}) {
       </View>
 
       <PFTextInput
+        mode='flat'
         label='Text Input Here'
+        onChangeText={setinpText}
+        // disabled={disabled}
+      />
+      <PFTextInput
+        mode='flat'
+        label='Text Input Here'
+        onChangeText={setinpText}
         // disabled={disabled}
       />
 
