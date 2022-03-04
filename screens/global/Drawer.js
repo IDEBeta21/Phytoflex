@@ -82,7 +82,7 @@ export function DrawerContent(props) {
 
           <Drawer.Section style={styles.drawerSection}>
               {/* <TouchableRipple onPress={() => {toggleTheme()}}> */}
-              <TouchableRipple onPress={() => props.navigation.navigate('SocialMediaHome')}>
+              <TouchableRipple onPress={() => props.navigation.navigate('UserProfile')}>
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
@@ -92,7 +92,7 @@ export function DrawerContent(props) {
                   </View>
               </TouchableRipple>
 
-              <TouchableRipple onPress = {() => props.navigation.navigate('SocialMediaHome')}>
+              <TouchableRipple onPress = {() => props.navigation.navigate('SocialMediaSearch')}>
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}

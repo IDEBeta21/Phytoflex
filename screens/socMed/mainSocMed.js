@@ -3,10 +3,13 @@ import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import UserProfilePage from './UserProfile';
+
 import SocialMediaHomePage from "./SocialMediaHome";
 import SocialMediaSearchPage from "./SocialMediaSearch";
 import InboxZonePage from './SocMedInboxZone';
 import SocMedSearchPage from './SocMedSearch';
+
 
 import Header from '../global/Header';
 
@@ -31,6 +34,11 @@ function funcSocMedSearch({navigation}) {
     <SocMedSearchPage navigation={navigation}/>
   );
 }
+function funcUserProfile({navigation}) {
+  return (
+    <UserProfilePage navigation={navigation}/>
+  );
+}
 
 const Stack = createNativeStackNavigator();
 
@@ -38,7 +46,9 @@ const Stack = createNativeStackNavigator();
 function App({navigation}) {
   return (
     // <NavigationContainer>
-      <Stack.Navigator>
+    <Stack.Navigator>
+        
+      
         <Stack.Screen
           name="SocialMediaHome"
           component={funcPlantCareHome}
@@ -86,7 +96,20 @@ function App({navigation}) {
             headerTintColor: '#1D4123'
           }}
         />
+        <Stack.Screen
+          name="UserProfile"
+          component={funcUserProfile}
+          options={{ 
+            headerTitle: (props) => <Header title={'User Profile'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
       </Stack.Navigator>
+      
     // </NavigationContainer>
   );
 }
