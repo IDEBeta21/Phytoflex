@@ -7,6 +7,7 @@ import PlantCareHomePage from "../../screens/plantcare/plantCareHomePage";
 import PlantCareSearchPage from "./plantCareSearch";
 import PlantCareHealtCarePage from './plantCareHealthCare';
 import PlantCareOpportunityPage from './plantCareOpportunity';
+import Instruction from './snap/instruction';
 
 import Header from '../global/Header';
 
@@ -32,6 +33,12 @@ function funcPlantCareHealthCare({navigation}) {
 function funcPlantCareOpportunity({navigation}) {
   return (
     <PlantCareOpportunityPage navigation={navigation}/>
+  );
+}
+
+function funcPlantCareInstruction({navigation}){
+  return(
+    <Instruction navigation={navigation}/>
   );
 }
 
@@ -84,6 +91,18 @@ function App({navigation}) {
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Plant Care'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+        <Stack.Screen
+          name="Instruction"
+          component={funcPlantCareInstruction}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Instruction'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },

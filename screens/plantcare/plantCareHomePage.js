@@ -112,7 +112,9 @@ export default function PlantCareHomePage({navigation}) {
 
       <TouchableOpacity
         activeOpacity={0.7}
-        style={styles.fabContainer}>
+        style={styles.fabContainer}
+        onPress={() => navigation.navigate('Instruction')}
+        >
         <Image
           // FAB using TouchableOpacity with an image
           // For online image
