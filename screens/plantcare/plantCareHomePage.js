@@ -87,6 +87,15 @@ export default function PlantCareHomePage({navigation}) {
         title="Alert">
       </Button>
 
+      <Button 
+        onPress={
+           () => navigation.navigate('PlantCareTips')
+          // () => this.props.navigation.dispatch(navigation.openDrawer())
+          //() => setalerVisible(true)
+        } 
+        title="Tips">
+      </Button>
+
       <PFModalLogin
         title={"SUCCESSFUL"} 
         message={"Transaction Succeeded"} 

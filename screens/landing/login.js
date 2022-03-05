@@ -102,7 +102,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                 
                 <View style={(styles.loginView)}> 
                     {/* Text Input Area */}
-                    <Text style={styles.headerText}>Welcome Back!</Text>
+                    <Text style={styles.headerText}>Welcome Back!11</Text>
 
                     <Text style={styles.label}>YOUR EMAIL</Text>
                     <TextInput
