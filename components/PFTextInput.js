@@ -64,7 +64,7 @@ export const PFTextInput = ({
                 render={(innerProps) => (
                     <NativeTextInput 
                         {...innerProps}
-                        style={[innerProps.style, {textAlignVertical: 'center', fontFamily: 'poppins-semiBold', fontSize: 20, padding: 0}]}
+                        style={[innerProps.style, {textAlignVertical: 'center', fontFamily: 'poppins-semiBold', fontSize: 20, padding: 0, borderBottomWidth: 0}]}
                     />
                 )}
                 onSubmitEditing={onSubmitEditing}

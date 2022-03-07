@@ -1,15 +1,24 @@
-import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert} from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, Pressable} from 'react-native';
 import React, { Component, useState } from 'react';
-import { FAB } from 'react-native-paper';
+import { Portal } from 'react-native-paper';
 import { globalStyles } from '../global/globalStyles';
 
+
 // global import
-import { PFText , PFTextInput} from '../../components';
+import { 
+  PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
+  PFModalLogin , PFModalAlert, PFModalPrompt, 
+  PFPrimaryButton, PFSecondaryButton, PFRadioButton,
+  PFFlatList, PFCard
+} from '../../components';
+
 import Colors from '../../utils/globalColors';
 
+import SampleData from '../../utils/SampleData';
+
 import { DrawerContent } from '../global/Drawer';
- 
-import {PFModalLogin , PFModalAlert, PFModalPrompt} from '../../components/Modals';
+
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function PlantCareHomePage({navigation}) {
   // Calling Plantcare search screen
@@ -18,10 +27,20 @@ export default function PlantCareHomePage({navigation}) {
   const [confirmVisible, setconfirmVisible] = useState(false)
   const [alertVisible, setalerVisible] = useState(false)
 
+  const [popupvisible, setpopupvisible] = useState(false)
+
   const [inpText, setinpText] = useState("")
+
+  const [checked, setchecked] = useState(false)
+
+
 
   return (
     <View style={ styles.mainContainer }>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
       <View style={styles.searchBoxContainer}>
         <Image
           style={styles.searchBoxIcon}
@@ -80,13 +99,96 @@ export default function PlantCareHomePage({navigation}) {
       
       <Button 
         onPress={
-          // () => navigation.navigate('PlantCareSearch')
-          // () => this.props.navigation.dispatch(navigation.openDrawer())
           () => setalerVisible(true)
         } 
         title="Alert">
       </Button>
 
+      <Text></Text>
+
+      <Button 
+        onPress={
+          () => setpopupvisible(true)
+        } 
+        title="Popup Menu">
+      </Button>
+
+      <Text></Text>
+
+      {/* <PFFlatListFollower
+        data={SampleData.userList}
+        renderItem={({item}) => (
+          <PFText>{item.fName}</PFText>
+        )}
+      /> */}
+
+      <PFPrimaryButton
+        icon={"account-circle"}
+        bordered={false}
+        style={{padding: 10}}
+        onPress={() => Alert.alert("Hello")}
+        title={"PF Primary Button"}
+        roundness={30}
+      ></PFPrimaryButton>
+      
+      <Text></Text>
+      
+      <PFSecondaryButton
+        style={{padding: 10}}
+        onPress={() => Alert.alert("Hello")}
+        title={"PF Primary Button"}
+        roundness={10}
+      ></PFSecondaryButton>
+
+      <Text></Text>
+
+      <PFFlatList
+        noDataMessage='No Followers'
+        data={SampleData.follower}
+        renderItem={(item) => (
+          <Pressable onPress={() => Alert.alert(item.fName)}>
+            <Text 
+              style={{
+                color: 'black', padding: 10, margin: 2,
+                paddingVertical: 20, borderRadius: 12, 
+                borderWidth: 1, borderColor: 'green', 
+              }}
+            >
+                {item.fName} {item.lName}
+              
+            </Text>
+          </Pressable>
+        )}
+        keyExtractor={item => item.id}
+      />
+
+      <Text></Text>
+      
+      <View 
+        style={{
+          flex: 1, 
+          // borderWidth: 1, 
+          // borderColor: 'black', 
+          padding: 0
+        }}
+      >
+        <PFFlatList
+          numColumns={2}
+          noDataMessage='No Followers'
+          data={SampleData.cardData}
+          renderItem={(item) => (
+            <PFCard 
+              imageURL={item.imageURL}
+              description={item.description}
+              onPress={() => Alert.alert(item.name)}/>
+          )}
+          keyExtractor={(item,index) => index}
+        />
+      </View>
+      
+
+      {/* <PFCard></PFCard> */}
+  
       <PFModalLogin
         title={"SUCCESSFUL"} 
         message={"Transaction Succeeded"} 
@@ -110,6 +212,15 @@ export default function PlantCareHomePage({navigation}) {
         modalClose={() => setalerVisible(false)} 
       ></PFModalAlert>
 
+      <PFPopupMenu
+        visible={popupvisible}
+        modalClose={() => setpopupvisible(false)}
+      />
+
+
+      <PFActivityIndicator visible={true}/>
+      </ScrollView>
+
       <TouchableOpacity
         activeOpacity={0.7}
         style={styles.fabContainer}
@@ -132,7 +243,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 12
+    // paddingHorizontal: 12
   },
   titleText: {
     // fontFamily: 'poppins-semiBold',
@@ -165,12 +276,13 @@ const styles = StyleSheet.create({
     margin: 15,
     right: 0,
     bottom: 0,
-    backgroundColor: '#F5F7FA'
+    backgroundColor: '#F5F7FA',
   },
   fabContainer: {
+    backgroundColor: Colors.white,
     position: 'absolute',
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
     alignItems: 'center',
     justifyContent: 'center',
     right: 15,
@@ -186,10 +298,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 0,
-    elevation: 5,
+    elevation: 10,
   },
   fabImage: {
-    marginTop: 7,
+    // marginTop: 7,
     resizeMode: 'contain',
     width: 25,
     height: 25,

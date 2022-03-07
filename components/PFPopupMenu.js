@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, TouchableNativeFeedbackBase } from "react-native";
 import { color } from "react-native-reanimated";
 
-import { PFText } from "..";
+// import { PFText } from "..";
+import { PFText } from ".";
 
-import Colors from "../../utils/globalColors";
+import Colors from "../utils/globalColors";
 
-export const PFModalAlert = ({
-  title, 
-  message, 
+export const PFPopupMenu = ({
   visible, 
-  modalClose = () => {}
+  modalClose
 }) => {
   const [modalVisible, setModalVisible] = useState(visible);
   return (
     <View style={styles.centeredView}>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         // visible={modalVisible}
         visible={visible}
@@ -24,19 +23,13 @@ export const PFModalAlert = ({
           // Alert.alert("Modal has been closed.");
           modalClose()
         }}
+        dismissable={true}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <PFText style={styles.modalTextTitle} weight={"semi-bold"}>{title}</PFText>
-            <PFText style={styles.modalTextMessage}>{message}</PFText>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-            //   onPress={() => setModalVisible(false)}
-              onPress={() => modalClose()}
-            //   onPress={() => {this.visible}}
-            >
-              <PFText style={styles.primaryButtonText} color={'white'}>Close</PFText>
-            </Pressable>
+            <PFText style={styles.modalTextMessage}>Unfollow usename</PFText>
+            <PFText style={styles.modalTextMessage}>View Profile</PFText>
+            <PFText style={styles.modalTextMessage}>Report</PFText>
           </View>
         </View>
       </Modal>
@@ -53,16 +46,17 @@ export const PFModalAlert = ({
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    marginTop: 22,
+    // width: 50
   },
   modalView: {
-    margin: 20,
+    margin: 10,
     backgroundColor: "white",
     borderRadius: 8,
-    padding: 35,
-    alignItems: "center",
+    padding: 20,
+    alignItems: "flex-start",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -70,7 +64,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   button: {
     borderRadius: 8,
@@ -89,7 +83,7 @@ const styles = StyleSheet.create({
 
   },
   modalTextMessage: {
-    marginBottom: 15,
+    marginBottom: 5,
     textAlign: "center"
   }
 });

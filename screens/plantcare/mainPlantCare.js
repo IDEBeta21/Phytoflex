@@ -10,6 +10,7 @@ import PlantCareOpportunityPage from './plantCareOpportunity';
 import Instruction from './snap/instruction';
 
 import Header from '../global/Header';
+import HeaderSearch from '../global/HeaderSearch';
 
 // functions to call screens
 function funcPlantCareHome({navigation}) {
@@ -66,7 +67,7 @@ function App({navigation}) {
           component={funcPlantCareSearch}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'Plant Care'} navigation={navigation}/>, 
+            headerTitle: (props) => <HeaderSearch title={'Plant Care'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -78,9 +79,9 @@ function App({navigation}) {
           component={funcPlantCareHealthCare}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'Plant Care'} navigation={navigation}/>, 
+            headerTitle: (props) => <HeaderSearch title={'Plant Care'} navigation={navigation}/>, 
             headerStyle: {
-              backgroundColor: '#1D4123'
+              backgroundColor: 'white'
             },
             headerTintColor: 'white'
           }}

@@ -14,8 +14,8 @@ export default function discussionHomePage({navigation}) {
           size= "large" 
           upperCase
           icon= { <FontAwesome5 name="question-circle" size={24} color="white" /> }
-          buttonStyle= {{ backgroundColor: "#639D04" }}
-          titleStyle= {{ fontFamily: 'poppins-semiBold', fontSize: 15, paddingLeft: 6, marginTop:2 }}
+          buttonStyle= {{ backgroundColor: "#639D04", borderRadius: 25 }}
+          titleStyle= {{ fontFamily: 'poppins-semiBold', fontSize: 15, paddingLeft: 6, marginTop: 2 }} 
       />
     </View>
   );
