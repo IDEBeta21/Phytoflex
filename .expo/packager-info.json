@@ -2,9 +2,9 @@
   "expoServerPort": 19000,
   "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://ek-j6i.anonymous.phytoflex.exp.direct",
+  "packagerNgrokUrl": "https://ek-j6i.anonymous.phytoflex.exp.direct",
+  "ngrokPid": 140752,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }
