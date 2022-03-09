@@ -39,5 +39,23 @@ export default SampleData = {
             description: '3rd image'
         }
         
+    ],
+
+
+    itemList: [
+        {
+            imageURL: 'https://picsum.photos/700',
+            itemName: 'Gymnocalycium Chin',
+            category: 'Cactus small',
+            price: 549,
+            quantity: 1
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            itemName: 'Pilea Cadierei Aliminum',
+            category: 'Plant',
+            price: 300,
+            quantity: 1
+        },
     ]
 }

@@ -5,7 +5,7 @@ import {
     View, ScrollView, KeyboardAvoidingView, 
     Image, TextInput, TouchableOpacity,  
     StyleSheet,
-    Alert, Button, ImageBackground, SafeAreaView, Dimensions, Keyboard
+    Alert, Button, ImageBackground, SafeAreaView, Dimensions, Keyboard, Pressable
 } from 'react-native';
 
 import firebase from 'firebase';
@@ -98,7 +98,10 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                     
                     <View style={(keyboardStatus == false ? styles.loginView : styles.loginViewKeyUp)}> 
                         {/* Text Input Area */}
-                        <Text style={styles.headerText}>Welcome Back!</Text>
+                        <Pressable onPress={() => navigation.navigate('ComponentsSample')}>
+                            <Text style={styles.headerText}>Welcome Back!</Text>
+                        </Pressable>
+                        
 
                         <Text style={styles.label}>YOUR EMAIL</Text>
                         <TextInput

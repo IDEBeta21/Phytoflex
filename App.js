@@ -27,9 +27,11 @@ if (firebase.apps.length == 0) {
 // import Screens
 import LoginScreen from './screens/landing/login';
 import SignUpScreen from './screens/landing/signup';
+import MyTabs from './screens/global/bottomNav';
+import ComponentsSample from './screens/global/ComponentsSample';
+
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
-import MyTabs from './screens/global/bottomNav';
 import HeaderContent from './screens/global/Header';
 
 // 
@@ -58,6 +60,12 @@ function funcBottomNav({navigation}) {
   return(
     <MyTabs navigation={navigation}/>
   );
+}
+
+function funcComponentSample({navigation}){
+  return(
+    <ComponentsSample navigation={navigation}/>
+  )
 }
 
 const AuthStack = createNativeStackNavigator();
@@ -110,6 +118,7 @@ function App() {
           <AuthStack.Screen name="Login" component={funcLoginScreen}/>
           <AuthStack.Screen name="SignUpScreen" component={funcSignupScreen}/>
           <AuthStack.Screen name="MyTabs" component={SideBar}/>
+          <AuthStack.Screen name="ComponentsSample" component={funcComponentSample}/>
           {/* <AuthStack.Screen name="MyTabs" component={funcBottomNav} /> */}
         </AuthStack.Navigator>
       </NavigationContainer>

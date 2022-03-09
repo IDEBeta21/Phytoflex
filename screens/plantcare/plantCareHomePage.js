@@ -9,7 +9,9 @@ import {
   PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
   PFModalLogin , PFModalAlert, PFModalPrompt, 
   PFPrimaryButton, PFSecondaryButton, PFRadioButton,
-  PFFlatList, PFCard
+  PFFlatList, 
+  AccountListItem, PlantListItem,
+  PFCard
 } from '../../components';
 
 import Colors from '../../utils/globalColors';
@@ -41,193 +43,18 @@ export default function PlantCareHomePage({navigation}) {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
-      <View style={styles.searchBoxContainer}>
-        <Image
-          style={styles.searchBoxIcon}
-          source={require('../../assets/drawerIcons/plantCareIcons/search.png')}
-          resizeMode='contain'
-        />
-        <TextInput
-          style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1}}
-          placeholder='Search'
-        />
-      </View>
+        <View style={styles.searchBoxContainer}>
+          <Image
+            style={styles.searchBoxIcon}
+            source={require('../../assets/drawerIcons/plantCareIcons/search.png')}
+            resizeMode='contain'
+          />
+          <TextInput
+            style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1}}
+            placeholder='Search'
+          />
+        </View>
 
-      <PFTextInput
-        mode='flat'
-        label='Text Input Here'
-        onChangeText={setinpText}
-        // disabled={disabled}
-      />
-      <PFTextInput
-        mode='flat'
-        label='Text Input Here'
-        onChangeText={setinpText}
-        // disabled={disabled}
-      />
-
-      <PFText style={ styles.titleText } color={Colors.primary} weight={'italic'}>
-        This is the Plant Care Main Page
-      </PFText>
-
-      <Text style={ styles.paragraphText }>
-        Open up plantCareHomePage.js to start working on your app!
-      </Text>
-
-      {/* <Button onPress={() => toPlantCareSearch()} title="Plant Care Search"></Button> */}
-      <Button 
-        onPress={
-          // () => navigation.navigate('PlantCareSearch')
-          // () => this.props.navigation.dispatch(navigation.openDrawer())
-          () => setloginVisible(true)
-        } 
-        title="Login">
-      </Button>
-
-      <Text></Text>
-
-      <Button 
-        onPress={
-          // () => navigation.navigate('PlantCareSearch')
-          // () => this.props.navigation.dispatch(navigation.openDrawer())
-          () => setconfirmVisible(true)
-        } 
-        title="Confirmation">
-      </Button>
-
-      <Text></Text>
-      
-      <Button 
-        onPress={
-          () => setalerVisible(true)
-        } 
-        title="Alert">
-      </Button>
-
-      <Text></Text>
-
-      <Button 
-        onPress={
-          () => setpopupvisible(true)
-        } 
-        title="Popup Menu">
-      </Button>
-
-      <Text></Text>
-
-      {/* <PFFlatListFollower
-        data={SampleData.userList}
-        renderItem={({item}) => (
-          <PFText>{item.fName}</PFText>
-        )}
-      /> */}
-
-      <PFPrimaryButton
-        icon={"account-circle"}
-        bordered={false}
-        style={{padding: 10}}
-        onPress={() => Alert.alert("Hello")}
-        title={"PF Primary Button"}
-        roundness={30}
-      ></PFPrimaryButton>
-      
-      <Text></Text>
-      
-      <PFSecondaryButton
-        style={{padding: 10}}
-        onPress={() => Alert.alert("Hello")}
-        title={"PF Primary Button"}
-        roundness={10}
-      ></PFSecondaryButton>
-
-      <Text></Text>
-
-      <PFFlatList
-        noDataMessage='No Followers'
-        data={SampleData.follower}
-        renderItem={(item) => (
-          <Pressable onPress={() => Alert.alert(item.fName)}>
-            <Text 
-              style={{
-                color: 'black', padding: 10, margin: 2,
-                paddingVertical: 20, borderRadius: 12, 
-                borderWidth: 1, borderColor: 'green', 
-              }}
-            >
-                {item.fName} {item.lName}
-              
-            </Text>
-          </Pressable>
-        )}
-        keyExtractor={item => item.id}
-      />
-
-      <Text></Text>
-      
-      <View 
-        style={{
-          flex: 1, 
-          // borderWidth: 1, 
-          // borderColor: 'black', 
-          padding: 0
-        }}
-      >
-        <PFFlatList
-          numColumns={2}
-          noDataMessage='No Followers'
-          data={SampleData.cardData}
-          renderItem={(item) => (
-            <PFCard 
-              imageURL={item.imageURL}
-              description={item.description}
-              onPress={() => Alert.alert(item.name)}/>
-          )}
-          keyExtractor={(item,index) => index}
-        />
-      </View>
-      
-
-      {/* <PFCard></PFCard> */}
-  
-      <Button 
-        onPress={
-           () => navigation.navigate('PlantCareTips')
-          // () => this.props.navigation.dispatch(navigation.openDrawer())
-          //() => setalerVisible(true)
-        } 
-        title="Tips">
-      </Button>
-
-      <PFModalLogin
-        title={"SUCCESSFUL"} 
-        message={"Transaction Succeeded"} 
-        visible={loginVisible} 
-        modalClose={() => setloginVisible(false)} 
-      ></PFModalLogin>
-
-      <PFModalPrompt 
-        title={"CONFIRMATION"} 
-        message={"Are you sure you want to accept the offer?"} 
-        visible={confirmVisible} 
-        modalClose={() => setconfirmVisible(false)} 
-        type={"confirm"}
-        onConfirm={() => Alert.alert("Clicked!!")}
-      ></PFModalPrompt>
-
-      <PFModalAlert
-        title={"SUCCESSFUL"} 
-        message={"Transaction Succeeded"} 
-        visible={alertVisible} 
-        modalClose={() => setalerVisible(false)} 
-      ></PFModalAlert>
-
-      <PFPopupMenu
-        visible={popupvisible}
-        modalClose={() => setpopupvisible(false)}
-      />
-
-
-      <PFActivityIndicator visible={true}/>
       </ScrollView>
 
       <TouchableOpacity
@@ -252,19 +79,8 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 60
     // paddingHorizontal: 12
-  },
-  titleText: {
-    // fontFamily: 'poppins-semiBold',
-    fontSize: 14,
-    color: '#1D4123'
-  },
-  paragraphText: {
-    fontFamily: 'poppins-regular',
-    fontSize: 12,
-    color: '#1D4123',
-    marginVertical: 8,
-    lineHeight: 20,
   },
   searchBoxContainer: {
     backgroundColor: '#F5F7FA',
@@ -279,13 +95,6 @@ const styles = StyleSheet.create({
   searchBoxIcon: {
     height: 20,
     width: 20
-  },
-  fab: {
-    position: 'absolute',
-    margin: 15,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#F5F7FA',
   },
   fabContainer: {
     backgroundColor: Colors.white,
@@ -308,6 +117,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 0,
     elevation: 10,
+  },
+  fab: {
+    position: 'absolute',
+    margin: 15,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#F5F7FA',
   },
   fabImage: {
     // marginTop: 7,

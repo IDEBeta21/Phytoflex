@@ -7,8 +7,8 @@ import Colors from '../../utils/globalColors';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
-export const PFCard = ({imageURL, description, onPress = () => {}}) => (
-  <View style={styles.cardContainer}>
+export const PFCard = ({imageURL, description, onPress = () => {}}, style, cardContentStyle) => (
+  <View style={{...styles.cardContainer, ...style}}>
     <Card stye={{flex: 1}} onPress={() => onPress()}>
       
       <Card.Cover 
@@ -17,7 +17,7 @@ export const PFCard = ({imageURL, description, onPress = () => {}}) => (
 
         }}
       />
-      <Card.Content style={styles.cardContent}>
+      <Card.Content style={{...styles.cardContent, ...cardContentStyle}}>
         <PFText>{description}</PFText>  
       </Card.Content>
       
