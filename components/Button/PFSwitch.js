@@ -1,10 +1,17 @@
 import * as React from 'react';
 import { Switch } from 'react-native-paper';
+import Colors from '../../utils/globalColors';
 
-export const PFSwitch = () => {
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-
-  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-
-  return <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />;
-};
+export const PFSwitch = ({value, onValueChange = () => {}, disabled = false, color , style}) => {
+  
+  return (
+    <Switch 
+      value={value} 
+      onValueChange={() => onValueChange()} 
+      disabled={disabled}
+      color={color ?  color : Colors.primary}
+      style={{...style}}
+    />
+  );
+  
+}

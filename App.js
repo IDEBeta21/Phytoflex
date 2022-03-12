@@ -29,6 +29,7 @@ import LoginScreen from './screens/landing/login';
 import SignUpScreen from './screens/landing/signup';
 import MyTabs from './screens/global/bottomNav';
 import ComponentsSample from './screens/global/ComponentsSample';
+import FirebaseSample from './screens/global/FirebaseSample';
 
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
@@ -65,6 +66,12 @@ function funcBottomNav({navigation}) {
 function funcComponentSample({navigation}){
   return(
     <ComponentsSample navigation={navigation}/>
+  )
+}
+
+function funcFirebaseSample({navigation}){
+  return(
+    <FirebaseSample navigation={navigation}/>
   )
 }
 
@@ -119,6 +126,7 @@ function App() {
           <AuthStack.Screen name="SignUpScreen" component={funcSignupScreen}/>
           <AuthStack.Screen name="MyTabs" component={SideBar}/>
           <AuthStack.Screen name="ComponentsSample" component={funcComponentSample}/>
+          <AuthStack.Screen name="FirebaseSample" component={funcFirebaseSample}/>
           {/* <AuthStack.Screen name="MyTabs" component={funcBottomNav} /> */}
         </AuthStack.Navigator>
       </NavigationContainer>

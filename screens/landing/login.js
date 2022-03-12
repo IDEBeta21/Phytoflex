@@ -98,7 +98,9 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                     
                     <View style={(keyboardStatus == false ? styles.loginView : styles.loginViewKeyUp)}> 
                         {/* Text Input Area */}
-                        <Pressable onPress={() => navigation.navigate('ComponentsSample')}>
+                        <Pressable 
+                            onPress={() => navigation.navigate('ComponentsSample')}
+                            onLongPress={() => navigation.navigate('FirebaseSample')}>
                             <Text style={styles.headerText}>Welcome Back!</Text>
                         </Pressable>
                         

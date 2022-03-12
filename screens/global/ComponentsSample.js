@@ -1,4 +1,4 @@
-import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, Pressable} from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, Pressable, ViewPropTypes} from 'react-native';
 import React, { Component, useState } from 'react';
 import { Portal } from 'react-native-paper';
 import { globalStyles } from './globalStyles';
@@ -8,10 +8,11 @@ import { globalStyles } from './globalStyles';
 import { 
   PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
   PFModalLogin , PFModalAlert, PFModalPrompt, 
-  PFPrimaryButton, PFSecondaryButton, PFRadioButton,
+  PFPrimaryButton, PFSecondaryButton,
   PFFlatList, 
-  AccountListItem, PlantListItem,
-  PFCard
+  AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
+  PFCard, 
+  PFSwitch
 } from '../../components';
 
 import Colors from '../../utils/globalColors';
@@ -24,17 +25,19 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 export default function ComponentsSample({navigation}) {
   // Calling Plantcare search screen
-
+  // Modals
   const [loginVisible, setloginVisible] = useState(false)
   const [confirmVisible, setconfirmVisible] = useState(false)
   const [alertVisible, setalerVisible] = useState(false)
 
   const [popupvisible, setpopupvisible] = useState(false)
 
+  // TextInput
   const [inpText, setinpText] = useState("")
 
-  const [checked, setchecked] = useState(false)
-
+  // Switch
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
 
 
   return (
@@ -187,13 +190,13 @@ export default function ComponentsSample({navigation}) {
       <View>
         <PFFlatList
           numColumns={1}
-          noDataMessage='No Followers'
-          data={SampleData.cardData}
+          noDataMessage='Nothing here'
+          data={SampleData.userList}
           renderItem={(item) => (
             <AccountListItem 
               imageURL={item.imageURL}
-              accountName={item.name}
-              onPress={() => Alert.alert(item.name)}
+              accountName={item.fName + ' ' + item.lName}
+              onPress={() => Alert.alert(item.fname)}
             />
           )}
           keyExtractor={(item,index) => index}
@@ -208,7 +211,7 @@ export default function ComponentsSample({navigation}) {
       <View style={{borderWidth: 1, borderColor: 'black', margin: 5, padding: 5, borderRadius: 7}}>
         <PFFlatList
           numColumns={1}
-          noDataMessage='No Followers'
+          noDataMessage='No Plant item to post'
           data={SampleData.itemList}
           renderItem={(item) => (
             <PlantListItem 
@@ -229,7 +232,7 @@ export default function ComponentsSample({navigation}) {
       <View>
         <PFFlatList
           numColumns={2}
-          noDataMessage='No Followers'
+          noDataMessage='No Plant to Post'
           data={SampleData.itemList}
           renderItem={(item) => (
             <PlantListItem 
@@ -238,7 +241,7 @@ export default function ComponentsSample({navigation}) {
               itemName={item.itemName}
               category={item.category}
               price={item.price}
-              quantity={item.quantity}
+              sold={item.sold}
               onPress={() => Alert.alert(item.itemName)}
             />
           )}
@@ -254,6 +257,83 @@ export default function ComponentsSample({navigation}) {
         } 
         title="Tips">
       </Button>
+      
+      {/* Switch */}
+      <View style={{flex: 1, flexDirection: 'row'}}>
+        <View style={{flex: 1, justifyContent: 'center'}}>
+          <PFText weight='regular'>Push Notification</PFText>
+        </View>
+        <PFSwitch 
+          style={{flex: 1}}
+          value={isSwitchOn}
+          onValueChange={onToggleSwitch}/>
+      </View>
+      
+
+      {/* Address list */}
+      <View>
+        <PFFlatList
+          // numColumns={1}
+          noDataMessage='No Address Saved Yet'
+          data={SampleData.address}
+          renderItem={(item) => (
+            <AddressListItem 
+              onEditPress={() => Alert.alert('Edit pressed')}
+
+              defaultAddress={item.defaultAddress} 
+              city={item.city}
+              contactNumber={item.contactNumber}
+              address={item.address}
+            />
+          )}
+          keyExtractor={(item,index) => index}
+        />
+      </View>
+
+      
+      {/* Badge History */}
+      <View>
+        <PFFlatList
+          // numColumns={1}
+          noDataMessage='Nothing here'
+          data={SampleData.badgeHistory}
+          renderItem={(item) => (
+            <BadgeHistoryListItem 
+              points={item.points}
+              message={item.message}
+            />
+          )}
+          keyExtractor={(item,index) => index}
+        />
+      </View>
+
+      {/* Message Notification List */}
+      <View>
+        <PFFlatList
+          // numColumns={1}
+          noDataMessage='Nothing here'
+          data={SampleData.messageNotif}
+          renderItem={(item) => (
+            <MessagaNotifItem 
+              imageURL={item.imageURL}
+              senderName={item.name}
+              messagePreview={item.messagePreview}
+              timeRecieved={item.timeRecieved}
+
+              onProfilePress={() => Alert.alert('Profile Picture Pressed')}
+              onMessagePress={() => Alert.alert('Message Pressed')}
+              onDeletePress={() => Alert.alert('Delete Button Pressed')}
+            />
+          )}
+          keyExtractor={(item,index) => index}
+        />
+      </View>
+
+
+
+
+
+
 
       <PFModalLogin
         title={"SUCCESSFUL"} 
@@ -284,7 +364,7 @@ export default function ComponentsSample({navigation}) {
       />
 
 
-      <PFActivityIndicator visible={true}/>
+      <PFActivityIndicator visible={false}/>
       </ScrollView>
 
       <TouchableOpacity

@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Dimensions, Image, TouchableOpacity } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
-import { PFText } from '../../components';
-import Colors from '../../utils/globalColors';
+import { PFText } from '../../PFText';
+import Colors from '../../../utils/globalColors';
 
 export const PlantListItem = ({
     CardList,
@@ -12,11 +12,13 @@ export const PlantListItem = ({
     category,
     price,
     quantity,
-    onPress = () => {}}, 
-    style, 
+    onPress = () => {},
+    style,
+    sold
+  },  
     
 ) => (
-  
+
   <TouchableOpacity onPress={() => onPress()}>
     {
       CardList
@@ -35,8 +37,13 @@ export const PlantListItem = ({
         <View style={{...styles.cardContent}}>
           <PFText weight='medium'>{itemName}</PFText>  
           <PFText weight='medium'>{category}</PFText>  
-          <View>
-            <PFText color={Colors.secondary} weight='medium'>P {price}</PFText>
+          <View style={{flexDirection: 'row', width: '100%'}}>
+            <View style={{flex: 1}}>
+              <PFText color={Colors.secondary} weight='semi-bold'>P {price}</PFText>
+            </View>
+            <View style={{flex: 1, alignItems: 'flex-end'}}>
+              <PFText color={Colors.primary} weight='light'>sold {sold}</PFText>
+            </View>
           </View>
         </View>
       </View>
@@ -48,10 +55,10 @@ export const PlantListItem = ({
             <PFText weight='semi-bold'>{itemName}</PFText>
             <PFText weight='semi-bold'>{category}</PFText>
             <View style={{flex:1, flexDirection: 'row'}}>
-              <View style={{flex: 11}}>
+              <View style={{flex: 1}}>
                 <PFText color={Colors.secondary} weight='semi-bold'>P {price}</PFText>
               </View>
-              <View style={{flex: 1}}>
+              <View style={{flex: 1, alignItems: 'flex-end'}}>
                 <PFText color={Colors.primary} weight='semi-bold'>x {quantity}</PFText>
               </View>
             </View>
@@ -82,15 +89,15 @@ const styles = StyleSheet.create({
     // paddingVertical: 2,
     // flexDirection: 'row',
     flex: 1,
-    paddingLeft: 8,
+    paddingHorizontal: 8,
   },
 
   cardContainer: {
     flex: 1,
-    marginLeft: 5, 
+    marginLeft: (Dimensions.get('window').width/2) * 0.03, 
     // width: (Dimensions.get('window').width/2) * 0.90,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'center', 
+    // justifyContent: 'center',
     borderWidth: 1, 
     borderColor: Colors.primary, 
     borderRadius: 12,

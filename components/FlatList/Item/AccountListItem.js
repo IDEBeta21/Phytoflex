@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Dimensions, Image, TouchableOpacity } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
-import { PFText } from '../../components';
-import Colors from '../../utils/globalColors';
+import { PFText } from '../../PFText';
+// import Colors from '../../utils/globalColors';
+import Colors from '../../../utils/globalColors';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
