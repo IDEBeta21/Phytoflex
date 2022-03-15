@@ -9,6 +9,7 @@ import PlantCareHealtCarePage from './plantCareHealthCare';
 import PlantCareOpportunityPage from './plantCareOpportunity';
 import Instruction from './snap/instruction';
 import PlantCareTips from './plantCareTips';
+import PlantCareCamera from './snap/camera/plantCareCamera';
 
 import Header from '../global/Header';
 import HeaderSearch from '../global/HeaderSearch';
@@ -49,6 +50,8 @@ function funcPlantCareTips({navigation}) {
     <PlantCareTips navigation={navigation}/>
   );
 }
+
+function funcPlantCareCamera({navigation}){return(<PlantCareCamera navigation={navigation}/>);}
 
 const Stack = createNativeStackNavigator();
 
@@ -118,7 +121,7 @@ function App({navigation}) {
           }}
         />
 
-<Stack.Screen
+        <Stack.Screen
           name="PlantCareTips"
           component={funcPlantCareTips}
           options={{ 
@@ -129,6 +132,19 @@ function App({navigation}) {
             headerTintColor: 'white'
           }}
         />
+
+        <Stack.Screen
+          name="PlantCareCamera"
+          component={funcPlantCareCamera}
+          options={{ 
+            headerTitle: (props) => <Header title={'Capture'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
 
       </Stack.Navigator>
     // </NavigationContainer>
