@@ -1,5 +1,5 @@
-// import { Button, Text, View } from 'react-native';
-// import React, { Component } from 'react';
+//import { Button, Text, View } from 'react-native';
+//import React, { Component } from 'react';
 // import { globalStyles } from '../global/globalStyles';
 
 // import { DrawerContent } from '../global/Drawer';
@@ -15,8 +15,6 @@
 //     </View>
 //   );
 // }
-
-
 
 //HI GUYS.! I just COPY THIS from link https://www.bootdey.com/react-native-snippet/12/User-profile-with-options
 import React, { Component } from 'react';

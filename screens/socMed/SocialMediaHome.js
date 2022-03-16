@@ -3,24 +3,61 @@ import React, { Component } from 'react';
 import { globalStyles } from '../global/globalStyles';
 import Header from '../global/Header';
 
-export default function SocialMediaSearchPage({navigation}) {
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-  const toSocialMediaSearch = () => {
-    navigation.navigate('SocialMediaSearch');
-  }
+//importing TopTabNav
+import AllScrn from '../socMed/Home1-AllScreen'
+import FollowingScrn from '../socMed/Home2-FollowingScreen'
+import SwapScrn from '../socMed/SwapScreen'
+//import SocMedSwapReqScrn from '../socMed/SocMedSwapReq'
 
+//the TopTabNavigator
+function funcAllScrn({navigation}) {
   return (
-    <View style={ globalStyles.textContainer }>
-      {/* <Header title={'Social Media'}/> */}
-
-      <Text style={ globalStyles.titleText }>
-        This is the Social Media Home Page
-      </Text>
-      <Text style={ globalStyles.paragraphText }>
-        Open up SocialMediaHome.js to start working on your app!
-      </Text>
-      
-      <Button onPress={() => toSocialMediaSearch()} title="Social Media Search"></Button>
-    </View>
+    <AllScrn navigation={navigation}/>
   );
 }
+function funcFollowingScrn({navigation}) {
+  return (
+    <FollowingScrn navigation={navigation}/>
+  );
+}
+function funcSwapScrn({navigation}) {
+  return (
+    <SwapScrn navigation={navigation}/>
+  );
+}
+const Tab = createMaterialTopTabNavigator();
+
+function MyTopTabs({navigation}) {
+return (
+  <Tab.Navigator
+    initialRouteName="SocMedNotifications"
+    screenOptions={{
+      tabBarActiveTintColor: '#1D4123',
+      tabBarInactiveTintColor: '#1D4123',
+      tabBarLabelStyle: { fontSize: 12, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
+      tabBarStyle: { backgroundColor: 'white', elevation:0  },
+      tabBarIndicatorStyle: {backgroundColor: 'white', borderColor: 'white', height: '100%'}
+    }}
+  >
+    <Tab.Screen
+      name="SocMedNotifications"
+      component={funcAllScrn}
+      options={{ tabBarLabel: 'All' }}
+    />
+    <Tab.Screen
+      name="SocMedChatRoomScrn"
+      component={funcFollowingScrn}
+      options={{ tabBarLabel: 'Following' }}
+    />
+    <Tab.Screen
+      name="SocMedSwapReqScrn"
+      component={funcSwapScrn}
+      options={{ tabBarLabel: 'Swap' }}
+    />
+  </Tab.Navigator>
+);
+}
+export default MyTopTabs;

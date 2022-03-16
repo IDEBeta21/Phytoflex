@@ -3,10 +3,9 @@ import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import UserProfilePage from './UserProfile';
+import UserProfilePage from './UserProf/UserProfile';
 
 import SocialMediaHomePage from "./SocialMediaHome";
-import SocialMediaSearchPage from "./SocialMediaSearch";
 import InboxZonePage from './SocMedInboxZone';
 import SocMedSearchPage from './SocMedSearch';
 
@@ -19,11 +18,7 @@ function funcPlantCareHome({navigation}) {
     <SocialMediaHomePage navigation={navigation}/>
   );
 }
-function funcPlantCareSearch({navigation}) {
-  return (
-    <SocialMediaSearchPage navigation={navigation}/>
-  );
-}
+
 function funcInbox({navigation}) {
   return (
     <InboxZonePage navigation={navigation}/>
@@ -60,18 +55,7 @@ function App({navigation}) {
             headerTintColor: 'white'
           }}
         />
-        <Stack.Screen
-          name="SocialMediaSearch"
-          component={funcPlantCareSearch}
-          // options={{ headerTitle: (props) => <Header {...props} /> }}
-          options={{ 
-            headerTitle: (props) => <Header title={'Social Media'} navigation={navigation}/>, 
-            headerStyle: {
-              backgroundColor: '#1D4123'
-            },
-            headerTintColor: 'white'
-          }}
-        />
+        
         <Stack.Screen
           name="SocMedInboxZone"
           component={funcInbox}
