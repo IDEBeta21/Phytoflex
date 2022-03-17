@@ -96,5 +96,20 @@ export default SampleData = {
             messagePreview: 'This is a test message preview...',
             timeRecieved: '1min'
         }
+    ],
+
+    myGarden: [
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            plantFamilyName: 'Amaranthaceae',
+            plantCommonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            plantFamilyName: 'Amaranthanceae',
+            plantCommonName: 'Fiddle leaf fig plant',
+        },
     ]
 }

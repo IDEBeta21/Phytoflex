@@ -51,7 +51,9 @@ function funcPlantCareTips({navigation}) {
   );
 }
 
-function funcPlantCareCamera({navigation}){return(<PlantCareCamera navigation={navigation}/>);}
+function funcPlantCareCamera({route ,navigation}){
+  return(<PlantCareCamera navigation={navigation} route={route}/>);
+}
 
 const Stack = createNativeStackNavigator();
 

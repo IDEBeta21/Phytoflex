@@ -20,5 +20,6 @@ export * from './FlatList/Item/AddressListItem'
 export * from './FlatList/Item/BadgeHistoryListItem'
 export * from './FlatList/Item/PlantListItem'
 export * from './FlatList/Item/MessagaNotifItem'
+export * from './FlatList/Item/MyGardenItem'
 // Card
 export * from './Card/PFCard'

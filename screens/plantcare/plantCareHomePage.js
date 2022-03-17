@@ -3,6 +3,7 @@ import React, { Component, useState } from 'react';
 import { Portal } from 'react-native-paper';
 import { globalStyles } from '../global/globalStyles';
 
+import firebase from 'firebase';
 
 // global import
 import { 
@@ -10,7 +11,7 @@ import {
   PFModalLogin , PFModalAlert, PFModalPrompt, 
   PFPrimaryButton, PFSecondaryButton, PFRadioButton,
   PFFlatList, 
-  AccountListItem, PlantListItem,
+  AccountListItem, PlantListItem, MyGardenItem,
   PFCard
 } from '../../components';
 
@@ -35,7 +36,11 @@ export default function PlantCareHomePage({navigation}) {
 
   const [checked, setchecked] = useState(false)
 
-
+  const imgref = (url) => {
+    firebase.storage().refFromURL(url).then((res) => {
+      return res;
+    })
+  }
 
   return (
     <View style={ styles.mainContainer }>
@@ -54,6 +59,20 @@ export default function PlantCareHomePage({navigation}) {
             placeholder='Search'
           />
         </View>
+
+        <PFFlatList
+            numColumns={2}
+            noDataMessage='No Plant item to post'
+            data={SampleData.myGarden}
+            renderItem={(item) => (
+              <MyGardenItem 
+                // imageURL={firebase.storage().refFromURL(item.imageURL)}
+                imageURL={item.imageURL}
+                description={item.plantCommonName}
+                onPress={() => Alert.alert(item.plantFamilyName)}/>
+              )}
+            keyExtractor={(item,index) => index}
+          />
 
       </ScrollView>
 
