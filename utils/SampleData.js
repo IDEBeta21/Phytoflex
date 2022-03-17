@@ -137,7 +137,6 @@ export default SampleData = {
         }
     ],
 
-<<<<<<< Updated upstream
     myGarden: [
         {
             // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
@@ -150,24 +149,6 @@ export default SampleData = {
             imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
             plantFamilyName: 'Amaranthanceae',
             plantCommonName: 'Fiddle leaf fig plant',
-=======
-    plantCategory: [
-        {
-            imageURL: 'https://picsum.photos/700',
-            category: 'Indoor Plant'
-        },
-        {
-            imageURL: 'https://picsum.photos/700',
-            category: 'Outdoor Plant'
-        },
-        {
-            imageURL: 'https://picsum.photos/700',
-            category: 'Plant Crops'
-        },
-        {
-            imageURL: 'https://picsum.photos/700',
-            category: 'Pots and Planters'
->>>>>>> Stashed changes
         },
     ]
 }
