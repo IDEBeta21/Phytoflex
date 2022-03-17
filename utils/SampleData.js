@@ -48,18 +48,57 @@ export default SampleData = {
         {
             imageURL: 'https://picsum.photos/700',
             itemName: 'Gymnocalycium Chin',
-            category: 'Cactus small',
+            category: 'Indoor Plant',
             price: 549,
             quantity: 1,
-            sold: 3
+            sold: 3,
+            size: "Large"
         },
         {
             imageURL: 'https://picsum.photos/700',
             itemName: 'Pilea Cadierei Aliminum',
-            category: 'Plant',
-            price: 300,
+            category: 'Outdoor Plant',
+            price: 305,
             quantity: 1,
-            sold: 1
+            sold: 1,
+            size: "Small"
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            itemName: 'Lily',
+            category: 'Plant Crops',
+            price: 208,
+            quantity: 4,
+            sold: 100,
+            size: "Small"
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            itemName: 'Cactus',
+            category: 'Indoor Plant',
+            price: 50,
+            quantity: 4,
+            sold: 98,
+            size: "Small"
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            itemName: 'Lily',
+            category: 'Indoor Plant',
+            price: 208,
+            quantity: 4,
+            sold: 100,
+            size: "Small"
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            itemName: 'Cactus',
+            category: 'Plant',
+            price: 50,
+            quantity: 4,
+            sold: 98,
+            size: "Small"
         },
     ],
 
@@ -98,6 +137,7 @@ export default SampleData = {
         }
     ],
 
+<<<<<<< Updated upstream
     myGarden: [
         {
             // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
@@ -110,6 +150,24 @@ export default SampleData = {
             imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
             plantFamilyName: 'Amaranthanceae',
             plantCommonName: 'Fiddle leaf fig plant',
+=======
+    plantCategory: [
+        {
+            imageURL: 'https://picsum.photos/700',
+            category: 'Indoor Plant'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            category: 'Outdoor Plant'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            category: 'Plant Crops'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            category: 'Pots and Planters'
+>>>>>>> Stashed changes
         },
     ]
 }

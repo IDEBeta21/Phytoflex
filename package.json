@@ -14,7 +14,7 @@
     "@react-navigation/drawer": "^6.2.0",
     "@react-navigation/material-bottom-tabs": "^6.0.9",
     "@react-navigation/material-top-tabs": "^6.1.1",
-    "@react-navigation/native": "^6.0.4",
+    "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.1.0",
     "expo": "~42.0.1",
     "expo-app-loading": "1.1.2",
@@ -28,6 +28,7 @@
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-keyboard-avoiding-view": "^1.0.0",
+    "react-native-pager-view": "5.0.12",
     "react-native-paper": "^4.11.2",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "^3.2.0",
@@ -36,9 +37,13 @@
     "react-native-vector-icons": "^9.0.0",
     "react-native-web": "^0.17.1",
     "react-navigation": "^4.4.4",
+<<<<<<< Updated upstream
     "react-navigation-stack": "^2.10.4",
     "react-native-pager-view": "5.0.12",
     "expo-camera": "~11.2.2"
+=======
+    "react-navigation-stack": "^2.10.4"
+>>>>>>> Stashed changes
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

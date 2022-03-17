@@ -15,7 +15,11 @@ export const PlantListItem = ({
     onPress = () => {},
     style,
     sold
+   
+    
   },  
+
+  
     
 ) => (
 
@@ -70,6 +74,53 @@ export const PlantListItem = ({
     
 );
 
+export const SearchPlant = ({
+    searchedItem,
+    onPress = () => {}
+},
+
+) => (
+  <TouchableOpacity onPress={() => onPress()}>
+    {
+     <View style={{...styles.searchPlant}}>
+     <PFText weight='semi-bold'>{searchedItem}</PFText> 
+     
+     <View style={{flex: 1, alignItems: 'flex-end'}}>
+              <PFText color={Colors.primary} weight='light'>Remove</PFText>
+            </View>
+        
+     </View> 
+    }
+  </TouchableOpacity>
+  
+  );
+  export const PlantCategory = ({
+    imageURL,
+    categoryName,
+    onPress = () => {}
+},
+
+) => (
+  <TouchableOpacity onPress={() => onPress()}>
+    {
+      <View style={{...styles.categoryContainer}}>
+      <Image 
+        source={{ uri: imageURL}}
+        style={{
+          height: 60,
+          width: (Dimensions.get('window').width/4) * 0.70,
+          margin: 4,
+          borderRadius: 8
+        }}
+      />
+          <View style={{...styles.cardContent}}>
+              <PFText weight='semi-bold'>{categoryName}</PFText> 
+          </View>
+    </View>
+    }
+  </TouchableOpacity>)
+
+
 const styles = StyleSheet.create({
   itemContainer: {
     // marginLeft: 8, 
@@ -107,4 +158,20 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     margin: 0
   },
+  searchPlant:{
+    flex: 1,
+    paddingHorizontal: 8,
+    borderWidth: 1,
+    borderColor: Colors.primary, 
+    borderRadius: 7,
+  },
+  categoryContainer:{
+    width: (Dimensions.get('window').width/4) * 0.90,
+    alignItems: 'center',
+    //borderWidth: 1, 
+    borderColor: Colors.primary, 
+    borderRadius: 8,
+    margin: 2,
+
+  }
 })

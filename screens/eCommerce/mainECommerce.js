@@ -8,8 +8,15 @@ import ShopHomePage from "./ShopMainPage";
 import ShopNotifBellPage from './ShopNotifBell';
 import ShopSearchHeaderPage from './ShopSearchHeader';
 import Header from '../global/Header';
+import ProductPage from "./Product";
 
 // Functions for calling the screens
+
+function funcProductPage({route, navigation}) {
+  return (
+    <ProductPage navigation={navigation} route = {route}/>
+  );
+}
 function funcShopHome({navigation}) {
   return (
     <ShopHomePage navigation={navigation}/>
@@ -71,7 +78,20 @@ function App({navigation}) {
             headerTintColor: 'white'
           }}
         />
+           <Stack.Screen
+          name="ProductPage"
+          component={funcProductPage}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Product'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
       </Stack.Navigator>
+      
     // </NavigationContainer>
   );
 }
