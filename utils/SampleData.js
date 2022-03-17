@@ -150,5 +150,25 @@ export default SampleData = {
             plantFamilyName: 'Amaranthanceae',
             plantCommonName: 'Fiddle leaf fig plant',
         },
+    ],
+
+    plantCategory: [
+        {
+          imageURL: 'https://picsum.photos/700',
+          category: 'Indoor Plant'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            category: 'Outdoor Plant'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            category: 'Plant Crops'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            category: 'Pots and Planters'
+        },
+
     ]
 }

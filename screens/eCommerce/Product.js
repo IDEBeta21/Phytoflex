@@ -37,7 +37,6 @@ export default function  ProductPage ({ route, navigation }){
                     <PFText weight='semi-bold'>Stock: </PFText>
                <PFText color={Colors.primary} weight='light'>100</PFText>
                     </View>
-              
             <View style={{alignItems:'flex-start'}}>
              <PFText weight='semi-bold'>Type: </PFText>
               <PFText weight='light'>{route.params.category} </PFText>

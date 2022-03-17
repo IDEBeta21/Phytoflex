@@ -35,8 +35,8 @@ export default function ShopHomePage({navigation}) {
       <ScrollView>
         <PFText weight='semi-bold'>Manifesting... Gagana hahahaha </PFText>
       <View>
-      <PFText weight = "semi-bold" >Categories</PFText>
-        <PFFlatList
+      <PFText weight = "semi-bold" size = {18}> Categories</PFText>
+      <PFFlatList
             numColumns={4}
             noDataMessage='No Plant item to post'
             data={SampleData.plantCategory}
@@ -49,11 +49,12 @@ export default function ShopHomePage({navigation}) {
             )}
             keyExtractor={(item,index) => index}
           />
+      
         </View>
               
         <View>
               
-        <PFText weight = "semi-bold">Discover Plants</PFText>
+        <PFText weight = "semi-bold" size = {18}>Discover Plants</PFText>
         <PFFlatList
             numColumns={2}
             noDataMessage='No Plant item to post'
@@ -67,7 +68,7 @@ export default function ShopHomePage({navigation}) {
                 quantity={item.quantity}
                 sold={item.sold}
                 onPress={() => {navigation.navigate('ProductPage', {itemName: item.itemName, imageURL: item.imageURL, category: item.category, price: item.price, sold: item.sold, size: item.size})
-              
+    
               }}
               />
             )}
