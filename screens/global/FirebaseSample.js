@@ -1,5 +1,5 @@
 import { Text, StyleSheet, View, Alert } from 'react-native'
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 
 import { PFPrimaryButton, PFFlatList, PlantListItem, PFText, PFCard} from './../../components'
 import SampleData from '../../utils/SampleData'
@@ -8,6 +8,9 @@ import firebase from 'firebase'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 
 export default function FirebaseSample(){
+
+  const [refdata, setrefdata] = useState([]); // declaration
+  const [refnull, setrefnull] = useState(true);
 
   function addData(){
     firebase.firestore().collection('Comment').add({
@@ -26,25 +29,35 @@ export default function FirebaseSample(){
 
   }
 
-  function getData(){
+  const getData = async() => {
 
     // Get data inside document
-    firebase.firestore().collection('Comment').doc('6QAdsTVW1naOV7cxbjid').get()
+    firebase.firestore()
+    .collection('Comment')
+    // .doc('6QAdsTVW1naOV7cxbjid') // id pala to. di to kasama dapat kasi id sya di sya collection
+    .get()
     .then((res) => {
-      Alert.alert(res.data().Comment)
+      let comment = res.docs.map(doc => { // saka gumamit ako ng map
+        const data = doc.data();
+        const id = doc.id;
+        return {id, ...data}
+      })
+      setrefdata(comment);
+      console.log(refdata);
+      setrefnull(false);
     }).catch((err) => {
       Alert.alert(err)
     })
 
     // Get list of data inside collection
-    firebase.firestore().collection('Comment').get()
-    .then((res) => {
-      res.forEach((data) => {
-        console.log(data.data())
-      })
-    }).catch((err) => {
-      Alert.alert(err)
-    })
+    // firebase.firestore().collection('Comment').get()
+    // .then((res) => {
+    //   res.forEach((data) => {
+    //     // console.log(data.data())
+    //   })
+    // }).catch((err) => {
+    //   Alert.alert(err)
+    // })
   }
 
   return (
@@ -61,7 +74,7 @@ export default function FirebaseSample(){
 
         <View>
           
-          <PFFlatList
+          {/* <PFFlatList
             numColumns={1}
             noDataMessage='No Plant item to post'
             data={SampleData.itemList}
@@ -76,7 +89,26 @@ export default function FirebaseSample(){
               />
             )}
             keyExtractor={(item,index) => index}
+          /> */}
+
+          <PFFlatList
+            numColumns={1}
+            noDataMessage='No Plant item to post'
+            data={refdata}
+            renderItem={(item) => {
+              return(
+                <View>
+                  <PFText title={item.Comment}>{item.Comment}</PFText>
+                  <PFText>{item.Date}</PFText>
+                </View>
+              )
+            }}
+            keyExtractor={(item,index) => index}
           />
+
+          
+
+          
         </View>
       </ScrollView>
       
