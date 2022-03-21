@@ -8,6 +8,7 @@ import firebase from 'firebase'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 
 export default function FirebaseSample(){
+  
 
   const [refdata, setrefdata] = useState([]); // declaration
   const [refnull, setrefnull] = useState(true);
@@ -33,10 +34,7 @@ export default function FirebaseSample(){
 
     // Get data inside document
     firebase.firestore()
-    .collection('Comment')
-    // .doc('6QAdsTVW1naOV7cxbjid') // id pala to. di to kasama dapat kasi id sya di sya collection
-    .get()
-    .then((res) => {
+    .collection('Comment').get().then((res) => {
       let comment = res.docs.map(doc => { // saka gumamit ako ng map
         const data = doc.data();
         const id = doc.id;
