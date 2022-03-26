@@ -4,7 +4,7 @@ import { globalStyles } from '../global/globalStyles';
 
 import { DrawerContent } from '../global/Drawer';
 
-export default function DiscussionNotifBellPage({navigation}) {
+export default function SettingsScreen({navigation}) {
   
   return (
     <View style={ globalStyles.textContainer }>
@@ -12,8 +12,7 @@ export default function DiscussionNotifBellPage({navigation}) {
             Yown Gumana din hahaha      </Text>
       <Text style={ globalStyles.paragraphText }>
             Hello Hello Testing      </Text>
-
-    
     </View>
   );
 }
+SettingsScreen

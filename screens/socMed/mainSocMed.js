@@ -29,7 +29,7 @@ function funcSocMedSearch({navigation}) {
     <SocMedSearchPage navigation={navigation}/>
   );
 }
-function funcUserProfile({navigation}) {
+function FuncUserProfile({navigation}) {
   return (
     <UserProfilePage navigation={navigation}/>
   );
@@ -82,7 +82,7 @@ function App({navigation}) {
         />
         <Stack.Screen
           name="UserProfile"
-          component={funcUserProfile}
+          component={FuncUserProfile}
           options={{ 
             headerTitle: (props) => <Header title={'User Profile'} navigation={navigation} />, 
             headerStyle: {

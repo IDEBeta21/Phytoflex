@@ -31,6 +31,8 @@ import MyTabs from './screens/global/bottomNav';
 import ComponentsSample from './screens/global/ComponentsSample';
 import FirebaseSample from './screens/global/FirebaseSample';
 
+import MainDrawer from './screens/DrawerContents/MainDrawer';
+
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
 import HeaderContent from './screens/global/Header';
@@ -45,6 +47,12 @@ import { useFonts } from 'expo-font';
 // import { Text } from 'react-native';
 
 // Navigating functions
+function funcMainDrawer({ navigation }) {
+  return (
+    <MainDrawer navigation={navigation}/>
+  );
+}
+
 function funcLoginScreen({ navigation }) {
   return (
     <LoginScreen navigation={navigation}/>
@@ -92,8 +100,7 @@ function SideBar(){
           drawerActiveTintColor: 'white',
           drawerStyle: {
             backgroundColor: '#1D4123',
-            width: 280,
-            paddingEnd: 16
+            width: 300,
           },
           gestureEnabled: false
         }}
@@ -123,6 +130,7 @@ function App() {
           screenOptions={{headerShown: false}}
         >
           <AuthStack.Screen name="Login" component={funcLoginScreen}/>
+          <AuthStack.Screen name="MainDrawer" component={funcMainDrawer}/>
           <AuthStack.Screen name="SignUpScreen" component={funcSignupScreen}/>
           <AuthStack.Screen name="MyTabs" component={SideBar}/>
           <AuthStack.Screen name="ComponentsSample" component={funcComponentSample}/>

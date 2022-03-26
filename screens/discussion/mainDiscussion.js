@@ -3,26 +3,26 @@ import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import DiscussionHomePage from "./discussionMainPage";
+import DiscussionHomePage from "./DiscussionMainPage";
 //import ShopSearchPage from "./ShopSearchPage"
-import DiscussionNotifBellPage from './discussionNotifBell';
-import DiscussionSearchHeaderPage from './discussionSearchHeader';
+import DiscussionNotifBellPage from './DiscussionNotifBell';
+import DiscussionSearchHeaderPage from './DiscussionSearchHeader';
 import Header from '../global/Header';
 
 // Functions for calling the screens
-function funcDiscussionHome({navigation}) {
+function FuncDiscussionHome({navigation}) {
   return (
     <DiscussionHomePage navigation={navigation}/>
   );
 }
 
-function funcDiscussionSearchHeader({navigation}) {
+function FuncDiscussionSearchHeader({navigation}) {
   return (
     <DiscussionSearchHeaderPage navigation={navigation}/>
   );
 }
 
-function funcDiscussionNotifBell({navigation}) {
+function FuncDiscussionNotifBell({navigation}) {
   return (
     <DiscussionNotifBellPage navigation={navigation}/>
   );
@@ -36,7 +36,7 @@ function App({navigation}) {
       <Stack.Navigator>
         <Stack.Screen
           name="DiscussionHomePage"
-          component={funcDiscussionHome}
+          component={FuncDiscussionHome}
           options={{ 
             headerTitle: (props) => <Header title={'Discussion'} navigation={navigation} boolHome={true}/>, 
             headerStyle: {
@@ -48,10 +48,10 @@ function App({navigation}) {
 
         <Stack.Screen
           name="DiscussionSearchHeaderPage"
-          component={funcDiscussionSearchHeader}
+          component={FuncDiscussionSearchHeader}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'dscSearch'} navigation={navigation}/>, 
+            headerTitle: (props) => <Header screenDescription={'DscSearch'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: 'white'
             },
@@ -61,15 +61,14 @@ function App({navigation}) {
 
         <Stack.Screen
           name="DiscussionNotifBellPage"
-          component={funcDiscussionNotifBell}
+          component={FuncDiscussionNotifBell}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'Inbox'} navigation={navigation}/>, 
+            headerTitle: (props) => <Header title={'Notifications'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: '#1D4123',
             },
             headerTintColor: 'white',
-            headerShadowVisible: false
           }}
         />
       </Stack.Navigator>
@@ -78,47 +77,3 @@ function App({navigation}) {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Importing screens
-// import ShopHomePage from "./ShopMainPage";
-// import ShopSearchPage from "./ShopSearchPage"
-
-// // importing for Navigation
-// import { createStackNavigator } from "react-navigation-stack";
-// import { createAppContainer } from 'react-navigation';
-
-// // const Drawer = createDrawerNavigator();
-// const ShopScreen = {
-//   ShopHome: {
-//     screen: ShopHomePage,
-//     navigationOptions:{
-//       headerShown: false
-//     }
-//   },
-//   ShopSearch: {
-//     screen: ShopSearchPage,
-//     navigationOptions:{
-//       headerShown: false
-//     }
-//   }
-// }
-
-// const ShopStack = createStackNavigator(ShopScreen);
-
-// export default createAppContainer(ShopStack);

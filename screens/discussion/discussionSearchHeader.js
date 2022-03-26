@@ -4,7 +4,7 @@ import { globalStyles } from '../global/globalStyles';
 
 import { DrawerContent } from '../global/Drawer';
 
-export default function DiscussionNotifBellPage({navigation}) {
+export default function DiscussionSearchHeaderPage({navigation}) {
   
   return (
     <View style={ globalStyles.textContainer }>

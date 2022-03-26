@@ -4,7 +4,7 @@ import{ useState } from 'react';
 // import * as React from 'react';
 
 
-export default function Header({ title, navigation, boolHome }) {
+export default function Header({ title, navigation, boolHome, screenDescription }) {
   
   const [text, setText] = useState(""); //for resetting text field/text input
   return (
@@ -119,7 +119,7 @@ export default function Header({ title, navigation, boolHome }) {
         </View> : null
       }
 
-      {title == 'dscSearch' ? /*Discussion Search*/
+      {screenDescription == 'DscSearch' ? /*Discussion Search*/
         <View style={style.searchIconContainer}>
           <TextInput style={style.input} placeholder= "Search"/>
           {/* <Pressable onPress={() => navigation.navigate('ShopNotifBell')} > */}
@@ -239,7 +239,8 @@ const style = StyleSheet.create({
     width: '100%',
     justifyContent: 'flex-end', 
     alignItems: 'flex-end', 
-    paddingRight: 12, 
+    paddingRight: 12,
+    paddingLeft: 100, 
     flexDirection: 'row'
   },
   headerIcons:{

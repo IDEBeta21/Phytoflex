@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Pressable } from 'react-native';
 import {
   useTheme,
   Avatar,
@@ -47,38 +47,22 @@ export function DrawerContent(props) {
     <View style={{flex:1}}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
+        <Drawer.Section style={styles.drawerSection}>
           <View style={styles.userInfoSection}>
-            <View style={{flexDirection:'row',marginTop: 16}}>
+            <View style={{flexDirection:'row',marginTop: 16, paddingBottom: 10, alignSelf:'center'}}>
               <Avatar.Image 
                 source={{
-                  uri: 'https://www.directive.com/images/easyblog_shared/July_2018/7-4-18/b2ap3_large_totw_network_profile_400.jpg'
-                }}
-                size={55}
+                  uri: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/assets%2Fimg%2FsampleProfile.jpg?alt=media&token=3ed2140a-9593-49e7-80d2-9217b8580a2c'
+                }} size={90}
               />
-              <View style={{flexDirection:'column', alignSelf: "flex-start", padding: 8}}>
-                  <Title style={styles.title}>Peter Flores</Title>
-                  <Caption style={styles.caption}>@peterflores</Caption>
-              </View>
-              {/* <View style={{flex: 1, alignContent: 'flex-end', alignItems: 'flex-end', paddingRight: 16}}>
-                <Image
-                  style={{height: 30, width: 30}}
-                  source={require('../../assets/drawerIcons/menu.png')}
-                /> 
-              </View> */}
-
             </View>
-           
-            {/* <View style={styles.row}>
-              <View style={styles.section}>
-                <Paragraph style={[styles.paragraph, styles.caption]}>80</Paragraph>
-                <Caption style={styles.caption}>Following</Caption>
-              </View>
-              <View style={styles.section}>
-                <Paragraph style={[styles.paragraph, styles.caption]}>100</Paragraph>
-                <Caption style={styles.caption}>Followers</Caption>
-              </View>
-            </View> */}
+                <View style={{flexDirection:'column', alignSelf: "center", padding: 8, paddingLeft: 10}}>
+                      <Caption style={styles.caption}>Hello!</Caption>
+                      <Title style={styles.title}>Leila Jane Alejandre</Title>
+                  </View>
           </View>
+              
+          </Drawer.Section>
 
           <Drawer.Section style={styles.drawerSection}>
               {/* <TouchableRipple onPress={() => {toggleTheme()}}> */}
@@ -86,12 +70,25 @@ export function DrawerContent(props) {
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
-                      source={require('../../assets/drawerIcons/posts.png')}
+                      source={require('../../assets/drawerIcons/profile.png')}
                     /> 
                     <Text style={styles.textStyles}>My Profile</Text>
                   </View>
               </TouchableRipple>
 
+              <TouchableRipple onPress={() => props.navigation.navigate('UserProfileScreen')}>
+                  <View style={styles.drawerItems}>
+                    <Image
+                      style={styles.tinyLogo}
+                      source={require('../../assets/drawerIcons/activityLogs.png')}
+                    /> 
+                    <Text style={styles.textStyles}>Activity Logs</Text>
+                  </View>
+            </TouchableRipple>
+              
+          </Drawer.Section>
+
+          <Drawer.Section style={styles.drawerSection}>
               <TouchableRipple onPress = {() => props.navigation.navigate('SocialMediaSearch')}>
                   <View style={styles.drawerItems}>
                     <Image
@@ -106,31 +103,12 @@ export function DrawerContent(props) {
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
-                      source={require('../../assets/drawerIcons/swapHistory.png')}
-                    /> 
-                    <Text style={styles.textStyles}>Swap History</Text>
-                  </View>
-              </TouchableRipple>
-
-              <TouchableRipple onPress={() => props.navigation.navigate()}>
-                  <View style={styles.drawerItems}>
-                    <Image
-                      style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/threads.png')}
                     /> 
                     <Text style={styles.textStyles}>Threads</Text>
                   </View>
               </TouchableRipple>
               
-              <TouchableRipple onPress={() => props.navigation.navigate()}>
-                  <View style={styles.drawerItems}>
-                    <Image
-                      style={styles.tinyLogo}
-                      source={require('../../assets/drawerIcons/activityLogs.png')}
-                    /> 
-                    <Text style={styles.textStyles}>Activity Logs</Text>
-                  </View>
-            </TouchableRipple>
           </Drawer.Section>
 
           <Drawer.Section style={styles.drawerSection}>
@@ -141,16 +119,6 @@ export function DrawerContent(props) {
                       source={require('../../assets/drawerIcons/trackOrders.png')}
                     /> 
                     <Text style={styles.textStyles}>Track your orders</Text>
-                  </View>
-              </TouchableRipple>
-
-              <TouchableRipple onPress={() => props.navigation.navigate('ShopHome')}>
-                  <View style={styles.drawerItems}>
-                    <Image
-                      style={styles.tinyLogo}
-                      source={require('../../assets/drawerIcons/selling.png')}
-                    /> 
-                    <Text style={styles.textStyles}>Selling</Text>
                   </View>
               </TouchableRipple>
 
@@ -173,21 +141,24 @@ export function DrawerContent(props) {
                       style={styles.tinyLogo}
                       source={require('../../assets/drawerIcons/rate.png')}
                     /> 
-                    <Text style={styles.textStyles}>Love the app?</Text>
-                  </View>
-              </TouchableRipple>
-
-              <TouchableRipple onPress={() => props.navigation.navigate()}>
-                  <View style={styles.drawerItems}>
-                    <Image
-                      style={styles.tinyLogo}
-                      source={require('../../assets/drawerIcons/aboutUs.png')}
-                    /> 
-                    <Text style={styles.textStyles}>About</Text>
+                    <Text style={styles.textStyles}>Rate Us</Text>
                   </View>
               </TouchableRipple>
 
           </Drawer.Section>
+
+          <Drawer.Section style={styles.upgradeSection}>
+              {/* <TouchableRipple onPress={() => {toggleTheme()}}> */}
+              <Pressable onPress={() => props.navigation.navigate('UserProfileScreen')}>
+                  <View style={styles.upgradeItem}>
+                    <Image
+                      style={styles.upgrade}
+                      source={require('../../assets/drawerIcons/upgradeOption.png')}
+                    /> 
+                  </View>
+              </Pressable>
+          </Drawer.Section>
+
         </View>
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerSection}>
@@ -206,7 +177,7 @@ export function DrawerContent(props) {
           <View style={styles.drawerItems}>
             <Image
               style={styles.tinyLogo}
-              source={require('../../assets/drawerIcons/aboutUs.png')}
+              source={require('../../assets/drawerIcons/logout.png')}
             /> 
             <Text style={styles.textStyles}>Logout</Text>
           </View>
@@ -221,10 +192,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userInfoSection: {
-    paddingLeft: 20,
+    paddingLeft: 0,
   },
   title: {
-    marginTop: 3,
+    marginTop: 10,
     fontFamily: 'poppins-semiBold', 
     fontSize: 18,
     lineHeight: 20,
@@ -235,6 +206,7 @@ const styles = StyleSheet.create({
     color: 'white', 
     fontFamily: 'poppins-light', 
     fontSize: 12,
+    alignSelf: 'center'
   },
   row: {
     marginTop: 20,
@@ -244,7 +216,6 @@ const styles = StyleSheet.create({
   section: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 15,
   },
   paragraph: {
     fontWeight: 'bold',
@@ -255,7 +226,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   bottomDrawerSection: {
-      marginBottom: 16,
+      marginTop: 8,
+      marginBottom: 0,
       // borderTopColor: '#f4f4f4',
       // borderTopWidth: 1
   },
@@ -277,6 +249,26 @@ const styles = StyleSheet.create({
     color: 'white', 
     alignItems: 'center',
     fontFamily: 'poppins-regular', 
-    fontSize: 15,
-  }
+    fontSize: 14,
+  },
+    upgrade: {
+    paddingBottom: 8,
+    width: 280,
+    height: 145,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
+    upgradeSection: {
+    marginTop: 0,
+    marginBottom: 0,
+  },
+  upgradeItem: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    paddingLeft: 12,
+  },
 });
