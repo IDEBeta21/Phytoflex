@@ -16,7 +16,7 @@ export const PFCard = ({
   style, 
   cardContentStyle) => (
   <View style={{...styles.cardContainer, ...style}}>
-    <Card stye={{flex: 1}} onPress={() => onPress()}>
+    <Card style={{flex: 1}} onPress={() => onPress()}>
       
       <Card.Cover 
         source={{ uri: imageURL }} 
@@ -29,6 +29,31 @@ export const PFCard = ({
       />
       <Card.Content style={{...styles.cardContent, ...cardContentStyle}}>
         <PFText>{description}</PFText>  
+      </Card.Content>
+      
+    </Card>
+  </View>
+);
+
+export const PFPostsCard = ({
+  imageURL, 
+  description, 
+  onPress = () => {}}, 
+  style, 
+  cardContentStyle) => (
+  <View style={{...styles.cardPostContainer, ...style}}>
+    <Card style={{flex: 1}} onPress={() => onPress()}>
+      
+      <Card.Cover 
+        source={{ uri: imageURL }} 
+        style={{
+          height: 400,
+          width: (Dimensions.get('window').width) * 0.90
+        }}
+      />
+      <Card.Content style={{...styles.cardPostContent, ...cardContentStyle}}>
+        <PFText weight='semi-bold'>{description}</PFText> 
+        <PFText>Description</PFText> 
       </Card.Content>
       
     </Card>
@@ -129,6 +154,19 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10
   },
 
+  cardPostContainer: {
+    width: (Dimensions.get('window').width) * 0.90,
+    marginBottom: 15,
+    marginTop: 10
+  },
+  cardPostContent: {
+    paddingTop: 10,
+    borderWidth: 1, 
+    borderColor: Colors.primary, 
+    borderBottomLeftRadius: 10, 
+    borderBottomRightRadius: 10
+  },
+  
   cardShopContainer: {
     
     marginBottom: 5,

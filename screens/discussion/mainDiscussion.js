@@ -3,10 +3,10 @@ import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import DiscussionHomePage from "./DiscussionMainPage";
+import DiscussionHomePage from "./discussionMainPage";
 //import ShopSearchPage from "./ShopSearchPage"
-import DiscussionNotifBellPage from './DiscussionNotifBell';
-import DiscussionSearchHeaderPage from './DiscussionSearchHeader';
+import DiscussionNotifBellPage from './discussionNotifBell';
+import DiscussionSearchHeaderPage from './discussionSearchHeader';
 import Header from '../global/Header';
 
 // Functions for calling the screens

@@ -43,6 +43,49 @@ export default SampleData = {
         
     ],
 
+    cardPostData: [
+        {
+            imageURL: 'https://picsum.photos/700',
+            name: 'Deladia',
+            description: 'Ian Deladia'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            name: 'Labrento',
+            description: 'Marc Edrian Labrento'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            name: 'Vega',
+            description: 'Jocelyn Vega'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            name: 'Alejandre',
+            description: 'Leila Jane Lumawag Alejandre'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            name: 'Talosig',
+            description: 'Lorgie Ann Talosig'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            name: 'Tupas',
+            description: 'Pam Tupas'
+        }, {
+            imageURL: 'https://picsum.photos/700',
+            name: 'Dela Cruz',
+            description: 'Ro-ann Dela Cruz'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            name: 'Marzan',
+            description: 'Jasmin Marzan'
+        }
+        
+    ],
+
 
     itemList: [
         {

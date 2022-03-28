@@ -12,7 +12,7 @@ import {
   PFPrimaryButton, PFSecondaryButton,
   PFFlatList, 
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
-  PFCard, 
+  PFCard,PFPostsCard, 
   PFSwitch
 } from '../../components';
 
@@ -29,9 +29,9 @@ export default function AllScreenPage({navigation}) {
       <PFFlatList
           numColumns={1}
           noDataMessage='No Followers'
-          data={SampleData.cardData}
+          data={SampleData.cardPostData}
           renderItem={(item) => (
-            <PFCard 
+            <PFPostsCard 
               imageURL={item.imageURL}
               description={item.description}
               onPress={() => Alert.alert(item.name)}/>
