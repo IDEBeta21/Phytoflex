@@ -31,7 +31,10 @@ import MyTabs from './screens/global/bottomNav';
 import ComponentsSample from './screens/global/ComponentsSample';
 import FirebaseSample from './screens/global/FirebaseSample';
 
-import MainDrawer from './screens/DrawerContents/MainDrawer';
+// Imports for Drawer navigation
+import ActivityLogScreen from './screens/DrawerContents/ActivityLogs';
+
+import DrawerHeader from './screens/DrawerContents/DrawerHeader';
 
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
@@ -46,38 +49,42 @@ import { useFonts } from 'expo-font';
 // import { View } from 'react-native-web';
 // import { Text } from 'react-native';
 
-// Navigating functions
-function funcMainDrawer({ navigation }) {
-  return (
-    <MainDrawer navigation={navigation}/>
-  );
+// Drawer Navigation functions
+function FuncActivityLog({navigation}){
+  return(
+    <ActivityLogScreen navigation={navigation}/>
+  )
 }
 
-function funcLoginScreen({ navigation }) {
+
+
+
+
+function FuncLoginScreen({ navigation }) {
   return (
     <LoginScreen navigation={navigation}/>
   );
 }
 
-function funcSignupScreen({ navigation }) {
+function FuncSignupScreen({ navigation }) {
   return (
     <SignUpScreen navigation={navigation}/>
   );
 }
 
-function funcBottomNav({navigation}) {
+function FuncBottomNav({navigation}) {
   return(
     <MyTabs navigation={navigation}/>
   );
 }
 
-function funcComponentSample({navigation}){
+function FuncComponentSample({navigation}){
   return(
     <ComponentsSample navigation={navigation}/>
   )
 }
 
-function funcFirebaseSample({navigation}){
+function FuncFirebaseSample({navigation}){
   return(
     <FirebaseSample navigation={navigation}/>
   )
@@ -90,12 +97,12 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContent } from './screens/global/Drawer';
 const Drawer = createDrawerNavigator();
 
-function SideBar(){
+function SideBar({navigation}){
   return(
       // <NavigationContainer independent={true}>
       <Drawer.Navigator
         screenOptions={{
-          headerShown: false,
+          // headerShown: false,
           // headerTransparent:true,
           drawerActiveTintColor: 'white',
           drawerStyle: {
@@ -106,8 +113,22 @@ function SideBar(){
         }}
         drawerContent={props => <DrawerContent {...props}/>}
       >
-        <Drawer.Screen name="Post" component={funcBottomNav}/>
-        <Drawer.Screen name="Login" component={funcLoginScreen} />
+        <Drawer.Screen name="Post" options={{headerShown: false}} component={FuncBottomNav}/>
+        {/* <Drawer.Screen name="UserProfile" component={FuncMainDrawer}/> */}
+        {/* <Drawer.Screen name="ActivityLogs" component={FuncActivityLog} /> */}
+        <Drawer.Screen name="Login" option={{headerShown: false}} component={FuncLoginScreen} />
+
+        {/* For Drawer Navigation */}
+        <Drawer.Screen 
+          name="ActivityLogs"
+          component={FuncActivityLog}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
       </Drawer.Navigator>
     // </NavigationContainer>s
   );
@@ -129,12 +150,11 @@ function App() {
           initialRouteName={firebase.auth().onAuthStateChanged((user) => {return user}) ? "Login" : "SignUpScreen"}  
           screenOptions={{headerShown: false}}
         >
-          <AuthStack.Screen name="Login" component={funcLoginScreen}/>
-          <AuthStack.Screen name="MainDrawer" component={funcMainDrawer}/>
-          <AuthStack.Screen name="SignUpScreen" component={funcSignupScreen}/>
+         <AuthStack.Screen name="Login" component={FuncLoginScreen}/>
+          <AuthStack.Screen name="SignUpScreen" component={FuncSignupScreen}/>
           <AuthStack.Screen name="MyTabs" component={SideBar}/>
-          <AuthStack.Screen name="ComponentsSample" component={funcComponentSample}/>
-          <AuthStack.Screen name="FirebaseSample" component={funcFirebaseSample}/>
+          <AuthStack.Screen name="ComponentsSample" component={FuncComponentSample}/>
+          <AuthStack.Screen name="FirebaseSample" component={FuncFirebaseSample}/>
           {/* <AuthStack.Screen name="MyTabs" component={funcBottomNav} /> */}
         </AuthStack.Navigator>
       </NavigationContainer>
