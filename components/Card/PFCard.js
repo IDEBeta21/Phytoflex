@@ -1,7 +1,7 @@
 import React, {Component, useState, useEffect} from 'react';
 import { Dimensions } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { PFText } from '../PFText';
 import Colors from '../../utils/globalColors';
 
@@ -60,7 +60,8 @@ export const PFPostsCard = ({
   </View>
 );
 
-export const PFCardShop = ({imageURL, category, itemName, price, quantity, sold, onPress = () => {}}, style, cardContentStyle) => {
+export const PFCardShop = ({imageURL, category, itemName, price, quantity, sold, onPress = () => {}}, 
+style, cardContentStyle) => {
 
   const [image, setimage] = useState(null)
 
@@ -141,6 +142,70 @@ export const PFCardShopCategory = ({imageURL, category, onPress = () => {}}, sty
   </View>
 );
 
+export const PFCardShopReviews = ({imageURL, review, date, customerName, onPress = () => {}}, style, 
+cardContentStyle) => {
+
+  const [image, setimage] = useState(null)
+
+  firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+    setimage(url);
+  })
+
+  return(
+
+    <View style={{...styles.cardShopReview, ...style}}>
+    <Card style={{flex: 1}} onPress={() => onPress()}>
+      <View style= {{flexDirection:'row'}}>
+      <Image 
+        source={{ uri: image}}
+        style={{
+          height: 70,
+          width: (Dimensions.get('window').width/1) * 0.20,
+          borderRadius: 100
+        }}
+      />
+       <View style={{flexDirection:'column'}}>
+        
+            <PFText weight='semi-bold' size = {18}>{customerName}</PFText>
+             <PFText weight='light'>{date}</PFText>
+            <PFText weight='light'>{review}</PFText>
+       </View>
+             
+            
+
+      </View>
+      
+      
+    </Card>
+  </View>
+
+  )
+}
+
+export const PFCardProduct = ({imageURL, onPress = () =>{}}, style) => {
+  const [image, setimage] = useState(null)
+
+  firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+    setimage(url);
+  })
+
+  return(
+      <Image 
+        source={{ uri: image}}
+        style={{
+          height: 300,
+          width: (Dimensions.get('window').width/1) * 1,
+          
+        }}
+      />
+
+  )
+}
+  
+ 
+ 
+
+
 const styles = StyleSheet.create({
   cardContainer: {
     marginLeft: 8, 
@@ -195,5 +260,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 0,
   },
+  cardShopReview:{
+    width: 600,
+    backgroundColor: '#F5F7FA',
+  }
  
 })

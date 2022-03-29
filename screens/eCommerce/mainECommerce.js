@@ -12,24 +12,24 @@ import ProductPage from "./Product";
 
 // Functions for calling the screens
 
-function funcProductPage({route, navigation}) {
+function FuncProductPage({route, navigation}) {
   return (
     <ProductPage navigation={navigation} route = {route}/>
   );
 }
-function funcShopHome({navigation}) {
+function FuncShopHome({navigation}) {
   return (
     <ShopHomePage navigation={navigation}/>
   );
 }
 
-function funcShopSearchHeader({navigation}) {
+function FuncShopSearchHeader({navigation}) {
   return (
     <ShopSearchHeaderPage navigation={navigation}/>
   );
 }
 
-function funcShopNotifBell({navigation}) {
+function FuncShopNotifBell({navigation}) {
   return (
     <ShopNotifBellPage navigation={navigation}/>
   );
@@ -43,7 +43,7 @@ function App({navigation}) {
       <Stack.Navigator>
         <Stack.Screen
           name="ShopHome"
-          component={funcShopHome}
+          component={FuncShopHome}
           options={{ 
             headerTitle: (props) => <Header title={'Shop'} navigation={navigation} boolHome={true}/>, 
             headerStyle: {
@@ -55,7 +55,7 @@ function App({navigation}) {
 
         <Stack.Screen
           name="ShopSearchHeader"
-          component={funcShopSearchHeader}
+          component={FuncShopSearchHeader}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Search'} navigation={navigation}/>, 
@@ -68,7 +68,7 @@ function App({navigation}) {
 
         <Stack.Screen
           name="ShopNotifBell"
-          component={funcShopNotifBell}
+          component={FuncShopNotifBell}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Notification'} navigation={navigation}/>, 
@@ -80,7 +80,7 @@ function App({navigation}) {
         />
            <Stack.Screen
           name="ProductPage"
-          component={funcProductPage}
+          component={FuncProductPage}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Product'} navigation={navigation}/>, 
