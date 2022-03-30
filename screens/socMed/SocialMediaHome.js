@@ -9,7 +9,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 //importing TopTabNav
 import AllScrn from '../socMed/Home1-AllScreen'
 import FollowingScrn from '../socMed/Home2-FollowingScreen'
-import SwapScrn from '../socMed/SwapScreen'
 //import SocMedSwapReqScrn from '../socMed/SocMedSwapReq'
 
 //the TopTabNavigator
@@ -21,11 +20,6 @@ function funcAllScrn({navigation}) {
 function funcFollowingScrn({navigation}) {
   return (
     <FollowingScrn navigation={navigation}/>
-  );
-}
-function funcSwapScrn({navigation}) {
-  return (
-    <SwapScrn navigation={navigation}/>
   );
 }
 const Tab = createMaterialTopTabNavigator();
@@ -51,11 +45,6 @@ return (
       name="SocMedChatRoomScrn"
       component={funcFollowingScrn}
       options={{ tabBarLabel: 'Following' }}
-    />
-    <Tab.Screen
-      name="SocMedSwapReqScrn"
-      component={funcSwapScrn}
-      options={{ tabBarLabel: 'Swap' }}
     />
   </Tab.Navigator>
 );

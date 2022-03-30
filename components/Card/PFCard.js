@@ -6,6 +6,8 @@ import { PFText } from '../PFText';
 import Colors from '../../utils/globalColors';
 
 import firebase from 'firebase';
+import { PFSecondaryButton } from '../Button/PFSecondaryButton';
+import { PFPrimaryButton } from '../Button/PFPrimaryButton';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
@@ -47,13 +49,32 @@ export const PFPostsCard = ({
       <Card.Cover 
         source={{ uri: imageURL }} 
         style={{
-          height: 400,
+          height: 300,
           width: (Dimensions.get('window').width) * 0.90
         }}
       />
       <Card.Content style={{...styles.cardPostContent, ...cardContentStyle}}>
-        <PFText weight='semi-bold'>{description}</PFText> 
-        <PFText>Description</PFText> 
+      <View style= {{flexDirection:'row'}}>
+      <Image 
+        source={{ uri: imageURL}}
+        style={{
+          height: 50,
+          width: (Dimensions.get('window').width/1) * 0.14,
+          borderRadius: 100,
+          marginRight: 10
+        }}
+      />
+       <View style={{flexDirection:'column', flexShrink:1}}>
+         
+            <PFText weight='semi-bold' size = {15}>{description}</PFText>
+            <PFText weight='light'size = {12}>03/30/22 12:00 PM</PFText>
+       </View>
+       <View style={styles.followBtnContainer}>
+            <PFPrimaryButton title={'Follow'}></PFPrimaryButton>
+       </View>
+       
+      </View>
+        <PFText style ={{padding:10}}>Description</PFText> 
       </Card.Content>
       
     </Card>
@@ -207,6 +228,10 @@ export const PFCardProduct = ({imageURL, onPress = () =>{}}, style) => {
 
 
 const styles = StyleSheet.create({
+  followBtnContainer:{
+    alignItems: 'flex-end',
+    flexGrow:1
+  },
   cardContainer: {
     marginLeft: 8, 
     width: (Dimensions.get('window').width/2) * 0.93
