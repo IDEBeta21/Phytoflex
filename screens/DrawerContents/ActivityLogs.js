@@ -9,6 +9,8 @@ export default function ActivityLogsScreen({navigation}) {
   return (
     <View style={ globalStyles.textContainer }>
       <Text style={ globalStyles.titleText }>
+            ActivityLogs </Text>
+      <Text style={ globalStyles.titleText }>
             Yown Gumana din hahaha      </Text>
       <Text style={ globalStyles.paragraphText }>
             Hello Hello Testing      </Text>

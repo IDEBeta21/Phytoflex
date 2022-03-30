@@ -34,6 +34,13 @@ import OnboardingScreen from './screens/landing/OnboardingScreen';
 
 // Imports for Drawer navigation
 import ActivityLogScreen from './screens/DrawerContents/ActivityLogs';
+import UserProfileScreen from './screens/DrawerContents/UserProfileScreen';
+import PostsScreen from './screens/DrawerContents/Posts';
+import ThreadsScreen from './screens/DrawerContents/Threads';
+import TrackHistoryScreen from './screens/DrawerContents/TrackHistory';
+import SettingsScreen from './screens/DrawerContents/Settings';
+import RateUsScreen from './screens/DrawerContents/RateUs';
+import UpgradeScreen from './screens/DrawerContents/PremiumOption'
 
 import DrawerHeader from './screens/DrawerContents/DrawerHeader';
 
@@ -54,6 +61,41 @@ import { useFonts } from 'expo-font';
 function FuncActivityLog({navigation}){
   return(
     <ActivityLogScreen navigation={navigation}/>
+  )
+}
+function FuncUserProfile({navigation}){
+  return(
+    <UserProfileScreen navigation={navigation}/>
+  )
+}
+function FuncPost({navigation}){
+  return(
+    <PostsScreen navigation={navigation}/>
+  )
+}
+function FunctionThread({navigation}){
+  return(
+    <ThreadsScreen navigation={navigation}/>
+  )
+}
+function FuncTrackHistory({navigation}){
+  return(
+    <TrackHistoryScreen navigation={navigation}/>
+  )
+}
+function FuncSettings({navigation}){
+  return(
+    <SettingsScreen navigation={navigation}/>
+  )
+}
+function FuncRateUs({navigation}){
+  return(
+    <RateUsScreen navigation={navigation}/>
+  )
+}
+function FuncUpgrade({navigation}){
+  return(
+    <UpgradeScreen navigation={navigation}/>
   )
 }
 
@@ -124,8 +166,20 @@ function SideBar({navigation}){
         <Drawer.Screen name="Login" option={{headerShown: false}} component={FuncLoginScreen} />
 
         {/* For Drawer Navigation */}
+        
         <Drawer.Screen 
-          name="ActivityLogs"
+          name="DrawerUserProfile"
+          component={FuncUserProfile}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerActivityLogs"
           component={FuncActivityLog}
           options={{ 
             headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
@@ -134,6 +188,73 @@ function SideBar({navigation}){
             },
             headerTintColor: 'white'
           }} />
+          
+        <Drawer.Screen 
+          name="DrawerPostScreen"
+          component={FuncPost}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+          
+        <Drawer.Screen 
+          name="DrawerThread"
+          component={FunctionThread}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+          
+        <Drawer.Screen 
+          name="DrawerTrackHistory"
+          component={FuncTrackHistory}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+          <Drawer.Screen 
+          name="DrawerSettings"
+          component={FuncSettings}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerRateUs"
+          component={FuncRateUs}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+        
+        <Drawer.Screen 
+          name="DrawerUpgradeScreen"
+          component={FuncUpgrade}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+        
       </Drawer.Navigator>
     // </NavigationContainer>s
   );

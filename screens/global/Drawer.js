@@ -66,7 +66,7 @@ export function DrawerContent(props) {
 
           <Drawer.Section style={styles.drawerSection}>
               {/* <TouchableRipple onPress={() => {toggleTheme()}}> */}
-              <TouchableRipple onPress={() => props.navigation.navigate('UserProfile')}>
+              <TouchableRipple onPress={() => props.navigation.navigate('DrawerUserProfile')}>
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
@@ -76,7 +76,7 @@ export function DrawerContent(props) {
                   </View>
               </TouchableRipple>
 
-              <TouchableRipple onPress={() => props.navigation.navigate('UserProfileScreen')}>
+              <TouchableRipple onPress={() => props.navigation.navigate('DrawerActivityLogs')}>
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
@@ -89,7 +89,7 @@ export function DrawerContent(props) {
           </Drawer.Section>
 
           <Drawer.Section style={styles.drawerSection}>
-              <TouchableRipple onPress = {() => props.navigation.navigate('SocialMediaSearch')}>
+              <TouchableRipple onPress = {() => props.navigation.navigate('DrawerPostScreen')}>
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
@@ -99,7 +99,7 @@ export function DrawerContent(props) {
                   </View>
               </TouchableRipple>
 
-              <TouchableRipple onPress={() => props.navigation.navigate()}>
+              <TouchableRipple onPress={() => props.navigation.navigate('DrawerThread')}>
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
@@ -112,7 +112,7 @@ export function DrawerContent(props) {
           </Drawer.Section>
 
           <Drawer.Section style={styles.drawerSection}>
-              <TouchableRipple onPress={() => props.navigation.navigate('ShopHome')}>
+              <TouchableRipple onPress={() => props.navigation.navigate('DrawerTrackHistory')}>
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
@@ -125,7 +125,7 @@ export function DrawerContent(props) {
           </Drawer.Section>
 
           <Drawer.Section style={styles.drawerSection}>
-              <TouchableRipple onPress={() => props.navigation.navigate('ShopHome')} >
+              <TouchableRipple onPress={() => props.navigation.navigate('DrawerSettings')} >
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
@@ -135,7 +135,7 @@ export function DrawerContent(props) {
                   </View>
               </TouchableRipple>
 
-              <TouchableRipple onPress={() => props.navigation.navigate()}>
+              <TouchableRipple onPress={() => props.navigation.navigate('DrawerRateUs')}>
                   <View style={styles.drawerItems}>
                     <Image
                       style={styles.tinyLogo}
@@ -149,7 +149,7 @@ export function DrawerContent(props) {
 
           <Drawer.Section style={styles.upgradeSection}>
               {/* <TouchableRipple onPress={() => {toggleTheme()}}> */}
-              <Pressable onPress={() => props.navigation.navigate('UserProfileScreen')}>
+              <Pressable onPress={() => props.navigation.navigate('DrawerUpgradeScreen')}>
                   <View style={styles.upgradeItem}>
                     <Image
                       style={styles.upgrade}
