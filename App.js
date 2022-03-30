@@ -30,6 +30,7 @@ import SignUpScreen from './screens/landing/signup';
 import MyTabs from './screens/global/bottomNav';
 import ComponentsSample from './screens/global/ComponentsSample';
 import FirebaseSample from './screens/global/FirebaseSample';
+import OnboardingScreen from './screens/landing/OnboardingScreen';
 
 // Imports for Drawer navigation
 import ActivityLogScreen from './screens/DrawerContents/ActivityLogs';
@@ -56,10 +57,6 @@ function FuncActivityLog({navigation}){
   )
 }
 
-
-
-
-
 function FuncLoginScreen({ navigation }) {
   return (
     <LoginScreen navigation={navigation}/>
@@ -75,6 +72,12 @@ function FuncSignupScreen({ navigation }) {
 function FuncBottomNav({navigation}) {
   return(
     <MyTabs navigation={navigation}/>
+  );
+}
+
+function FuncOnboardingScreen({navigation}) {
+  return(
+    <OnboardingScreen navigation={navigation}/>
   );
 }
 
@@ -95,6 +98,8 @@ const AuthStack = createNativeStackNavigator();
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContent } from './screens/global/Drawer';
+import { AsyncStorage } from 'react-native';
+
 const Drawer = createDrawerNavigator();
 
 function SideBar({navigation}){

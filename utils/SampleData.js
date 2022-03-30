@@ -62,7 +62,7 @@ export default SampleData = {
         {
             imageURL: 'https://picsum.photos/700',
             name: 'Alejandre',
-            description: 'Leila Jane Lumawag Alejandre'
+            description: 'Leila Jane Alejandre'
         },
         {
             imageURL: 'https://picsum.photos/700',
