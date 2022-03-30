@@ -30,6 +30,7 @@ import SignUpScreen from './screens/landing/signup';
 import MyTabs from './screens/global/bottomNav';
 import ComponentsSample from './screens/global/ComponentsSample';
 import FirebaseSample from './screens/global/FirebaseSample';
+import OnboardingScreen from './screens/landing/OnboardingScreen';
 
 // Imports for Drawer navigation
 import ActivityLogScreen from './screens/DrawerContents/ActivityLogs';
@@ -56,10 +57,6 @@ function FuncActivityLog({navigation}){
   )
 }
 
-
-
-
-
 function FuncLoginScreen({ navigation }) {
   return (
     <LoginScreen navigation={navigation}/>
@@ -75,6 +72,12 @@ function FuncSignupScreen({ navigation }) {
 function FuncBottomNav({navigation}) {
   return(
     <MyTabs navigation={navigation}/>
+  );
+}
+
+function FuncOnboardingScreen({navigation}) {
+  return(
+    <OnboardingScreen navigation={navigation}/>
   );
 }
 
@@ -95,6 +98,8 @@ const AuthStack = createNativeStackNavigator();
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContent } from './screens/global/Drawer';
+import { AsyncStorage } from 'react-native';
+
 const Drawer = createDrawerNavigator();
 
 function SideBar({navigation}){
@@ -136,6 +141,18 @@ function SideBar({navigation}){
 
 function App() {
 
+  const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
+  
+  useEffect(async () => {
+    const appData = await AsyncStorage.getItem("isAppFirstLaunched");
+    if (appData == null) {
+      setIsAppFirstLaunched(true);
+      //AsyncStorage.setItem('isAppFirstLaunched', 'false');
+    } else {
+      setIsAppFirstLaunched(false);
+    }
+  }, []);
+
   let [ fontsLoaded ] = useFonts({
     'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
     'poppins-semiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
@@ -145,19 +162,26 @@ function App() {
 
   if (fontsLoaded) {
     return (
-      <NavigationContainer independent={true}>
-        <AuthStack.Navigator 
-          initialRouteName={firebase.auth().onAuthStateChanged((user) => {return user}) ? "Login" : "SignUpScreen"}  
-          screenOptions={{headerShown: false}}
-        >
-         <AuthStack.Screen name="Login" component={FuncLoginScreen}/>
-          <AuthStack.Screen name="SignUpScreen" component={FuncSignupScreen}/>
-          <AuthStack.Screen name="MyTabs" component={SideBar}/>
-          <AuthStack.Screen name="ComponentsSample" component={FuncComponentSample}/>
-          <AuthStack.Screen name="FirebaseSample" component={FuncFirebaseSample}/>
-          {/* <AuthStack.Screen name="MyTabs" component={funcBottomNav} /> */}
-        </AuthStack.Navigator>
-      </NavigationContainer>
+      isAppFirstLaunched != null && (
+          <NavigationContainer independent={true}>
+            <AuthStack.Navigator 
+              initialRouteName={firebase.auth().onAuthStateChanged((user) => {return user}) ? "Login" : "SignUpScreen"}  
+              screenOptions={{headerShown: false}}
+            >
+              {isAppFirstLaunched && ( 
+                <AuthStack.Screen 
+                  name="OnboardingScreen" 
+                  component={FuncOnboardingScreen}/>
+              )}
+              <AuthStack.Screen name="Login" component={FuncLoginScreen}/>
+              <AuthStack.Screen name="SignUpScreen" component={FuncSignupScreen}/>
+              <AuthStack.Screen name="MyTabs" component={SideBar}/>
+              <AuthStack.Screen name="ComponentsSample" component={FuncComponentSample}/>
+              <AuthStack.Screen name="FirebaseSample" component={FuncFirebaseSample}/>
+              {/* <AuthStack.Screen name="MyTabs" component={funcBottomNav} /> */}
+            </AuthStack.Navigator>
+          </NavigationContainer>
+      )
     );
   } else {
     // getFonts();

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import firebase from 'firebase';
+import OnboardingScreen from './OnboardingScreen';
 import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
 
 export default function SignUpScreen({navigation}){
@@ -43,6 +44,14 @@ export default function SignUpScreen({navigation}){
       console.log(error);
     });
   }
+
+    function gotoOnboarding() {
+        toOnboarding();
+    }
+      
+    const toOnboarding = () => {
+        navigation.push('OnboardingScreen');
+    }
   
   return (
     <ImageBackground source={require('../../assets/drawerIcons/register.png')} resizeMode= "cover" style={styles.loginContainer}>
@@ -66,7 +75,7 @@ export default function SignUpScreen({navigation}){
         <Text style={styles.headerText}>For Plantitos </Text>
         <Text style={styles.headerText}> and Plantitas</Text>
       </View> */}
-        <TouchableOpacity >
+        <TouchableOpacity onPress={() => gotoOnboarding()}>
             <View style={{color: 'white', alignItems: 'flex-end', flex: 1, marginEnd: 8, paddingTop: 48}}>
                 <Text style={{color: 'white', fontFamily: 'poppins-regular', paddingHorizontal: 14, fontSize: 14}}>Cancel</Text>
             </View>
