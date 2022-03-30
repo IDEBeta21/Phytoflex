@@ -72,6 +72,7 @@ useEffect(() => {
       <TextInput
             style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1}}
             placeholder='Search for Plants'
+            
           />
       <View style={{flex: 1, alignItems: 'flex-end'}}>
       <Image
@@ -87,7 +88,7 @@ useEffect(() => {
 
       <ImageSlider
           loop
-          autoPlayWithInterval={5000}
+          autoPlayWithInterval={2000}
           images={images}
           onPress={({ index }) => alert(index)}
           customSlide={({ index, item, style, width }) => (
@@ -148,7 +149,7 @@ useEffect(() => {
         <PFText weight = "semi-bold" size = {18}>Discover Plants</PFText>
         <PFFlatList
             numColumns={2}
-            noDataMessage='No Plant item to post'
+            noDataMessage='Loading...'
             data={refdata}
             renderItem={(item) => (
               <PFCardShop
@@ -186,7 +187,7 @@ useEffect(() => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    paddingHorizontal: 7,
+    paddingHorizontal: 5,
     alignItems: 'center'
   },
   textContaine:{

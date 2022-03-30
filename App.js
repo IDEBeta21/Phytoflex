@@ -136,6 +136,9 @@ function SideBar({navigation}){
 
 function App() {
 
+ 
+    
+
   let [ fontsLoaded ] = useFonts({
     'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),
     'poppins-semiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
@@ -145,6 +148,7 @@ function App() {
 
   if (fontsLoaded) {
     return (
+      
       <NavigationContainer independent={true}>
         <AuthStack.Navigator 
           initialRouteName={firebase.auth().onAuthStateChanged((user) => {return user}) ? "Login" : "SignUpScreen"}  

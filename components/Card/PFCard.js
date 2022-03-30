@@ -1,9 +1,12 @@
 import React, {Component, useState, useEffect} from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, Pressable } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { View, StyleSheet, Image } from 'react-native';
 import { PFText } from '../PFText';
 import Colors from '../../utils/globalColors';
+import StarRating from 'react-native-star-rating-widget';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 
 import firebase from 'firebase';
 
@@ -64,6 +67,9 @@ export const PFCardShop = ({imageURL, category, itemName, price, quantity, sold,
 style, cardContentStyle) => {
 
   const [image, setimage] = useState(null)
+  //heart react 
+  const [liked, setLiked] = useState(false);
+  
 
     firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
       setimage(url);
@@ -86,9 +92,21 @@ style, cardContentStyle) => {
       />
 
       <Card.Content style={{...styles.cardShopContent, ...cardContentStyle}}>
-        
+        <View style={{flexDirection:'row'}}>
+        <PFText weight='semi-bold'>{itemName}</PFText>
+        <View style={{...styles.heartReact, alignItems:'center'}}>
+        <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+       <MaterialCommunityIcons
+        name={liked ? "heart" : "heart-outline"}
+        size={17}
+        color={liked ? "#1D4123" : "#1D4123"}
+      />
+    </Pressable>
+        </View>
+       
+        </View>
         <View style={{...styles.textShopContainer}}>
-            <PFText weight='semi-bold'>{itemName}</PFText>
+           
             <PFText weight='semi-bold'>{category}</PFText>
             <View style={{flex:1, flexDirection: 'row'}}>
               <View style={{flex: 1}}>
@@ -142,10 +160,12 @@ export const PFCardShopCategory = ({imageURL, category, onPress = () => {}}, sty
   </View>
 );
 
-export const PFCardShopReviews = ({imageURL, review, date, customerName, onPress = () => {}}, style, 
+export const PFCardShopReviews = ({imageURL, review, date, customerName, rate, onPress = () => {}}, style, 
 cardContentStyle) => {
 
   const [image, setimage] = useState(null)
+
+  const [rating, setRating] = useState(0);
 
   firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
     setimage(url);
@@ -159,23 +179,31 @@ cardContentStyle) => {
       <Image 
         source={{ uri: image}}
         style={{
-          height: 70,
-          width: (Dimensions.get('window').width/1) * 0.20,
+          marginTop: 8,
+          height: 50,
+          width: (Dimensions.get('window').width/1) * 0.15,
           borderRadius: 100
         }}
       />
-       <View style={{flexDirection:'column'}}>
-        
-            <PFText weight='semi-bold' size = {18}>{customerName}</PFText>
-             <PFText weight='light'>{date}</PFText>
-            <PFText weight='light'>{review}</PFText>
-       </View>
-             
-            
 
-      </View>
+      <Card.Content style={{...styles.cardShopReviewContent}}>
+              <View style={{flexDirection:'column'}}>
+              <PFText weight='semi-bold' size = {18}>{customerName}</PFText>
+              <PFText weight='light'>{date}</PFText>
+              <StarRating
+              rating={rate}
+              onChange={setRating}
+              starSize={20}
+               />
+               </View>
+      </Card.Content>
+       
+
+            </View>
       
-      
+               <View style={{alignItems:'flex-start'}}>
+               <PFText weight='light'>{review}</PFText>
+               </View>
     </Card>
   </View>
 
@@ -247,14 +275,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 0,
     paddingTop: 0,
-    paddingBottom: 8,
-    paddingLeft: 8,
+    paddingBottom: 6,
+    paddingLeft: 7,
     margin: 0
-    
   },
-
   textShopContainer: {
-   
     // paddingVertical: 2,
     // flexDirection: 'row',
     flex: 1,
@@ -262,7 +287,17 @@ const styles = StyleSheet.create({
   },
   cardShopReview:{
     width: 600,
-    backgroundColor: '#F5F7FA',
+    backgroundColor:'#639D04'
+  },
+  cardShopReviewContent:{
+    marginLeft: 10,
+    paddingHorizontal: 15,
+    paddingLeft: 2
+  },
+  heartReact: {
+    paddingLeft: 0,
+    marginLeft: 1,
+    
   }
  
 })
