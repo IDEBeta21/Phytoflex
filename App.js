@@ -35,6 +35,7 @@ import OnboardingScreen from './screens/landing/OnboardingScreen';
 // Imports for Drawer navigation
 import ActivityLogScreen from './screens/DrawerContents/ActivityLogs';
 import UserProfileScreen from './screens/DrawerContents/UserProfileScreen';
+import EditProfileScreen from './screens/DrawerContents/EditProfile';
 import PostsScreen from './screens/DrawerContents/Posts';
 import ThreadsScreen from './screens/DrawerContents/Threads';
 import TrackHistoryScreen from './screens/DrawerContents/TrackHistory';
@@ -68,6 +69,13 @@ function FuncUserProfile({navigation}){
     <UserProfileScreen navigation={navigation}/>
   )
 }
+
+function FuncEditProfile({navigation}){
+  return(
+    <EditProfileScreen navigation={navigation}/>
+  )
+}
+
 function FuncPost({navigation}){
   return(
     <PostsScreen navigation={navigation}/>
@@ -171,7 +179,8 @@ function SideBar({navigation}){
           name="DrawerUserProfile"
           component={FuncUserProfile}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileSc'} title={'My Profile'} navigation={navigation} />, 
+            headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -179,10 +188,23 @@ function SideBar({navigation}){
           }} />
 
         <Drawer.Screen 
+          name="EditProfileScreen" 
+          component={FuncEditProfile}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader screenDescription={'EditProfileScreen'} title={'Edit Profile'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+          
+        <Drawer.Screen 
           name="DrawerActivityLogs"
           component={FuncActivityLog}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
+            headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -193,7 +215,8 @@ function SideBar({navigation}){
           name="DrawerPostScreen"
           component={FuncPost}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
+            headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -204,7 +227,8 @@ function SideBar({navigation}){
           name="DrawerThread"
           component={FunctionThread}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
+            headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -215,7 +239,8 @@ function SideBar({navigation}){
           name="DrawerTrackHistory"
           component={FuncTrackHistory}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'TrackHistoryScreen'} title={'Track History'} navigation={navigation} />, 
+            headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -226,7 +251,8 @@ function SideBar({navigation}){
           name="DrawerSettings"
           component={FuncSettings}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'SettingsScreen'} title={'Settings'} navigation={navigation} />, 
+            headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -237,7 +263,8 @@ function SideBar({navigation}){
           name="DrawerRateUs"
           component={FuncRateUs}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'RateUsScreen'} title={'Rate Us'} navigation={navigation} />, 
+            headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -248,7 +275,8 @@ function SideBar({navigation}){
           name="DrawerUpgradeScreen"
           component={FuncUpgrade}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileScreen'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'UpgradeScreen'} title={'Upgrade'} navigation={navigation} />, 
+            headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -259,11 +287,7 @@ function SideBar({navigation}){
     // </NavigationContainer>s
   );
 }
-
 function App() {
-
- 
-    
 
   let [ fontsLoaded ] = useFonts({
     'poppins-regular': require('./assets/fonts/Poppins-Regular.ttf'),

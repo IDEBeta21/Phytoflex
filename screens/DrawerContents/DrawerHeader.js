@@ -8,26 +8,58 @@ export default function Header({ title, navigation, screenDescription }) {
   
   const [text, setText] = useState(""); //for resetting text field/text input
   return (
-    <View style={style.header}>
-        
+    
+      <View style={style.header}>
+        <Pressable onPress={() => navigation.navigate('SocialMediaHome')}>
+        <Image
+        style={{height: 25, width: 25, marginEnd: 32, marginStart: 4 }}
+        source={require('../../assets/drawerIcons/arrow-left.png')}
+        />
+        </Pressable>
       <Text style={style.headerTitle}>{title}</Text>
 
-      {screenDescription == 'UserProfileScreen' ?
+    {screenDescription == 'UserProfileSc' ? /*Drawer*/
+       <View style={style.headerIconContainer}>
+       </View> : null
+    }
+
+    {screenDescription == 'EditProfileScreen' ? /*Drawer*/ 
         <View style={style.headerIconContainer}>
-          <Pressable onPress={() => navigation.navigate('DiscussionSearchHeaderPage')} >
-            <Image
-              style={style.headerIcons}
-              source={require('../../assets/drawerIcons/discussionIcons/search.png')}
-              resizeMode='contain'
-            />
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate('DiscussionNotifBellPage')} >
-            <Image
-              style={style.headerIcons}
-              source={require('../../assets/drawerIcons/discussionIcons/notifbell.png')}
-              resizeMode='contain'
-            />
-          </Pressable>
+        </View> : null
+      }
+
+    {screenDescription == 'ActivityLogScreen' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'PostsScreen' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'ThreadsScreen' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'TrackHistoryScreen' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'SettingsScreen' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'RateUsScreen' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'UpgradeScreen' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
         </View> : null
       }
 

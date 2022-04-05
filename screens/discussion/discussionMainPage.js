@@ -4,6 +4,7 @@ import { globalStyles } from '../global/globalStyles';
 import { FAB } from 'react-native-elements';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 
+
 export default function DiscussionHomePage({navigation}) {
 
   return (

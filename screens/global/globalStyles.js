@@ -38,5 +38,26 @@ export const globalStyles = StyleSheet.create ({
         paddingVertical: 5,
         flexGrow: 1,
         backgroundColor: 'white'
+    },
+    buttonArea: {
+        marginTop: 16,
+        padding: 10,
+        marginStart: 14,
+        marginEnd: 14,
+        
+        backgroundColor: '#639D04',
+        borderRadius: 40,
+        
+        alignItems: 'center', 
+        justifyContent: 'center',
+        
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 1,
+        elevation: 5,
     }
 })

@@ -9,6 +9,8 @@ import DiscussionNotifBellPage from './discussionNotifBell';
 import DiscussionSearchHeaderPage from './discussionSearchHeader';
 import Header from '../global/Header';
 
+
+
 // Functions for calling the screens
 function FuncDiscussionHome({navigation}) {
   return (
@@ -70,7 +72,9 @@ function App({navigation}) {
             },
             headerTintColor: 'white',
           }}
-        />
+
+          />
+
       </Stack.Navigator>
     // </NavigationContainer>
   );
