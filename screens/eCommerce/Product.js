@@ -4,7 +4,7 @@ import { globalStyles } from '../global/globalStyles';
 import Colors from '../../utils/globalColors';
 import { PFCard, PFText } from '../../components';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
-import {PFCardShopReviews, PFFlatList, PFCardProduct, PFCardShop, PFPrimaryButton} from './../../components';
+import {PFCardShopReviews, PFFlatList, PFCardProduct, PFCardShop, PFPrimaryButton, PFCardShopCartItems} from './../../components';
 import DropDownPicker from 'react-native-dropdown-picker';
 import firebase from 'firebase';
 
@@ -22,7 +22,7 @@ export default function  ProductPage   ({ route, navigation}){
   const [refdata, setrefdata] = useState([]); // declaration
   const [refnull, setrefnull] = useState(true);
   //plantlistitem
-  const [refdata2, setrefdata2] = useState([]); // declaration
+  const [refdata2, setrefdata2] = useState([]); // declaration 
   const [refnull2, setrefnull2] = useState(true);
 
   const [open, setOpen] = useState(false);
@@ -51,9 +51,11 @@ export default function  ProductPage   ({ route, navigation}){
 // addData function for productItem 
   function addData(){
     firebase.firestore().collection('ProductItem').add({
-      plantName: route.params.itemName,
-      categoryName: route.params.category,
-      quantity: counter
+      itemName: route.params.itemName,
+      quantity: counter,
+      price: route.params.price,
+      imageURL: route.params.imageURL
+      
     }).then((res) => {
       Alert.alert('Added to Crate Successfully')
     }).catch((err) => {
@@ -258,6 +260,7 @@ export default function  ProductPage   ({ route, navigation}){
                   </View>
          </TouchableOpacity>   
           </View>
+         
                
        </View>
          

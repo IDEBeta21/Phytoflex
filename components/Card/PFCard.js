@@ -1,6 +1,6 @@
 import React, {Component, useState, useEffect} from 'react';
-import { Dimensions, Pressable } from 'react-native';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Dimensions, Pressable, TouchableOpacity, CheckBox, Alert} from 'react-native';
+import { Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
 import { View, StyleSheet, Image } from 'react-native';
 import { PFText } from '../PFText';
 import Colors from '../../utils/globalColors';
@@ -197,6 +197,7 @@ cardContentStyle) => {
     <View style={{...styles.cardShopReview, ...style}}>
     <Card style={{flex: 1}} onPress={() => onPress()}>
       <View style= {{flexDirection:'row'}}>
+     
       <Image 
         source={{ uri: image}}
         style={{
@@ -249,11 +250,109 @@ export const PFCardProduct = ({imageURL, onPress = () =>{}}, style) => {
       />
 
   )
-}
-  
+};
+
+export const PFCardShopCartItems = ({imageURL, itemName, price,  onPress = () => {}}, style, 
+cardContentStyle) => {
+
+  const [isSelected, setSelection] = useState(false);
+
+   //IncrementDecrement
+   const [counter, setCounter] = useState(1);
+   const incrementCounter = () => setCounter(counter + 1);
+   let decrementCounter = () => setCounter(counter - 1);
  
+   if(counter<=0) {
+     decrementCounter = () => setCounter(1);
+   }
  
 
+  const [image, setimage] = useState(null)
+
+
+  firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+    setimage(url);
+  })
+
+  return(
+
+    <View style={{...styles.cardShopCrateArea, ...style}}>
+    <Card style={{flex: 1}} onPress={() => onPress()}>
+      <View style= {{...styles.cardShopCrateContent, flexDirection:'row'}}>
+        <View style={{...styles.checkBoxArea}}>
+      <CheckBox
+          value={isSelected}
+          onValueChange={setSelection}
+          style={styles.checkbox}
+        />
+        </View>
+      <Image 
+        source={{ uri: image}}
+        style={{
+          marginTop: 8,
+          height: 63,
+          width: (Dimensions.get('window').width/1) * 0.15,
+          borderRadius: 8
+        }}
+      />
+
+      <Card.Content style={{...styles.cardShopCrateContent}}>
+              <View style={{...styles.buttonAlignment, flexDirection:'row'}}>
+              <PFText weight='semi-bold' size = {12.5}
+               style={{ flex: 1, textAlign: 'justify', marginLeft: 1}}
+               numberOfLines={2} 
+              >{itemName}</PFText>
+              <View style={{...styles.cartDeleteButtonArea}}>
+            
+              <Pressable onPress={() => Alert.alert('Remove')}>
+            <Image
+              style={{...styles.headerIcons}}
+              source={require('../../assets/drawerIcons/shopIcons/Delete.png')}
+              resizeMode='contain'
+            />
+            </Pressable>
+            </View>
+               </View>
+               <View style={{...styles.buttonAlignment, flexDirection:'row'}}>
+               <TouchableOpacity onPress={() => decrementCounter()}>
+            <View style={{...styles.buttonDesign, alignItems:'center'}}>
+            <PFText weight='semi-bold' size = {15}>-</PFText>
+            </View>
+          </TouchableOpacity>
+
+
+
+          <View style={{...styles.quantityArea, alignItems:'center'}}>
+          <PFText weight='semi-bold'>{counter}</PFText>
+          </View>
+        
+     
+          
+          <TouchableOpacity onPress={() => incrementCounter()}>
+             <View style={{...styles.buttonDesign, alignItems:'center'}}>
+            <PFText weight='semi-bold' size = {15}>+</PFText>
+            </View>
+          </TouchableOpacity>
+          <View style={{...styles.cartPriceArea}}>
+          <PFText color={Colors.secondary} weight='semi-bold'>P {price}</PFText>
+          </View>
+          </View>
+      </Card.Content>
+
+      
+      
+            </View>
+      
+               
+    </Card>
+  </View>
+
+  )
+}
+
+
+ 
+ 
 
 const styles = StyleSheet.create({
   followBtnContainer:{
@@ -277,6 +376,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     marginTop: 10
   },
+
   cardPostContent: {
     paddingTop: 10,
     borderWidth: 1, 
@@ -322,7 +422,59 @@ const styles = StyleSheet.create({
   heartReact: {
     paddingLeft: 0,
     marginLeft: 1,
+  
+  },
+  buttonAlignment:{
+    marginBottom: 0,
+    paddingLeft: 1,
+    
+  },
+  buttonDesign:{
+
+    padding: 5,
+    width: 30,
+    height: 30,
+    backgroundColor: "#D3E4B9",
+    borderRadius: 10,
+  },
+  quantityArea:{
+   
+    padding: 5,
+    width: 35,
+    height: 43,
+   
+  },
+  cardShopCrateArea:{
+    flex: 1,
+    marginBottom: 10,
+    width: 335,
+    height:95,
+    borderWidth: 1,
+    borderColor: "#1D4123",
+    borderRadius: 3
+    
+  },
+
+  cardShopCrateContent:{
+    padding: 1, 
+    marginTop: 5
+  },
+  cartPriceArea:{
+    marginStart: 80,
+    padding: 5
+  },
+  cartDeleteButtonArea:{
+    marginStart: 20,
+    padding: 5
+  },
+  checkBoxArea: {
+    padding: 1,
+    paddingTop: 17
+  },
+  headerIcons:{
+    height: 24, 
+    width: 24, 
     
   }
- 
+
 })

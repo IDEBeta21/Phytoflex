@@ -16,6 +16,8 @@
     "@react-navigation/material-top-tabs": "^6.1.1",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.1.0",
+    "axios": "^0.26.1",
+    "crypto-js": "^4.1.1",
     "expo": "~42.0.1",
     "expo-app-loading": "1.1.2",
     "expo-camera": "~11.2.2",

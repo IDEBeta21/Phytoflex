@@ -45,10 +45,10 @@ export default function Header({ title, navigation, boolHome, screenDescription 
 
       {title == 'Shop' && boolHome? /*Shop Main Page*/
         <View style={style.headerIconContainer}>
-          <Pressable onPress={() => navigation.navigate('ShopSearchHeader')} >
+          <Pressable onPress={() => navigation.navigate('ShopCrate')} >
             <Image
               style={style.headerIcons}
-              source={require('../../assets/drawerIcons/shopIcons/search.png')}
+              source={require('../../assets/drawerIcons/shopIcons/crate.png')}
               resizeMode='contain'
             />
           </Pressable>
@@ -101,7 +101,7 @@ export default function Header({ title, navigation, boolHome, screenDescription 
 
       {title == 'Search' ? /*Shop Search*/
         <View style={style.whiteHeaderIconContainer}>
-          <TextInput style={style.input} placeholder= "Search"/>
+         
           <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
             <Image
               style={style.whiteHeaderIcons}
@@ -112,7 +112,7 @@ export default function Header({ title, navigation, boolHome, screenDescription 
           <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
             <Image
               style={style.whiteHeaderIcons}
-              source={require('../../assets/drawerIcons/shopIcons/cart.png')}
+              source={require('../../assets/drawerIcons/shopIcons/crate.png')}
               resizeMode='contain'
             />
           </Pressable>

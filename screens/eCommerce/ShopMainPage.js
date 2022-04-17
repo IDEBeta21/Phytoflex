@@ -1,4 +1,4 @@
-import { Button, Text, StyleSheet, View, Alert, TextInput, ActivityIndicator, Image, TouchableHighlight, Dimensions} from 'react-native';
+import { Button, Text, StyleSheet, View, Alert, TextInput, ActivityIndicator, Image, TouchableHighlight, Dimensions, TouchableOpacity} from 'react-native';
 import React, { Component, useState, useEffect } from 'react';
 import { globalStyles } from '../global/globalStyles';
 import { PFPrimaryButton, PFFlatList, PlantListItem, PFText, PFTextInput, PFCard, PFCardShop, PlantCategory, SearchPlant} from './../../components'
@@ -68,6 +68,7 @@ useEffect(() => {
 
      
       <ScrollView> 
+       
       <View style={styles.searchBoxContainer}>
       <TextInput
             style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1}}
@@ -75,6 +76,7 @@ useEffect(() => {
             
           />
       <View style={{flex: 1, alignItems: 'flex-end'}}>
+      
       <Image
             style={styles.searchBoxIcon}
             source={require('../../assets/drawerIcons/plantCareIcons/search.png')}
@@ -126,7 +128,6 @@ useEffect(() => {
       </View>
       <View>
       <PFText weight = "semi-bold" size = {18}> Categories</PFText>
-      
       <PFFlatList
             numColumns={4}
             noDataMessage='No Plant item to post'
@@ -159,7 +160,7 @@ useEffect(() => {
                 price={item.price}
                 quantity={item.quantity}
                 sold={item.sold}
-                onPress={() => {navigation.navigate('ProductPage', {itemName: item.itemName, imageURL: item.imageURL, category: item.categoryName, price: item.price, sold: item.sold, size: item.size, 
+                onPress={() => {navigation.navigate('ProductPage',  {itemName: item.itemName, imageURL: item.imageURL, category: item.categoryName, price: item.price, sold: item.sold, size: item.size, 
                   stock: item.quantity, plantDesc: item.plantDesc})
     
               }}
@@ -205,6 +206,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  buttonArea: {
+    width: 180,
+    padding: 10,
+    paddingBottom: 5,
+    marginStart: 27,
+    marginBottom: 5,
+    backgroundColor: '#639D04',
+    borderRadius: 15,
+    alignItems: 'center', 
+    justifyContent: 'center',
+    shadowColor: "black",
   },
   content2: {
     width: '100%',

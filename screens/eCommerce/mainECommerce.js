@@ -6,11 +6,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ShopHomePage from "./ShopMainPage";
 //import ShopSearchPage from "./ShopSearchPage"
 import ShopNotifBellPage from './ShopNotifBell';
-import ShopSearchHeaderPage from './ShopSearchHeader';
+import ShopCratePage from './ShopCrate';
 import Header from '../global/Header';
 import ProductPage from "./Product";
 
 // Functions for calling the screens
+
 
 function FuncProductPage({route, navigation}) {
   return (
@@ -23,9 +24,9 @@ function FuncShopHome({navigation}) {
   );
 }
 
-function FuncShopSearchHeader({navigation}) {
+function FuncShopCrate({route, navigation}) {
   return (
-    <ShopSearchHeaderPage navigation={navigation}/>
+    <ShopCratePage navigation={navigation}  route = {route}/>
   );
 }
 
@@ -54,15 +55,15 @@ function App({navigation}) {
         />
 
         <Stack.Screen
-          name="ShopSearchHeader"
-          component={FuncShopSearchHeader}
+          name="ShopCrate"
+          component={FuncShopCrate}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'Search'} navigation={navigation}/>, 
+            headerTitle: (props) => <Header title={'Add to Crate'} navigation={navigation}/>, 
             headerStyle: {
-              backgroundColor: 'white'
+              backgroundColor: '#1D4123'
             },
-              headerTintColor: '#1D4123'
+              headerTintColor: 'white'
           }}
         />  
 
@@ -90,12 +91,14 @@ function App({navigation}) {
             headerTintColor: 'white'
           }}
         />
+
+        
+       
       </Stack.Navigator>
       
     // </NavigationContainer>
   );
 }
-
 export default App;
 
 
