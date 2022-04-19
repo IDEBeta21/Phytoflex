@@ -179,20 +179,179 @@ export default SampleData = {
             timeRecieved: '1min'
         }
     ],
+    
 
     myGarden: [
         {
             // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
             imageURL: 'assets/img/plantCare/20211017_161851.jpg',
-            plantFamilyName: 'Amaranthaceae',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthaceae',
+            commonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            // imageURL: '../assets/img/plantcare/img2.png',
+            // imageURL: 'https://picsum.photos/700',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            plantType: 'Amaranthanceae',
+            commonName: 'Fiddle leaf fig plant',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthaceae',
+            commonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthanceae',
+            commonName: 'Fiddle leaf fig plant',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthaceae',
+            commonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthanceae',
+            commonName: 'Fiddle leaf fig plant',
+        }
+    ],
+
+    myPlantCare: [
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Underdevelopment of tissues or organs',
+            description: 'stunting of plants, shortened internodes, inadequate development of roots, malformation of leaves, inadequate production of chlorophyll and other pigments, and failure of fruits and flowers to develop.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Overdevelopment of tissues or organs',
+            description: 'galls on roots, stems, or leaves, witches\' brooms, and profuse flowering.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Necrosis or death of plant parts',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Alteration of normal appearance',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Underdevelopment of tissues or organs',
+            description: 'stunting of plants, shortened internodes, inadequate development of roots, malformation of leaves, inadequate production of chlorophyll and other pigments, and failure of fruits and flowers to develop.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Overdevelopment of tissues or organs',
+            description: 'galls on roots, stems, or leaves, witches\' brooms, and profuse flowering.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Necrosis or death of plant parts',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Alteration of normal appearance',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Underdevelopment of tissues or organs',
+            description: 'stunting of plants, shortened internodes, inadequate development of roots, malformation of leaves, inadequate production of chlorophyll and other pigments, and failure of fruits and flowers to develop.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Overdevelopment of tissues or organs',
+            description: 'galls on roots, stems, or leaves, witches\' brooms, and profuse flowering.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Necrosis or death of plant parts',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Alteration of normal appearance',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+    ],
+
+
+    mySnaps: [
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // plantFamilyName: 'Amaranthaceae',
             plantCommonName: 'Cactus',
         },
         {
             // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
             imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
-            plantFamilyName: 'Amaranthanceae',
+            // plantFamilyName: 'Amaranthanceae',
             plantCommonName: 'Fiddle leaf fig plant',
         },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // plantFamilyName: 'Amaranthaceae',
+            plantCommonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            // plantFamilyName: 'Amaranthanceae',
+            plantCommonName: 'Fiddle leaf fig plant',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // plantFamilyName: 'Amaranthaceae',
+            plantCommonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            // plantFamilyName: 'Amaranthanceae',
+            plantCommonName: 'Fiddle leaf fig plant',
+        }
     ],
 
     plantCategory: [
@@ -213,5 +372,97 @@ export default SampleData = {
             category: 'Pots and Planters'
         },
 
+    ],
+
+
+
+
+
+    myTips: [
+        { 
+            title: 'Fiddle Leaf Fig Plant', 
+            subtitle: 'Small RM spots appear on the leaves in the early spots appear on the leaves in the early spots appear on the leaves in the early', 
+            // uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '1' },
+    
+        {
+            title: 'Bird of Paradise', 
+            subtitle: 'Small SUGA spots appear on the leaves in the early spots appear on the leaves in the early', 
+            // uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/zlyvx3d5pkrzbpyd1/best-tall-houseplants-snake-plant.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '2' },
+    
+        {
+            title: 'Monstera Obliqua', 
+            subtitle: 'Small V spots appear on the leaves in the early spots appear on the leaves in the early', 
+            // uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/9lqgnndjgkrzbshdk/best-tall-houseplants-parlor-palm.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '3' },
+        { 
+            title: 'Snake Plant', 
+            subtitle: 'Small JIMIN spots appear on the leaves in the early spots appear on the leaves in the early', 
+            // uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/ru7ns39jwkrzc1b6b/best-tall-houseplants-elephants-ears.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '4' },
+    
+        {
+            title: 'Philodendron Xanadu', 
+            subtitle: 'Small JK spots appear on the leaves in the early spots appear on the leaves in the early', 
+            // uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/9lqgnndjgkrzbshdk/best-tall-houseplants-parlor-palm.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '5' },
+    
+        { 
+            title: 'Echeveria', 
+            subtitle: 'Small JIN spots appear on the leaves in the early spots appear on the leaves in the early',
+            // uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/9lqgnndjgkrzbshdk/best-tall-houseplants-parlor-palm.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '6' },
+    
+        { 
+            title: 'Ficus elastica', 
+            subtitle: 'Small JHOPE spots appear on the leaves in the early spots appear on the leaves in the early', 
+            // uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '7' },
+            
+        { 
+            title: 'Pothos', 
+            subtitle: 'Small reddish spots appear on the leaves in the early spots appear on the leaves in the early', 
+            // uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/9lqgnndjgkrzbshdk/best-tall-houseplants-parlor-palm.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '8' },
+    
+        { 
+            title: 'Palms', 
+            subtitle: 'Small reddish spots appear on the leaves in the early spots appear on the leaves in the early', 
+        //  uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/9lqgnndjgkrzbshdk/best-tall-houseplants-parlor-palm.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '9' }, 
+    
+        { 
+            title: 'Cactus', 
+            subtitle: 'Small reddish spots appear on the leaves in the early spots appear on the leaves in the early', 
+        //  uri: "https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/ru7ns39jwkrzc1b6b/best-tall-houseplants-elephants-ears.jpg", 
+            // src: require('../../assets/img/plantcare/tips/garden.jpg'),
+            imageURL: 'https://mindbodygreen-res.cloudinary.com/images/dpr_2.0,c_scale,w_671,q_auto,f_auto,fl_lossy/org/gh5e595u5krzc0ajc/best-tall-houseplants-majesty-palm.jpg',
+            key: '10' },
+    
     ]
 }
+
+
+
+
+
+

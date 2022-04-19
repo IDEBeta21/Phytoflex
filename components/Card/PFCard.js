@@ -363,12 +363,14 @@ const styles = StyleSheet.create({
     marginLeft: 8, 
     width: (Dimensions.get('window').width/2) * 0.93
   },
+  
   cardContent: {
     paddingTop: 10,
     borderWidth: 1, 
     borderColor: Colors.primary, 
     borderBottomLeftRadius: 10, 
-    borderBottomRightRadius: 10
+    borderBottomRightRadius: 10,
+   
   },
 
   cardPostContainer: {
@@ -392,7 +394,8 @@ const styles = StyleSheet.create({
     width: (Dimensions.get('window').width/2) * 0.93,
     borderWidth: 1, 
     borderColor: Colors.primary, 
-    borderRadius: 7
+    borderRadius: 7,
+   
     
   },
   cardShopContent: {

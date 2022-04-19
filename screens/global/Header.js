@@ -26,14 +26,16 @@ export default function Header({ title, navigation, boolHome, screenDescription 
       {/* Top right corner icons */}
       {title == 'Plant Care' && boolHome? /* rendering icons for plant care*/
         <View style={style.headerIconContainer}>
-          <Pressable onPress={() => navigation.navigate('PlantCareHealthCare')} >
+          {/* <Pressable onPress={() => navigation.navigate('PlantCareHealthCare')} > */}
+          <Pressable onPress={() => navigation.navigate('PlantCare')} >
             <Image
               style={style.plantCareHeaderIcons}
               source={require('../../assets/drawerIcons/plantCareIcons/healthCare.png')}
               resizeMode='contain'
             />
           </Pressable>
-          <Pressable onPress={() => navigation.navigate('PlantCareOpportunity')} >
+          {/* <Pressable onPress={() => navigation.navigate('PlantCareOpportunity')} > */}
+          <Pressable onPress={() => navigation.navigate('PlantCarePlantCareTips')} >
             <Image
               style={style.plantCareHeaderIcons}
               source={require('../../assets/drawerIcons/plantCareIcons/opportunity.png')}

@@ -7,14 +7,14 @@ import { View, StyleSheet } from 'react-native';
 import { PFText } from '../../PFText'
 import Colors from '../../../utils/globalColors'
 
+
 import firebase from 'firebase';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 export const MyGardenItem = ({
   imageURL, 
-  plantType,
-  commonName, 
+  description, 
   onPress = () => {}, 
   style, 
   cardContentStyle}) => {
@@ -27,17 +27,18 @@ export const MyGardenItem = ({
 
     return(
       <View style={{...styles.cardContainer, ...style}}>
-        <Card style={{flex: 1 }} onPress={() => onPress()}>
+        <Card stye={{flex: 1}} onPress={() => onPress()}>
           
           <Card.Cover 
             source={{ uri: image }} 
-            style={{ 
+            style={{
 
             }}
           />
           <Card.Content style={{...styles.cardContent, ...cardContentStyle}}>
-            <PFText style={{paddingTop: 0, padding: 0, margin: 0, fontSize: 12, justifyContent: 'center', backgroundColor: '#ffffff'}}>{plantType}</PFText> 
-            <PFText style={{paddingTop: 0, padding: 0, margin: 0, fontSize: 15, justifyContent: 'center', backgroundColor: '#ffffff'}}>{commonName}</PFText>    
+            <PFText>{description}</PFText>  
+        
+            <PFText>{description}</PFText>  
           </Card.Content>
           
         </Card>
@@ -47,21 +48,27 @@ export const MyGardenItem = ({
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginLeft: (Dimensions.get('window').width/2) * 0.05, 
+    marginLeft: 8, 
     width: (Dimensions.get('window').width/2) * 0.93,
-    marginBottom: 11,
+
+
+        shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
+
   },
 
   cardContent: {
     paddingTop: 10,
-    paddingBottom: 5,
     borderWidth: 1, 
-    // height: 25,
-    // borderColor: 'Colors.primary', 
-    borderColor: '#AFAFAF', 
-    borderBottomLeftRadius: 5, 
-    borderBottomRightRadius: 5,
-    backgroundColor: '#ffffff',
-  
+    borderColor: Colors.primary, 
+    borderBottomLeftRadius: 10, 
+    borderBottomRightRadius: 10
   },
 })
