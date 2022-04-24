@@ -1,7 +1,9 @@
-import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, Pressable} from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable} from 'react-native';
 import React, { Component, useState } from 'react';
-import { Portal } from 'react-native-paper';
+import { StatusBar } from 'expo-status-bar';
+import { Portal, Divider } from 'react-native-paper';
 import { globalStyles } from '../global/globalStyles';
+import { useNavigation } from '@react-navigation/native';
 
 import firebase from 'firebase';
 
@@ -11,9 +13,11 @@ import {
   PFModalLogin , PFModalAlert, PFModalPrompt, 
   PFPrimaryButton, PFSecondaryButton, PFRadioButton,
   PFFlatList, 
-  AccountListItem, PlantListItem, MyGardenItem,
+  AccountListItem, PlantListItem, MyGardenItem, RecentSnapsItem,
   PFCard
 } from '../../components';
+import PlantCarePlantInfo from './plantCarePlantInfo';
+
 
 import Colors from '../../utils/globalColors';
 
@@ -56,9 +60,38 @@ export default function PlantCareHomePage({navigation}) {
           />
           <TextInput
             style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1}}
-            placeholder='Search'
+            placeholder='Search' 
           />
         </View>
+
+        <View style={styles.flContainer}>
+
+          <PFText weight='light' style={{ color: 'black', marginLeft: 12 }}>Recent Snaps</PFText>
+            <StatusBar style="light"/>
+            <SafeAreaView style={{ height: 169 }}>
+              {/* 176 */}
+
+                <FlatList 
+                    horizontal={true} 
+                    showsHorizontalScrollIndicator={false} 
+                    contentContainerStyle={{ paddingRight: 12, paddingLeft: 2 }}
+                    data={SampleData.myGarden}
+                    renderItem={({item}) => (
+                    
+                    <RecentSnapsItem 
+                      style={{marginLeft: 10 }}
+                        // imageURL={firebase.storage().refFromURL(item.imageURL)}
+                        imageURL={item.imageURL}
+                        description={item.commonName}
+                        onPress={() => Alert.alert(item.plantFamilyName)}/>
+                      )}
+                    keyExtractor={(item,index) => index}
+                  />
+
+            </SafeAreaView>
+        </View>
+
+       
 
         <PFFlatList
             numColumns={2}
@@ -66,10 +99,12 @@ export default function PlantCareHomePage({navigation}) {
             data={SampleData.myGarden}
             renderItem={(item) => (
               <MyGardenItem 
+              // style={{marginLeft: 12.25, marginBottom: 12}}
                 // imageURL={firebase.storage().refFromURL(item.imageURL)}
                 imageURL={item.imageURL}
-                description={item.plantCommonName}
-                onPress={() => Alert.alert(item.plantFamilyName)}/>
+                plantType={item.plantType}
+                commonName={item.commonName}
+                onPress={() => Alert.alert(item.commonName)}/>
               )}
             keyExtractor={(item,index) => index}
           />
@@ -90,6 +125,26 @@ export default function PlantCareHomePage({navigation}) {
           style={styles.fabImage}
         />
       </TouchableOpacity>
+
+
+       <Button 
+          position='absolute'
+          title='Result'
+          onPress={ () => navigation.navigate('PlantCareResult')}
+          // backgroundColor = "#000000"
+          color = "#1A9B95"
+          />
+
+       <Button 
+        style={{marginBottom: 12}}
+          title='Plant Information'
+          position='absolute'
+         
+          onPress={ () => navigation.navigate('PlantCarePlantInformation')}
+          // backgroundColor = "#000000"
+          color = "#8B81B6"
+          /> 
+
     </View>
   );
 }
@@ -101,6 +156,8 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 12
   },
   searchBoxContainer: {
+    marginLeft: 12,
+    marginRight: 12,
     backgroundColor: '#F5F7FA',
     paddingHorizontal: 10,
     paddingVertical: 5,
@@ -112,7 +169,8 @@ const styles = StyleSheet.create({
   },
   searchBoxIcon: {
     height: 20,
-    width: 20
+    width: 20,
+    marginRight: 8,
   },
   fabContainer: {
     backgroundColor: Colors.white,
@@ -136,6 +194,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     elevation: 10,
   },
+
   fab: {
     position: 'absolute',
     margin: 15,
@@ -143,11 +202,19 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: '#F5F7FA',
   },
+  
   fabImage: {
     // marginTop: 7,
     resizeMode: 'contain',
     width: 25,
     height: 25,
     //backgroundColor:'black'
+  },
+
+  flContainer: {
+    flex: 1,
+    backgroundColor: "#ffffff", 
+    paddingHorizontal: 0,
+    marginBottom: 13,
   },
 })

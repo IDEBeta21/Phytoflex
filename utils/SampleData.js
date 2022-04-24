@@ -179,20 +179,179 @@ export default SampleData = {
             timeRecieved: '1min'
         }
     ],
+    
 
     myGarden: [
         {
             // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
             imageURL: 'assets/img/plantCare/20211017_161851.jpg',
-            plantFamilyName: 'Amaranthaceae',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthaceae',
+            commonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            // imageURL: '../assets/img/plantcare/img2.png',
+            // imageURL: 'https://picsum.photos/700',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            plantType: 'Amaranthanceae',
+            commonName: 'Fiddle leaf fig plant',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthaceae',
+            commonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthanceae',
+            commonName: 'Fiddle leaf fig plant',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthaceae',
+            commonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            // imageURL: 'https://picsum.photos/700',
+            plantType: 'Amaranthanceae',
+            commonName: 'Fiddle leaf fig plant',
+        }
+    ],
+
+    myPlantCare: [
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Underdevelopment of tissues or organs',
+            description: 'stunting of plants, shortened internodes, inadequate development of roots, malformation of leaves, inadequate production of chlorophyll and other pigments, and failure of fruits and flowers to develop.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Overdevelopment of tissues or organs',
+            description: 'galls on roots, stems, or leaves, witches\' brooms, and profuse flowering.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Necrosis or death of plant parts',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Alteration of normal appearance',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Underdevelopment of tissues or organs',
+            description: 'stunting of plants, shortened internodes, inadequate development of roots, malformation of leaves, inadequate production of chlorophyll and other pigments, and failure of fruits and flowers to develop.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Overdevelopment of tissues or organs',
+            description: 'galls on roots, stems, or leaves, witches\' brooms, and profuse flowering.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Necrosis or death of plant parts',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Alteration of normal appearance',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Underdevelopment of tissues or organs',
+            description: 'stunting of plants, shortened internodes, inadequate development of roots, malformation of leaves, inadequate production of chlorophyll and other pigments, and failure of fruits and flowers to develop.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Overdevelopment of tissues or organs',
+            description: 'galls on roots, stems, or leaves, witches\' brooms, and profuse flowering.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Necrosis or death of plant parts',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+        {
+            imageURL: 'https://picsum.photos/700',
+            title: 'Alteration of normal appearance',
+            description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+    ],
+
+
+    mySnaps: [
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // plantFamilyName: 'Amaranthaceae',
             plantCommonName: 'Cactus',
         },
         {
             // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
             imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
-            plantFamilyName: 'Amaranthanceae',
+            // plantFamilyName: 'Amaranthanceae',
             plantCommonName: 'Fiddle leaf fig plant',
         },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // plantFamilyName: 'Amaranthaceae',
+            plantCommonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            // plantFamilyName: 'Amaranthanceae',
+            plantCommonName: 'Fiddle leaf fig plant',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_161851.jpg',
+            imageURL: 'assets/img/plantCare/20211017_161851.jpg',
+            // plantFamilyName: 'Amaranthaceae',
+            plantCommonName: 'Cactus',
+        },
+        {
+            // imageURL: 'gs://phytoflex-3f53f.appspot.com/assets/img/plantCare/20211017_162026(0).jpg',
+            imageURL: 'assets/img/plantCare/20211017_162026(0).jpg',
+            // plantFamilyName: 'Amaranthanceae',
+            plantCommonName: 'Fiddle leaf fig plant',
+        }
     ],
 
     plantCategory: [
@@ -225,3 +384,9 @@ export default SampleData = {
         }
     ]
 }
+
+
+
+
+
+
