@@ -1,5 +1,5 @@
 import React, {Component, useState, useEffect} from 'react';
-import { Dimensions, Pressable, TouchableOpacity, CheckBox, Alert} from 'react-native';
+import { Dimensions, Pressable, TouchableOpacity, CheckBox, Alert, Text} from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
 import { View, StyleSheet, Image } from 'react-native';
 import { PFText } from '../PFText';
@@ -326,7 +326,6 @@ cardContentStyle) => {
           <PFText weight='semi-bold'>{counter}</PFText>
           </View>
         
-     
           
           <TouchableOpacity onPress={() => incrementCounter()}>
              <View style={{...styles.buttonDesign, alignItems:'center'}}>
@@ -337,22 +336,119 @@ cardContentStyle) => {
           <PFText color={Colors.secondary} weight='semi-bold'>P {price}</PFText>
           </View>
           </View>
-      </Card.Content>
-
-      
-      
-            </View>
-      
-               
+      </Card.Content>     
+       </View>         
     </Card>
   </View>
-
   )
 }
 
+export const PFCardForumPost1 = ({imageURL, userName, userImage, badgePoints, dateTime, forumPost,  onPress = () => {}}, style, 
+cardContentStyle) => {
 
  
- 
+  const [image, setimage] = useState(null)
+
+
+  firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+    setimage(url);
+  })
+
+  return(
+
+    <View style={{...styles.cardForumPostArea, ...style}}>
+    <Card style={{flex: 1}} onPress={() => onPress()}>
+      <View style= {{...styles.cardForumPostArea, flexDirection:'column'}}>
+      <Card.Cover 
+        source={{ uri: imageURL }} 
+        style={{
+          height: 300,
+          width: (Dimensions.get('window').width) * 0.90
+        }}
+      />
+
+      <Card.Content>
+      
+       <View style={{...styles.cardForumContentStyle, flexDirection:'row'}}>
+                  <Image 
+                      source={{ uri: userImage}}
+                      style={{
+                        marginTop: 10,
+                        height: 52,
+                        width: (Dimensions.get('window').width/1) * 0.15,
+                        borderRadius: 100
+                      }}
+                    />
+             <View  >
+             <PFText weight='semi-bold' size = {12.5}
+              >{userName}</PFText>
+              <PFText weight = 'light' size = {12.5}>{badgePoints}</PFText>
+              <View style={{...styles.cardForumButtonArea}}>
+              <TouchableOpacity>
+                  <View style={styles.buttonArea}>
+                  <Text style={{ color: '#639D04', fontSize: 12, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>SOLVED</Text>
+                  </View>
+                  </TouchableOpacity>
+            
+            </View>
+             </View>
+            
+               </View>
+              <PFText weight='light'>{forumPost}</PFText>
+      </Card.Content>     
+       </View>         
+    </Card>
+  </View>
+  )
+};
+
+export const PFCardForumPost = ({
+  imageURL, userName, userImage, badgePoints, dateTime, forumPost, 
+  onPress = () => {}}, 
+  style, 
+  cardContentStyle) => (
+  <View style={{...styles.cardPostContainer, ...style}}>
+    <Card style={{flex: 1}} onPress={() => onPress()}>
+      
+      <Card.Cover 
+        source={{ uri: imageURL }} 
+        style={{
+          height: 300,
+          width: (Dimensions.get('window').width) * 0.90
+        }}
+      />
+      <Card.Content style={{...styles.cardForumPostArea, ...cardContentStyle}}>
+      <View style= {{flexDirection:'row'}}>
+      <Image 
+        source={{ uri: imageURL}}
+        style={{
+          height: 50,
+          width: (Dimensions.get('window').width/1) * 0.14,
+          borderRadius: 100,
+          marginRight: 10
+        }}
+      />
+       <View style={{flexDirection:'column'}}>
+         
+            <PFText weight='semi-bold' size = {15}>{userName}</PFText>
+            <PFText weight='light'size = {12}>{dateTime}</PFText>
+       </View>
+       <View style={{...styles.cardForumButtonArea}}>
+              <TouchableOpacity>
+                  <View style={styles.buttonArea}>
+                  <Text style={{ color: '#639D04', fontSize: 12, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>SOLVED</Text>
+                  </View>
+                  </TouchableOpacity>
+            
+            </View>
+       
+      </View>
+        <PFText style ={{padding:10}}>{forumPost}</PFText> 
+      </Card.Content>
+      
+    </Card>
+  </View>
+);
 
 const styles = StyleSheet.create({
   followBtnContainer:{
@@ -475,6 +571,33 @@ const styles = StyleSheet.create({
     height: 24, 
     width: 24, 
     
+  },
+  //Discussion Design
+
+  cardForumPostArea: {
+   
+    backgroundColor: "#D8F9C9",
+  
+    paddingTop: 10,
+    borderBottomLeftRadius: 10, 
+    borderBottomRightRadius: 10
+  },
+  cardForumButtonArea: {
+    width: 80,
+    height: 21,
+    borderWidth: 1,
+    borderColor: "#639D04",
+    borderRadius: 10,
+    backgroundColor: '#D8F9C9',
+    marginStart: 50
+
+
+  },
+
+  cardForumContentStyle:{
+    padding: 2,
+
   }
+
 
 })
