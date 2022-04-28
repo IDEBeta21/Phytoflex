@@ -9,7 +9,7 @@ export default [
         id: '2',
         image: require('../../assets/onboarding/Flex.png'),
         title: 'Flex your Plants',
-        description: 'Snap and Flex your plants now! You can post and flex your plants on your account'
+        description: 'Snap and Flex your plants now! You can now post and flex your plants on your account'
     },
             {
         id: '3',

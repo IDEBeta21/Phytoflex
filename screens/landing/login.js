@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useState , useEffect}from 'react';
 import { render } from 'react-dom';
+import { StatusBar } from 'expo-status-bar';
 import { 
     View, ScrollView, KeyboardAvoidingView, 
     Image, TextInput, TouchableOpacity,  
@@ -95,7 +96,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                             }}
                         /> 
                     </View> */}
-                    
+                    <StatusBar style="auto" />
                     <View style={(keyboardStatus == false ? styles.loginView : styles.loginViewKeyUp)}> 
                         {/* Text Input Area */}
                         <Pressable 
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
         // borderTopRightRadius: 35,
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: 50
+        paddingBottom: 64
     },
     loginViewKeyUp: {
         backgroundColor: '#040',
@@ -209,13 +210,13 @@ const styles = StyleSheet.create({
         paddingVertical: 25,
     },
     headerText: {
-        fontSize: 24,
+        fontSize: 20,
         color: 'white',
         alignItems: 'center',
         justifyContent: 'center',
         paddingStart: 8,
         paddingBottom: 0,
-        fontFamily: 'poppins-semiBold'
+        fontFamily: 'poppins-semiBold',
     },
     textbox: {
         borderColor: '#1D4123',

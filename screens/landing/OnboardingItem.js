@@ -27,25 +27,24 @@ const styles = StyleSheet.create({
        alignItems:'center',
 
    },
-
     image: {
-       flex: 0.2,
+       flex: 0.1,
        justifyContent: 'center',
-       paddingTop: 258
+       paddingTop: 360
    }, 
     title: {
         color: '#FFFFFF',
-        fontSize: 35,
+        fontSize: 28,
         fontFamily: 'poppins-semiBold',
         marginBottom: 10,
         textAlign: 'center',
-        paddingTop: 32
+        paddingTop: 24
    },
     description: {
         color: '#FFFFFF',
-        fontSize: 15,
+        fontSize: 13,
         fontFamily: 'poppins-light',
         textAlign: 'center',
-        paddingHorizontal: 48,
+        paddingHorizontal: 54,
    },
 });

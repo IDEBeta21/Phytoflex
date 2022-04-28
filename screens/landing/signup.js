@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useState}from 'react';
 import { render } from 'react-dom';
+import { StatusBar } from 'expo-status-bar';
 import { 
   View, ScrollView, KeyboardAvoidingView, 
   Image, Text, TextInput, TouchableOpacity,  
@@ -57,6 +58,7 @@ export default function SignUpScreen({navigation}){
   return (
     <ImageBackground source={require('../../assets/drawerIcons/register.png')} resizeMode= "cover" style={styles.loginContainer}>
       <View style={styles.loginContainer}>
+        <StatusBar style="auto" />
         {/* Display Header */}
         
         {/* Make the view scrollable */}

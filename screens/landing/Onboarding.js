@@ -7,6 +7,8 @@ import Paginator from './Paginator';
 import NextButton from './NextButton';
 import slides from './slides';
 
+import { StatusBar } from 'expo-status-bar';
+
 export default Onboarding = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
@@ -27,6 +29,7 @@ export default Onboarding = () => {
 
     return (
         <View style={styles.container}>
+            <StatusBar style="auto" />
             <View style={{ flex: 3 }}>
                 <FlatList 
                     data={slides} 

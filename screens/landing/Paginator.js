@@ -4,7 +4,7 @@ import React from 'react'
 export default Paginator = ({ data, scrollX }) => {
     const { width } = useWindowDimensions();
   return (
-    <View style={{ flexDirection: 'row', height: 64, paddingTop: 32 }}>
+    <View style={{ flexDirection: 'row', height: 45, paddingTop: 32 }}>
         {data.map(( _ , i ) => {
             const inputRange = [(i - 1) * width, i * width, (i + 1 ) * width];
             const dotWidth = scrollX.interpolate({
