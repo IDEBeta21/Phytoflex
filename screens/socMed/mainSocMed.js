@@ -8,6 +8,7 @@ import UserProfilePage from './UserProf/UserProfile';
 import SocialMediaHomePage from "./SocialMediaHome";
 import InboxZonePage from './SocMedInboxZone';
 import SocMedSearchPage from './SocMedSearch';
+import CreatePostPage from './CreatePostPage';
 
 
 import Header from '../global/Header';
@@ -32,6 +33,11 @@ function funcSocMedSearch({navigation}) {
 function FuncUserProfile({navigation}) {
   return (
     <UserProfilePage navigation={navigation}/>
+  );
+}
+function FuncCreatePost({navigation}) {
+  return (
+    <CreatePostPage navigation={navigation}/>
   );
 }
 
@@ -85,6 +91,17 @@ function App({navigation}) {
           component={FuncUserProfile}
           options={{ 
             headerTitle: (props) => <Header title={'User Profile'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+        <Stack.Screen
+          name="CreatePostPage"
+          component={FuncCreatePost}
+          options={{ 
+            headerTitle: (props) => <Header title={'Create Post'} navigation={navigation} />, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },

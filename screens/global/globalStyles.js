@@ -59,5 +59,13 @@ export const globalStyles = StyleSheet.create ({
         shadowOpacity: 0.25,
         shadowRadius: 1,
         elevation: 5,
+    },
+    socmed: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        paddingLeft: 20,
+        paddingTop: 10
     }
 })

@@ -27,17 +27,17 @@ const Tab = createMaterialTopTabNavigator();
 function MyTopTabs({navigation}) {
 return (
   <Tab.Navigator
-    initialRouteName="SocMedNotifications"
+    initialRouteName="SocMedHome"
     screenOptions={{
       tabBarActiveTintColor: '#1D4123',
       tabBarInactiveTintColor: '#1D4123',
-      tabBarLabelStyle: { fontSize: 12, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
+      tabBarLabelStyle: { fontSize: 14, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
       tabBarStyle: { backgroundColor: 'white', elevation:0  },
       tabBarIndicatorStyle: {backgroundColor: 'white', borderColor: 'white', height: '100%'}
     }}
   >
     <Tab.Screen
-      name="SocMedNotifications"
+      name="SocMedHome"
       component={funcAllScrn}
       options={{ tabBarLabel: 'All' }}
     />

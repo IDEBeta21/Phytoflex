@@ -24,7 +24,7 @@ export const PFCard = ({
     <Card style={{flex: 1}} onPress={() => onPress()}>
       
       <Card.Cover 
-        source={{ uri: imageURL }} 
+        source={require('../../assets/logo.png')} 
         style={{
           height: 140,
           width: (Dimensions.get('window').width/2) * 0.90,
@@ -41,45 +41,78 @@ export const PFCard = ({
 );
 
 export const PFPostsCard = ({
-  imageURL, 
-  description, 
+  userPhoto, imageURL, 
+  name, description, timeDate, 
   onPress = () => {}}, 
   style, 
   cardContentStyle) => (
   <View style={{...styles.cardPostContainer, ...style}}>
     <Card style={{flex: 1}} onPress={() => onPress()}>
-      
       <Card.Cover 
         source={{ uri: imageURL }} 
         style={{
           height: 300,
-          width: (Dimensions.get('window').width) * 0.90
+          width: (Dimensions.get('window').width) * 0.90,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20
         }}
       />
       <Card.Content style={{...styles.cardPostContent, ...cardContentStyle}}>
-      <View style= {{flexDirection:'row'}}>
-      <Image 
-        source={{ uri: imageURL}}
-        style={{
-          height: 50,
-          width: (Dimensions.get('window').width/1) * 0.14,
-          borderRadius: 100,
-          marginRight: 10
-        }}
-      />
-       <View style={{flexDirection:'column', flexShrink:1}}>
-         
-            <PFText weight='semi-bold' size = {15}>{description}</PFText>
-            <PFText weight='light'size = {12}>03/30/22 12:00 PM</PFText>
-       </View>
-       <View style={styles.followBtnContainer}>
-            <PFPrimaryButton title={'Follow'}></PFPrimaryButton>
-       </View>
-       
-      </View>
-        <PFText style ={{padding:10}}>Description</PFText> 
+        <View style= {{flexDirection:'row'}}>
+          <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 10
+            }}
+          />
+          <View style={{flexDirection:'column', flexShrink:1}}>
+            <PFText weight='semi-bold' size = {14}>{name}</PFText>
+            <PFText weight='light'size = {10}>{timeDate}</PFText>
+          </View>
+          <View style={styles.followBtnContainer}>
+            <PFPrimaryButton title={'Follow'} onPress={() => navigation.navigate('CreatePostPage')}></PFPrimaryButton>
+          </View>        
+        </View>
+        <PFText style ={{padding:10}}>{description}</PFText>
+
+        {/* ReactionSection */}
+        <View style={styles.reactContainer}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
+              style={styles.reactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/socmedIcons/comments.png')}
+              style={styles.reactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={ require('../../assets/drawerIcons/socmedIcons/more_icon.png')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={styles.reactSize}
+            />
+          </TouchableOpacity>
+        </View>
       </Card.Content>
-      
     </Card>
   </View>
 );
@@ -451,6 +484,25 @@ export const PFCardForumPost = ({
 );
 
 const styles = StyleSheet.create({
+  // Social Media----------------------------
+  reactContainer: {
+    flexDirection: 'row', 
+    borderWidth: 1, 
+    borderRadius: 30, 
+    alignItems: 'center', 
+    padding: 5,
+    paddingLeft: 20
+  },
+  userImage: {
+    height: 30,
+    width: (Dimensions.get('window').width) * 0.10
+  },
+  reactSize: {
+    height: 30,
+    width: (Dimensions.get('window').width) * 0.10,
+    marginRight: 30,
+    marginLeft: 20
+  },
   followBtnContainer:{
     alignItems: 'flex-end',
     flexGrow:1
@@ -459,7 +511,6 @@ const styles = StyleSheet.create({
     marginLeft: 8, 
     width: (Dimensions.get('window').width/2) * 0.93
   },
-  
   cardContent: {
     paddingTop: 10,
     borderWidth: 1, 
@@ -468,21 +519,19 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
    
   },
-
   cardPostContainer: {
     width: (Dimensions.get('window').width) * 0.90,
     marginBottom: 15,
     marginTop: 10
   },
-
   cardPostContent: {
-    paddingTop: 10,
+    paddingTop: 15,
     borderWidth: 1, 
     borderColor: Colors.primary, 
-    borderBottomLeftRadius: 10, 
-    borderBottomRightRadius: 10
+    borderBottomLeftRadius: 20, 
+    borderBottomRightRadius: 20
   },
-  
+  //Social Media---------------------------
   cardShopContainer: {
     
     marginBottom: 5,
@@ -596,11 +645,7 @@ const styles = StyleSheet.create({
 
 
   },
-
   cardForumContentStyle:{
     padding: 2,
-
   }
-
-
 })

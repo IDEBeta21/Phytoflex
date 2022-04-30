@@ -46,44 +46,21 @@ export default SampleData = {
     cardPostData: [
         {
             imageURL: 'https://picsum.photos/700',
-            name: 'Deladia',
-            description: 'Ian Deladia'
+            userPhoto: 'https://picsum.photos/80',
+            name: 'Phytoflex',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            timeDate: '03/30/22 12:00 PM',
+            active: 'Bloom'
+
         },
         {
             imageURL: 'https://picsum.photos/700',
-            name: 'Labrento',
-            description: 'Marc Edrian Labrento'
-        },
-        {
-            imageURL: 'https://picsum.photos/700',
-            name: 'Vega',
-            description: 'Jocelyn Vega'
-        },
-        {
-            imageURL: 'https://picsum.photos/700',
-            name: 'Alejandre',
-            description: 'Leila Jane Alejandre'
-        },
-        {
-            imageURL: 'https://picsum.photos/700',
-            name: 'Talosig',
-            description: 'Lorgie Ann Talosig'
-        },
-        {
-            imageURL: 'https://picsum.photos/700',
-            name: 'Tupas',
-            description: 'Pam Tupas'
-        }, {
-            imageURL: 'https://picsum.photos/700',
-            name: 'Dela Cruz',
-            description: 'Ro-ann Dela Cruz'
-        },
-        {
-            imageURL: 'https://picsum.photos/700',
-            name: 'Marzan',
-            description: 'Jasmin Marzan'
+            userPhoto: 'https://picsum.photos/80',
+            name: 'Phytoflex',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            timeDate: '03/30/22 12:00 PM',
+            active: 'Bloom'
         }
-        
     ],
 
 
