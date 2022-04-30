@@ -1,6 +1,7 @@
 // import * as React from 'react';
-import React from 'react';
-import { useState, useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState, useEffect } from 'react';
 
 // Import stack navigator
 import { createStackNavigator, Header } from 'react-navigation-stack';
@@ -30,7 +31,8 @@ import SignUpScreen from './screens/landing/signup';
 import MyTabs from './screens/global/bottomNav';
 import ComponentsSample from './screens/global/ComponentsSample';
 import FirebaseSample from './screens/global/FirebaseSample';
-import OnboardingScreen from './screens/landing/OnboardingScreen';
+
+import Onboarding from './screens/landing/Onboarding';
 
 // Imports for Drawer navigation
 import ActivityLogScreen from './screens/DrawerContents/ActivityLogs';
@@ -125,12 +127,6 @@ function FuncBottomNav({navigation}) {
   );
 }
 
-function FuncOnboardingScreen({navigation}) {
-  return(
-    <OnboardingScreen navigation={navigation}/>
-  );
-}
-
 function FuncComponentSample({navigation}){
   return(
     <ComponentsSample navigation={navigation}/>
@@ -143,12 +139,19 @@ function FuncFirebaseSample({navigation}){
   )
 }
 
+function FuncOnboarding({navigation}){
+  return(
+    <Onboarding navigation={navigation}/>
+  )
+}
+
 const AuthStack = createNativeStackNavigator();
 
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DrawerContent } from './screens/global/Drawer';
-import { AsyncStorage } from 'react-native';
+import { ActivityIndicator } from 'react-native';
+import { View } from 'react-native-web';
 
 const Drawer = createDrawerNavigator();
 
@@ -287,6 +290,9 @@ function SideBar({navigation}){
     // </NavigationContainer>s
   );
 }
+
+
+
 function App() {
 
   let [ fontsLoaded ] = useFonts({
@@ -298,18 +304,18 @@ function App() {
 
   if (fontsLoaded) {
     return (
-      
       <NavigationContainer independent={true}>
         <AuthStack.Navigator 
           initialRouteName={firebase.auth().onAuthStateChanged((user) => {return user}) ? "Login" : "SignUpScreen"}  
           screenOptions={{headerShown: false}}
         >
-         <AuthStack.Screen name="Login" component={FuncLoginScreen}/>
-          <AuthStack.Screen name="SignUpScreen" component={FuncSignupScreen}/>
-          <AuthStack.Screen name="MyTabs" component={SideBar}/>
-          <AuthStack.Screen name="ComponentsSample" component={FuncComponentSample}/>
-          <AuthStack.Screen name="FirebaseSample" component={FuncFirebaseSample}/>
-          {/* <AuthStack.Screen name="MyTabs" component={funcBottomNav} /> */}
+            <AuthStack.Screen name="Onboarding" component={FuncOnboarding}/>
+            <AuthStack.Screen name="Login" component={FuncLoginScreen}/>
+            <AuthStack.Screen name="SignUpScreen" component={FuncSignupScreen}/>
+            <AuthStack.Screen name="MyTabs" component={SideBar}/>
+            <AuthStack.Screen name="ComponentsSample" component={FuncComponentSample}/>
+            <AuthStack.Screen name="FirebaseSample" component={FuncFirebaseSample}/>
+        
         </AuthStack.Navigator>
       </NavigationContainer>
     );
