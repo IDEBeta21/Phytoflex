@@ -8,6 +8,7 @@ import DiscussionHomePage from "./discussionMainPage";
 import DiscussionNotifBellPage from './discussionNotifBell';
 import DiscussionSearchHeaderPage from './discussionSearchHeader';
 import Header from '../global/Header';
+import CreateQuestionPage from './createQuestion';
 
 
 
@@ -29,7 +30,11 @@ function FuncDiscussionNotifBell({navigation}) {
     <DiscussionNotifBellPage navigation={navigation}/>
   );
 }
-
+function FuncCreateQuestion({navigation}) {
+  return (
+    <CreateQuestionPage navigation={navigation}/>
+  );
+}
 const Stack = createNativeStackNavigator();
 // Stacking the Screens
 function App({navigation}) {
@@ -74,7 +79,19 @@ function App({navigation}) {
           }}
 
           />
+          <Stack.Screen
+          name="CreateQuestionPage"
+          component={FuncCreateQuestion}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Ask Community'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123',
+            },
+            headerTintColor: 'white',
+          }}
 
+          />
       </Stack.Navigator>
     // </NavigationContainer>
   );

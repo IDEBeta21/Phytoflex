@@ -40,6 +40,7 @@ export default function DiscussionHomePage({navigation}) {
           icon= { <FontAwesome5 name="question-circle" size={24} color="white" /> }
           buttonStyle= {{ backgroundColor: "#639D04", borderRadius: 25 }}
           titleStyle= {{ fontFamily: 'poppins-semiBold', fontSize: 15, paddingLeft: 6, marginTop: 2 }} 
+          onPress = {() => navigation.navigate('CreateQuestionPage')}
       />
     </View>
   );
