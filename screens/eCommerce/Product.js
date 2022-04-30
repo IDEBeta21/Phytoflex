@@ -31,12 +31,13 @@ export default function  ProductPage   ({ route, navigation}){
     {label: 'Mr Speedy', value: 'Mr Speedy'}
   ]);
 
+  let userId = window.userId
 
   //IncrementDecrement
   const [counter, setCounter] = useState(1);
   const incrementCounter = () => setCounter(counter + 1);
   let decrementCounter = () => setCounter(counter - 1);
-
+ 
   if(counter<=0) {
     decrementCounter = () => setCounter(1);
   }
@@ -51,6 +52,7 @@ export default function  ProductPage   ({ route, navigation}){
 // addData function for productItem 
   function addData(){
     firebase.firestore().collection('ProductItem').add({
+      userId: userId,
       itemName: route.params.itemName,
       quantity: counter,
       price: route.params.price,

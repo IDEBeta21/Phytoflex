@@ -22,6 +22,8 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
     const [userEmail, setuserEmail] = useState('');
     const [userPass, setUserPass] = useState('');
 
+    let userId = ''
+
 
 
     
@@ -32,8 +34,20 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                 Alert.alert(result.message);
                 console.log(result);
                 toTabs();
-            })
-            .catch((error) => {
+                firebase.firestore()
+                .collection('users').where('userEmail', '==', userEmail).get().then((res) => {
+                  res.forEach(doc => {
+                    console.log(doc.id, '=>', doc.data());
+                    window.userId = doc.id
+                  })
+               
+                 
+                })
+                  
+             
+
+           
+            }).catch((error) => {
                 Alert.alert(error.message);
                 console.log(error);
             });
@@ -55,6 +69,9 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
     const toTabs = () => {
         navigation.push('MyTabs');
+    }
+    const toShopCrate = () => {
+        navigation.push('ShopCratePage');
     }
 
     const [keyboardStatus, setKeyboardStatus] = useState(false);
