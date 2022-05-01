@@ -1,7 +1,7 @@
-import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, Pressable, ViewPropTypes} from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable, ViewPropTypes} from 'react-native';
 import React, { Component, useState } from 'react';
 import { Portal } from 'react-native-paper';
-
+import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../global/globalStyles';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,7 +12,7 @@ import {
   PFPrimaryButton, PFSecondaryButton,
   PFFlatList, 
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
-  PFCard, PFPostsCard,
+  PFCard, PFPostsCard, FriendListItem,
   PFSwitch
 } from '../../components';
 
@@ -26,6 +26,30 @@ export default function FollowingScreenPage({navigation}) {
 
   return (
     <View style={ globalStyles.socmed }>
+      {/* <View style={styles.flContainer}>
+        <PFText weight='light' style={{ color: 'black', marginLeft: 12 }}>Recent Snaps</PFText>
+          <StatusBar style="light"/>
+            <SafeAreaView style={{ height: 169 }}> */}
+              {/* 176 */}
+
+              {/* <FlatList 
+                horizontal={true} 
+                showsHorizontalScrollIndicator={false} 
+                contentContainerStyle={{ paddingRight: 12, paddingLeft: 2 }}
+                data={SampleData.myGarden}
+                renderItem={({item}) => (
+          
+              <FriendListItem 
+                style={{marginLeft: 10 }}
+                // imageURL={firebase.storage().refFromURL(item.imageURL)}
+                imageURL={item.imageURL}
+                description={item.commonName}
+                onPress={() => Alert.alert(item.plantFamilyName)}/>
+              )}
+              keyExtractor={(item,index) => index}
+              />
+            </SafeAreaView>
+      </View> */}
       <PFFlatList
           numColumns={1}
           noDataMessage='No Followers'
@@ -36,8 +60,7 @@ export default function FollowingScreenPage({navigation}) {
               userPhoto={item.userPhoto}
               name={item.name}
               description={item.description}
-              timeDate={item.timeDate}
-              onPress={() => Alert.alert(item.name)}/>
+              timeDate={item.timeDate}/>
           )}
           keyExtractor={(item,index) => index}
         />
@@ -49,7 +72,7 @@ export default function FollowingScreenPage({navigation}) {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={ require('../../assets/logo.png')}
+            source={ require('../../assets/img/profiles/Alejandre.jpg')}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.userImage}
@@ -77,7 +100,8 @@ export default function FollowingScreenPage({navigation}) {
 const styles = StyleSheet.create({
   userImage: {
     height: 40,
-    width: 40
+    width: 40,
+    borderRadius: 100
   },
   createpostIcon: {
     height: 30,

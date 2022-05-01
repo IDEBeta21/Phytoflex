@@ -47,9 +47,9 @@ export const PFPostsCard = ({
   style, 
   cardContentStyle) => (
   <View style={{...styles.cardPostContainer, ...style}}>
-    <Card style={{flex: 1}} onPress={() => onPress()}>
+    <Card style={{flex: 1}} onPress={() => navigation.navigate('PostPage')}>
       <Card.Cover 
-        source={{ uri: imageURL }} 
+        source={require('../../assets/img/socmed/sc1.png')} 
         style={{
           height: 300,
           width: (Dimensions.get('window').width) * 0.90,
@@ -73,8 +73,72 @@ export const PFPostsCard = ({
             <PFText weight='light'size = {10}>{timeDate}</PFText>
           </View>
           <View style={styles.followBtnContainer}>
-            <PFPrimaryButton title={'Follow'} onPress={() => navigation.navigate('CreatePostPage')}></PFPrimaryButton>
+            <PFPrimaryButton title={'+ Follow'} onPress={() => navigation.navigate('CreatePostPage')}></PFPrimaryButton>
           </View>        
+        </View>
+        <PFText style ={{padding:10}}>{description}</PFText>
+
+        {/* ReactionSection */}
+        <View style={styles.reactContainer}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
+              style={styles.reactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/socmedIcons/comments.png')}
+              style={styles.reactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={ require('../../assets/drawerIcons/socmedIcons/more_icon.png')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={styles.reactSize}
+            />
+          </TouchableOpacity>
+        </View>
+      </Card.Content>
+    </Card>
+  </View>
+);
+
+export const PFPostsNoImageCard = ({
+  name, description, timeDate, 
+  onPress = () => {}}, 
+  style, 
+  cardContentStyle) => (
+  <View style={{...styles.cardPostContainer, ...style}}>
+    <Card style={{flex: 1}} onPress={() => navigation.navigate('PostPage')}>
+      <Card.Content style={{...styles.cardPostContent1, ...cardContentStyle}}>
+        <View style= {{flexDirection:'row'}}>
+          <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 10
+            }}
+          />
+          <View style={{flexDirection:'column', flexShrink:1}}>
+            <PFText weight='semi-bold' size = {14}>{name}</PFText>
+            <PFText weight='light'size = {10}>{timeDate}</PFText>
+          </View>       
         </View>
         <PFText style ={{padding:10}}>{description}</PFText>
 
@@ -528,8 +592,14 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     borderWidth: 1, 
     borderColor: Colors.primary, 
-    borderBottomLeftRadius: 20, 
+    borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20
+  },
+  cardPostContent1: {
+    paddingTop: 15,
+    borderWidth: 1, 
+    borderColor: Colors.primary, 
+    borderRadius: 20
   },
   //Social Media---------------------------
   cardShopContainer: {

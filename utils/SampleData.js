@@ -63,6 +63,41 @@ export default SampleData = {
         }
     ],
 
+    cardPostNoImageData: [
+        {
+            imageURL: 'https://picsum.photos/700',
+            userPhoto: 'https://picsum.photos/80',
+            name: 'Phytoflex',
+            description: 'Welcome to Phytoflex!',
+            timeDate: '03/30/22 12:00 PM',
+            active: 'Bloom'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            userPhoto: 'https://picsum.photos/80',
+            name: 'Phytoflex',
+            description: 'Flex you plants by posting your favorite plant photos ~',
+            timeDate: '03/30/22 12:00 PM',
+            active: 'Bloom'
+        },
+        {
+            imageURL: 'https://picsum.photos/700',
+            userPhoto: 'https://picsum.photos/80',
+            name: 'Phytoflex',
+            description: 'Take a look at our shop, for your best finds! Buy plants, Shop now!',
+            timeDate: '03/30/22 12:00 PM',
+            active: 'Bloom'
+        }
+    ],
+
+    createPostDetails: [
+        {
+            userPhot: 'assets/img/profiles/Alejandre.jpg',
+            name: '@leyy',
+            filter: 'Public',
+            decription: 'Write something...'
+        }
+    ],
 
     itemList: [
         {

@@ -1,7 +1,7 @@
-import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, Pressable, ViewPropTypes} from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable, ViewPropTypes} from 'react-native';
 import React, { Component, useState } from 'react';
 import { Portal } from 'react-native-paper';
-
+import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../global/globalStyles';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,7 +12,7 @@ import {
   PFPrimaryButton, PFSecondaryButton,
   PFFlatList, 
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
-  PFCard,PFPostsCard, 
+  PFCard, PFPostsCard, PFPostsNoImageCard,
   PFSwitch
 } from '../../components';
 
@@ -22,25 +22,22 @@ import SampleData from '../../utils/SampleData';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function AllScreenPage({navigation}) {
+export default function FollowingScreenPage({navigation}) {
 
   return (
     <View style={ globalStyles.socmed }>
       <PFFlatList
           numColumns={1}
           noDataMessage='No Followers'
-          data={SampleData.cardPostData}
+          data={SampleData.cardPostNoImageData}
           renderItem={(item) => (
-            <PFPostsCard 
-              imageURL={item.imageURL}
-              userPhoto={item.userPhoto}
+            <PFPostsNoImageCard 
               name={item.name}
               description={item.description}
-              timeDate={item.timeDate}
-              onPress={() => Alert.alert(item.name)}/>
+              timeDate={item.timeDate}/>
           )}
           keyExtractor={(item,index) => index}
-        />
+      />
       <View style={styles.createpost}>
         <TouchableOpacity
           activeOpacity={0.7}
@@ -49,7 +46,7 @@ export default function AllScreenPage({navigation}) {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={ require('../../assets/logo.png')}
+            source={ require('../../assets/img/profiles/Alejandre.jpg')}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.userImage}
@@ -58,7 +55,7 @@ export default function AllScreenPage({navigation}) {
         <PFText weight='semi-bold' size={15} style={styles.textFormat}>Leila Jane Alejandre</PFText>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => navigation.navigate('')}
+          onPress={() => navigation.navigate('CreatePostPage')}
         >
           <Image
             // FAB using TouchableOpacity with an image
@@ -77,7 +74,8 @@ export default function AllScreenPage({navigation}) {
 const styles = StyleSheet.create({
   userImage: {
     height: 40,
-    width: 40
+    width: 40,
+    borderRadius: 100
   },
   createpostIcon: {
     height: 30,
