@@ -43,8 +43,10 @@ export default function CreatePostPage({navigation}) {
       </View>
 
       <PFText size={15} style={{marginLeft: 25, marginTop: 20, marginBottom: 180}}>Write something...</PFText>
-      <PFText size={15} style={{marginLeft: 25, marginTop: 20, marginBottom: 5}}>____________________________</PFText>
-      <PFText size={15} style={{marginLeft: 25, marginBottom: 5}}>//will replace this line</PFText>
+      <View>
+        <View style={styles.hr} />
+          {/* <Text style={styles.or}>or</Text> */}
+      </View>
       
       <View style={ styles.container1 }>
         <TouchableOpacity
@@ -121,5 +123,22 @@ const styles = StyleSheet.create({
     width: 30,
     marginLeft: 5,
     borderRadius: 100
+  },
+  hr: {
+    position: 'relative',
+    top: 0,
+    borderBottomColor: '#1D4123',
+    borderBottomWidth: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    marginBottom: 10,
+    marginTop: 10
+  },
+  or: {
+    width: 30,
+    fontSize: 14,
+    textAlign: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#FFFFFF',
   }
 })
