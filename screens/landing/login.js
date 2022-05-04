@@ -22,11 +22,8 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
     const [userEmail, setuserEmail] = useState('');
     const [userPass, setUserPass] = useState('');
 
-    let userId = ''
 
-
-
-    
+    window.userEmail = userEmail
     function logInClick() {
         const auth = firebase.auth();
         firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
@@ -40,8 +37,6 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                     console.log(doc.id, '=>', doc.data());
                     window.userId = doc.id
                   })
-               
-                 
                 })
                   
              

@@ -24,7 +24,7 @@ export default function ShopHomePage({navigation})  {
   const [refnull, setrefnull] = useState(true);
 
   
-
+  let userId = window.userId
 
 
     const getData = async() => {

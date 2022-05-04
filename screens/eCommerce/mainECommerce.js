@@ -9,9 +9,15 @@ import ShopNotifBellPage from './ShopNotifBell';
 import ShopCratePage from './ShopCrate';
 import Header from '../global/Header';
 import ProductPage from "./Product";
-
+import SamplePage from './Sample';
+import CheckoutPage from './Checkout';
 // Functions for calling the screens
 
+function FuncCheckoutPage({route, navigation}) {
+  return (
+    <CheckoutPage navigation={navigation} route = {route}/>
+  );
+}
 
 function FuncProductPage({route, navigation}) {
   return (
@@ -33,6 +39,11 @@ function FuncShopCrate({route, navigation}) {
 function FuncShopNotifBell({navigation}) {
   return (
     <ShopNotifBellPage navigation={navigation}/>
+  );
+}
+function FuncSamplePage({navigation}) {
+  return (
+    <SamplePage navigation={navigation}/>
   );
 }
 
@@ -85,6 +96,31 @@ function App({navigation}) {
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Product'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
+        <Stack.Screen
+          name="SamplePage"
+          component={FuncSamplePage}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Sample'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+         <Stack.Screen
+          name="CheckoutPage"
+          component={FuncCheckoutPage}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Checkout Details'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },

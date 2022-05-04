@@ -349,9 +349,13 @@ export const PFCardProduct = ({imageURL, onPress = () =>{}}, style) => {
   )
 };
 
-export const PFCardShopCartItems = ({imageURL, itemName, price,  onPress = () => {}}, style, 
+
+export const PFCardShopCartItems = ({imageURL, itemName, price, onAdd, onSubtract,  onPress = () => {}}, style, 
 cardContentStyle) => {
 
+ 
+  
+  
   const [isSelected, setSelection] = useState(false);
 
    //IncrementDecrement
@@ -362,7 +366,10 @@ cardContentStyle) => {
    if(counter<=0) {
      decrementCounter = () => setCounter(1);
    }
- 
+
+   
+
+  
 
   const [image, setimage] = useState(null)
 
@@ -381,7 +388,9 @@ cardContentStyle) => {
           value={isSelected}
           onValueChange={setSelection}
           style={styles.checkbox}
+          
         />
+          
         </View>
       <Image 
         source={{ uri: image}}
@@ -424,19 +433,23 @@ cardContentStyle) => {
           </View>
         
           
-          <TouchableOpacity onPress={() => incrementCounter()}>
+          <TouchableOpacity onPress={onAdd}>
              <View style={{...styles.buttonDesign, alignItems:'center'}}>
             <PFText weight='semi-bold' size = {15}>+</PFText>
             </View>
           </TouchableOpacity>
           <View style={{...styles.cartPriceArea}}>
-          <PFText color={Colors.secondary} weight='semi-bold'>P {price}</PFText>
+          <PFText color={Colors.secondary} weight='semi-bold'>P{price}</PFText>
+          <PFText color={Colors.secondary}>{global.getPrice = isSelected ? price : ""}</PFText>
           </View>
           </View>
       </Card.Content>     
        </View>         
     </Card>
+   
+  
   </View>
+  
   )
 }
 
@@ -546,6 +559,32 @@ export const PFCardForumPost = ({
     </Card>
   </View>
 );
+
+export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
+  const [image, setimage] = useState(null)
+
+  firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+    setimage(url);
+  })
+
+  return(
+    <Image 
+    source={{ uri: image}}
+    style={{
+      marginTop: 8,
+      height: 63,
+      width: (Dimensions.get('window').width/1) * 0.15,
+      borderRadius: 8
+    }}
+  />
+
+
+  )
+};
+
+
+
+
 
 const styles = StyleSheet.create({
   // Social Media----------------------------
@@ -669,7 +708,8 @@ const styles = StyleSheet.create({
     height:95,
     borderWidth: 1,
     borderColor: "#1D4123",
-    borderRadius: 3
+    borderRadius: 3,
+    
     
   },
 

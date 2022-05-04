@@ -84,6 +84,7 @@ const noDataStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 20,
+       
     },
     imgContainer:{
         width: 300,
