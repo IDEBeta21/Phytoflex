@@ -92,11 +92,56 @@ export default SampleData = {
 
     createPostDetails: [
         {
-            userPhot: 'assets/img/profiles/Alejandre.jpg',
+            userPhoto: 'assets/img/profiles/Alejandre.jpg',
             name: '@leyy',
             filter: 'Public',
             decription: 'Write something...'
         }
+    ],
+
+    commentDetails: [
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'Jocelyn Vega',
+            comment: 'Love that plant.',
+            reactionNum: '1',
+            replyNum: '',
+            time: '10m'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'Lorgie Ann Talosig',
+            comment: 'Nice.',
+            reactionNum: '1',
+            time: '10m'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'Ian Deladia',
+            comment: 'Nice (1).',
+            reactionNum: '1',
+            replyNum: '',
+            time: '10m'
+        }
+    ],
+
+    followFriend: [
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'Follow a friend'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'Jocelyn Vega'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'Jocelyn Vega'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'Jocelyn Vega'
+        },
     ],
 
     itemList: [

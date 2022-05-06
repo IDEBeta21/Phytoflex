@@ -27,80 +27,99 @@ export default function UserProfilePage({navigation}) {
 
   return (
     
-    <View>
-      <View style={styles.container}>
-        <Image
-          // FAB using TouchableOpacity with an image
-          // For online image
-          source={ require('../../assets/img/profiles/Alejandre.jpg')}
-          // For local image
-          //source={require('./images/float-add-icon.png')}
-          style={styles.userPhoto}
-        />
-        <View styles={{flexDirection: 'column', marginLeft: 10}}>
-          <View style={{width: 250}}>
-            <PFText weight='semi-bold' size={20} style={{marginLeft: 10, paddingRight: 10, paddingLeft: 10, paddingTop: 0, paddingBottom: 0}}>Leila Jane L. Alejandre</PFText>
-          </View>
-          <PFText size={13} style={{marginLeft: 10, paddingLeft: 10, }}>@leyy</PFText>
-          {/* <PFFollowedButton title={'Following'} onPress={() => navigation.navigate('')}></PFFollowedButton> */}
-          <TouchableOpacity onPress={() => gotoHome()}>
-            <View style={styles.guestButtonArea}>
-              <Text style={{ color: '#639d04', fontSize: 12, fontFamily: 'poppins-regular'}}>Following</Text>
+    <View style={styles.mainContainer}>
+      <ScrollView>
+        <View style={styles.container}>
+          <Image
+            // FAB using TouchableOpacity with an image
+            // For online image
+            source={ require('../../assets/img/profiles/Alejandre.jpg')}
+            // For local image
+            //source={require('./images/float-add-icon.png')}
+            style={styles.userPhoto}
+          />
+          <View styles={{flexDirection: 'column', marginLeft: 10}}>
+            <View style={{width: 250}}>
+              <PFText weight='semi-bold' size={20} style={{marginLeft: 10, paddingRight: 10, paddingLeft: 10, paddingTop: 0, paddingBottom: 0}}>Leila Jane L. Alejandre</PFText>
             </View>
-          </TouchableOpacity>
+            <PFText size={13} style={{marginLeft: 10, paddingLeft: 10, }}>@leyy</PFText>
+            {/* <PFFollowedButton title={'Following'} onPress={() => navigation.navigate('')}></PFFollowedButton> */}
+            <TouchableOpacity onPress={() => gotoHome()}>
+              <View style={styles.guestButtonArea}>
+                <Text style={{ color: '#639d04', fontSize: 12, fontFamily: 'poppins-regular'}}>Following</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-
-      <View style={{flexDirection: 'row', backgroundColor: '#1d4123', borderTopLeftRadius: 20, borderTopRightRadius: 20}}>
-        <View style={styles.container2}>
-          <Text style={styles.txt}>150</Text>
-          <Text style={styles.txt1}>Followers</Text>
+        
+        <View style={styles.followCon}>
+          <View style={styles.container2}>
+            <Text style={styles.txt}>150</Text>
+            <Text style={styles.txt1}>Followers</Text>
+          </View>
+          <View style={styles.container3}>
+            <Text style={styles.txt}>200</Text>
+            <Text style={styles.txt1}>Following</Text>
+          </View>
         </View>
-        <View style={styles.container3}>
-          <Text style={styles.txt}>200</Text>
-          <Text style={styles.txt1}>Following</Text>
+
+        <View>
+          <View style={styles.hr} />
         </View>
-      </View>
 
-      <View>
-        <View style={styles.hr} />
-      </View>
-
-      <View style={styles.txtStyles}>
+        <View style={styles.txtStyles}>
+          <Image
+            // FAB using TouchableOpacity with an image
+            // For online image
+            source={ require('../../assets/logo.png')}
+            // For local image
+            //source={require('./images/float-add-icon.png')}
+            style={styles.userPhoto1}
+          />
           <Text style={styles.txt3}>Joined Phytoflex since July 2021</Text>
-      </View>
+        </View>
 
-      <View>
-        <View style={styles.hr1} />
-      </View>
+        <View>
+          <View style={styles.hr1} />
+        </View>
 
-      <View>
-        <PFFlatList
-          numColumns={1}
-          noDataMessage='No Followers'
-          data={SampleData.cardPostData}
-          renderItem={(item) => (
-            <PFPostsCard 
-              imageURL={item.imageURL}
-              userPhoto={item.userPhoto}
-              name={item.name}
-              description={item.description}
-              timeDate={item.timeDate}/>
-          )}
-          keyExtractor={(item,index) => index}
-        />
-      </View>
+        <View style={styles.mainPostContainer}>
+          <PFFlatList
+            numColumns={1}
+            noDataMessage='No Followers'
+            data={SampleData.cardPostData}
+            renderItem={(item) => (
+              <PFPostsCard 
+                imageURL={item.imageURL}
+                userPhoto={item.userPhoto}
+                name={item.name}
+                description={item.description}
+                timeDate={item.timeDate}
+                onPress={() => navigation.navigate('PostPage')}/>
+            )}
+            keyExtractor={(item,index) => index}
+          />
+        </View>
+      </ScrollView>
     </View>
-
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    height: 570,
-    borderWidth: 1,
-    borderRadius: 15,
-    margin: 15
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start'
+  },
+  mainPostContainer: {
+    // margin: 5,
+    paddingTop: 10,
+    paddingLeft: 20,
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
   userPhoto: {
     height: 90,
@@ -108,10 +127,15 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginTop: 15
   },
+  userPhoto1: {
+    height: 30,
+    width: 30,
+    borderRadius: 100
+  },
   container: {
     flexDirection:'row',
     padding: 20,
-    paddingLeft: 50,
+    marginLeft: 20,
   },
   hr: {
     position: 'relative',
@@ -158,14 +182,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
-    paddingLeft: 85
+    marginLeft: 50,
+    marginRight: 30,
+
   },
   container3: {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
-    paddingLeft: 60
+    marginRight: 50,
+    marginLeft: 30,
   },
   txt: {
     fontFamily: 'poppins-regular',
@@ -186,14 +213,23 @@ const styles = StyleSheet.create({
     padding: 10
   },
   txtStyles: {
-    padding: 10,
-    paddingLeft: 40
+    padding: 3,
+    paddingLeft: 20,
+    height: 30,
+    flexDirection: 'row',
+    margin: 10
   },
   txt3: {
     fontFamily: 'poppins-regular',
     color: Colors.primary,
     fontSize: 13,
-    padding: 0,
-    margin: 0
+    marginLeft: 10,
+    marginTop: 5,
+  },
+  followCon: {
+    flexDirection: 'row', 
+    backgroundColor: '#1d4123', 
+    paddingLeft: 30, 
+    paddingRight: 30
   }
 })

@@ -10,7 +10,7 @@ import {
   PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
   PFModalLogin , PFModalAlert, PFModalPrompt, 
   PFPrimaryButton, PFSecondaryButton,
-  PFFlatList, 
+  PFFlatList, PFFriendCard,
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
   PFCard, PFPostsCard, FriendListItem,
   PFSwitch
@@ -26,73 +26,72 @@ export default function FollowingScreenPage({navigation}) {
 
   return (
     <View style={ globalStyles.socmed }>
-      {/* <View style={styles.flContainer}>
-        <PFText weight='light' style={{ color: 'black', marginLeft: 12 }}>Recent Snaps</PFText>
-          <StatusBar style="light"/>
-            <SafeAreaView style={{ height: 169 }}> */}
-              {/* 176 */}
-
-              {/* <FlatList 
-                horizontal={true} 
-                showsHorizontalScrollIndicator={false} 
-                contentContainerStyle={{ paddingRight: 12, paddingLeft: 2 }}
-                data={SampleData.myGarden}
-                renderItem={({item}) => (
-          
-              <FriendListItem 
-                style={{marginLeft: 10 }}
-                // imageURL={firebase.storage().refFromURL(item.imageURL)}
-                imageURL={item.imageURL}
-                description={item.commonName}
-                onPress={() => Alert.alert(item.plantFamilyName)}/>
+      <ScrollView>
+        <View>
+          <ScrollView horizontal = {true}>
+            <PFFlatList
+              numColumns={5}
+              noDataMessage='Loading...'
+              data={SampleData.followFriend}
+              renderItem={(item) => (
+                <PFFriendCard
+                  userPhoto={item.userPhoto}
+                  name={item.name}
+                  onPress={() => {navigation.navigate()
+                  }}
+                />
               )}
               keyExtractor={(item,index) => index}
-              />
-            </SafeAreaView>
-      </View> */}
-      <PFFlatList
-          numColumns={1}
-          noDataMessage='No Followers'
-          data={SampleData.cardPostData}
-          renderItem={(item) => (
-            <PFPostsCard 
-              imageURL={item.imageURL}
-              userPhoto={item.userPhoto}
-              name={item.name}
-              description={item.description}
-              timeDate={item.timeDate}/>
-          )}
-          keyExtractor={(item,index) => index}
-        />
+            />
+          </ScrollView>
+        </View>  
+        <View>
+          <PFFlatList
+            numColumns={1}
+            noDataMessage='No Followers'
+            data={SampleData.cardPostData}
+            renderItem={(item) => (
+              <PFPostsCard 
+                imageURL={item.imageURL}
+                userPhoto={item.userPhoto}
+                name={item.name}
+                description={item.description}
+                timeDate={item.timeDate}
+                onPress={() => navigation.navigate('PostPage')}/>
+            )}
+            keyExtractor={(item,index) => index}
+          />
+        </View>      
+      </ScrollView>
       <View style={styles.createpost}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => navigation.navigate('')}
-        >
-          <Image
-            // FAB using TouchableOpacity with an image
-            // For online image
-            source={ require('../../assets/img/profiles/Alejandre.jpg')}
-            // For local image
-            //source={require('./images/float-add-icon.png')}
-            style={styles.userImage}
-          />
-        </TouchableOpacity>
-        <PFText weight='semi-bold' size={15} style={styles.textFormat}>Leila Jane Alejandre</PFText>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => navigation.navigate('CreatePostPage')}
-        >
-          <Image
-            // FAB using TouchableOpacity with an image
-            // For online image
-            source={ require('../../assets/drawerIcons/socmedIcons/add_post.png')}
-            // For local image
-            //source={require('./images/float-add-icon.png')}
-            style={styles.createpostIcon}
-          />
-        </TouchableOpacity>
-      </View>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('UserProfilePage')}
+            >
+              <Image
+                // FAB using TouchableOpacity with an image
+                // For online image
+                source={ require('../../assets/img/profiles/Alejandre.jpg')}
+                // For local image
+                //source={require('./images/float-add-icon.png')}
+                style={styles.userImage}
+              />
+            </TouchableOpacity>
+            <PFText weight='semi-bold' size={15} style={styles.textFormat}>Leila Jane Alejandre</PFText>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('CreatePostPage')}
+            >
+              <Image
+                // FAB using TouchableOpacity with an image
+                // For online image
+                source={ require('../../assets/drawerIcons/socmedIcons/add_post.png')}
+                // For local image
+                //source={require('./images/float-add-icon.png')}
+                style={styles.createpostIcon}
+              />
+            </TouchableOpacity>
+          </View>
     </View>
   );
 }

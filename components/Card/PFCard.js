@@ -1,7 +1,7 @@
 import React, {Component, useState, useEffect} from 'react';
 import { Dimensions, Pressable, TouchableOpacity, CheckBox, Alert, Text} from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TextInput } from 'react-native';
 import { PFText } from '../PFText';
 import Colors from '../../utils/globalColors';
 import StarRating from 'react-native-star-rating-widget';
@@ -40,14 +40,11 @@ export const PFCard = ({
   </View>
 );
 
-export const PFPostsCard = ({
-  userPhoto, imageURL, 
-  name, description, timeDate, 
-  onPress = () => {}}, 
-  style, 
+export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate, onPress = () => {}}, 
+  style,
   cardContentStyle) => (
   <View style={{...styles.cardPostContainer, ...style}}>
-    <Card style={{flex: 1}} onPress={() => navigation.navigate('PostPage')}>
+    <Card style={{flex: 1}} onPress={() => onPress()}>
       <Card.Cover 
         source={require('../../assets/img/socmed/sc1.png')} 
         style={{
@@ -73,7 +70,7 @@ export const PFPostsCard = ({
             <PFText weight='light'size = {10}>{timeDate}</PFText>
           </View>
           <View style={styles.followBtnContainer}>
-            <PFPrimaryButton title={'+ Follow'} onPress={() => navigation.navigate('CreatePostPage')}></PFPrimaryButton>
+            <PFPrimaryButton title={'+ Follow'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
           </View>        
         </View>
         <PFText style ={{padding:10}}>{description}</PFText>
@@ -91,7 +88,7 @@ export const PFPostsCard = ({
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate('')}
+            onPress={() => navigation.navigate('CommentPage')}
           >
             <Image
               source={ require('../../assets/drawerIcons/socmedIcons/comments.png')}
@@ -179,6 +176,73 @@ export const PFPostsNoImageCard = ({
       </Card.Content>
     </Card>
   </View>
+);
+
+export const PFCommentCard = ({
+  userPhoto, name, comment, reactionNum, replyNum, time,
+  onPress = () => {}}, 
+  style, 
+  cardContentStyle) => (
+    <View style={styles.commentSection}>
+    <View style={ styles.container }>
+      <Image
+        // FAB using TouchableOpacity with an image
+        // For online image
+        source={{ uri: userPhoto }}
+        // For local image
+        //source={require('./images/float-add-icon.png')}
+        style={styles.userPhoto1}
+      />
+      <View styles={{flexDirection: 'column'}}>
+      <View style={ styles.container }>
+      <PFText weight='semi-bold' size={13}>{name}</PFText>
+          <PFText weight='semi-bold' size={10} style={{marginLeft: 8, marginTop: 3}}>•</PFText>
+          <PFText size={10} style={{marginLeft: 8, marginTop: 3}}>{time}</PFText>
+        </View>
+        <View style={ styles.container }>
+          <TextInput style={styles.commentTxtBox} editable={false}>{comment}</TextInput>
+            <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 10}}>
+              <Image
+                // FAB using TouchableOpacity with an image
+                // For online image
+                source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
+                // For local image
+                //source={require('./images/float-add-icon.png')}
+                style={styles.commentReactSize}
+              />
+            </View>
+        </View>
+        <View style={ styles.container }>
+          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+        </View>
+      </View>
+    </View>
+  </View>
+);
+
+export const PFFriendCard = ({
+  userPhoto, name,
+  onPress = () => {}}, 
+  style, 
+  cardContentStyle) => (
+    <View style={{height: 150, marginTop: 10, width: 110}}>
+      <View style={ styles.conFollow }>
+        <Image
+          // FAB using TouchableOpacity with an image
+          // For online image
+          source={{uri: userPhoto}}
+          // For local image
+          //source={require('./images/float-add-icon.png')}
+          style={{height: 40, width: 40, borderRadius: 100}}
+        />
+        <PFText size={12} weight={'semi-bold'} style={{textAlign: 'center', textAlignVertical: 'center', paddingTop: 5}}>{name}</PFText>
+        <TouchableOpacity onPress={() => gotoHome()}>
+          <View style={styles.guestButtonArea}>
+            <Text style={{ color: '#1d4123', fontSize: 10, fontFamily: 'poppins-regular'}}>Following</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
 );
 
 export const PFCardShop = ({imageURL, category, itemName, price, quantity, sold, onPress = () => {}}, 
@@ -640,6 +704,86 @@ const styles = StyleSheet.create({
     borderColor: Colors.primary, 
     borderRadius: 20
   },
+  mainContainer: {
+    margin: 5,
+    paddingTop: 10,
+    paddingLeft: 20
+  },
+  userPhoto: {
+    height: 40,
+    width: 40,
+    borderRadius: 100
+  },
+  userPhoto1: {
+    height: 35,
+    width: 35,
+    borderRadius: 100,
+    marginRight: 10
+  },
+  container: {
+    flexDirection:'row'
+  },
+  reactContainer: {
+    flexDirection: 'row', 
+    borderWidth: 1, 
+    borderRadius: 30, 
+    alignItems: 'center', 
+    padding: 5,
+    paddingLeft: 20,
+    marginTop: 10
+  },
+  reactSize: {
+    height: 30,
+    width: (Dimensions.get('window').width) * 0.10,
+    marginRight: 30,
+    marginLeft: 20
+  },
+  commentReactSize: {
+    height: 20,
+    width: 20,
+    margin: 4
+  },
+  commentSection: {
+    marginTop: 10
+  },
+  commentTxtBox: {
+    backgroundColor: '#d3d3d3',
+    borderRadius: 10,
+    width: 230,
+    height: 40,
+    fontFamily: 'poppins-light',
+    color: '#1D4123',
+    fontSize: 13,
+    padding: 10
+  },
+  conFollow: {
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    flex: 1,
+    marginRight: 10
+  },
+  guestButtonArea: {
+    height: 25,
+    width: 80,
+    borderRadius: 100,
+    
+    alignItems: 'center', 
+    justifyContent: 'center',
+    
+    shadowColor: "black",
+    shadowOffset: {
+        width: 0,
+        height: 3,
+    },
+    borderWidth: 1,
+    borderColor: '#1d4123',
+    fontFamily: 'poppins-regular',
+    marginTop: 8
+  },
   //Social Media---------------------------
   cardShopContainer: {
     
@@ -751,7 +895,7 @@ const styles = StyleSheet.create({
     borderColor: "#639D04",
     borderRadius: 10,
     backgroundColor: '#D8F9C9',
-    marginStart: 50
+    marginStart: 30
 
 
   },

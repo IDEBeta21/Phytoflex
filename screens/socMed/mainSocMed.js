@@ -3,13 +3,15 @@ import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import UserProfilePage from './UserProf/UserProfile';
+// import UserProfilePage from './UserProf/UserProfile';
 
 import SocialMediaHomePage from "./SocialMediaHome";
 import InboxZonePage from './SocMedInboxZone';
 import SocMedSearchPage from './SocMedSearch';
 import CreatePostPage from './CreatePostPage';
 import PostPage from './PostPage';
+import UserProfilePage from './UserProfile';
+import CommentPage from './CommentPage';
 
 
 import Header from '../global/Header';
@@ -31,11 +33,6 @@ function funcSocMedSearch({navigation}) {
     <SocMedSearchPage navigation={navigation}/>
   );
 }
-function FuncUserProfile({navigation}) {
-  return (
-    <UserProfilePage navigation={navigation}/>
-  );
-}
 function FuncCreatePost({navigation}) {
   return (
     <CreatePostPage navigation={navigation}/>
@@ -44,6 +41,16 @@ function FuncCreatePost({navigation}) {
 function FuncPost({navigation}) {
   return (
     <PostPage navigation={navigation}/>
+  );
+}
+function FuncUserProfile({navigation}) {
+  return (
+    <UserProfilePage navigation={navigation}/>
+  );
+}
+function FuncComments({navigation}) {
+  return (
+    <CommentPage navigation={navigation}/>
   );
 }
 
@@ -93,17 +100,6 @@ function App({navigation}) {
           }}
         />
         <Stack.Screen
-          name="UserProfile"
-          component={FuncUserProfile}
-          options={{ 
-            headerTitle: (props) => <Header title={'User Profile'} navigation={navigation} />, 
-            headerStyle: {
-              backgroundColor: '#1D4123'
-            },
-            headerTintColor: 'white'
-          }}
-        />
-        <Stack.Screen
           name="CreatePostPage"
           component={FuncCreatePost}
           options={{ 
@@ -119,6 +115,28 @@ function App({navigation}) {
           component={FuncPost}
           options={{ 
             headerTitle: (props) => <Header title={'Post'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+        <Stack.Screen
+          name="UserProfilePage"
+          component={FuncUserProfile}
+          options={{ 
+            headerTitle: (props) => <Header title={''} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+        <Stack.Screen
+          name="CommentPage"
+          component={FuncComments}
+          options={{ 
+            headerTitle: (props) => <Header title={'Comments'} navigation={navigation} />, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },

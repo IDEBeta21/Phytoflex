@@ -41,7 +41,7 @@ export default function FollowingScreenPage({navigation}) {
       <View style={styles.createpost}>
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => navigation.navigate('')}
+          onPress={() => navigation.navigate('UserProfilePage')}
         >
           <Image
             // FAB using TouchableOpacity with an image
