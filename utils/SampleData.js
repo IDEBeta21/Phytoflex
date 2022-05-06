@@ -24,6 +24,12 @@ export default SampleData = {
         
     ],
 
+    myImages: [
+        'http://placeimg.com/640/480/any',
+        'http://placeimg.com/640/480/any',
+        'http://placeimg.com/640/480/any'
+      ],
+
     cardData: [
         {
             imageURL: 'https://picsum.photos/700',
@@ -321,6 +327,44 @@ export default SampleData = {
             imageURL: 'https://picsum.photos/700',
             title: 'Alteration of normal appearance',
             description: 'mosaic patterns of light and dark green on leaves, and altered coloration in leaves and flowers.',
+
+        },
+
+    ],
+
+    myTips: [
+        {
+            imageURL: 'https://plantinfo.co.za/wp-content/uploads/2020/07/1376232097_time-to-plant.jpg',
+            title: 'When To Plant And Transplant',
+            description: 'Plants grown in containers can be planted out into the garden at any time of the year. This is possible because the root-ball of the plant remains undisturbed when it is planted into the soil.',
+            
+        },
+
+        {
+            imageURL: 'https://plantinfo.co.za/wp-content/uploads/2020/07/1376238029_improving-your-soil2.jpg',
+            title: 'Improving Your Soil',
+            description: 'When cultivating the soil, it is essential to improve its texture and quality on an ongoing basis. Organic matter acts as a soil conditioner, improving the structure, drainage and aeration characteristics of the soil.',
+
+        },
+
+        {
+            imageURL: 'https://portlandnursery.com/plants/images/rose/rose-problems/aphids750.jpg',
+            title: 'Home – Made Pest Control Remedies',
+            description: 'Gardeners who prefer a totally natural approach can opt for home–made, natural remedies to cover a variety of insect and plant-related problems. Unless indicated otherwise, use as a full cover spray and apply once a week for as long as the problem persists.',
+
+        },
+
+        {
+            imageURL: 'https://plantinfo.co.za/wp-content/uploads/2020/07/Containerized-Hydrangea4.jpg',
+            title: 'When and how you should water containers, pots and containerised plants',
+            description: 'How often to water containers depends on the plants you grow in them, it’s important to group plants with the same watering requirements together ',
+
+        },
+
+        {
+            imageURL: 'https://plantinfo.co.za/wp-content/uploads/2020/07/1438161443_bonsai-tree-care.jpg',
+            title: 'Caring Tips For A Bonsai Tree',
+            description: 'It is a big misconception to many people with regards to bonsai care that it is such a difficult thing to do. The way I like to explain it is like this – we all deal with different people on a daily basis.',
 
         },
 

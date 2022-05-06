@@ -1,10 +1,11 @@
 import { Button, StyleSheet, Text, View, Image, Pressable, TextInput} from 'react-native';
 import React, { Component } from 'react';
 import{ useState } from 'react';
+import { IconButton, Colors } from 'react-native-paper';
+
 // import * as React from 'react';
 
-
-export default function Header({ title, navigation, boolHome, screenDescription }) {
+export default function Header({ title, navigation, boolHome, boolClose, boolBack, screenDescription }) {
   
   const [text, setText] = useState(""); //for resetting text field/text input
   return (
@@ -12,14 +13,35 @@ export default function Header({ title, navigation, boolHome, screenDescription 
       
       {/* Test if the displayed screen is a home screen */}
       {boolHome ? 
-        <Pressable onPress={() => navigation.toggleDrawer()}>
+        <Pressable 
+        onPress={() => navigation.toggleDrawer()}>
           <Image
             style={{height: 25, width: 25, marginEnd: 32, marginStart: 4 }}
             source={require('../../assets/drawerIcons/menu.png')}
           />
         </Pressable> : null
       }
-        
+
+      {boolClose ?
+        <Pressable 
+            onPress={() => navigation.navigate('PlantCareHome')}>
+            <Image
+              style={{height: 25, width: 25, marginEnd: 32, marginStart: 4 }}
+              source={require('../../assets/img/plantcare/icn_window-close.png')}
+            />
+        </Pressable> : null
+      }
+
+      {boolBack ?
+        <Pressable 
+            onPress={() => navigation.navigate('PlantCareHome')}>
+            <Image
+              style={{height: 25, width: 25, marginEnd: 32, marginStart: 4 }}
+              source={require('../../assets/img/plantcare/icn_arrow-left.png')}
+            />
+        </Pressable> : null
+      }
+   
       {/* <Button title='lll' onPress={() => navigation.toggleDrawer()}/> */}
       <Text style={style.headerTitle}>{title}</Text>
 
@@ -184,6 +206,66 @@ export default function Header({ title, navigation, boolHome, screenDescription 
           </Pressable>
         </View> : null
       }
+
+      {/* Top right corner icons */}
+      {title == 'Edit' && boolClose? /* rendering icons for plant care edit header */
+        <View style={style.headerIconContainer}>
+          <Pressable>
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('PlantCarePlantCareTips')} >
+            <Image
+              style={style.plantCareHeaderIcons}
+              source={require('../../assets/img/plantcare/icn_pencil-outline.png')}
+              resizeMode='contain'
+            />
+            
+          </Pressable>
+        </View> : null
+      }
+
+      {/* Top right corner icons */}
+      {title == 'Add plant care' && boolClose? /* rendering icons for plant care done header */
+        <View style={style.headerIconContainer}>
+          <Pressable>
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('PlantCarePlantCareTips')}>
+          <Text style={{ color: '#ffffff', fontFamily: 'poppins-semiBold', fontSize: 15, marginLeft: 14 }}>Done</Text>
+          </Pressable>
+        </View> : null
+      }
+
+      {/* Top right corner icons */}
+      {title == 'Plant name' && boolClose? /* rendering icons for plant care save header */
+        <View style={style.headerIconContainer}>
+          <Pressable>
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('PlantCarePlantCareTips')}>
+            <Text style={{ color: '#ffffff', fontFamily: 'poppins-semiBold', fontSize: 15, marginLeft: 14 }}>Save</Text>
+          </Pressable>
+        </View> : null
+      }
+
+      {/* Top right corner icons */}
+      {title == 'Album name' && boolBack? /* rendering icons for plant care album header */
+        <View style={style.headerIconContainer}>
+          <Pressable>
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('PlantCarePlantCareTips')} >
+            <Image
+              style={style.plantCareHeaderIcons}
+              source={require('../../assets/img/plantcare/icn_pencil-outline.png')}
+              resizeMode='contain'
+            />
+            
+          </Pressable>
+        </View> : null
+      }
+
+
 
     </View>
   );

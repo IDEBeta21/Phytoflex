@@ -1,9 +1,13 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable} from 'react-native';
 import React, { Component, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Portal, Divider } from 'react-native-paper';
+
 import { globalStyles } from '../global/globalStyles';
 import { useNavigation } from '@react-navigation/native';
+
+
+// For testing langs. Delete din later
+import { FAB, Portal, Provider, Title, } from 'react-native-paper';
 
 import firebase from 'firebase';
 
@@ -16,7 +20,6 @@ import {
   AccountListItem, PlantListItem, MyGardenItem, RecentSnapsItem,
   PFCard
 } from '../../components';
-import PlantCarePlantInfo from './plantCarePlantInfo';
 
 
 import Colors from '../../utils/globalColors';
@@ -52,6 +55,7 @@ export default function PlantCareHomePage({navigation}) {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
+        {/* Search box */}
         <View style={styles.searchBoxContainer}>
           <Image
             style={styles.searchBoxIcon}
@@ -66,32 +70,29 @@ export default function PlantCareHomePage({navigation}) {
 
         <View style={styles.flContainer}>
 
-          <PFText weight='light' style={{ color: 'black', marginLeft: 12 }}>Recent Snaps</PFText>
-            <StatusBar style="light"/>
+          <Title style={{ color: 'black', marginLeft: 7, fontSize: 15, fontFamily: 'poppins-regular', color: '#1D4123' }}>Recent Snaps</Title> 
+        
             <SafeAreaView style={{ height: 169 }}>
-              {/* 176 */}
 
                 <FlatList 
-                    horizontal={true} 
-                    showsHorizontalScrollIndicator={false} 
-                    contentContainerStyle={{ paddingRight: 12, paddingLeft: 2 }}
-                    data={SampleData.myGarden}
-                    renderItem={({item}) => (
-                    
-                    <RecentSnapsItem 
-                      style={{marginLeft: 10 }}
+                  horizontal={true} 
+                  showsHorizontalScrollIndicator={false} 
+                  contentContainerStyle={{ paddingLeft: 1, paddingRight: 7 }}
+                  data={SampleData.myGarden}
+                  renderItem={({item}) => (
+                  
+                    <RecentSnapsItem
                         // imageURL={firebase.storage().refFromURL(item.imageURL)}
                         imageURL={item.imageURL}
                         description={item.commonName}
-                        onPress={() => Alert.alert(item.plantFamilyName)}/>
-                      )}
-                    keyExtractor={(item,index) => index}
-                  />
+                        onPress={() => alert("Hello")}/>
+
+                    )}
+                  keyExtractor={(item,index) => index}
+              />
 
             </SafeAreaView>
         </View>
-
-       
 
         <PFFlatList
             numColumns={2}
@@ -99,7 +100,6 @@ export default function PlantCareHomePage({navigation}) {
             data={SampleData.myGarden}
             renderItem={(item) => (
               <MyGardenItem 
-              // style={{marginLeft: 12.25, marginBottom: 12}}
                 // imageURL={firebase.storage().refFromURL(item.imageURL)}
                 imageURL={item.imageURL}
                 plantType={item.plantType}
@@ -111,104 +111,45 @@ export default function PlantCareHomePage({navigation}) {
 
       </ScrollView>
 
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={styles.fabContainer}
-        onPress={() => navigation.navigate('Instruction')}
-        >
-        <Image
-          // FAB using TouchableOpacity with an image
-          // For online image
-          source={ require('../../assets/drawerIcons/plantCareIcons/camera.png')}
-          // For local image
-          //source={require('./images/float-add-icon.png')}
-          style={styles.fabImage}
+      <FAB
+        icon="plus"
+        style={{ position: 'absolute', margin: 1, right: 15, bottom: 85 }}
+        onPress={() => navigation.navigate('NavigationPage')}
+      />
+
+      <FAB
+        icon="camera-outline"
+        style={{ position: 'absolute', backgroundColor: '#ffffff', margin: 16, right: 0, bottom: -1, }} 
+        onPress={() => navigation.navigate('PlantCareCamera')}
         />
-      </TouchableOpacity>
-
-
-       <Button 
-          position='absolute'
-          title='Result'
-          onPress={ () => navigation.navigate('PlantCareResult')}
-          // backgroundColor = "#000000"
-          color = "#1A9B95"
-          />
-
-       <Button 
-        style={{marginBottom: 12}}
-          title='Plant Information'
-          position='absolute'
-         
-          onPress={ () => navigation.navigate('PlantCarePlantInformation')}
-          // backgroundColor = "#000000"
-          color = "#8B81B6"
-          /> 
 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
   mainContainer: {
     flex: 1,
     backgroundColor: '#fff',
-    // paddingHorizontal: 12
   },
+
   searchBoxContainer: {
-    marginLeft: 12,
-    marginRight: 12,
-    backgroundColor: '#F5F7FA',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
+    marginStart: 7,
+    marginRight: 7,
+    backgroundColor: '#E5E7EA',
+    paddingVertical: 7,
     marginVertical: 10,
     alignItems: 'center',
     flexDirection: 'row',
-    borderRadius: 12,
-    // flex:1,
+    borderRadius: 8,
   },
+
   searchBoxIcon: {
     height: 20,
     width: 20,
-    marginRight: 8,
-  },
-  fabContainer: {
-    backgroundColor: Colors.white,
-    position: 'absolute',
-    width: 60,
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 15,
-    bottom: 20,
-
-    borderRadius: 35,
-    // borderColor: 'black',
-    // borderWidth: 5,
-    shadowColor: "black",
-    shadowOffset: {
-        width: 0,
-        height: 5,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 0,
-    elevation: 10,
-  },
-
-  fab: {
-    position: 'absolute',
-    margin: 15,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#F5F7FA',
-  },
-  
-  fabImage: {
-    // marginTop: 7,
-    resizeMode: 'contain',
-    width: 25,
-    height: 25,
-    //backgroundColor:'black'
+    marginStart: 6,
+    marginEnd: 6,
   },
 
   flContainer: {
