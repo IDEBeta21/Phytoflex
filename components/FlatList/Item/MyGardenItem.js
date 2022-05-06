@@ -27,7 +27,7 @@ export const MyGardenItem = ({
 
     return(
       <View style={{...styles.cardContainer, ...style}}>
-        <Card style={{flex: 1 }} onPress={() => onPress()}>
+        <Card style={{ flex: 1 }} onPress={() => onPress()}>
           
           <Card.Cover 
             source={{ uri: image }} 
@@ -47,8 +47,8 @@ export const MyGardenItem = ({
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginLeft: (Dimensions.get('window').width/2) * 0.05, 
-    width: (Dimensions.get('window').width/2) * 0.93,
+    marginLeft: (Dimensions.get('window').width/2) * 0.04, 
+    width: (Dimensions.get('window').width/2) * 0.94,
     marginBottom: 11,
   },
 

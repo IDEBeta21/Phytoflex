@@ -22,8 +22,6 @@ import SampleData from '../../utils/SampleData';
 
 
 export default function PlantCarePlantCareTips({navigation}) {
-
-
   return (
     
     <View style={ styles.mainContainer }>
@@ -45,8 +43,9 @@ export default function PlantCarePlantCareTips({navigation}) {
             
               
                 <Card style={styles.card} 
-                onPress={ () => navigation.navigate('PlantCareTips')} >
-                  {/* <TouchableOpacity> */}
+                // onPress={ () => navigation.navigate('PlantCareTips')} 
+                >
+                  
                   <Card.Cover 
                     source={{uri: item.imageURL}}
                     style={{borderTopLeftRadius: 7, borderTopRightRadius: 7}}  
@@ -54,10 +53,10 @@ export default function PlantCarePlantCareTips({navigation}) {
                     <Surface style={styles.surface}>
                       <Card.Content style={styles.styleContent}>
                         <PFText weight='semi-bold'>{item.title}</PFText>
-                        <PFText weight='light' numberOfLines={2}>{item.subtitle}</PFText>
+                        <PFText weight='light' numberOfLines={2}>{item.description}</PFText>
                       </Card.Content> 
                     </Surface>
-                    {/* </TouchableOpacity> */}
+                   
                 </Card>
               
 

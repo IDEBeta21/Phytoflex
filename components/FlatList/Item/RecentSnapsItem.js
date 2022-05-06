@@ -41,27 +41,15 @@ export const RecentSnapsItem = ({
 
             }}
           />
-          {/* <Card.Content style={{...styles.cardContent, ...cardContentStyle}}> */}
+
           <View 
-          // text in front of image
-          style={{position: 'absolute', top: 0, left: 0, right: 0, height: 300, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 7,  }}>
+            // text in front of image
+            style={{position: 'absolute', top: 0, left: 0, right: 0, height: 300, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 7,  }}>
 
-            <Text  
-            style={{color: '#ffffff', fontFamily: 'poppins-regular', 
-            color: "white", 
-            textShadowColor: 'black', 
-            textShadowOffset: { width: -1, height: 0 },
-            textShadowRadius: 10, 
-           
-            fontWeight: '800' }}
-  
-            // adjustsFontSizeToFit 
-            numberOfLines={1} 
-
-            // style={{paddingTop: 0, padding: 0, margin: 0, fontSize: 12, justifyContent: 'center', backgroundColor: '#ffffff'}}
-            >{description}</Text>  
-          {/* </Card.Content> */}
-
+              <Text  
+                // adjustsFontSizeToFit 
+                numberOfLines={1}
+                style={{ color: '#ffffff', fontFamily: 'poppins-regular', color: "white", textShadowColor: 'black', textShadowOffset: { width: -1, height: 0 }, textShadowRadius: 10, fontWeight: '800' }}>{description}</Text>  
           </View>
           
         </Card>
@@ -73,8 +61,8 @@ const styles = StyleSheet.create({
 
 
   cardContainer: {
-    marginLeft: 8, 
-    height:  80,
+    marginLeft: 6, 
+    height:  79,
     width: 100,
     borderTopLeftRadius: 7, 
     borderTopRightRadius: 7,

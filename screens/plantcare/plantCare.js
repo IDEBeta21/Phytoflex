@@ -5,6 +5,7 @@ import { globalStyles } from '../global/globalStyles';
 import { useNavigation } from '@react-navigation/native';
 // import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { MyComponent } from './../../components/Card/Cardy';
+import { FAB } from 'react-native-paper';
 import firebase from 'firebase';
 
 // global import
@@ -16,7 +17,6 @@ import {
   AccountListItem, PlantListItem, MyGardenItem,
   PFCard, 
 } from '../../components';
-import PlantCarePlantInfo from './plantCarePlantInfo';
 // import MyGardenItemSample from '../../components/FlatList/Item/MyGardenItemSample.js';
 import Colors from '../../utils/globalColors';
 import SampleData from '../../utils/SampleData';
@@ -24,9 +24,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 // import { SafeAreaView } from 'react-native-safe-area-context';
 
 
-
 export default function PlantCare({navigation}) {
-  
   return (
 
     <View style={ styles.mainContainer }>
@@ -36,50 +34,33 @@ export default function PlantCare({navigation}) {
       >
 
         <SafeAreaView style={styles.container}>
-        <PFFlatList style={styles.flatlist}
-              
-            data={SampleData.myPlantCare}
-            renderItem={(item) => (
+        <PFFlatList style={styles.flatList}
+          data={SampleData.myPlantCare}
+          renderItem={(item) => (
 
-              <MyComponent
-                // imageURL={firebase.storage().refFromURL(item.imageURL)}
-                imageURL={item.imageURL}
-                title={item.title}
-                description={item.description}
-                
-                onPress={() => alert('Hilo madapaka')}
-              />
+            <MyComponent
+              // imageURL={firebase.storage().refFromURL(item.imageURL)}
+              imageURL={item.imageURL}
+              title={item.title}
+              description={item.description}
+              
+              onPress={() => alert('Hello')}
+            />
                
               )}
             keyExtractor={(item,index) => index}
         />
 
         </SafeAreaView>
-
       </ScrollView>
 
-
-
       {/* Floating icon */}
-
-
-      <View style={{ justifyContent: 'flex-end', bottom: 8 }}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.fabContainer}
-          // onPress={() => navigation.navigate('Instruction')}
-          onPress={() => alert('Instruction')}
-          >
-            
-          <Image
-            source={ require('../../assets/img/plantcare/icn_plus.png')}
-            style={styles.fabImage}
-          />
-
-        </TouchableOpacity>
-      </View>
+      <FAB
+        icon="plus"
+        style={styles.fab}
+        onPress={() => alert('Instruction')}
+      />
    
-
     </View>
   );
 }
@@ -90,7 +71,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 8, 
     paddingTop: 12,
-    backgroundColor: '#DFDFDF',
+    // backgroundColor: '#DFDFDF',
+    backgroundColor: '#f5f2f2',
   },
 
   mainContainer: {
@@ -98,35 +80,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#DFDFDF',
   },
   
-  fabContainer: {
-    alignItems: 'center',
-    // backgroundColor: '#ffffff',
-    backgroundColor: '#639D04',
-    position: 'absolute',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    width: 60,
-    height: 60,
-    borderRadius: 35,
-   
-    //shadow effect
-    shadowColor: "black",
-    shadowOffset: {
-        width: 0,
-        height: 5,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 0,
-    elevation: 10,
-  },
-  
-  fabImage: {
-    resizeMode: 'contain',
-    width: 25,
-    height: 25,
-   
-  },
-
   card: {
     flex: 1,
     height: 263,
@@ -137,8 +90,21 @@ const styles = StyleSheet.create({
     borderColor: 'white'
   },
 
-  flatlist: {
+  flatList: {
     flexDirection: 'row',
+  },
+
+  fab: {
+    position: 'absolute',
+    // margin: 16,
+    // right: 0,
+    bottom: 0,
+    marginBottom: 12,
+    alignSelf: 'center',
+    // justifyContent: 'flex-end',
+    // flex: 1,
+    backgroundColor: '#639D04',
+
   }
 
 

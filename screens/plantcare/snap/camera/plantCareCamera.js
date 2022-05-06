@@ -145,7 +145,7 @@ import { Camera } from "expo-camera";
 // import { fireStorage } from "../config/environment";\
 import firebase from "firebase";
 
-export default function plantCareCamera() {
+export default function PlantCareCamera() {
   const [hasPermission, setHasPermission] = useState(null);
   const [previewVisible, setPreviewVisible] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
@@ -153,7 +153,7 @@ export default function plantCareCamera() {
 
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
+      const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === "granted");
     })();
   }, []);

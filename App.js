@@ -47,6 +47,8 @@ import UpgradeScreen from './screens/DrawerContents/PremiumOption'
 
 import DrawerHeader from './screens/DrawerContents/DrawerHeader';
 
+import ForgotPassword from './screens/landing/ForgotPassword';
+
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
 import HeaderContent from './screens/global/Header';
@@ -143,6 +145,12 @@ function FuncOnboarding({navigation}){
   return(
     <Onboarding navigation={navigation}/>
   )
+}
+
+function FuncForgotPassword({navigation}) {
+  return(
+    <ForgotPassword navigation={navigation}/>
+  );
 }
 
 const AuthStack = createNativeStackNavigator();
@@ -311,6 +319,7 @@ function App() {
         >
             <AuthStack.Screen name="Onboarding" component={FuncOnboarding}/>
             <AuthStack.Screen name="Login" component={FuncLoginScreen}/>
+            <AuthStack.Screen name="ForgotPassword" component={FuncForgotPassword} />
             <AuthStack.Screen name="SignUpScreen" component={FuncSignupScreen}/>
             <AuthStack.Screen name="MyTabs" component={SideBar}/>
             <AuthStack.Screen name="ComponentsSample" component={FuncComponentSample}/>
