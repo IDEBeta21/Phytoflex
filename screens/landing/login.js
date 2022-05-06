@@ -80,7 +80,9 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
         });
     });
 
-
+    const funcForgotPass = () =>{
+        navigation.navigate('ForgotPassword');
+    }
 
     return(
 
@@ -134,9 +136,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                             value={userPass}
                         ></TextInput>
 
-
-
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={funcForgotPass}>
                             <View style={{color: 'white', justifyContent: 'center', alignItems: 'flex-end', marginBottom: 10, marginEnd: 11}}>
                                 <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 12}}>Forgot Password?</Text>
                             </View>

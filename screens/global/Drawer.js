@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, Pressable } from 'react-native';
+import { View, StyleSheet, Image, Pressable, TouchableOpacity } from 'react-native';
 import {
   useTheme,
   Avatar,
@@ -17,6 +17,7 @@ import {
 } from '@react-navigation/drawer';
 import firebase from 'firebase';
 import { StackActions, NavigationActions, NavigationEvents } from 'react-navigation';
+
 
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -50,11 +51,13 @@ export function DrawerContent(props) {
         <Drawer.Section style={styles.drawerSection}>
           <View style={styles.userInfoSection}>
             <View style={{flexDirection:'row',marginTop: 16, paddingBottom: 10, alignSelf:'center'}}>
+            <TouchableOpacity>
               <Avatar.Image 
                 source={{
                   uri: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/assets%2Fimg%2FsampleProfile.jpg?alt=media&token=3ed2140a-9593-49e7-80d2-9217b8580a2c'
                 }} size={90}
               />
+            </TouchableOpacity>
             </View>
                 <View style={{flexDirection:'column', alignSelf: "center", padding: 8, paddingLeft: 10}}>
                       <Caption style={styles.caption}>Hello!</Caption>
