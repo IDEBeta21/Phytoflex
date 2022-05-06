@@ -5,7 +5,7 @@ import { globalStyles } from '../global/globalStyles';
 import Colors from '../../utils/globalColors';
 import { PFCard, PFText } from '../../components';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
-import {PFCardShopReviews, PFFlatList, PFCardProduct, PFCardShop, PFPrimaryButton, PFCardShopCartItems, PFCartImage} from './../../components';
+import {PFCardShopReviews, PFFlatList,PFSecondaryButton,  PFCardProduct, PFCardShop, PFPrimaryButton, PFCardShopCartItems, PFCartImage} from './../../components';
 import DropDownPicker from 'react-native-dropdown-picker';
 import firebase from 'firebase';
 
@@ -20,73 +20,110 @@ export default function  CheckoutPage  ({ route, navigation}){
         },
       ]
 
+      const userId = window.userId
+      //productReviews
+      const [orderedItems, setrefdata] = useState([]); // declaration
+      const [refnull, setrefnull] = useState(true);
+      //plantlistitem
+      const [refdata2, setrefdata2] = useState([]); // declaration 
+      const [refnull2, setrefnull2] = useState(true);
+      
+      const [isSelected, setSelection] = useState(false);
+
+
+      const getData = async() => {
+
+        // Get data inside document
+        firebase.firestore()
+        .collection('tempOrders').where("userId", "==", userId).get().then((res) => {
+          let comment = res.docs.map(doc => { 
+            const data = doc.data();
+            const id = doc.id;
+            return {id, ...data}
+          })
+          setrefdata(comment);
+          console.log(orderedItems);
+          setrefnull(false);
+        }).catch((err) => {
+          Alert.alert(err)
+        })
+      };
+
+      
+
+  const PFCardShopCartItems1 = ({imageURL,  quantity, itemName, price,  onPress = () => {}}, style, 
+  cardContentStyle) => {
+  
+    //Changing of bgColor
+
+    const [isSelected, setSelection] = useState(false);
+  
+    const [image, setimage] = useState(null)
+  
+  
+    firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+      setimage(url);
+    })
+  
+    return(
+
+      
+
+      <View style={{borderColor: Colors.primary, borderWidth: 1, borderRadius: 5, marginBottom: 10, padding: 8  }}>
+        <View style= {{flexDirection:'row'}}>
+
+        <Image 
+      source={{ uri: image}}
+      style={{
+        marginTop: 4,
+        height: 60,
+        width: (Dimensions.get('window').width/1) * 0.15,
+        
+        
+      }}
+    />
+      <View style={{flexDirection: 'column', paddingTop: 7, paddingLeft: 20}}>
+        
+        <View style={{flex: 1}}>
+        <PFText  size={12.5} style={{ flex: 1, textAlign:'center'}} numberOfLines={2} >{itemName}</PFText>
+        <View style={{flexDirection: 'row'}}>
+        <PFText color={Colors.secondary} weight='semi-bold' >P{price}</PFText>
+        <View style={{paddingLeft: 80}}>
+        <PFText> x {quantity}</PFText>
+        </View>
+      
+        </View>
+        
+        </View>
+      </View>
+
+        </View>
+        
+
+    </View>
+  
+     
+    
+    )
+  }
   
   
 
  
   //doc_Id
-  const userId = window.userId
-  //productReviews
-  const [refdata, setrefdata] = useState([]); // declaration
-  const [refnull, setrefnull] = useState(true);
-  //plantlistitem
-  const [refdata2, setrefdata2] = useState([]); // declaration 
-  const [refnull2, setrefnull2] = useState(true);
-  
-  const [isSelected, setSelection] = useState(false);
+ 
 
   
 
-// addData function for productItem 
-  function addData(){
-    firebase.firestore().collection('ProductItem').add({
-      plantName: route.params.itemName,
-      categoryName: route.params.category,
-      
-    }).then((res) => {
-      Alert.alert('Added to Crate Successfully')
-    }).catch((err) => {
-      Alert.alert(err)
-    })
-  }
-
-
-
-  
-  // getData for ProductReview Collections
-  const getData = async() => {
-
-    // Get data inside document
-    firebase.firestore()
-    .collection('productReview').get().then((res) => {
-      let comment = res.docs.map(doc => { 
-        const data = doc.data();
-        const id = doc.id;
-        return {id, ...data}
-      })
-      setrefdata(comment);
-      console.log(refdata);
-      setrefnull(false);
-    }).catch((err) => {
-      Alert.alert(err)
-    })
-  }
- ;
-  
   const getUsers = async() => {
 
     // Get data inside document
     firebase.firestore()
     .collection('users').where("userEmail", "==", window.userEmail).get().then((snapshot) => {
-
       let users = snapshot.docs.map(doc => { 
-
-
         const data2 = doc.data();
         const id2 = doc.id;
         return {id2, ...data2}
-
-        
       })
       setrefdata2(users);
       console.log(refdata2);
@@ -97,6 +134,47 @@ export default function  CheckoutPage  ({ route, navigation}){
     
   }
 
+  //get customer's info
+  let fName = "";
+  let lName = "";
+  let contactNumber = ""; 
+  let Address = "";
+  let customerName = "";
+
+  refdata2.forEach((item) => {
+
+    customerName = item.fName + " " + item.lName;
+    contactNumber = item.contactNumber;
+    Address = item.Address;
+
+  
+  });
+
+ 
+
+
+
+  //place order function
+  function placeOrder(){
+
+
+    firebase.firestore().collection('Orders').add({
+
+      ResultMacthed : "False",
+      contactNumber : contactNumber,
+      customerName: customerName,
+      date : "May 6, 2022 at 12:00:00 AM UTC+8",
+      deliveredTime : "3:45 pm 04-27-2022",
+      deliveryAddres : Address,
+      orderId : "20220425002", 
+      orderedItems,
+      userId: userId,
+    }).then((res) => {
+      console.log("Successfully placed order!")
+    }).catch((err) => {
+      Alert.alert(err)
+    })
+  }
  
   useEffect(() => {
     getData();
@@ -159,7 +237,27 @@ export default function  CheckoutPage  ({ route, navigation}){
             )}
             keyExtractor={(item,index) => index}
           />
-          <PFText>Items</PFText>
+          <PFText weight= "semi-bold">Items</PFText>
+        
+          <PFFlatList
+            data={orderedItems}
+            renderItem={(item) => (
+              <PFCardShopCartItems1
+              imageURL={item.imageURL}
+              itemName={item.itemName}
+              price = {item.price}
+              quantity = {item.quantity}
+              onPress ={ () => Alert.alert("Go to Product Again")}
+              />
+          
+              )}
+              keyExtractor={(item,index) => index}
+            />
+            <PFText>Subtotal: </PFText>
+            <PFText>Delivery Fee: </PFText>
+            <PFText>Total Payment: </PFText>
+            <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => 
+                   placeOrder()} />
           </View>
          
            
@@ -174,12 +272,32 @@ const styles = StyleSheet.create({
     // marginLeft: 8, 
     // width: (Dimensions.get('window').width/2) * 0.93
     flex: 1,
-    flexDirection: 'column',
+  
     paddingLeft: 15,
-    marginVertical: 8,
-    padding: 15
+    marginVertical: 4,
+    padding: 10
 
     
+  },
+  cardShopCrateArea:{
+    flex: 1,
+    marginBottom: 12,
+    width: 330,
+    height: 82,
+    borderWidth: 1,
+    borderColor: "#1D4123",
+    borderRadius: 4,
+   
+    
+    
+  },
+
+  cardContainer:{
+
+    marginTop: 10,
+    padding: 2
+    
+   
   },
   
 })

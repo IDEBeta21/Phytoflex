@@ -158,8 +158,7 @@ export default function  ShopCratePage   ({ route, navigation}){
     }).catch((err) => {
       Alert.alert(err)
     })
-  }
- ;
+  };
   
   const getPlantItems = async() => {
 
@@ -268,7 +267,9 @@ const selectHandler = (index, value) => {
     firebase.firestore().collection('tempOrders').add({
       itemName: newItems[index].itemName, 
       userId: userId,
-      quantity: 1
+      quantity: 1,
+      imageURL: newItems[index].imageURL, 
+      price: newItems[index].price
     }).then((res) => {
       console.log(res)
     }).catch((err) => {
