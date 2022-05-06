@@ -150,31 +150,55 @@ export default function  CheckoutPage  ({ route, navigation}){
   
   });
 
- 
+    const today = new Date();
+    today.setHours(0);
+    today.setMinutes(0);
+    today.setMilliseconds(0);
+    today.setSeconds(0); 
 
 
 
   //place order function
+
+  let orderId ="";
   function placeOrder(){
 
-
-    firebase.firestore().collection('Orders').add({
+  firebase.firestore().collection('Orders').add({
 
       ResultMacthed : "False",
       contactNumber : contactNumber,
       customerName: customerName,
-      date : "May 6, 2022 at 12:00:00 AM UTC+8",
+      date : today,
       deliveredTime : "3:45 pm 04-27-2022",
       deliveryAddres : Address,
-      orderId : "20220425002", 
+      orderId: "0", 
       orderedItems,
       userId: userId,
     }).then((res) => {
-      console.log("Successfully placed order!")
+      console.log(res.id)
+
+      function updateOrderId() {
+       
+          const docRef = firebase.firestore().collection('Orders').doc(res.id);
+              // update doc Id
+                      docRef.update({
+                orderId: res.id
+              })
+        
+      }
+      
+    updateOrderId()
+        
+      
     }).catch((err) => {
       Alert.alert(err)
     })
+
+
+   
   }
+
+  
  
   useEffect(() => {
     getData();
