@@ -9,7 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { 
   PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
   PFModalLogin , PFModalAlert, PFModalPrompt, 
-  PFPrimaryButton, PFSecondaryButton,
+  PFPrimaryButton, PFFollowedButton,
   PFFlatList, 
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
   PFCard,PFPostsCard, 
@@ -37,25 +37,45 @@ export default function UserProfilePage({navigation}) {
           //source={require('./images/float-add-icon.png')}
           style={styles.userPhoto}
         />
-        <View styles={{flexDirection: 'column'}}>
-          <PFText weight='semi-bold' size={25} style={{marginLeft: 10, paddingRight: 10, paddingLeft: 10, paddingTop: 0, paddingBottom: 0}}>Leila Jane L. Alejandre</PFText>
-          <PFText size={15} style={{marginLeft: 10, paddingLeft: 10, }}>@leyy</PFText>
+        <View styles={{flexDirection: 'column', marginLeft: 10}}>
+          <View style={{width: 250}}>
+            <PFText weight='semi-bold' size={20} style={{marginLeft: 10, paddingRight: 10, paddingLeft: 10, paddingTop: 0, paddingBottom: 0}}>Leila Jane L. Alejandre</PFText>
+          </View>
+          <PFText size={13} style={{marginLeft: 10, paddingLeft: 10, }}>@leyy</PFText>
+          {/* <PFFollowedButton title={'Following'} onPress={() => navigation.navigate('')}></PFFollowedButton> */}
+          <TouchableOpacity onPress={() => gotoHome()}>
+            <View style={styles.guestButtonArea}>
+              <Text style={{ color: '#639d04', fontSize: 12, fontFamily: 'poppins-regular'}}>Following</Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
 
-      <View></View>
-
-      <View>
-      <View style={styles.hr} />
+      <View style={{flexDirection: 'row', backgroundColor: '#1d4123', borderTopLeftRadius: 20, borderTopRightRadius: 20}}>
+        <View style={styles.container2}>
+          <Text style={styles.txt}>150</Text>
+          <Text style={styles.txt1}>Followers</Text>
+        </View>
+        <View style={styles.container3}>
+          <Text style={styles.txt}>200</Text>
+          <Text style={styles.txt1}>Following</Text>
+        </View>
       </View>
 
-      <View></View>
-
       <View>
-      <View style={styles.hr} />
+        <View style={styles.hr} />
       </View>
 
-      <PFFlatList
+      <View style={styles.txtStyles}>
+          <Text style={styles.txt3}>Joined Phytoflex since July 2021</Text>
+      </View>
+
+      <View>
+        <View style={styles.hr1} />
+      </View>
+
+      <View>
+        <PFFlatList
           numColumns={1}
           noDataMessage='No Followers'
           data={SampleData.cardPostData}
@@ -69,6 +89,7 @@ export default function UserProfilePage({navigation}) {
           )}
           keyExtractor={(item,index) => index}
         />
+      </View>
     </View>
 
   );
@@ -84,33 +105,25 @@ const styles = StyleSheet.create({
   userPhoto: {
     height: 90,
     width: 90,
-    borderRadius: 100
+    borderRadius: 100,
+    marginTop: 15
   },
   container: {
     flexDirection:'row',
-    margin: 20,
-    padding: 10
-  },
-  container1: {
-    flexDirection:'row',
-    marginLeft: 20
-  },
-  container2: {
-    flexDirection:'row',
-    marginLeft: 20,
-    marginTop: 5
-  },
-  addbtn: {
-    height: 30,
-    width: 30,
-    marginLeft: 5,
-    borderRadius: 100
+    padding: 20,
+    paddingLeft: 50,
   },
   hr: {
     position: 'relative',
     top: 0,
-    borderBottomColor: '#000000',
-    borderBottomWidth: 3,
+    borderBottomColor: '#639d04',
+    borderBottomWidth: 2,
+  },
+  hr1: {
+    position: 'relative',
+    top: 0,
+    borderBottomColor: Colors.primary,
+    borderBottomWidth: 1,
   },
   or: {
     width: 30,
@@ -118,5 +131,69 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'center',
     backgroundColor: '#FFFFFF',
+  },
+  guestButtonArea: {
+    height: 30,
+    width: 100,
+    marginTop: 5,
+    padding: 5,
+    marginLeft: 20,
+    borderRadius: 100,
+    
+    alignItems: 'center', 
+    justifyContent: 'center',
+    
+    shadowColor: "black",
+    shadowOffset: {
+        width: 0,
+        height: 3,
+    },
+    borderWidth: 1,
+    borderColor: '#639d04',
+
+    fontFamily: 'poppins-regular'
+  },
+  container2: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 5,
+    paddingLeft: 85
+  },
+  container3: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 5,
+    paddingLeft: 60
+  },
+  txt: {
+    fontFamily: 'poppins-regular',
+    color: 'white',
+    fontSize: 18,
+    padding: 0,
+    margin: 0
+  },
+  txt1: {
+    fontFamily: 'poppins-regular',
+    color: 'rgba(255,255,255,0.7)',
+    fontSize: 13,
+    padding: 0,
+    margin: 0
+  },
+  container4: {
+    height: 200,
+    padding: 10
+  },
+  txtStyles: {
+    padding: 10,
+    paddingLeft: 40
+  },
+  txt3: {
+    fontFamily: 'poppins-regular',
+    color: Colors.primary,
+    fontSize: 13,
+    padding: 0,
+    margin: 0
   }
 })

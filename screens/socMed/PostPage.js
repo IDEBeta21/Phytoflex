@@ -10,9 +10,8 @@ import {
   PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
   PFModalLogin , PFModalAlert, PFModalPrompt, 
   PFPrimaryButton, PFSecondaryButton,
-  PFFlatList, 
-  AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
-  PFCard,PFPostsCard, 
+  PFFlatList,
+  PFCard, PFPostsCard, 
   PFSwitch
 } from '../../components';
 
