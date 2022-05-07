@@ -132,6 +132,7 @@ export default function SignUpScreen({navigation}){
             placeholder="Password"
             onChangeText = {(text) => setUserPass(text)}
             value={userPass}
+            secureTextEntry={true}
           >
         </TextInput>
 

@@ -6,7 +6,8 @@ import {
     View, ScrollView, KeyboardAvoidingView, 
     Image, TextInput, TouchableOpacity,  
     StyleSheet,
-    Alert, Button, ImageBackground, SafeAreaView, Dimensions, Keyboard, Pressable
+    Alert, Button, ImageBackground, SafeAreaView, Dimensions, Keyboard, Pressable,
+    ToastAndroid
 } from 'react-native';
 
 import firebase from 'firebase';
@@ -23,19 +24,21 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
     const [userPass, setUserPass] = useState('');
 
 
-    window.userEmail = userEmail
+    // window.userEmail = userEmail
     function logInClick() {
         const auth = firebase.auth();
         firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
             .then((result) => {
                 Alert.alert(result.message);
                 console.log(result);
+                setuserEmail('');
+                setUserPass('');
                 toTabs();
                 firebase.firestore()
                 .collection('users').where('userEmail', '==', userEmail).get().then((res) => {
                   res.forEach(doc => {
                     console.log(doc.id, '=>', doc.data());
-                    window.userId = doc.id
+                    // window.userId = doc.id
                   })
                 })
                   
@@ -43,8 +46,17 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
            
             }).catch((error) => {
-                Alert.alert(error.message);
+                // Alert.alert(error.message);
+                let str_msg = error.message;
                 console.log(error);
+                ToastAndroid.showWithGravityAndOffset(
+                    // "A wild toast appeared!",
+                    str_msg,
+                    ToastAndroid.LONG,
+                    ToastAndroid.BOTTOM,
+                    0,
+                    150
+                );
             });
 
         // toTabs();
@@ -200,7 +212,7 @@ const styles = StyleSheet.create({
         // borderTopRightRadius: 35,
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: 64
+        paddingBottom: 30
     },
     loginViewKeyUp: {
         backgroundColor: '#1D4123',

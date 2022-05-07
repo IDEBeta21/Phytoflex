@@ -92,7 +92,9 @@ export default function PlantCareHomePage({navigation}) {
               />
 
             </SafeAreaView>
-        </View>
+
+            </View>
+        {/* </View> */}
 
         <PFFlatList
             numColumns={2}
@@ -111,17 +113,42 @@ export default function PlantCareHomePage({navigation}) {
 
       </ScrollView>
 
-      <FAB
+      {/* <FAB
         icon="plus"
         style={{ position: 'absolute', margin: 1, right: 15, bottom: 85 }}
         onPress={() => navigation.navigate('NavigationPage')}
       />
+
+       <Button 
+          position='absolute'
+          title='Result'
+          onPress={ () => navigation.navigate('PlantCareResult')}
+          // backgroundColor = "#000000"
+          color = "#1A9B95"
+          /> */}
 
       <FAB
         icon="camera-outline"
         style={{ position: 'absolute', backgroundColor: '#ffffff', margin: 16, right: 0, bottom: -1, }} 
         onPress={() => navigation.navigate('PlantCareCamera')}
         />
+
+      {/* <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.fabContainer}
+        // onPress={() => navigation.navigate('Instruction')}
+        onPress={() => navigation.navigate('PlantCareCamera')}
+        >
+        <Image
+          // FAB using TouchableOpacity with an image
+          // For online image
+          source={ require('../../assets/drawerIcons/plantCareIcons/camera.png')}
+          // For local image
+          //source={require('./images/float-add-icon.png')}
+          style={styles.fabImage}
+        />
+      </TouchableOpacity> */}
+      
 
     </View>
   );

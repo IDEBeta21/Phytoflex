@@ -25,7 +25,7 @@ import { DrawerContent } from '../global/Drawer';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function PlantCareResult({navigation}) {
+export default function PlantCareResult({navigation, route}) {
   // Calling Plantcare search screen
 
   const [loginVisible, setloginVisible] = useState(false)
@@ -38,11 +38,13 @@ export default function PlantCareResult({navigation}) {
 
   const [checked, setchecked] = useState(false)
 
-  const imgref = (url) => {
-    firebase.storage().refFromURL(url).then((res) => {
-      return res;
-    })
-  }
+  // const imgref = (url) => {
+  //   firebase.storage().refFromURL(url).then((res) => {
+  //     return res;
+  //   })
+  // }
+
+  console.log("Firebase Directory" + route.params.firebaseDirectory)
 
   
   return (
