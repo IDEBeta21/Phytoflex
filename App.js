@@ -58,7 +58,9 @@ import TermsAndConditions from './screens/DrawerContents/SettingsScreens/TermsAn
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
 import HeaderContent from './screens/global/Header';
-
+// Import Activity Logs
+import PostsLog from './screens/DrawerContents/ActivityLogScreens/PostsLog';
+import ThreadsLog from './screens/DrawerContents/ActivityLogScreens/ThreadsLog';
 // 
 // import { AppLoading } from 'expo';\
 // import { AppLoading } from 'expo';
@@ -187,6 +189,17 @@ function FuncForgotPassword({navigation}) {
   );
 }
 
+function FuncPostsLog({navigation}){
+  return(
+    <PostsLog navigation={navigation}/>
+  )
+}
+function FuncThreadsLog({navigation}){
+  return(
+    <ThreadsLog navigation={navigation}/>
+  )
+}
+
 const AuthStack = createNativeStackNavigator();
 
 
@@ -248,10 +261,37 @@ function SideBar({navigation}){
           name="DrawerActivityLogs"
           component={FuncActivityLog}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
-              backgroundColor: '#1D4123'
+              backgroundColor: '#1D4123',
+              elevation: 0
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerPostsLog"
+          component={FuncPostsLog}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerActivityLogs'} screenDescription={'PrivacyPolicy'} title={'Privacy Policy'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123',
+              elevation: 0
+            },
+            headerTintColor: 'white',
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerThreadsLog"
+          component={FuncThreadsLog}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerActivityLogs'} screenDescription={'TermsAndConditions'} title={'Terms And Conditions'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123',
+              elevation: 0
             },
             headerTintColor: 'white'
           }} />
@@ -260,7 +300,7 @@ function SideBar({navigation}){
           name="DrawerPostScreen"
           component={FuncPost}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -272,7 +312,7 @@ function SideBar({navigation}){
           name="DrawerThread"
           component={FunctionThread}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -284,7 +324,7 @@ function SideBar({navigation}){
           name="DrawerTrackHistory"
           component={FuncTrackHistory}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'TrackHistoryScreen'} title={'Track History'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'TrackHistoryScreen'} title={'Track History'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -368,7 +408,7 @@ function SideBar({navigation}){
           name="DrawerRateUs"
           component={FuncRateUs}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'RateUsScreen'} title={'Rate Us'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'RateUsScreen'} title={'Rate Us'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -380,7 +420,7 @@ function SideBar({navigation}){
           name="DrawerUpgradeScreen"
           component={FuncUpgrade}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UpgradeScreen'} title={'Upgrade'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'UpgradeScreen'} title={'Upgrade'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
