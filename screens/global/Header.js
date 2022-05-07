@@ -2,11 +2,26 @@ import { Button, StyleSheet, Text, View, Image, Pressable, TextInput} from 'reac
 import React, { Component } from 'react';
 import{ useState } from 'react';
 import { IconButton, Colors } from 'react-native-paper';
+import firebase from 'firebase';
 
 // import * as React from 'react';
 
-export default function Header({ title, navigation, boolHome, boolClose, boolBack, screenDescription }) {
+export default function Header({ title, navigation, boolHome, boolClose, boolBack, boolCancelCheckout, screenDescription }) {
   
+  //remove selected items from check out
+  function deleteItems() {
+    navigation.navigate('ShopCrate')
+    firebase.firestore()
+    .collection('tempOrders').where('userId', '==', window.userId).get().then((res) => {
+      res.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
+        const docRef = firebase.firestore().collection('tempOrders').doc(doc.id).delete()
+        .then(() => {
+          console.log('User deleted!');
+        }); 
+      })
+    })
+  }
   const [text, setText] = useState(""); //for resetting text field/text input
   return (
     <View style={style.header}>
@@ -41,6 +56,15 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
             />
         </Pressable> : null
       }
+      {boolCancelCheckout ?
+        <Pressable 
+            onPress={() => deleteItems()}>
+            <Image
+              style={{height: 20, width: 20, marginEnd: 32, marginStart: 3, resizeMode:'contain' }}
+              source={require('../../assets/drawerIcons/shopIcons/crate.png')}
+            />
+        </Pressable> : null
+      }
    
       {/* <Button title='lll' onPress={() => navigation.toggleDrawer()}/> */}
       <Text style={style.headerTitle}>{title}</Text>
@@ -69,7 +93,8 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
 
       {title == 'Shop' && boolHome? /*Shop Main Page*/
         <View style={style.headerIconContainer}>
-          <Pressable onPress={() => navigation.navigate('ShopCrate')} >
+          <Pressable onPress={() => navigation.navigate('ShopCrate', {
+          })} >
             <Image
               style={style.headerIcons}
               source={require('../../assets/drawerIcons/shopIcons/crate.png')}
@@ -85,6 +110,19 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
           </Pressable>
         </View> : null
       }
+      {title == 'Checkout Details' && boolCancelCheckout? /*Shop Main Page*/
+        <View style={style.headerIconContainerCheckout}>
+         
+          <Pressable onPress={() => navigation.navigate('ShopNotifBell')} >
+            <Image
+              style={style.headerIcons}
+              source={require('../../assets/drawerIcons/shopIcons/bell.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+        </View> : null
+      }
+      
       {title == 'Social Media' && boolHome? /*Social Media Main Page*/
         <View style={style.headerIconContainer}>
           <Pressable onPress={() => navigation.navigate('SocMedSearch')} >
@@ -304,6 +342,13 @@ const style = StyleSheet.create({
     marginHorizontal: 0,
   },
   headerIconContainer:{
+    flex: 1,
+    justifyContent: 'flex-end', 
+    alignItems: 'flex-end', 
+    paddingRight: 32, 
+    flexDirection: 'row'
+  },
+  headerIconContainerCheckout:{
     flex: 1,
     justifyContent: 'flex-end', 
     alignItems: 'flex-end', 

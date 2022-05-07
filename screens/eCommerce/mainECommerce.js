@@ -120,11 +120,13 @@ function App({navigation}) {
           component={FuncCheckoutPage}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
-            headerTitle: (props) => <Header title={'Checkout Details'} navigation={navigation}/>, 
+            headerTitle: (props) => <Header title={'Checkout Details'} navigation={navigation} boolCancelCheckout={true}/>, 
+           
             headerStyle: {
               backgroundColor: '#1D4123'
             },
-            headerTintColor: 'white'
+            headerTintColor: 'white',
+            headerBackVisible: false, 
           }}
         />
 
