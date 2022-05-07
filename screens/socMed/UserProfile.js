@@ -125,8 +125,7 @@ const styles = StyleSheet.create({
   },
   mainPostContainer: {
     // margin: 5,
-    paddingTop: 10,
-    paddingLeft: 20,
+    paddingTop: 7,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'flex-start',

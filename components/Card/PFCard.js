@@ -689,7 +689,8 @@ const styles = StyleSheet.create({
   cardPostContainer: {
     width: (Dimensions.get('window').width) * 0.90,
     marginBottom: 15,
-    marginTop: 10
+    marginTop: 10,
+    marginLeft: 20
   },
   cardPostContent: {
     paddingTop: 15,
@@ -744,7 +745,8 @@ const styles = StyleSheet.create({
     margin: 4
   },
   commentSection: {
-    marginTop: 10
+    marginTop: 20,
+    marginLeft: 20
   },
   commentTxtBox: {
     backgroundColor: '#d3d3d3',

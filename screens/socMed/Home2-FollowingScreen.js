@@ -25,10 +25,28 @@ import { ScrollView } from 'react-native-gesture-handler';
 export default function FollowingScreenPage({navigation}) {
 
   return (
-    <View style={ globalStyles.socmed }>
-      <ScrollView>
-        <View>
-          <ScrollView horizontal = {true}>
+    <View style={ styles.mainContainer}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{marginLeft: 20, marginRight: 15}}>
+        <View style={{height: 150, marginTop: 10, width: 110}}>
+          <View style={ styles.conFollow }>
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={require('../../assets/drawerIcons/socmedIcons/add_btn.png')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={{height: 40, width: 40, borderRadius: 100}}
+            />
+            <PFText size={12} weight={'semi-bold'} style={{textAlign: 'center', textAlignVertical: 'center', paddingTop: 5}}>Follow a friend</PFText>
+            {/* <TouchableOpacity onPress={() => gotoHome()}>
+              <View style={styles.guestButtonArea}>
+                <Text style={{ color: '#1d4123', fontSize: 10, fontFamily: 'poppins-regular'}}>Following</Text>
+              </View>
+            </TouchableOpacity> */}
+          </View>
+        </View>
+          {/* <ScrollView horizontal = {true}>
             <PFFlatList
               numColumns={5}
               noDataMessage='Loading...'
@@ -43,7 +61,7 @@ export default function FollowingScreenPage({navigation}) {
               )}
               keyExtractor={(item,index) => index}
             />
-          </ScrollView>
+          </ScrollView> */}
         </View>  
         <View>
           <PFFlatList
@@ -97,6 +115,12 @@ export default function FollowingScreenPage({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start'
+  },
   userImage: {
     height: 40,
     width: 40,
@@ -112,10 +136,44 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    paddingVertical: 5
+    paddingVertical: 5,
+    marginLeft: 20
   },
   textFormat: {
     paddingLeft: 10,
     paddingTop: 8
-  }
+  },
+  userPhoto: {
+    height: 40,
+    width: 40,
+    borderRadius: 100
+  },
+  conFollow: {
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    flex: 1,
+    marginRight: 10
+  },
+  guestButtonArea: {
+    height: 25,
+    width: 80,
+    borderRadius: 100,
+    
+    alignItems: 'center', 
+    justifyContent: 'center',
+    
+    shadowColor: "black",
+    shadowOffset: {
+        width: 0,
+        height: 3,
+    },
+    borderWidth: 1,
+    borderColor: '#1d4123',
+    fontFamily: 'poppins-regular',
+    marginTop: 8
+  },
 })
