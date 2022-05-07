@@ -46,13 +46,21 @@ import RateUsScreen from './screens/DrawerContents/RateUs';
 import UpgradeScreen from './screens/DrawerContents/PremiumOption'
 
 import DrawerHeader from './screens/DrawerContents/DrawerHeader';
-
 import ForgotPassword from './screens/landing/ForgotPassword';
+
+// Imports for Settings Screen
+import AboutUs from './screens/DrawerContents/SettingsScreens/AboutUs';
+import FAQs from './screens/DrawerContents/SettingsScreens/FAQs';
+import Notifications from './screens/DrawerContents/SettingsScreens/Notifications';
+import PrivacyPolicy from './screens/DrawerContents/SettingsScreens/PrivacyPolicy';
+import TermsAndConditions from './screens/DrawerContents/SettingsScreens/TermsAndCondition';
 
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
 import HeaderContent from './screens/global/Header';
-
+// Import Activity Logs
+import PostsLog from './screens/DrawerContents/ActivityLogScreens/PostsLog';
+import ThreadsLog from './screens/DrawerContents/ActivityLogScreens/ThreadsLog';
 // 
 // import { AppLoading } from 'expo';\
 // import { AppLoading } from 'expo';
@@ -100,6 +108,34 @@ function FuncSettings({navigation}){
     <SettingsScreen navigation={navigation}/>
   )
 }
+
+// Settings Screens
+function FuncAboutUs({navigation}){
+  return(
+    <AboutUs navigation={navigation}/>
+  )
+}
+function FuncFAQs({navigation}){
+  return(
+    <FAQs navigation={navigation}/>
+  )
+}
+function FuncNotifications({navigation}){
+  return(
+    <Notifications navigation={navigation}/>
+  )
+}
+function FuncPrivacyPolicy({navigation}){
+  return(
+    <PrivacyPolicy navigation={navigation}/>
+  )
+}
+function FuncTermsAndConditions({navigation}){
+  return(
+    <TermsAndConditions navigation={navigation}/>
+  )
+}
+
 function FuncRateUs({navigation}){
   return(
     <RateUsScreen navigation={navigation}/>
@@ -153,6 +189,17 @@ function FuncForgotPassword({navigation}) {
   );
 }
 
+function FuncPostsLog({navigation}){
+  return(
+    <PostsLog navigation={navigation}/>
+  )
+}
+function FuncThreadsLog({navigation}){
+  return(
+    <ThreadsLog navigation={navigation}/>
+  )
+}
+
 const AuthStack = createNativeStackNavigator();
 
 
@@ -190,7 +237,7 @@ function SideBar({navigation}){
           name="DrawerUserProfile"
           component={FuncUserProfile}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileSc'} title={'My Profile'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'UserProfileSc'} title={'My Profile'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -202,7 +249,7 @@ function SideBar({navigation}){
           name="EditProfileScreen" 
           component={FuncEditProfile}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'EditProfileScreen'} title={'Edit Profile'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'EditProfileScreen'} title={'Edit Profile'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -214,10 +261,37 @@ function SideBar({navigation}){
           name="DrawerActivityLogs"
           component={FuncActivityLog}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
-              backgroundColor: '#1D4123'
+              backgroundColor: '#1D4123',
+              elevation: 0
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerPostsLog"
+          component={FuncPostsLog}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerActivityLogs'} screenDescription={'PrivacyPolicy'} title={'Privacy Policy'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123',
+              elevation: 0
+            },
+            headerTintColor: 'white',
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerThreadsLog"
+          component={FuncThreadsLog}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerActivityLogs'} screenDescription={'TermsAndConditions'} title={'Terms And Conditions'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123',
+              elevation: 0
             },
             headerTintColor: 'white'
           }} />
@@ -226,7 +300,7 @@ function SideBar({navigation}){
           name="DrawerPostScreen"
           component={FuncPost}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -238,7 +312,7 @@ function SideBar({navigation}){
           name="DrawerThread"
           component={FunctionThread}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -250,7 +324,7 @@ function SideBar({navigation}){
           name="DrawerTrackHistory"
           component={FuncTrackHistory}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'TrackHistoryScreen'} title={'Track History'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'TrackHistoryScreen'} title={'Track History'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -262,7 +336,7 @@ function SideBar({navigation}){
           name="DrawerSettings"
           component={FuncSettings}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'SettingsScreen'} title={'Settings'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'SettingsScreen'} title={'Settings'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -271,10 +345,70 @@ function SideBar({navigation}){
           }} />
 
         <Drawer.Screen 
+          name="DrawerAboutUs"
+          component={FuncAboutUs}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'AboutUs'} title={'About Us'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerFAQs"
+          component={FuncFAQs}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'FAQs'} title={'Frequently Asked Questions'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerNotifications"
+          component={FuncNotifications}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'Notifications'} title={'Notifications'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerPrivacyPolicy"
+          component={FuncPrivacyPolicy}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'PrivacyPolicy'} title={'Privacy Policy'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerTermsAndConditions"
+          component={FuncTermsAndConditions}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'TermsAndConditions'} title={'Terms And Conditions'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />                                                  
+
+        <Drawer.Screen 
           name="DrawerRateUs"
           component={FuncRateUs}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'RateUsScreen'} title={'Rate Us'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'RateUsScreen'} title={'Rate Us'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -286,7 +420,7 @@ function SideBar({navigation}){
           name="DrawerUpgradeScreen"
           component={FuncUpgrade}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UpgradeScreen'} title={'Upgrade'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'UpgradeScreen'} title={'Upgrade'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'

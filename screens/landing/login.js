@@ -123,21 +123,24 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         <Text style={styles.label}>YOUR EMAIL</Text>
                         <TextInput
                             style={styles.textbox}
-                            placeholder="i.e. NameIsDev21"
+                            placeholder="Enter your email address"
                             onChangeText = {(text) => setuserEmail(text)}
                             value={userEmail}
+                            selectionColor={'#CBDEAB'}
                         ></TextInput>
                         
                         <Text style={styles.label}>PASSWORD</Text>
                         <TextInput
                             style={styles.pwtextbox}
-                            placeholder="Password"
+                            placeholder="Enter your password"
                             onChangeText = {(text) => setUserPass(text)}
                             value={userPass}
+                            selectionColor={'#CBDEAB'}
+                            secureTextEntry={true}
                         ></TextInput>
 
                         <TouchableOpacity onPress={funcForgotPass}>
-                            <View style={{color: 'white', justifyContent: 'center', alignItems: 'flex-end', marginBottom: 10, marginEnd: 11}}>
+                            <View style={{color: 'white', justifyContent: 'center', alignItems: 'flex-end', marginBottom: 0, marginEnd: 11}}>
                                 <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 12}}>Forgot Password?</Text>
                             </View>
                         </TouchableOpacity>
@@ -154,11 +157,11 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                             </View>
                         </TouchableOpacity>
 
-                        <View style={{ flexDirection: 'row', marginTop: 16, justifyContent: 'center', marginBottom: 10}}>
+                        <View style={{ flexDirection: 'row', marginTop: 16, justifyContent: 'center', marginBottom: 22}}>
                             <Text style={{color: 'white', fontFamily: 'poppins-light'}}>Don't have an account yet?</Text>
                             <TouchableOpacity onPress={toSignUp}>
                                 <View style={{color: 'white', }}>
-                                    <Text style={{color: '#639D04', fontFamily: 'poppins-semiBold', paddingHorizontal: 14}}>Sign Up</Text>
+                                    <Text style={{color: '#639D04', fontFamily: 'poppins-semiBold', paddingHorizontal: 16}}>Sign Up</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -190,7 +193,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
     },
     loginView: {
-        // backgroundColor: '#040',
+        // backgroundColor: '#1D4123',
         paddingHorizontal: 30, 
         paddingTop: 0, 
         // borderTopLeftRadius: 35, 
@@ -200,7 +203,7 @@ const styles = StyleSheet.create({
         paddingBottom: 64
     },
     loginViewKeyUp: {
-        backgroundColor: '#040',
+        backgroundColor: '#1D4123',
         paddingHorizontal: 30, 
         paddingTop: 0, 
         // borderTopLeftRadius: 35, 
@@ -231,17 +234,18 @@ const styles = StyleSheet.create({
         fontFamily: 'poppins-semiBold',
     },
     textbox: {
-        borderColor: '#1D4123',
-        backgroundColor: 'white',
-        borderRadius: 15,
-        borderWidth: 1,
+        backgroundColor: '#f5f5f5',
+        borderRadius: 10,
         marginBottom: 0,
-        padding: 10,
+        paddingHorizontal: 8,
         fontSize: 16,
         fontFamily: 'poppins-light',
         marginStart: 8,
         marginEnd: 8,
-        alignItems: 'center'
+        alignItems: 'center',
+        height: 40,
+        color: '#1D4123',
+        justifyContent: 'center',
     },
     label:{
         color: 'white',
@@ -252,18 +256,18 @@ const styles = StyleSheet.create({
         fontFamily: 'poppins-regular'
     },
     pwtextbox: {
-        borderColor: '#1D4123',
-        backgroundColor: 'white',
-        borderRadius: 15,
-        borderWidth: 1,
-        marginBottom: 8,
-        marginTop: 0,
-        padding: 10,
+        backgroundColor: '#f5f5f5',
+        borderRadius: 10,
+        marginBottom: 12,
+        paddingHorizontal: 8,
         fontSize: 16,
         fontFamily: 'poppins-light',
         marginStart: 8,
         marginEnd: 8,
-        alignItems: 'center'
+        alignItems: 'center',
+        height: 40,
+        color: '#1D4123',
+        justifyContent: 'center',
     },
     logo: {
         width: 180,
@@ -294,7 +298,7 @@ const styles = StyleSheet.create({
 
     },
     guestButtonArea: {
-        marginTop: 32,
+        marginTop: 16,
         padding: 8,
         marginStart: 14,
         marginEnd: 14,
