@@ -69,9 +69,9 @@ export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate, 
             <PFText weight='semi-bold' size = {14}>{name}</PFText>
             <PFText weight='light'size = {10}>{timeDate}</PFText>
           </View>
-          <View style={styles.followBtnContainer}>
+          {/* <View style={styles.followBtnContainer}>
             <PFPrimaryButton title={'+ Follow'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
-          </View>        
+          </View>         */}
         </View>
         <PFText style ={{padding:10}}>{description}</PFText>
 

@@ -38,7 +38,17 @@ export default function PostPage({navigation}) {
         />
         <View styles={{flexDirection: 'column'}}>
           <PFText weight='semi-bold' size={15} style={{marginLeft: 10}}>Phytoflex</PFText>
-          <PFText size={9} style={{marginLeft: 11}}>Public //pending part</PFText>
+          <View style={ styles.container1 }>
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={ require('../../assets/drawerIcons/socmedIcons/public_green.png')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={styles.iconStyle}
+            />
+            <PFText size={11} style={{marginLeft: 5}}>Public</PFText>
+          </View>
         </View>
       </View>
 
@@ -154,7 +164,15 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginRight: 10
   },
+  iconStyle: {
+    height: 15,
+    width: 15,
+    marginLeft: 10
+  },
   container: {
+    flexDirection:'row'
+  },
+  container1: {
     flexDirection:'row'
   },
   addbtn: {

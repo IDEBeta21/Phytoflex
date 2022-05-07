@@ -65,6 +65,7 @@ export const globalStyles = StyleSheet.create ({
         backgroundColor: '#fff',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
-        paddingLeft: 20
+        paddingLeft: 20,
+        paddingRight: 15,
     }
 })
