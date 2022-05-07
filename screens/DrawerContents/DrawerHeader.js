@@ -4,18 +4,19 @@ import{ useState } from 'react';
 // import * as React from 'react';
 
 
-export default function Header({ title, navigation, screenDescription }) {
+export default function Header({ title, navigation, screenDescription, goBackScreen }) {
   
   const [text, setText] = useState(""); //for resetting text field/text input
   return (
     
       <View style={style.header}>
-        <Pressable onPress={() => navigation.navigate('SocialMediaHome')}>
+        <Pressable onPress={() => navigation.navigate(goBackScreen)}>
         <Image
         style={{height: 25, width: 25, marginEnd: 32, marginStart: 4 }}
         source={require('../../assets/drawerIcons/arrow-left.png')}
         />
         </Pressable>
+        
       <Text style={style.headerTitle}>{title}</Text>
 
     {screenDescription == 'UserProfileSc' ? /*Drawer*/
@@ -52,6 +53,31 @@ export default function Header({ title, navigation, screenDescription }) {
         <View style={style.headerIconContainer}>
         </View> : null
       }
+    
+    {screenDescription == 'AboutUs' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+  
+    {screenDescription == 'FAQs' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'Notifications' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'PrivacyPolicyTermsAndConditions' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'TermsAndConditions' ? /*Drawer*/
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }              
 
     {screenDescription == 'RateUsScreen' ? /*Drawer*/
         <View style={style.headerIconContainer}>

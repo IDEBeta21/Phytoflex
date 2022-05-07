@@ -46,8 +46,14 @@ import RateUsScreen from './screens/DrawerContents/RateUs';
 import UpgradeScreen from './screens/DrawerContents/PremiumOption'
 
 import DrawerHeader from './screens/DrawerContents/DrawerHeader';
-
 import ForgotPassword from './screens/landing/ForgotPassword';
+
+// Imports for Settings Screen
+import AboutUs from './screens/DrawerContents/SettingsScreens/AboutUs';
+import FAQs from './screens/DrawerContents/SettingsScreens/FAQs';
+import Notifications from './screens/DrawerContents/SettingsScreens/Notifications';
+import PrivacyPolicy from './screens/DrawerContents/SettingsScreens/PrivacyPolicy';
+import TermsAndConditions from './screens/DrawerContents/SettingsScreens/TermsAndCondition';
 
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
@@ -100,6 +106,34 @@ function FuncSettings({navigation}){
     <SettingsScreen navigation={navigation}/>
   )
 }
+
+// Settings Screens
+function FuncAboutUs({navigation}){
+  return(
+    <AboutUs navigation={navigation}/>
+  )
+}
+function FuncFAQs({navigation}){
+  return(
+    <FAQs navigation={navigation}/>
+  )
+}
+function FuncNotifications({navigation}){
+  return(
+    <Notifications navigation={navigation}/>
+  )
+}
+function FuncPrivacyPolicy({navigation}){
+  return(
+    <PrivacyPolicy navigation={navigation}/>
+  )
+}
+function FuncTermsAndConditions({navigation}){
+  return(
+    <TermsAndConditions navigation={navigation}/>
+  )
+}
+
 function FuncRateUs({navigation}){
   return(
     <RateUsScreen navigation={navigation}/>
@@ -190,7 +224,7 @@ function SideBar({navigation}){
           name="DrawerUserProfile"
           component={FuncUserProfile}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'UserProfileSc'} title={'My Profile'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'UserProfileSc'} title={'My Profile'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -202,7 +236,7 @@ function SideBar({navigation}){
           name="EditProfileScreen" 
           component={FuncEditProfile}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'EditProfileScreen'} title={'Edit Profile'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'EditProfileScreen'} title={'Edit Profile'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -262,13 +296,73 @@ function SideBar({navigation}){
           name="DrawerSettings"
           component={FuncSettings}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'SettingsScreen'} title={'Settings'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'SettingsScreen'} title={'Settings'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
             },
             headerTintColor: 'white'
           }} />
+
+        <Drawer.Screen 
+          name="DrawerAboutUs"
+          component={FuncAboutUs}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'AboutUs'} title={'About Us'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerFAQs"
+          component={FuncFAQs}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'FAQs'} title={'Frequently Asked Questions'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerNotifications"
+          component={FuncNotifications}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'Notifications'} title={'Notifications'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerPrivacyPolicy"
+          component={FuncPrivacyPolicy}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'PrivacyPolicy'} title={'Privacy Policy'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DrawerTermsAndConditions"
+          component={FuncTermsAndConditions}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'TermsAndConditions'} title={'Terms And Conditions'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />                                                  
 
         <Drawer.Screen 
           name="DrawerRateUs"
