@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { globalStyles } from '../global/globalStyles';
 import { FAB } from 'react-native-elements';
 import { FontAwesome5 } from '@expo/vector-icons'; 
-import { PFPrimaryButton, PFFlatList, PlantListItem, PFText, PFTextInput, PFCard, PFCardForumPost} from './../../components'
+import { PFPrimaryButton, PFFlatList, PlantListItem, PFText, PFTextInput, PFCard, PFCardForumPost2} from './../../components'
 
 
 export default function DiscussionHomePage({navigation}) {
@@ -19,14 +19,15 @@ export default function DiscussionHomePage({navigation}) {
             data={SampleData.forumPost}
             renderItem={(item) => (
              
-              <PFCardForumPost
+              <PFCardForumPost2
                 imageURL={item.imageURL}
                 userName={item.userName}
                 dateTime={item.dateTime}
                 userImage={item.userImage}
                 badgePoints={item.badgePoints}
                 forumPost={item.forumPost}
-                onPress={() => Alert.alert(item.userName)}
+                onPressText={() => navigation.navigate('CommentAnswerPage')}
+                onPressImage = {() => Alert.alert('Modal dapat e')}
               />
             )}
             keyExtractor={(item,index) => index}

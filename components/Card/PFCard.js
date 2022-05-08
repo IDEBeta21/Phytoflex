@@ -1,5 +1,5 @@
 import React, {Component, useState, useEffect} from 'react';
-import { Dimensions, Pressable, TouchableOpacity, CheckBox, Alert, Text} from 'react-native';
+import { Dimensions, Pressable, TouchableOpacity, CheckBox, Alert, Text,} from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
 import { View, StyleSheet, Image, TextInput } from 'react-native';
 import { PFText } from '../PFText';
@@ -519,8 +519,6 @@ cardContentStyle) => {
 
 export const PFCardForumPost1 = ({imageURL, userName, userImage, badgePoints, dateTime, forumPost,  onPress = () => {}}, style, 
 cardContentStyle) => {
-
- 
   const [image, setimage] = useState(null)
 
 
@@ -576,21 +574,28 @@ cardContentStyle) => {
   )
 };
 
-export const PFCardForumPost = ({
-  imageURL, userName, userImage, badgePoints, dateTime, forumPost, 
-  onPress = () => {}}, 
+{/*export const PFCardForumPost = ({
+  imageURL,userName, userImage, badgePoints, dateTime, forumPost, 
+  onPress = () => {}, 
+  onPressImage = () => {},
+  onPressReact = () => {},
+  onPressText = () => {},
   style, 
-  cardContentStyle) => (
-  <View style={{...styles.cardPostContainer, ...style}}>
-    <Card style={{flex: 1}} onPress={() => onPress()}>
-      
+  cardContentStyle}) => (
+  <View style={{...styles.cardforumPostContainer, ...style}}>
+     <Card.Content style={{...styles.cardForumPostArea2, ...cardContentStyle}}>
+    <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
       <Card.Cover 
         source={{ uri: imageURL }} 
         style={{
-          height: 300,
-          width: (Dimensions.get('window').width) * 0.90
+          height: 175,
+          width: (Dimensions.get('window').width) * 0.81
         }}
       />
+      </Card>
+      </Card.Content>
+      {/*QuestionCard
+    <Card style={{flex: 1, elevation: 0}} onPress = {() => onPressReact()}>
       <Card.Content style={{...styles.cardForumPostArea, ...cardContentStyle}}>
       <View style= {{flexDirection:'row'}}>
       <Image 
@@ -610,19 +615,199 @@ export const PFCardForumPost = ({
        <View style={{...styles.cardForumButtonArea}}>
               <TouchableOpacity>
                   <View style={styles.buttonArea}>
-                  <Text style={{ color: '#639D04', fontSize: 12, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>SOLVED</Text>
+                  <Text style={{ color: '#639D04', fontSize: 12, fontFamily: 'poppins-semiBold', textAlign:'center'}}>SOLVED</Text>
                   </View>
-                  </TouchableOpacity>
+              </TouchableOpacity>
             
             </View>
-       
-      </View>
-        <PFText style ={{padding:10}}>{forumPost}</PFText> 
+            </View>
+    <Pressable onPressText= {() => navigation.navigate('CommentAnswerPage')}>     
+        <Card style={{flex: 1, elevation: 0}} onPress={() => onPressText()}>
+          <Card.Content style={{...styles.cardForumTextArea1, ...cardContentStyle}}> 
+               <PFText style ={{padding:5, textAlign:'justify'}}>{forumPost}</PFText> 
+          </Card.Content>
+        </Card>
+      </Pressable>
+    </Card.Content>
+  </Card>
+    {/*React
+    <Card style={{ elevation: 0}} onPress = {() => onPressReact()}>
+      <Card.Content style={{...styles.cardForumPostArea1, ...cardContentStyle}}>
+        <View style={styles.forumReactContainer}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPressReact={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/discussionIcons/grow.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPressReact={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/discussionIcons/wither.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPressReact={() => navigation.navigate('')}
+          >
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={ require('../../assets/drawerIcons/discussionIcons/more-horizontal.png')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+        </View>
       </Card.Content>
-      
+    </Card>
+  </View>
+); */}
+
+export const PFCardForumPost2 = ({ userPhoto, imageURL, userName, forumPost, badgePoints, dateTime,
+  onPress = () => {}, 
+  onPressImage = () => {},
+  onPressReact = () => {},
+  onPressText = () => {},
+  style, 
+  cardContentStyle}) => (
+  <View style={{...styles.cardforumPostContainer, ...style}}>
+    <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
+      <Card.Cover 
+        source={require('../../assets/img/socmed/sc1.png')} 
+        style={{
+          height: 200,
+          width: (Dimensions.get('window').width) * 0.90,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        }}
+      />
+      <Card.Content style={{...styles.cardForumPostContent, ...cardContentStyle}}>
+        <View style= {{flexDirection:'row'}}>
+          <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 10,
+            }}
+          />
+          <View style={{flexDirection:'column', flexShrink:1}}>
+            
+            <PFText weight='semi-bold' size = {14}>{userName} 
+            <Image source={ require('../../assets/drawerIcons/discussionIcons/award.png')}
+              style={styles.forumBadgeSize}/>
+            {badgePoints}</PFText>
+           {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
+            <PFText weight='light'size = {10}>{dateTime}</PFText>
+          </View>
+          <View style={styles.followBtnContainer}>
+            <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
+          </View>        
+        </View>
+
+        <Pressable onPressText = {() => navigation.navigate('CommentAnswerPage')}>
+          <Card style={{flex: 1, elevation: 0}} onPress={() => onPressText()}>
+            <Card.Content style={{...styles.cardForumTextArea1, ...cardContentStyle}}>
+              <PFText style ={{padding:5}}>{forumPost}</PFText>
+              <PFText weight='ligth'size = {10}>1 Answer</PFText>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+        {/* ReactionSection */}
+        <View style={styles.forumReactContainer}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/discussionIcons/grow.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/discussionIcons/wither.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('')}
+          >
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={ require('../../assets/drawerIcons/discussionIcons/more-horizontal.png')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+        </View>
+      </Card.Content>
     </Card>
   </View>
 );
+
+export const PFCardForumComment = ({ userPhoto, imageURL, userName, forumPost, badgePoints, dateTime,
+  onPress = () => {}, 
+  onPressImage = () => {},
+  onPressReact = () => {},
+  onPressText = () => {},
+  style, 
+  cardContentStyle}) => (
+    <View style={{...styles.cardforumPostContainer, ...style}}>
+      <Card style={{flex: 1, elevation: 0}} onPress={() => onPress()}>
+        <Card.Content style={{...styles.cardForumPostContent, ...cardContentStyle}}>
+        <View style= {{flexDirection:'row'}}>
+          <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 10,
+            }}
+          />
+          <View style={{flexDirection:'column', flexShrink:1}}>
+            
+            <PFText weight='semi-bold' size = {14}>{userName} 
+            <Image source={ require('../../assets/drawerIcons/discussionIcons/award.png')}
+              style={styles.forumBadgeSize}/>
+            {badgePoints}</PFText>
+           {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
+            <PFText weight='light'size = {10}>{dateTime}</PFText>
+          </View>
+          <View style={styles.followBtnContainer}>
+            <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
+          </View>        
+        </View>
+
+      <Pressable onPress = {() => navigation.navigate('EditQuestionPage')}>
+        <Card style={{flex: 1, elevation: 0}} onPress={() => onPress()}>
+          <Card.Content style={{...styles.cardForumTextArea1, ...cardContentStyle}}>
+            <PFText style ={{padding:5}}>{forumPost}</PFText>
+            <PFText weight='ligth'size = {10}>1 Answer</PFText>
+          </Card.Content>
+        </Card>
+      </Pressable>
+    </Card.Content>
+    </Card>
+  </View>
+  );
 
 export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
   const [image, setimage] = useState(null)
@@ -641,13 +826,8 @@ export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
       borderRadius: 8
     }}
   />
-
-
   )
 };
-
-
-
 
 
 const styles = StyleSheet.create({
@@ -884,24 +1064,84 @@ const styles = StyleSheet.create({
 
   cardForumPostArea: {
    
-    backgroundColor: "#D8F9C9",
-  
+    //backgroundColor: "#D8F9C9",
+    borderWidth: 1,
+    borderColor: "#639D04",
+    paddingTop: 10,
+    paddingBottom: 5
+  },
+  cardForumPostArea1: {
+   
+    //backgroundColor: "#D8F9C9",
+    borderWidth: 1,
+    borderColor: "#639D04",
     paddingTop: 10,
     borderBottomLeftRadius: 10, 
     borderBottomRightRadius: 10
   },
+  cardForumTextArea1: {
+    backgroundColor: "#EDFCE7",
+    paddingTop: 0.5,
+    paddingBottom: 15,
+    marginBottom: 4,
+    marginTop: 10,
+    paddingLeft: 5,
+    paddingRight: 5,
+    //borderWidth: 1, 
+    //borderColor: Colors.primary, 
+    //borderBottomLeftRadius: 5,
+    //borderBottomRightRadius: 5,
+    borderRadius: 10
+  },
+  cardforumPostContainer: {
+    width: (Dimensions.get('window').width) * 0.90,
+    marginBottom: 15,
+    marginTop: 10,
+    //marginLeft: 10
+  },
+  cardForumPostContent: {
+    paddingTop: 15,
+    borderWidth: 1, 
+    borderColor: Colors.primary, 
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20
+  },
   cardForumButtonArea: {
-    width: 80,
-    height: 21,
-    borderWidth: 1,
-    borderColor: "#639D04",
-    borderRadius: 10,
-    backgroundColor: '#D8F9C9',
-    marginStart: 30
-
-
+    alignItems: 'flex-end',
+    flexGrow:1
   },
   cardForumContentStyle:{
     padding: 2,
+  },
+  forumReactContainer: {
+      flexDirection: 'row', 
+      borderWidth: 1, 
+      borderRadius: 10, 
+      alignItems: 'center', 
+      padding: 5,
+      paddingLeft: 20,
+      marginTop: 10
+  },
+  forumReactSize: {
+    height: 30,
+    width: (Dimensions.get('window').width) * 0.10,
+    marginRight: 30,
+    marginLeft: 20,
+    alignItems:'center'
+  },
+  forumBadgeSize: {
+    height: 16,
+    width: (Dimensions.get('window').width) * 0.05,
+    marginRight: 15,
+    marginLeft: 10, 
+  }, 
+    cardForumPostArea2: {
+    //backgroundColor: "#D8F9C9",
+    borderWidth: 0.5,
+    borderColor: "#639D04",
+    borderTopLeftRadius: 10, 
+    borderTopRightRadius: 10,
+    paddingTop: 15,
+    paddingBottom: 15
   }
 })
