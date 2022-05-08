@@ -28,7 +28,7 @@ export default function UserProfilePage({navigation}) {
   return (
     
     <View style={styles.mainContainer}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Image
             // FAB using TouchableOpacity with an image
@@ -43,12 +43,23 @@ export default function UserProfilePage({navigation}) {
               <PFText weight='semi-bold' size={20} style={{marginLeft: 10, paddingRight: 10, paddingLeft: 10, paddingTop: 0, paddingBottom: 0}}>Leila Jane L. Alejandre</PFText>
             </View>
             <PFText size={13} style={{marginLeft: 10, paddingLeft: 10, }}>@leyy</PFText>
-            {/* <PFFollowedButton title={'Following'} onPress={() => navigation.navigate('')}></PFFollowedButton> */}
-            <TouchableOpacity onPress={() => gotoHome()}>
-              <View style={styles.guestButtonArea}>
-                <Text style={{ color: '#639d04', fontSize: 12, fontFamily: 'poppins-regular'}}>Following</Text>
-              </View>
-            </TouchableOpacity>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity onPress={() => gotoHome()}>
+                <View style={styles.guestButtonArea}>
+                  <Text style={{ color: '#639d04', fontSize: 12, fontFamily: 'poppins-regular'}}>Following</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => gotoHome()}>
+                <Image
+                  // FAB using TouchableOpacity with an image
+                  // For online image
+                  source={ require('../../assets/drawerIcons/socmedIcons/message.png')}
+                  // For local image
+                  //source={require('./images/float-add-icon.png')}
+                  style={styles.userPhoto2}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         
@@ -71,7 +82,7 @@ export default function UserProfilePage({navigation}) {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={ require('../../assets/logo.png')}
+            source={ require('../../assets/drawerIcons/socmedIcons/plant.png')}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.userPhoto1}
@@ -114,8 +125,7 @@ const styles = StyleSheet.create({
   },
   mainPostContainer: {
     // margin: 5,
-    paddingTop: 10,
-    paddingLeft: 20,
+    paddingTop: 7,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'flex-start',
@@ -128,9 +138,16 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   userPhoto1: {
+    height: 35,
+    width: 35,
+    borderRadius: 100
+  },
+  userPhoto2: {
     height: 30,
     width: 30,
-    borderRadius: 100
+    marginLeft: 15,
+    marginTop: 5,
+    padding: 5,
   },
   container: {
     flexDirection:'row',
@@ -214,10 +231,10 @@ const styles = StyleSheet.create({
   },
   txtStyles: {
     padding: 3,
-    paddingLeft: 20,
-    height: 30,
+    paddingLeft: 18,
+    height: 38,
     flexDirection: 'row',
-    margin: 10
+    margin: 5
   },
   txt3: {
     fontFamily: 'poppins-regular',

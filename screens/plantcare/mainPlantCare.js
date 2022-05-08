@@ -18,9 +18,14 @@ import PlantCareReminder from './plantCareReminder';
 import PlantCareAlbum from './plantCareAlbum';
 
 import NavigationPage from './navigationPage';
+import PlantCareCameraPreview from './snap/camera/plantCareCameraPreview';
 
 import Header from '../global/Header';
 import HeaderSearch from '../global/HeaderSearch';
+import PlantCareHeader from './plantCareHeader';
+import { Camera } from 'expo-camera';
+
+const CameraStack = createNativeStackNavigator();
 
 // functions to call screens
 function FuncPlantCareHome({navigation}) {
@@ -41,9 +46,15 @@ function FuncPlantCareInstruction({navigation}){
   );
 }
 
-function FuncPlantCareResult({navigation}) {
+function FuncPlantCareResult({navigation, route}) {
   return (
-    <PlantCareResult navigation={navigation}/>
+    <PlantCareResult navigation={navigation} route={route}/>
+  );
+}
+
+function FuncPlantCareHealthCare({navigation}) {
+  return (
+    <PlantCareHealtCarePage navigation={navigatultion}/>
   );
 }
 
@@ -51,9 +62,9 @@ function FuncPlantCareCamera({route, navigation}){
   return(<PlantCareCamera navigation={navigation} route={route}/>);
 }
 
-function FuncPlantCarePlantInformation({navigation}) {
+function FuncPlantCarePlantInformation({navigation, route}) {
   return(
-    <PlantCarePlantInformation navigation={navigation}/>);
+    <PlantCarePlantInformation navigation={navigation} route={route}/>);
 }
 
 function FuncPlantCarePlantCareTips({navigation}) {
@@ -91,8 +102,16 @@ function FuncPlantCareAlbum({navigation}) {
     <PlantCareAlbum navigation={navigation}/>);
 }
 
+function FuncPlantCareCameraPreview({route, navigation}){
+  return(
+    <PlantCareCameraPreview
+      navigation={navigation} 
+      route={route} 
+    />
+  );
+}
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator(); //navigation.setOptions({ tabBarVisible: false })
 
 // Stacking Screens
 function App({navigation}) {
@@ -227,17 +246,44 @@ function App({navigation}) {
             },
             headerTintColor: 'white',
           }}
+          
         />
 
         <Stack.Screen
           name="PlantCareCamera"
           component={FuncPlantCareCamera}
           options={{ 
-            headerTitle: (props) => <Header title={'Capture'} navigation={navigation} />, 
+            headerTitle: (props) => 
+              <PlantCareHeader 
+                title={'Capture'} 
+                navigation={navigation} 
+                screenDescription={"CameraScreen"}
+              />, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },
-            headerTintColor: 'white'
+            headerTintColor: 'white',
+            // headerShown: false,
+            
+          }}
+        />
+        
+        <Stack.Screen
+          name="PlantCareCameraPreview"
+          component={FuncPlantCareCameraPreview}
+          options={{ 
+            headerTitle: (props) => 
+              <PlantCareHeader 
+                title={'Preview'} 
+                navigation={navigation} 
+                screenDescription={"CameraScreen"}
+              />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white',
+            // headerShown: false,
+            
           }}
         />
 

@@ -26,71 +26,107 @@ export default function CommentPage({navigation}) {
 
   return (
     <View style={ styles.mainContainer }>
-      <PFFlatList
-          numColumns={1}
-          noDataMessage='No Followers'
-          data={SampleData.commentDetails}
-          renderItem={(item) => (
-            <PFCommentCard 
-              userPhoto={item.userPhoto}
-              name={item.name}
-              comment={item.comment}
-              reactionNum={item.reactionNum}
-              replyNum={item.replyNum}
-              time={item.time}/>
-          )}
-          keyExtractor={(item,index) => index}
-      />
-        {/* Comments Container
-        <View style={styles.commentSection}>
-          <View style={ styles.container }>
-            <Image
-              // FAB using TouchableOpacity with an image
-              // For online image
-              source={ require('../../assets/img/profiles/Vega.jpg')}
-              // For local image
-              //source={require('./images/float-add-icon.png')}
-              style={styles.userPhoto1}
+      <ScrollView>
+        {/* <View>
+          <ScrollView horizontal = {true}>
+            <PFFlatList
+              numColumns={5}
+              noDataMessage='Loading...'
+              data={SampleData.followFriend}
+              renderItem={(item) => (
+                <PFFriendCard
+                  userPhoto={item.userPhoto}
+                  name={item.name}
+                  onPress={() => {navigation.navigate()
+                  }}
+                />
+              )}
+              keyExtractor={(item,index) => index}
             />
-            <View styles={{flexDirection: 'column'}}>
+          </ScrollView>
+        </View>   */}
+        <View>
+          <PFFlatList
+            numColumns={1}
+            noDataMessage='No Comment'
+            data={SampleData.commentDetails}
+            renderItem={(item) => (
+              <PFCommentCard 
+                userPhoto={item.userPhoto}
+                name={item.name}
+                comment={item.comment}
+                reactionNum={item.reactionNum}
+                replyNum={item.replyNum}
+                time={item.time}/>
+            )}
+            keyExtractor={(item,index) => index}
+          />
+        </View>      
+      </ScrollView>
+      <View style={styles.addComment}>
+        <View style={ styles.container }>
+          <Image
+            // FAB using TouchableOpacity with an image
+            // For online image
+            source={ require('../../assets/img/profiles/Alejandre.jpg')}
+            // For local image
+            //source={require('./images/float-add-icon.png')}
+            style={styles.userImage}
+          />
+          <View styles={{flexDirection: 'column'}}>
             <View style={ styles.container }>
-            <PFText weight='semi-bold' size={13}>Jocelyn Vega</PFText>
-                <PFText weight='semi-bold' size={10} style={{marginLeft: 8, marginTop: 3}}>•</PFText>
-                <PFText size={10} style={{marginLeft: 8, marginTop: 3}}>10m</PFText>
-              </View>
-              <View style={ styles.container }>
-                <TextInput style={styles.commentTxtBox}>Love that plant.</TextInput>
-                  <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 10}}>
-                    <Image
-                      // FAB using TouchableOpacity with an image
-                      // For online image
-                      source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
-                      // For local image
-                      //source={require('./images/float-add-icon.png')}
-                      style={styles.commentReactSize}
-                    />
-                  </View>
-              </View>
-              <View style={ styles.container }>
-                <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>Reply</PFText>
-              </View>
+              <TextInput style={styles.commentTxtBox} placeholder={'Aa'}></TextInput>
+                <View style={{margin: 5, marginLeft: 15}}>
+                  <Image
+                    // FAB using TouchableOpacity with an image
+                    // For online image
+                    source={ require('../../assets/drawerIcons/socmedIcons/send_icon.png')}
+                    // For local image
+                    //source={require('./images/float-add-icon.png')}
+                    style={styles.commentReactSize}
+                  />
+                </View>
             </View>
           </View>
         </View>
-        <PFText style={{marginTop: 10}} onPress={() => navigation.navigate('')}>View All Comments</PFText> */}
+      </View> 
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    // margin: 5,
-    paddingTop: 10,
-    paddingLeft: 20,
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'flex-start',
+    justifyContent: 'flex-start'
+  },
+  userImage: {
+    height: 40,
+    width: 40,
+    borderRadius: 100,
+    marginRight: 10,
+    marginLeft: 5
+  },
+  createpostIcon: {
+    height: 30,
+    width: 30,
+    marginLeft: 90,
+    marginTop: 5
+  },
+  addComment: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start',
+    padding: 15,
+    width: (Dimensions.get('window').width/1),
+    backgroundColor: '#639d04'
+  },
+  textFormat: {
+    paddingLeft: 10,
+    paddingTop: 8,
+    color: '#1d4123',
+    fontFamily: 'poppins-semiBold'
   },
   userPhoto: {
     height: 40,
@@ -111,6 +147,16 @@ const styles = StyleSheet.create({
     width: 30,
     marginLeft: 5,
     borderRadius: 100
+  },
+  hr: {
+    position: 'relative',
+    top: 0,
+    borderBottomColor: '#1D4123',
+    borderBottomWidth: 1,
+    // marginLeft: 20,
+    // marginRight: 20,
+    marginBottom: 10,
+    marginTop: 5
   },
   image: {
     height:290,
@@ -133,9 +179,8 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
   commentReactSize: {
-    height: 20,
-    width: 20,
-    margin: 4
+    height: 30,
+    width: 30,
   },
   commentSection: {
     marginTop: 10
@@ -151,3 +196,4 @@ const styles = StyleSheet.create({
     padding: 10
   }
 })
+  

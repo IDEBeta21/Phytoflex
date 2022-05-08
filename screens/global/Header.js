@@ -161,6 +161,17 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
         </View> : null
       }
 
+      {title == 'Ask Community' ? /*Discussion Main Page*/
+        <View style={style.headerIconContainer}>
+          <Pressable onPress={() => navigation.navigate('AddPhotosPage')} >
+            <Image
+              style={style.dscheaderIcons}
+              source={require('../../assets/drawerIcons/discussionIcons/ri_image-add-fill.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+        </View> : null
+      }
       {title == 'Search' ? /*Shop Search*/
         <View style={style.whiteHeaderIconContainer}>
          
@@ -339,7 +350,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingHorizontal: 0,
-    marginHorizontal: 0,
+    marginHorizontal: 0
   },
   headerIconContainer:{
     flex: 1,
@@ -375,12 +386,12 @@ const style = StyleSheet.create({
   headerIcons:{
     height: 24, 
     width: 24, 
-    marginLeft: 16,
+    marginLeft: 16
   },
   plantCareHeaderIcons:{
     height: 27, 
     width: 27, 
-    marginLeft: 14,
+    marginLeft: 14
   },
   whiteHeaderIcons:{
     height: 24, 
@@ -388,5 +399,10 @@ const style = StyleSheet.create({
     marginLeft: 16,
     marginBottom: 4
   },
+  dscheaderIcons:{
+    height: 24, 
+    width: 24, 
+    marginLeft: 35
+  }
   
 });
