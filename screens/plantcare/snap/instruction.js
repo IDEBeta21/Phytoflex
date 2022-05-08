@@ -5,82 +5,83 @@ import { NavigationContainer } from '@react-navigation/native';
 
 export default function Instruction({navigation}) {
   return (
-
-    
-      <View style={{flex:1 }}>
         
-        <View>
-          <ScrollView 
-          contentContainerStyle={{ paddingHorizontal: 20, paddingVertical: 20 }}>
-            <SafeAreaView
-            contentContainerStyle={{ margin: 12}}
-            style={{flex: 1}}>
-              
-            {/* Image 1 */}
-            <View style={styles.imageContainer}>
-              <Image 
-                style={styles.image}
-                source={require('./../../../assets/img/plantcare/instruction/Step1.png')}/>
-            </View>
+    <View style={styles.container}>
+      <ScrollView 
+        contentContainerStyle={{
+        backgroundColor: '#ffffff', 
+        marginHorizontal: 12,
+        paddingBottom: 14,
+        marginTop: 16
+      }}>
 
-            {/* Image 2 */}
-            <View style={styles.imageContainer}>
-              <Image 
-                style={styles.image}
-                source={require('./../../../assets/img/plantcare/instruction/Step2.png')}/>
-            </View>
 
-            {/* Image 3 */}
-            <View style={styles.imageContainer}>
-              <Image 
-                style={styles.image}
-                source={require('./../../../assets/img/plantcare/instruction/Step3.png')}/>
-            </View>
-
-            {/* Image 4 */}
-            <View style={styles.imageContainer}>
-              <Image 
-                style={styles.image}
-                source={require('./../../../assets/img/plantcare/instruction/Step4.png')}/>
-            </View>
-
-            {/* Image 5 */}
-            <View style={styles.imageContainer}>
-              <Image 
-                style={styles.image}
-                source={require('./../../../assets/img/plantcare/instruction/Step5.png')}/>
-            </View>
-          
-            </SafeAreaView>
-            </ScrollView>
+      {/* 1 */}
+        <View style={styles.card}>
+          <PFText style={styles.text}>1. Focus the plant in the center of the frame, avoid dark or blurry images.</PFText>
+          <Image style={styles.image}
+            source={require('./../../../assets/img/plantcare/instruction/image1.png')}/>
         </View>
 
-      {/* Camera button 
-        <View style={styles.textContainer}>
-            <PFSecondaryButton 
-              onPress={() => {navigation.navigate('PlantCareCamera', {title: "Hello world"})}}
-              title={'Capture'} 
-              style={{width: 200}}>
-            </PFSecondaryButton>
-        </View> */}
+      {/* 2 */}
+        <View style={styles.card}>
+          <PFText style={styles.text}>2. If the plant is too big for the frame, just make sure to include the leaves or flower of the plant.</PFText>
+          <Image style={styles.image}
+            source={require('./../../../assets/img/plantcare/instruction/image2.png')}/>
+        </View>
         
-      </View>
+      {/* 3 */}
+        <View style={styles.card}>
+          <PFText style={styles.text}>3. Avoid getting too close, just make sure the leaves or flower are clear and in complete view.</PFText>
+          <Image style={styles.image}
+            source={require('./../../../assets/img/plantcare/instruction/image3.png')}/>
+        </View>
+        
+      {/* 4 */}
+        <View style={styles.card}>
+          <PFText style={styles.text}>4. Focus on the flower if your plant has flowers.</PFText>
+          <Image style={styles.image}
+            source={require('./../../../assets/img/plantcare/instruction/image4.png')}/>
+        </View>
+
+      {/* 5 */}
+        <View style={styles.card}>
+          <PFText style={styles.text}>5. Only include one species at a time.</PFText>
+          <Image style={styles.image}
+            source={require('./../../../assets/img/plantcare/instruction/image3.png')}/>
+        </View>
+
+      </ScrollView>
+    </View>
+
     
   )
 }
 
 const styles = StyleSheet.create({
-  textContainer: {
+
+  container:{
+    backgroundColor: '#ffffff', 
+    flex: 1,
     alignItems: 'center',
-    paddingVertical: 5,
-    elevation: 20
+  }, 
+
+  card: { 
+    paddingBottom: 20,
+    flex: 1,
+  },
+
+  text: {
+    paddingBottom: 6,
+    textAlign: 'justify',
   },
 
   image: {
-    width: 357, height: 206, 
+    width: 336, 
+    height: 139, 
+    resizeMode: 'contain', 
+    alignItems: 'center', 
   },
 
-  imageContainer: {
-    alignItems: 'center', padding: 20, paddingTop: 8
-  }
+
 })
