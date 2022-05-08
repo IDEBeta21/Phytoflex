@@ -498,7 +498,8 @@ export default SampleData = {
             badgePoints: '750',
             forumPost: 'Hey guys, what do you think is the reason why the leaves are turning yellow.. I have been trying to monitor since last.. Need help guys',
             dateTime: '09/27/2021 05:56 AM'
-        }
+        },
+        
     ]
 }
 
