@@ -338,6 +338,7 @@ refdata2.forEach((item) => {
                itemName ={item.itemName}
                item = {item}
                price = {item.price}
+               
                onSubtract={() => onSubtract(item, index)}
                onAdd={() => onAdd(item, index)}
                onSelected={() => selectHandler(index, value)}

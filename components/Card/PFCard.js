@@ -671,14 +671,48 @@ cardContentStyle) => {
   </View>
 ); */}
 
-export const PFCardForumPost2 = ({ userPhoto, imageURL, userName, forumPost, badgePoints, dateTime,
+export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, userName, forumPost, badgePoints, dateTime, bloomQuantity,
   onPress = () => {}, 
   onPressImage = () => {},
   onPressReact = () => {},
   onPressText = () => {},
   style, 
-  cardContentStyle}) => (
-  <View style={{...styles.cardforumPostContainer, ...style}}>
+  cardContentStyle}) =>
+  
+  {
+    // adding bloom reacts to firebase
+
+  //   const onLikePress = (userId) => {
+  //     const userPosts = firebase.firestore()
+  //                               .collection("Question")
+  //                               .doc(userId)
+                                
+          
+  //     userPosts.collection("likes")
+  //              .doc(firebase.auth().currentUser.uid)
+  //              .set({})
+  //              .then(() => {
+  //                  userPosts.update({
+  //                      qstReactQuantity: firebase.firestore.FieldValue.increment(1)
+  //                  });
+  //              })
+  // }
+    const [unliked, setLiked2] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [image, setimage] = useState(null)
+    const [userimage, setuserImage] = useState(null)
+
+  firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+    setimage(url);
+  })
+
+  firebase.storage().ref().child(userImage).getDownloadURL().then((url) => {
+    setuserImage(url);
+  })
+
+     return(
+
+      <View style={{...styles.cardforumPostContainer, ...style}}>
     <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
       <Card.Cover 
         source={require('../../assets/img/socmed/sc1.png')} 
@@ -692,7 +726,7 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userName, forumPost, bad
       <Card.Content style={{...styles.cardForumPostContent, ...cardContentStyle}}>
         <View style= {{flexDirection:'row'}}>
           <Image 
-            source={require('../../assets/logo.png')}
+            source={{uri : userimage}}
             style={{
               height: 40,
               width: 40,
@@ -725,28 +759,34 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userName, forumPost, bad
 
         {/* ReactionSection */}
         <View style={styles.forumReactContainer}>
+          <View style={{paddingRight: 25, flexDirection:'row'}}>
+          <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+            <MaterialCommunityIcons
+            name={liked ? "flower-tulip": "flower-tulip-outline" }
+            size={24} 
+            color={liked ? "#1D4123" : "#1D4123"}
+           />
+            </Pressable>
+            <View style={{paddingRight: 8}}></View>
+            <PFText>{bloomQuantity}</PFText>
+            
+            </View>
+           
+            <View style={{paddingRight: 120}}>
+            <Pressable onPress={() => setLiked2((isLiked) => !isLiked)}>
+            <MaterialCommunityIcons
+            name={unliked ? "seed" : "seed-outline" }
+            size={24} 
+            color={unliked ? "#1D4123" : "#1D4123"}
+           />
+            </Pressable>
+            </View>
+           
+              
+       
           <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('')}
-          >
-            <Image
-              source={ require('../../assets/drawerIcons/discussionIcons/grow.png')}
-              style={styles.forumReactSize}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('')}
-          >
-            <Image
-              source={ require('../../assets/drawerIcons/discussionIcons/wither.png')}
-              style={styles.forumReactSize}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('')}
-          >
+            activeOpacity={0.7}>
+
             <Image
               // FAB using TouchableOpacity with an image
               // For online image
@@ -760,7 +800,14 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userName, forumPost, bad
       </Card.Content>
     </Card>
   </View>
-);
+
+     )
+  
+
+  }
+
+    
+
 
 export const PFCardForumComment = ({ userPhoto, imageURL, userName, forumPost, badgePoints, dateTime,
   onPress = () => {}, 

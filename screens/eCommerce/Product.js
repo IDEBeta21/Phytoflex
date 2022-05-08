@@ -52,6 +52,8 @@ export default function  ProductPage   ({ route, navigation}){
 // addData function for productItem 
   function addData(){
     firebase.firestore().collection('ProductItem').add({
+      tempQuantity: 0,
+      checked: 0,
       userId: userId,
       itemName: route.params.itemName,
       quantity: counter,

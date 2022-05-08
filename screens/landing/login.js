@@ -24,7 +24,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
     const [userPass, setUserPass] = useState('');
 
 
-    // window.userEmail = userEmail
+    window.userEmail = userEmail
     function logInClick() {
         const auth = firebase.auth();
         firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
@@ -38,7 +38,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                 .collection('users').where('userEmail', '==', userEmail).get().then((res) => {
                   res.forEach(doc => {
                     console.log(doc.id, '=>', doc.data());
-                    // window.userId = doc.id
+                    window.userId = doc.id
                   })
                 })
                   
