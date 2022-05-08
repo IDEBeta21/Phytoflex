@@ -5,6 +5,24 @@ import {
     Alert, Modal,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+import HomeLog from './HomeLog';
+import DiscussionLog from './DiscussionLog';
+
+function FuncHomeLog({navigation}){
+  return(
+    <HomeLog navigation={navigation}/>
+  )
+}
+
+function FuncDiscussionLog({navigation}){
+  return(
+    <DiscussionLog navigation={navigation}/>
+  )
+}
+
+const Tab = createMaterialTopTabNavigator();
 
 export default function UserProfileDrawer({navigation}) {
   return (
@@ -37,7 +55,9 @@ export default function UserProfileDrawer({navigation}) {
                 @titoDusik
             </Text>
           <View style={{ flexDirection: 'row', marginTop: 8, justifyContent: 'flex-start', marginBottom: 26}}>
-              <TouchableOpacity style={style=styles.buttonArea}>
+              <TouchableOpacity 
+                  onPress={() => navigation.navigate('EditProfile')}
+                  style={style=styles.buttonArea}>
                 <View style={{color: 'white', }}>
                   <Text style={{
                       color: '#1D4123', 
@@ -77,12 +97,35 @@ export default function UserProfileDrawer({navigation}) {
                 300
             </Text> 
             <Text style={styles.textCaption}>
-                Following
+                Badge Points
             </Text> 
           </View>
         </View>
       </View>          
     </ScrollView>
+    <ScrollView>
+    <Tab.Navigator
+    initialRouteName="PostsLog"
+    screenOptions={{
+      tabBarActiveTintColor: '#1D4123',
+      tabBarInactiveTintColor: '#f5f5f5',
+      tabBarLabelStyle: { fontSize: 15, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
+      tabBarStyle: { backgroundColor: '#1D4123', elevation:0  },
+      tabBarIndicatorStyle: {backgroundColor: '#f2f2f2',  borderColor: '#1D4123', height: '100%'}
+    }}  
+    >
+    <Tab.Screen
+      name="HomeLog"
+      component={FuncHomeLog}
+      options={{ tabBarLabel: 'Home' }}
+    />
+    <Tab.Screen
+      name="DiscussionLog"
+      component={FuncDiscussionLog}
+      options={{ tabBarLabel: 'Discussions' }}
+    />
+    </Tab.Navigator>
+    </ScrollView>    
     </View>
   );
 }
@@ -100,7 +143,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 16,
     flexDirection: 'row', 
-    flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     alignContent: 'space-around',
 // if you want to fill rows left to right,
@@ -110,17 +152,16 @@ const styles = StyleSheet.create({
   },
   textCaption: {
     textAlign: 'center',
+    justifyContent: 'center',
     color: '#777F78', 
-    fontFamily: 'poppins-semiBold', 
-    fontSize: 14,
-    marginVertical: 3,
+    fontFamily: 'poppins-regular', 
+    fontSize: 15,
   },
   textNum: {
     textAlign: 'center',
     color: '#f2f2f2', 
     fontFamily: 'poppins-semiBold', 
     fontSize: 20,
-    marginVertical: 3,
   },
   containerInfo: {
     alignSelf: 'center',

@@ -326,7 +326,7 @@ function SideBar({navigation}){
           name="DrawerActivityLogs"
           component={FuncActivityLog}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123',
