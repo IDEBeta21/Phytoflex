@@ -81,7 +81,7 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
             />
           </Pressable>
           {/* <Pressable onPress={() => navigation.navigate('PlantCareOpportunity')} > */}
-          <Pressable onPress={() => navigation.navigate('PlantCarePlantCareTips')} >
+          <Pressable onPress={() => navigation.navigate('PlantCareTips')} >
             <Image
               style={style.plantCareHeaderIcons}
               source={require('../../assets/drawerIcons/plantCareIcons/opportunity.png')}
