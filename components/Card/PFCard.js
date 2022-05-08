@@ -1,5 +1,5 @@
 import React, {Component, useState, useEffect} from 'react';
-import { Dimensions, Pressable, TouchableOpacity, CheckBox, Alert, Text} from 'react-native';
+import { Dimensions, Pressable, TouchableOpacity, CheckBox, Alert, Text,} from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
 import { View, StyleSheet, Image, TextInput } from 'react-native';
 import { PFText } from '../PFText';
@@ -260,48 +260,45 @@ style, cardContentStyle) => {
     return(
 
 
-      <View style={{...styles.cardShopContainer, ...style}}>
-    <Card stye={{flex: 1}} onPress={() => onPress()}>
+    <View style={{...styles.cardShopContainer, ...style}}>
+    <Card style={{flex: 1}} onPress={() => onPress()}>
       
       <Card.Cover 
         source={{ uri: image }} 
         style={{
           height: 140,
-          width: (Dimensions.get('window').width/2) * 0.90,
-          margin: 2,
-          borderRadius: 8
+          width: (Dimensions.get('window').width/2) * 0.87,
+          margin: 0,
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5
         }}
       />
 
       <Card.Content style={{...styles.cardShopContent, ...cardContentStyle}}>
         <View style={{flexDirection:'row'}}>
-        <PFText weight='semi-bold'>{itemName}</PFText>
-        <View style={{...styles.heartReact, alignItems:'center'}}>
-        <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
-       <MaterialCommunityIcons
-        name={liked ? "heart" : "heart-outline"}
-        size={17}
-        color={liked ? "#1D4123" : "#1D4123"}
-      />
-    </Pressable>
-        </View>
-       
+          <PFText weight='semi-bold' size={14}>{itemName}</PFText>
+          <View style={{...styles.heartReact, alignItems:'center'}}>
+            <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+              <MaterialCommunityIcons
+                name={liked ? "heart" : "heart-outline"}
+                size={17}
+                color={liked ? "#1D4123" : "#1D4123"}
+              />
+            </Pressable>
+          </View>
         </View>
         <View style={{...styles.textShopContainer}}>
-           
-            <PFText weight='semi-bold'>{category}</PFText>
-            <View style={{flex:1, flexDirection: 'row'}}>
+            <PFText size={12}>{category}</PFText>
+            <View style={{flex:1, flexDirection: 'row', alignItems: 'center'}}>
               <View style={{flex: 1}}>
-                <PFText color={Colors.secondary} weight='semi-bold'>P {price}</PFText>
+                <PFText color={Colors.secondary} weight='semi-bold' size={15}>P {price}</PFText>
               </View>
               <View style={{flex: 1, alignItems: 'flex-end'}}>
-                <PFText color={Colors.primary} weight='light'>sold {sold}</PFText>
+                <PFText color={Colors.primary} weight='light' size={12}>Sold: {sold}</PFText>
               </View>
             </View>
         </View>
-
       </Card.Content>
-      
     </Card>
   </View>
 
@@ -362,31 +359,32 @@ cardContentStyle) => {
       <Image 
         source={{ uri: image}}
         style={{
-          marginTop: 8,
-          height: 50,
-          width: (Dimensions.get('window').width/1) * 0.15,
+          marginTop: 10,
+          marginLeft: 15,
+          height: 45,
+          width: (Dimensions.get('window').width/1) * 0.13,
           borderRadius: 100
         }}
       />
 
       <Card.Content style={{...styles.cardShopReviewContent}}>
               <View style={{flexDirection:'column'}}>
-              <PFText weight='semi-bold' size = {18}>{customerName}</PFText>
-              <PFText weight='light'>{date}</PFText>
-              <StarRating
-              rating={rate}
-              onChange={setRating}
-              starSize={20}
-               />
-               </View>
+                <PFText weight='semi-bold' size = {15} style={{marginTop: 10}}>{customerName}</PFText>
+                <PFText weight='light' size = {10}>{date}</PFText>
+              </View>
       </Card.Content>
        
 
             </View>
-      
-               <View style={{alignItems:'flex-start'}}>
-               <PFText weight='light'>{review}</PFText>
-               </View>
+              <StarRating
+                rating={rate}
+                onChange={setRating}
+                starSize={20}
+                style={{marginTop: 10, marginLeft: 10}}
+                />
+              <View style={{alignItems:'flex-start', marginLeft: 11, padding: 5}}>
+                <PFText weight='light' style={{width: 300}}>{review}</PFText>
+              </View>
     </Card>
   </View>
 
@@ -404,7 +402,7 @@ export const PFCardProduct = ({imageURL, onPress = () =>{}}, style) => {
       <Image 
         source={{ uri: image}}
         style={{
-          height: 300,
+          height: 250,
           width: (Dimensions.get('window').width/1) * 1,
           
         }}
@@ -519,8 +517,6 @@ cardContentStyle) => {
 
 export const PFCardForumPost1 = ({imageURL, userName, userImage, badgePoints, dateTime, forumPost,  onPress = () => {}}, style, 
 cardContentStyle) => {
-
- 
   const [image, setimage] = useState(null)
 
 
@@ -576,21 +572,28 @@ cardContentStyle) => {
   )
 };
 
-export const PFCardForumPost = ({
-  imageURL, userName, userImage, badgePoints, dateTime, forumPost, 
-  onPress = () => {}}, 
+{/*export const PFCardForumPost = ({
+  imageURL,userName, userImage, badgePoints, dateTime, forumPost, 
+  onPress = () => {}, 
+  onPressImage = () => {},
+  onPressReact = () => {},
+  onPressText = () => {},
   style, 
-  cardContentStyle) => (
-  <View style={{...styles.cardPostContainer, ...style}}>
-    <Card style={{flex: 1}} onPress={() => onPress()}>
-      
+  cardContentStyle}) => (
+  <View style={{...styles.cardforumPostContainer, ...style}}>
+     <Card.Content style={{...styles.cardForumPostArea2, ...cardContentStyle}}>
+    <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
       <Card.Cover 
         source={{ uri: imageURL }} 
         style={{
-          height: 300,
-          width: (Dimensions.get('window').width) * 0.90
+          height: 175,
+          width: (Dimensions.get('window').width) * 0.81
         }}
       />
+      </Card>
+      </Card.Content>
+      {/*QuestionCard
+    <Card style={{flex: 1, elevation: 0}} onPress = {() => onPressReact()}>
       <Card.Content style={{...styles.cardForumPostArea, ...cardContentStyle}}>
       <View style= {{flexDirection:'row'}}>
       <Image 
@@ -610,19 +613,260 @@ export const PFCardForumPost = ({
        <View style={{...styles.cardForumButtonArea}}>
               <TouchableOpacity>
                   <View style={styles.buttonArea}>
-                  <Text style={{ color: '#639D04', fontSize: 12, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>SOLVED</Text>
+                  <Text style={{ color: '#639D04', fontSize: 12, fontFamily: 'poppins-semiBold', textAlign:'center'}}>SOLVED</Text>
                   </View>
-                  </TouchableOpacity>
+              </TouchableOpacity>
             
             </View>
-       
-      </View>
-        <PFText style ={{padding:10}}>{forumPost}</PFText> 
+            </View>
+    <Pressable onPressText= {() => navigation.navigate('CommentAnswerPage')}>     
+        <Card style={{flex: 1, elevation: 0}} onPress={() => onPressText()}>
+          <Card.Content style={{...styles.cardForumTextArea1, ...cardContentStyle}}> 
+               <PFText style ={{padding:5, textAlign:'justify'}}>{forumPost}</PFText> 
+          </Card.Content>
+        </Card>
+      </Pressable>
+    </Card.Content>
+  </Card>
+    {/*React
+    <Card style={{ elevation: 0}} onPress = {() => onPressReact()}>
+      <Card.Content style={{...styles.cardForumPostArea1, ...cardContentStyle}}>
+        <View style={styles.forumReactContainer}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPressReact={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/discussionIcons/grow.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPressReact={() => navigation.navigate('')}
+          >
+            <Image
+              source={ require('../../assets/drawerIcons/discussionIcons/wither.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPressReact={() => navigation.navigate('')}
+          >
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={ require('../../assets/drawerIcons/discussionIcons/more-horizontal.png')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+        </View>
       </Card.Content>
-      
     </Card>
   </View>
+); */}
+
+export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, userName, forumPost, badgePoints, dateTime, bloomQuantity,
+  onPress = () => {}, 
+  onPressImage = () => {},
+  onPressReact = () => {},
+  onPressText = () => {},
+  style, 
+  cardContentStyle}) =>
+  
+  {
+    // adding bloom reacts to firebase
+
+  //   const onLikePress = (userId) => {
+  //     const userPosts = firebase.firestore()
+  //                               .collection("Question")
+  //                               .doc(userId)
+                                
+          
+  //     userPosts.collection("likes")
+  //              .doc(firebase.auth().currentUser.uid)
+  //              .set({})
+  //              .then(() => {
+  //                  userPosts.update({
+  //                      qstReactQuantity: firebase.firestore.FieldValue.increment(1)
+  //                  });
+  //              })
+  // }
+    const [unliked, setLiked2] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [image, setimage] = useState(null)
+    const [userimage, setuserImage] = useState(null)
+
+  firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+    setimage(url);
+  })
+
+  firebase.storage().ref().child(userImage).getDownloadURL().then((url) => {
+    setuserImage(url);
+  })
+
+     return(
+
+      <View style={{...styles.cardforumPostContainer, ...style}}>
+    <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
+      <Card.Cover 
+        source={require('../../assets/img/socmed/sc1.png')} 
+        style={{
+          height: 200,
+          width: (Dimensions.get('window').width) * 0.90,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        }}
+      />
+      <Card.Content style={{...styles.cardForumPostContent, ...cardContentStyle}}>
+        <View style= {{flexDirection:'row'}}>
+          <Image 
+            source={{uri : userimage}}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 10,
+            }}
+          />
+          <View style={{flexDirection:'column', flexShrink:1}}>
+            
+            <PFText weight='semi-bold' size = {14}>{userName} 
+            <Image source={ require('../../assets/drawerIcons/discussionIcons/award.png')}
+              style={styles.forumBadgeSize}/>
+            {badgePoints}</PFText>
+           {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
+            <PFText weight='light'size = {10}>{dateTime}</PFText>
+          </View>
+          <View style={styles.followBtnContainer}>
+            <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
+          </View>        
+        </View>
+
+        
+          <Card style={{flex: 1, elevation: 0}} onPress={() => onPress()}>
+            <Card.Content style={{...styles.cardForumTextArea1, ...cardContentStyle}}>
+              <PFText style ={{padding:5}}>{forumPost}</PFText>
+            </Card.Content>
+          </Card>
+        
+        <Pressable onPressText = {() => navigation.navigate('CommentAnswerPage')}>
+          <Card style={{flex: 1, elevation: 0}} onPress={() => onPressText()}>
+            <Card.Content style={{...styles.cardForumAnswerArea1, ...cardContentStyle}}>
+              <PFText weight='semi-bold'size = {13}>View Answer</PFText>
+            </Card.Content>
+          </Card>
+        </Pressable>
+
+        {/* ReactionSection */}
+        <View style={styles.forumReactContainer}>
+          <View style={{paddingRight: 25, flexDirection:'row'}}>
+          <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+            <MaterialCommunityIcons
+            name={liked ? "flower-tulip": "flower-tulip-outline" }
+            size={24} 
+            color={liked ? "#1D4123" : "#1D4123"}
+           />
+            </Pressable>
+            <View style={{paddingRight: 8}}></View>
+            <PFText>{bloomQuantity}</PFText>
+            
+            </View>
+           
+            <View style={{paddingRight: 120}}>
+            <Pressable onPress={() => setLiked2((isLiked) => !isLiked)}>
+            <MaterialCommunityIcons
+            name={unliked ? "seed" : "seed-outline" }
+            size={24} 
+            color={unliked ? "#1D4123" : "#1D4123"}
+           />
+            </Pressable>
+            </View>
+           
+              
+       
+          <TouchableOpacity
+            activeOpacity={0.7}>
+
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={ require('../../assets/drawerIcons/discussionIcons/more-horizontal.png')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={styles.forumReactSize}
+            />
+          </TouchableOpacity>
+        </View>
+      </Card.Content>
+    </Card>
+  </View>
+
+     )
+  
+
+  }
+
+    
+
+
+export const PFCommentCard2 = ({
+  userPhoto, name, comment, reactionNum, replyNum, time,
+  onPress = () => {}}, 
+  style, 
+  cardContentStyle) => (
+    <View style={styles.commentSection2}>
+    <View style={ styles.container }>
+      <Image
+        // FAB using TouchableOpacity with an image
+        // For online image
+        source={{ uri: userPhoto }}
+        // For local image
+        //source={require('./images/float-add-icon.png')}
+        style={styles.userPhoto1}
+      />
+      <View styles={{flexDirection: 'column'}}>
+      <View style={ styles.container }>
+      <PFText weight='semi-bold' size={13}>{name}</PFText>
+          <PFText weight='semi-bold' size={10} style={{marginLeft: 8, marginTop: 3}}>•</PFText>
+          <PFText size={10} style={{marginLeft: 8, marginTop: 3}}>{time}</PFText>
+        </View>
+        <View style={ styles.container}>
+          <TextInput style={styles.commentTxtBox} editable={false}>{comment}</TextInput>
+          <View style={ styles.container2}>
+            <View style={{flexDirection:'row', borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 5}}>
+              <Image
+                // FAB using TouchableOpacity with an image
+                // For online image
+                source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
+                // For local image
+                //source={require('./images/float-add-icon.png')}
+                style={styles.commentReactSize}
+              />
+            </View>
+            <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 1}}>
+              <Image
+                // FAB using TouchableOpacity with an image
+                // For online image
+                source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
+                // For local image
+                //source={require('./images/float-add-icon.png')}
+                style={styles.commentReactSize}
+              />
+            </View>
+            </View>  
+        </View>
+        <View style={ styles.container }>
+          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+        </View>
+      </View>
+    </View>
+  </View>
 );
+
 
 export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
   const [image, setimage] = useState(null)
@@ -641,13 +885,8 @@ export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
       borderRadius: 8
     }}
   />
-
-
   )
 };
-
-
-
 
 
 const styles = StyleSheet.create({
@@ -724,6 +963,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection:'row'
   },
+  container2: {
+    flexDirection:'row'
+  },
   reactContainer: {
     flexDirection: 'row', 
     borderWidth: 1, 
@@ -747,6 +989,10 @@ const styles = StyleSheet.create({
   commentSection: {
     marginTop: 20,
     marginLeft: 20
+  },
+  commentSection2: {
+    marginTop: 20,
+    marginLeft: 8
   },
   commentTxtBox: {
     backgroundColor: '#d3d3d3',
@@ -790,42 +1036,49 @@ const styles = StyleSheet.create({
   cardShopContainer: {
     
     marginBottom: 5,
-    marginLeft: 4,
-    width: (Dimensions.get('window').width/2) * 0.93,
+    marginLeft: 12,
+    marginStart: 8,
+    width: (Dimensions.get('window').width/2) * 0.88,
     borderWidth: 1, 
     borderColor: Colors.primary, 
     borderRadius: 7,
    
-    
   },
   cardShopContent: {
     marginLeft: 0,
     flex: 1,
     padding: 0,
-    paddingTop: 0,
+    paddingTop: 2,
     paddingBottom: 6,
     paddingLeft: 7,
-    margin: 0
+    paddingRight: 7,
+    margin: 0,
+    width: 140
   },
   textShopContainer: {
     // paddingVertical: 2,
     // flexDirection: 'row',
     flex: 1,
     paddingHorizontal: 0,
+    marginTop: 10
   },
   cardShopReview:{
-    width: 600,
-    backgroundColor:'#639D04'
+    width: 323,
+    borderRadius: 10,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#ccc'
   },
   cardShopReviewContent:{
     marginLeft: 10,
-    paddingHorizontal: 15,
-    paddingLeft: 2
+    paddingLeft: 2,
+
   },
   heartReact: {
     paddingLeft: 0,
     marginLeft: 1,
-  
+    marginRight: 3,
+    marginTop: 5
   },
   buttonAlignment:{
     marginBottom: 0,
@@ -884,24 +1137,113 @@ const styles = StyleSheet.create({
 
   cardForumPostArea: {
    
-    backgroundColor: "#D8F9C9",
-  
-    paddingTop: 10,
-    borderBottomLeftRadius: 10, 
-    borderBottomRightRadius: 10
-  },
-  cardForumButtonArea: {
-    width: 80,
-    height: 21,
+    //backgroundColor: "#D8F9C9",
     borderWidth: 1,
     borderColor: "#639D04",
-    borderRadius: 10,
-    backgroundColor: '#D8F9C9',
-    marginStart: 30
-
-
+    paddingTop: 10,
+    paddingBottom: 5
+  },
+  cardForumAnswerArea1: {
+    backgroundColor: "#EDFCE7",
+    paddingTop: 0.5,
+    //borderWidth: 1,
+   //borderColor: "#639D04",
+    paddingBottom: 4,
+    borderBottomLeftRadius: 10, 
+    borderBottomRightRadius: 10,
+    alignItems: 'flex-end'
+  },
+  cardForumTextArea1: {
+    backgroundColor: "#EDFCE7",
+    paddingTop: 0.5,
+    paddingBottom: 2,
+    //marginBottom: 4,
+    marginTop: 10,
+    paddingLeft: 10,
+    paddingRight: 5,
+    //borderWidth: 1, 
+    //borderColor: Colors.primary, 
+    //borderBottomLeftRadius: 5,
+    //borderBottomRightRadius: 5,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10
+  },
+  cardForumCommentArea1: {
+    backgroundColor: "#EDFCE7",
+    paddingTop: 0.5,
+    paddingBottom: 0.5,
+    marginBottom: 4,
+    marginTop: 10,
+    paddingLeft: 5,
+    paddingRight: 5,
+    //borderWidth: 1, 
+    //borderColor: Colors.primary, 
+    //borderBottomLeftRadius: 5,
+    //borderBottomRightRadius: 5,
+    borderRadius: 10
+  },
+  cardforumPostContainer: {
+    width: (Dimensions.get('window').width) * 0.90,
+    marginBottom: 15,
+    marginTop: 10,
+    //marginLeft: 10
+  },
+  cardforumCommentContainer: {
+    width: (Dimensions.get('window').width) * 0.90,
+    marginBottom: 15,
+    marginTop: 10,
+    //marginLeft: 10
+  },
+  cardForumPostContent: {
+    paddingTop: 15,
+    borderWidth: 1, 
+    borderColor: Colors.primary, 
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20
+  },
+  cardForumCommentContent: {
+    //paddingTop: 15,
+    borderWidth: 1, 
+    borderColor: Colors.primary, 
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  cardForumButtonArea: {
+    alignItems: 'flex-end',
+    flexGrow:1
   },
   cardForumContentStyle:{
     padding: 2,
+  },
+  forumReactContainer: {
+      flexDirection: 'row', 
+      borderWidth: 1, 
+      borderRadius: 10, 
+      alignItems: 'center', 
+      padding: 5,
+      paddingLeft: 20,
+      marginTop: 10
+  },
+  forumReactSize: {
+    height: 30,
+    width: (Dimensions.get('window').width) * 0.10,
+    marginRight: 30,
+    marginLeft: 20,
+    alignItems:'center'
+  },
+  forumBadgeSize: {
+    height: 16,
+    width: (Dimensions.get('window').width) * 0.05,
+    marginRight: 15,
+    marginLeft: 10, 
+  }, 
+    cardForumPostArea2: {
+    //backgroundColor: "#D8F9C9",
+    borderWidth: 0.5,
+    borderColor: "#639D04",
+    borderTopLeftRadius: 10, 
+    borderTopRightRadius: 10,
+    paddingTop: 15,
+    paddingBottom: 15
   }
 })

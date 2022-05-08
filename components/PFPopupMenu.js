@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, TouchableNativeFeedbackBase } from "react-native";
-import { color } from "react-native-reanimated";
 
 // import { PFText } from "..";
 import { PFText } from ".";

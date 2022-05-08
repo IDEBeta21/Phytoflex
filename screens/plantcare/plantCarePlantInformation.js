@@ -1,106 +1,195 @@
 import { Text, StyleSheet, View, Image, Colors, FlatList, SectionList, SafeAreaView, TouchableOpacity, ScrollView} from 'react-native';
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { PFText } from '../../components';
 import SampleData from '../../utils/SampleData';
 import ImageModal from 'react-native-image-modal';
 
+// Tensorflow import
+import * as tf from '@tensorflow/tfjs';
+import * as mobilenet from '@tensorflow-models/mobilenet';
+import { fetch, decodeJpeg, bundleResourceIO, asyncStorageIO, cameraWithTensors } from '@tensorflow/tfjs-react-native';
 
-export default function PlantCarePlantInformation({navigation}) {
+import * as jpeg from 'jpeg-js'
 
-return (
+// Firebase Import
+import firebase from 'firebase';
 
-    <SafeAreaView style={styles.container}>
 
-        <ScrollView
-            showsVerticalScrollIndicator={false}>
+export default function PlantCarePlantInformation({navigation, route}) {
 
-        <View>
-          <Image 
-            style={{ height: 220, resizeMode: 'cover'}}
-            source={require('./../../assets/img/plantcare/pc_photo1.png')}/>
-        </View>
+    const [plantInfo, setplantInfo] = useState([])
+    const [predicting, setpredicting] = useState(true)
+    const [loadingText, setloadingText] = useState('')
 
-        {/* Floating icon */}
-        <View>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            style={styles.iconContainer}
-            // onPress={() => navigation.navigate('Instruction')}
-            onPress={() => alert('Succesfully added to favorites!')}>
+    // Plant informations
+    const [plantName, setplantName] = useState('')
+    const [plantDesc, setplantDesc] = useState('')
+    const [plantFam, setplantFam] = useState('')
+    const [plantKingdom, setplantKingdom] = useState('')
 
-            <Image
-            source={ require('../../assets/img/plantcare/icn_heart.png')}
-            // source={ require('../../assets/img/plantcare/icn_heart-active.png')}
-            style={styles.iconHeart}
-            />
-          </TouchableOpacity>
-        </View>
+    useEffect(() => {
+        (async () => {
+            setloadingText('Loading Tensorflow')
+            await tf.ready()
 
-        {/* Plant Information */}
-        <View style={styles.plantDetailsContainer}>
+            setloadingText('Loading Mobilenet')
+            const model = await mobilenet.load()
 
-          <PFText weight='semi-bold' style={styles.plantName}>Cactus</PFText>
+            setloadingText('Converting image to tensor')
+            const response = await fetch(route.params.imageUrl, {}, { isBinary: true });
 
-            <View style={styles.plantType}>
-               <View style={styles.kingdom}>
-                 <PFText weight='semi-bold' style={{ marginEnd: 20 }}>Kingdom</PFText>  
-                 <PFText weight='medium'>Plantae</PFText>
-               </View>
+            const imageData = await response.arrayBuffer();
 
-               <View style={styles.family}>
-                 <PFText weight='semi-bold' style={{ marginEnd: 34 }}>Family</PFText>   
-                 <PFText weight='light'>Amaranthaceae</PFText>
-               </View>
-            </View>
+            // const imageTensor = decodeJpeg(imageData);
+            setloadingText('Decoding Image')
+            const imageTensor = jpeg.decode(imageData);
 
-            <View style={styles.plantDescription}>
-               <PFText weight='semi-bold' style={{ paddingBottom: 3 }}>Description</PFText>
-               <PFText weight='light' style={styles.description}>Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently introduced to ancient China, where it was known as "Persian vegetable". Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently introduced to ancient China, where it was known as "Persian vegetable.". Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries).{'\n'}</PFText>
-            </View>
+            setloadingText('Classifying Image')
+            const prediction = await model.classify(imageTensor);
 
-        </View>
+            console.log(`Prediction: ${prediction[0]['className']} ${prediction[0]['probability']}`)
+            
 
-        {/* Images */}
-        <View style={styles.flatListContainer}>
-                
-            <FlatList 
-                style={styles.flatListImage}
-                horizontal={true} 
-                contentContainerStyle={{ paddingHorizontal: 10 }}
-                showsHorizontalScrollIndicator={false} 
-                data={SampleData.myPlantCare}
-                renderItem={ ({ item, index }) => (
+            const fbPlantIdentity = await firebase.firestore().collection('PlantIdentity').doc(prediction[0]['className']).get().then((doc) => {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                    setplantName(doc.data().plantName)
+                    setplantDesc(doc.data().description)
+                    setplantFam(doc.data().family)
+                    setplantKingdom(doc.data().kingdom)
+                    setpredicting(false)
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+            // if (!fbPlantIdentity.exists()) {
+            //     console.log ('No such document!');
+            //     setloadingText('No such Plant!');
+            // } else {
+            //     console.log(fbPlantIdentity.data());
+            //     setpredicting(false)
+            // }
+        })();
+      }, []);
 
-                  <ImageModal
-                    resizeMode="contain"
-                    imageBackgroundColor="#FFFFFF"
-                    source={{ uri: item.imageURL }}
-                    style={styles.imageModalStyle}
-                    key={index} // Important to set a key for list items, but its wrong to use indexes as keys 
-                  /> 
-                    
-                )}
-            />
+    return (
+        <SafeAreaView  style={styles.container}>
+            <StatusBar style='auto'/>
 
-        </View>
-
-        </ScrollView>
-
-        <View style={styles.btnBG}>
-            <TouchableOpacity onPress={() => alert('Haluu!')}>
-                <View style={styles.btnMonitor}>
-                    <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Monitor this plant</Text>
+        { predicting ? 
+            
+                <View style={styles.loadingContainer}>
+                    <PFText>{loadingText}</PFText>
                 </View>
+             : 
+            <View style={{paddingBottom: 150}}>
+
+            <ScrollView
+                showsVerticalScrollIndicator={false}>
+
+            <View>
+            <Image 
+                style={{ height: 220, resizeMode: 'cover'}}
+                // source={require('./../../assets/img/plantcare/pc_photo1.png')}/>
+                source={{
+                    uri: route.params.imageUrl
+                }}/>
+            </View>
+
+            {/* Floating icon */}
+            <View>
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.iconContainer}
+                // onPress={() => navigation.navigate('Instruction')}
+                onPress={() => alert('Succesfully added to favorites!')}>
+
+                <Image
+                source={ require('../../assets/img/plantcare/icn_heart.png')}
+                // source={ require('../../assets/img/plantcare/icn_heart-active.png')}
+                style={styles.iconHeart}
+                />
             </TouchableOpacity>
+            </View>
+
+            {/* Plant Information */}
+            <View style={styles.plantDetailsContainer}>
+
+            <PFText weight='semi-bold' style={styles.plantName}>{plantName}</PFText>
+
+                <View style={styles.plantType}>
+                <View style={styles.kingdom}>
+                    <PFText weight='semi-bold' style={{ marginEnd: 20 }}>Kingdom</PFText>  
+                    {/* <PFText weight='medium'>Plantae</PFText> */}
+                    <PFText weight='medium'>{plantKingdom} </PFText>
+                </View>
+
+                <View style={styles.family}>
+                    <PFText weight='semi-bold' style={{ marginEnd: 34 }}>Family</PFText>   
+                    <PFText weight='light'>{plantFam} </PFText>
+                    {/* <PFText weight='light'>Amaranthaceae</PFText> */}
+                </View>
+                </View>
+
+                <View style={styles.plantDescription}>
+                <PFText weight='semi-bold' style={{ paddingBottom: 3 }}>Description</PFText>
+                <PFText weight='light' style={styles.description}>{plantDesc}.{'\n'}</PFText>
+                {/* <PFText weight='light' style={styles.description}>Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently introduced to ancient China, where it was known as "Persian vegetable". Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently introduced to ancient China, where it was known as "Persian vegetable.". Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries).{'\n'}</PFText> */}
+                </View>
+
+            </View>
+
+            {/* Images */}
+            <View style={styles.flatListContainer}>
+                    
+                {/* <FlatList 
+                    style={styles.flatListImage}
+                    horizontal={true} 
+                    contentContainerStyle={{ paddingHorizontal: 10 }}
+                    showsHorizontalScrollIndicator={false} 
+                    data={SampleData.myPlantCare}
+                    renderItem={ ({ item, index }) => (
+
+                    <ImageModal
+                        resizeMode="contain"
+                        imageBackgroundColor="#FFFFFF"
+                        source={{ uri: item.imageURL }}
+                        style={styles.imageModalStyle}
+                        key={index} // Important to set a key for list items, but its wrong to use indexes as keys 
+                    /> 
+                        
+                    )}
+                /> */}
+
+            </View>
+
+            </ScrollView>
+
+            <View style={styles.btnBG}>
+                <TouchableOpacity onPress={() => alert('Haluu!')}>
+                    <View style={styles.btnMonitor}>
+                        <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Monitor this plant</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+
         </View>
-
+    }
     </SafeAreaView>
-
-);          
+    );          
 }
 
 const styles = StyleSheet.create({
+
+    loadingContainer: {
+        flex: 1,
+        alignContent: 'center',
+        justifyContent: 'center'
+    },
 
     container: {
         flex: 1,
@@ -129,6 +218,9 @@ const styles = StyleSheet.create({
     },
 
     btnBG: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
         height: 64,   
         backgroundColor: '#ffffff',   
 

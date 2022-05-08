@@ -13,6 +13,7 @@ import PostPage from './PostPage';
 import UserProfilePage from './UserProfile';
 import CommentPage from './CommentPage';
 
+import DrawerHeader from '../DrawerContents/DrawerHeader';
 
 import Header from '../global/Header';
 
@@ -53,6 +54,8 @@ function FuncComments({navigation}) {
     <CommentPage navigation={navigation}/>
   );
 }
+
+
 
 const Stack = createNativeStackNavigator();
 

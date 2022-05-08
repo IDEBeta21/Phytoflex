@@ -16,7 +16,8 @@ import {
   DrawerItem
 } from '@react-navigation/drawer';
 import firebase from 'firebase';
-import { StackActions, NavigationActions, NavigationEvents } from 'react-navigation';
+// import { StackActions, NavigationActions, NavigationEvents } from 'react-navigation';
+import { StackActions, NavigationActions, NavigationEvents } from '@react-navigation/native';
 
 
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -32,14 +33,22 @@ export function DrawerContent(props) {
   //   actions: [NavigationActions.navigate({ routeName: 'Login' })],
   // });
 
-  function signout(props) {
-    firebase.auth().signOut;
+  async function signout(props) {
+    await firebase.auth().signOut().then(
+      console.log('User Signed out')
+    );
     // props.navigation.dispatch(resetAction);
     // props.navigation.reset({
     //   index: 0,
     //   routes: [{ name: 'Login' }],
     // });
-    props.navigation.goBack('Login');
+    // props.navigation.goBack('Login');
+
+    // const backAction = NavigationActions.back({
+    //   key: 'Login',
+    // });
+    // props.navigation.dispatch(backAction);
+    props.navigation.dispatch(StackActions.popToTop());
   }
 
   // const { signOut, toggleTheme } = React.useContext(AuthContext);

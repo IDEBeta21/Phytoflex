@@ -9,8 +9,9 @@ import DiscussionNotifBellPage from './discussionNotifBell';
 import DiscussionSearchHeaderPage from './discussionSearchHeader';
 import Header from '../global/Header';
 import CreateQuestionPage from './createQuestion';
-
-
+import CommentAnswerPage from './commentAnswer';
+import EditQuestionPage from './editQuestion';
+import AddPhotosPage from './addPhotos'
 
 // Functions for calling the screens
 function FuncDiscussionHome({navigation}) {
@@ -33,6 +34,21 @@ function FuncDiscussionNotifBell({navigation}) {
 function FuncCreateQuestion({navigation}) {
   return (
     <CreateQuestionPage navigation={navigation}/>
+  );
+}
+function FuncCommentAnswer({navigation}) {
+  return (
+    <CommentAnswerPage navigation={navigation}/>
+  );
+}
+function FuncEditQuestion({navigation}) {
+    return (
+      <EditQuestionPage navigation={navigation}/>
+    );
+}
+function FuncAddPhotos({navigation}) {
+  return (
+    <AddPhotosPage navigation={navigation}/>
   );
 }
 const Stack = createNativeStackNavigator();
@@ -79,12 +95,52 @@ function App({navigation}) {
           }}
 
           />
-          <Stack.Screen
+        <Stack.Screen
           name="CreateQuestionPage"
           component={FuncCreateQuestion}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Ask Community'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123',
+            },
+            headerTintColor: 'white',
+          }}
+
+          />
+
+        <Stack.Screen
+          name="CommentAnswerPage"
+          component={FuncCommentAnswer}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Comment'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123',
+            },
+            headerTintColor: 'white',
+          }}
+
+          />
+        <Stack.Screen
+          name="EditQuestionPage"
+          component={FuncEditQuestion}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Edit'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123',
+            },
+            headerTintColor: 'white',
+          }}
+
+          />
+           <Stack.Screen
+          name="AddPhotosPage"
+          component={FuncAddPhotos}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Photos'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: '#1D4123',
             },

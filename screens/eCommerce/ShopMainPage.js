@@ -65,15 +65,11 @@ useEffect(() => {
     
     
     <View style={styles.mainContainer} >
-
-     
-      <ScrollView> 
-       
+      <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.searchBoxContainer}>
       <TextInput
-            style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1}}
+            style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1, marginStart: 5, height: 25}}
             placeholder='Search for Plants'
-            
           />
       <View style={{flex: 1, alignItems: 'flex-end'}}>
       
@@ -83,51 +79,49 @@ useEffect(() => {
             resizeMode='contain'
           />
           </View>
-      
       </View>
 
       <View style={styles.bannerPadding}>
-
-      <ImageSlider
-          loop
-          autoPlayWithInterval={2000}
-          images={images}
-          onPress={({ index }) => alert(index)}
-          customSlide={({ index, item, style, width }) => (
-            // It's important to put style here because it's got offset inside
-            <View
-              key={index}
-              style={[
-                style,
-                styles.customSlide,
-                { backgroundColor: index % 2 === 0 ? '#F5FCFF' : '#F5FCFF' },
-              ]}
-            >
-              <Image source={{ uri: item }} style={styles.customImage} />
-            </View>
-          )}
-          customButtons={(position, move) => (
-            <View style={styles.buttons}>
-              {images.map((image, index) => {
-                return (
-                  <TouchableHighlight
-                    key={index}
-                    underlayColor="#ccc"
-                    onPress={() => move(index)}
-                    style={styles.button}
-                  >
-                    <Text style={position === index && styles.buttonSelected}>
-                      {index + 1}
-                    </Text>
-                  </TouchableHighlight>
-                );
-              })}
-            </View>
-          )}
-        />
-      </View>
+        <ImageSlider
+            loop
+            autoPlayWithInterval={2000}
+            images={images}
+            onPress={({ index }) => alert(index)}
+            customSlide={({ index, item, style, width }) => (
+              // It's important to put style here because it's got offset inside
+              <View
+                key={index}
+                style={[
+                  style,
+                  styles.customSlide,
+                  { backgroundColor: index % 2 === 0 ? '#F5FCFF' : '#F5FCFF' },
+                ]}
+              >
+                <Image source={{ uri: item }} style={styles.customImage} />
+              </View>
+            )}
+            customButtons={(position, move) => (
+              <View style={styles.buttons}>
+                {images.map((image, index) => {
+                  return (
+                    <TouchableHighlight
+                      key={index}
+                      underlayColor="#ccc"
+                      onPress={() => move(index)}
+                      style={styles.button}
+                    >
+                      <Text style={position === index && styles.buttonSelected}>
+                        {index + 1}
+                      </Text>
+                    </TouchableHighlight>
+                  );
+                })}
+              </View>
+            )}
+          />
+        </View>
       <View>
-      <PFText weight = "semi-bold" size = {18}> Categories</PFText>
+      <PFText weight = "semi-bold" size = {18} style={{marginTop: 5, marginLeft: 8}}> Categories</PFText>
       <PFFlatList
             numColumns={4}
             noDataMessage='No Plant item to post'
@@ -147,7 +141,7 @@ useEffect(() => {
               
         <View>
               
-        <PFText weight = "semi-bold" size = {18}>Discover Plants</PFText>
+        <PFText weight = "semi-bold" size = {18} style={{marginTop: 5, marginLeft: 8, marginBottom: 5}}>Discover Plants</PFText>
         <PFFlatList
             numColumns={2}
             noDataMessage='Loading...'
@@ -189,7 +183,7 @@ useEffect(() => {
 const styles = StyleSheet.create({
   mainContainer: {
     paddingHorizontal: 5,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   textContaine:{
     fontSize: 50
@@ -243,7 +237,7 @@ const styles = StyleSheet.create({
     height: 15,
     opacity: 0.9,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   buttonSelected: {
     opacity: 1,
@@ -260,11 +254,13 @@ const styles = StyleSheet.create({
     height: 160,
   },
   bannerPadding: {
-    paddingBottom: 8,
+    paddingBottom: 8, 
+    marginLeft: 10, 
+    marginRight: 10,
   },
   searchBoxContainer: {
     borderColor: '#1D4123',
-    width: '100%',
+    width: '94%',
     borderWidth: 1,
     backgroundColor: '#F5F7FA',
     paddingHorizontal: 12,
@@ -272,9 +268,10 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     alignItems: 'center',
     flexDirection: 'row',
-    borderRadius: 12,
-    color: '#1D4123'
-
+    borderRadius: 20,
+    color: '#1D4123',
+    marginLeft: 10,
+    marginRight: 10
     // flex:1,
   },
   searchBoxIcon: {

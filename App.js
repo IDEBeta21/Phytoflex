@@ -35,9 +35,14 @@ import FirebaseSample from './screens/global/FirebaseSample';
 import Onboarding from './screens/landing/Onboarding';
 
 // Imports for Drawer navigation
-import ActivityLogScreen from './screens/DrawerContents/ActivityLogs';
-import UserProfileScreen from './screens/DrawerContents/UserProfileScreen';
-import EditProfileScreen from './screens/DrawerContents/EditProfile';
+import ActivityLogScreen from './screens/DrawerContents/ActivityLogScreens/ActivityLogs';
+import UserProfileDrawer from './screens/DrawerContents/ProfileScreens/UserProfileDrawer';
+import Address from './screens/DrawerContents/ProfileScreens/Address';
+import DiscussionLog from './screens/DrawerContents/ProfileScreens/DiscussionLog';
+import EditAddress from './screens/DrawerContents/ProfileScreens/EditAddress';
+import EditProfile from './screens/DrawerContents/ProfileScreens/EditProfile';
+import HomeLog from './screens/DrawerContents/ProfileScreens/HomeLog';
+
 import PostsScreen from './screens/DrawerContents/Posts';
 import ThreadsScreen from './screens/DrawerContents/Threads';
 import TrackHistoryScreen from './screens/DrawerContents/TrackHistory';
@@ -53,14 +58,12 @@ import AboutUs from './screens/DrawerContents/SettingsScreens/AboutUs';
 import FAQs from './screens/DrawerContents/SettingsScreens/FAQs';
 import Notifications from './screens/DrawerContents/SettingsScreens/Notifications';
 import PrivacyPolicy from './screens/DrawerContents/SettingsScreens/PrivacyPolicy';
-import TermsAndConditions from './screens/DrawerContents/SettingsScreens/TermsAndCondition';
+import TermsAndConditions from './screens/DrawerContents/SettingsScreens/TermsAndConditions';
 
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
 import HeaderContent from './screens/global/Header';
-// Import Activity Logs
-import PostsLog from './screens/DrawerContents/ActivityLogScreens/PostsLog';
-import ThreadsLog from './screens/DrawerContents/ActivityLogScreens/ThreadsLog';
+
 // 
 // import { AppLoading } from 'expo';\
 // import { AppLoading } from 'expo';
@@ -76,15 +79,39 @@ function FuncActivityLog({navigation}){
     <ActivityLogScreen navigation={navigation}/>
   )
 }
-function FuncUserProfile({navigation}){
+function FuncUserProfileDrawer({navigation}){
   return(
-    <UserProfileScreen navigation={navigation}/>
+    <UserProfileDrawer navigation={navigation}/>
   )
 }
 
 function FuncEditProfile({navigation}){
   return(
-    <EditProfileScreen navigation={navigation}/>
+    <EditProfile navigation={navigation}/>
+  )
+}
+
+function FuncEditAddress({navigation}){
+  return(
+    <EditAddress navigation={navigation}/>
+  )
+}
+
+function FuncHomeLog({navigation}){
+  return(
+    <HomeLog navigation={navigation}/>
+  )
+}
+
+function FuncDiscussionLog({navigation}){
+  return(
+    <DiscussionLog navigation={navigation}/>
+  )
+}
+
+function FuncAddress({navigation}){
+  return(
+    <Address navigation={navigation}/>
   )
 }
 
@@ -93,7 +120,7 @@ function FuncPost({navigation}){
     <PostsScreen navigation={navigation}/>
   )
 }
-function FunctionThread({navigation}){
+function FuncThread({navigation}){
   return(
     <ThreadsScreen navigation={navigation}/>
   )
@@ -189,17 +216,6 @@ function FuncForgotPassword({navigation}) {
   );
 }
 
-function FuncPostsLog({navigation}){
-  return(
-    <PostsLog navigation={navigation}/>
-  )
-}
-function FuncThreadsLog({navigation}){
-  return(
-    <ThreadsLog navigation={navigation}/>
-  )
-}
-
 const AuthStack = createNativeStackNavigator();
 
 
@@ -235,9 +251,22 @@ function SideBar({navigation}){
         
         <Drawer.Screen 
           name="DrawerUserProfile"
-          component={FuncUserProfile}
+          component={FuncUserProfileDrawer}
           options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'UserProfileSc'} title={'My Profile'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'}  screenDescription={'UserProfileDrawer'} title={'My Profile'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123',
+              elevation: 0
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="Address" 
+          component={FuncAddress}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'Address'} title={'Address'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -246,10 +275,46 @@ function SideBar({navigation}){
           }} />
 
         <Drawer.Screen 
-          name="EditProfileScreen" 
+          name="EditProfile" 
           component={FuncEditProfile}
           options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'EditProfileScreen'} title={'Edit Profile'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'EditProfile'} title={'Edit Profile'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="EditAddress" 
+          component={FuncEditAddress}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'Address'} screenDescription={'EditAddress'} title={'Edit Address'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="HomeLog" 
+          component={FuncHomeLog}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'HomeLog'} title={'Home'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+
+        <Drawer.Screen 
+          name="DiscussionLog" 
+          component={FuncDiscussionLog}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'DiscussionLog'} title={'Discussion'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -261,33 +326,7 @@ function SideBar({navigation}){
           name="DrawerActivityLogs"
           component={FuncActivityLog}
           options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
-            headerLeft:false,
-            headerStyle: {
-              backgroundColor: '#1D4123',
-              elevation: 0
-            },
-            headerTintColor: 'white'
-          }} />
-
-        <Drawer.Screen 
-          name="DrawerPostsLog"
-          component={FuncPostsLog}
-          options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerActivityLogs'} screenDescription={'PrivacyPolicy'} title={'Privacy Policy'} navigation={navigation} />, 
-            headerLeft:false,
-            headerStyle: {
-              backgroundColor: '#1D4123',
-              elevation: 0
-            },
-            headerTintColor: 'white',
-          }} />
-
-        <Drawer.Screen 
-          name="DrawerThreadsLog"
-          component={FuncThreadsLog}
-          options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerActivityLogs'} screenDescription={'TermsAndConditions'} title={'Terms And Conditions'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerUserProfile'} screenDescription={'ActivityLogScreen'} title={'Activity Log'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123',
@@ -300,7 +339,7 @@ function SideBar({navigation}){
           name="DrawerPostScreen"
           component={FuncPost}
           options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -310,9 +349,9 @@ function SideBar({navigation}){
           
         <Drawer.Screen 
           name="DrawerThread"
-          component={FunctionThread}
+          component={FuncThread}
           options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -324,7 +363,7 @@ function SideBar({navigation}){
           name="DrawerTrackHistory"
           component={FuncTrackHistory}
           options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'TrackHistoryScreen'} title={'Track History'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'}screenDescription={'TrackHistoryScreen'} title={'Track History'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -448,7 +487,8 @@ function App() {
     return (
       <NavigationContainer independent={true}>
         <AuthStack.Navigator 
-          initialRouteName={firebase.auth().onAuthStateChanged((user) => {return user}) ? "Login" : "SignUpScreen"}  
+          // initialRouteName={(firebase.auth().onAuthStateChanged((user) => {return user})) ? "Login" : "MyTabs"}  
+          initialRouteName={(firebase.auth().currentUser) ? "MyTabs" : "Login"  }  
           screenOptions={{headerShown: false}}
         >
             <AuthStack.Screen name="Onboarding" component={FuncOnboarding}/>
