@@ -408,7 +408,8 @@ function App() {
     return (
       <NavigationContainer independent={true}>
         <AuthStack.Navigator 
-          initialRouteName={(firebase.auth().onAuthStateChanged((user) => {return user})) ? "Login" : "SignUpScreen"}  
+          // initialRouteName={(firebase.auth().onAuthStateChanged((user) => {return user})) ? "Login" : "MyTabs"}  
+          initialRouteName={(firebase.auth().currentUser) ? "MyTabs" : "Login"  }  
           screenOptions={{headerShown: false}}
         >
             <AuthStack.Screen name="Onboarding" component={FuncOnboarding}/>

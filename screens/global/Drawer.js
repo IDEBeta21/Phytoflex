@@ -34,7 +34,9 @@ export function DrawerContent(props) {
   // });
 
   async function signout(props) {
-    await firebase.auth().signOut;
+    await firebase.auth().signOut().then(
+      console.log('User Signed out')
+    );
     // props.navigation.dispatch(resetAction);
     // props.navigation.reset({
     //   index: 0,
