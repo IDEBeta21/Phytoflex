@@ -2,7 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar';
 
-export default function FuncTermsAndConditions({navigation}) {
+export default function TermsAndConditions({navigation}) {
   return (
     <View>
     <StatusBar style="auto" />

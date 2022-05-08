@@ -19,12 +19,32 @@ export default function Header({ title, navigation, screenDescription, goBackScr
         
       <Text style={style.headerTitle}>{title}</Text>
 
-    {screenDescription == 'UserProfileSc' ? /*Drawer*/
+    {screenDescription == 'UserProfileDrawer' ? /*Drawer*/
        <View style={style.headerIconContainer}>
        </View> : null
     }
 
-    {screenDescription == 'EditProfileScreen' ? /*Drawer*/ 
+    {screenDescription == 'EditProfile' ? /*Drawer*/ 
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'EditAddress' ? /*Drawer*/ 
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'HomeLog' ? /*Drawer*/ 
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'DiscussionLog' ? /*Drawer*/ 
+        <View style={style.headerIconContainer}>
+        </View> : null
+      }
+
+    {screenDescription == 'Address' ? /*Drawer*/ 
         <View style={style.headerIconContainer}>
         </View> : null
       }
