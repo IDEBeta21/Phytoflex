@@ -134,19 +134,37 @@ export default SampleData = {
     followFriend: [
         {
             userPhoto: 'https://picsum.photos/90',
-            name: 'Follow a friend'
-        },
-        {
-            userPhoto: 'https://picsum.photos/90',
             name: 'Jocelyn Vega'
         },
         {
             userPhoto: 'https://picsum.photos/90',
-            name: 'Jocelyn Vega'
+            name: 'Lorgie Ann Talosig'
         },
         {
             userPhoto: 'https://picsum.photos/90',
-            name: 'Jocelyn Vega'
+            name: 'Jasmin Marzan'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'ian Deladia'
+        },
+    ],
+
+    notificationDetails: [
+        {
+            userPhoto: 'https://picsum.photos/90',
+            notifTitle: 'You have a new follower',
+            notifdetail: 'Rose Ann Joy follows you. Click here to view profile.'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            notifTitle: 'Someone liked your post',
+            notifdetail: 'Jocelyn liked your post. Click here to view post'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            notifTitle: 'You have a new follower',
+            notifdetail: 'Jasmin follows you. Click here to view profile.'
         },
     ],
 

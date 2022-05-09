@@ -80,7 +80,7 @@ export default function CommentPage({navigation}) {
                   <Image
                     // FAB using TouchableOpacity with an image
                     // For online image
-                    source={ require('../../assets/drawerIcons/socmedIcons/send_icon.png')}
+                    source={ require('../../assets/drawerIcons/socmedIcons/send_icon_white.png')}
                     // For local image
                     //source={require('./images/float-add-icon.png')}
                     style={styles.commentReactSize}
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 15,
     width: (Dimensions.get('window').width/1),
-    backgroundColor: '#639d04'
+    backgroundColor: '#2a5123'
   },
   textFormat: {
     paddingLeft: 10,

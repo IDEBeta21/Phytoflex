@@ -810,9 +810,6 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
 
   }
 
-    
-
-
 export const PFCommentCard2 = ({
   userPhoto, name, comment, reactionNum, replyNum, time,
   onPress = () => {}}, 
@@ -888,6 +885,30 @@ export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
   )
 };
 
+export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
+style, cardContentStyle) => {
+  return (
+    <View>
+      <TouchableOpacity style={styles.notifCard}>
+        <Image 
+        source={{ uri: userPhoto }}
+        style={{
+          height: 50,
+          width: 50,
+          borderRadius: 100,
+          margin: 5,
+          marginRight: 15
+        }} 
+        />
+        {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
+        <View styles={{flexDirection: ' column'}}>
+          <PFText weight='semi-bold' size={15}>{notifTitle}</PFText>
+          <Text style={{fontFamily: 'poppins-light', fontSize: 12, width: 230}}>{notifdetail}</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  )
+};
 
 const styles = StyleSheet.create({
   // Social Media----------------------------
@@ -1031,6 +1052,15 @@ const styles = StyleSheet.create({
     borderColor: '#1d4123',
     fontFamily: 'poppins-regular',
     marginTop: 8
+  },
+  notifCard: {
+    width: (Dimensions.get('window').width) * 1,
+    flexDirection: 'row', 
+    padding: 10, 
+    backgroundColor: 'rgba(29,65,35,0.2)', 
+    marginBottom: 5,
+    paddingLeft: 15,
+    height: 85,
   },
   //Social Media---------------------------
   cardShopContainer: {

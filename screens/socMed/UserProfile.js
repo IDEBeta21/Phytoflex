@@ -247,6 +247,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     backgroundColor: '#1d4123', 
     paddingLeft: 30, 
-    paddingRight: 30
+    paddingRight: 30,
+    width: (Dimensions.get('window').width) * 1
   }
 })

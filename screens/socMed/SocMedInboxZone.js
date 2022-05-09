@@ -9,7 +9,7 @@ import { DrawerContent } from '../global/Drawer';
 
 import SocMedNotifScrn from '../socMed/SocMedNotif'
 import SocMedChatRoomScrn from '../socMed/SocMedChatRoom'
-import SocMedSwapReqScrn from '../socMed/SocMedSwapReq'
+// import SocMedSwapReqScrn from '../socMed/SocMedSwapReq'
 
 //export default function ChatRoomPage({navigation}) {
   // Calling Plantcare search screen
@@ -24,11 +24,11 @@ import SocMedSwapReqScrn from '../socMed/SocMedSwapReq'
       <SocMedChatRoomScrn navigation={navigation}/>
     );
   }
-  function funcSocMedSwapReqScreen({navigation}) {
-    return (
-      <SocMedSwapReqScrn navigation={navigation}/>
-    );
-  }
+  // function funcSocMedSwapReqScreen({navigation}) {
+  //   return (
+  //     <SocMedSwapReqScrn navigation={navigation}/>
+  //   );
+  // }
 const Tab = createMaterialTopTabNavigator();
 
 function MyTopTabs({navigation}) {
@@ -39,7 +39,7 @@ function MyTopTabs({navigation}) {
         tabBarActiveTintColor: '#1D4123',
         tabBarInactiveTintColor: 'white',
         tabBarLabelStyle: { fontSize: 12, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
-        tabBarStyle: { backgroundColor: '#1D4123', elevation:0  },
+        tabBarStyle: { backgroundColor: '#2a5123', elevation:0  },
         tabBarIndicatorStyle: {backgroundColor: 'white', borderColor: 'white', height: '100%'}
       }}
     >
@@ -53,11 +53,11 @@ function MyTopTabs({navigation}) {
         component={funcSocMedMessagesScreen}
         options={{ tabBarLabel: 'Messages' }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="SocMedSwapReqScrn"
         component={funcSocMedSwapReqScreen}
         options={{ tabBarLabel: 'Swap Request' }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }

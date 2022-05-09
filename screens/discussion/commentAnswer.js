@@ -80,7 +80,7 @@ export default function CommentAnswerPage({navigation}) {
                   <Image
                     // FAB using TouchableOpacity with an image
                     // For online image
-                    source={ require('../../assets/drawerIcons/socmedIcons/send_icon.png')}
+                    source={ require('../../assets/drawerIcons/socmedIcons/send_icon_white.png')}
                     // For local image
                     //source={require('./images/float-add-icon.png')}
                     style={styles.commentReactSize}
