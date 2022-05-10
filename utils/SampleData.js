@@ -54,30 +54,26 @@ export default SampleData = {
             imageURL: 'https://picsum.photos/700',
             userPhoto: 'https://picsum.photos/80',
             name: 'Phytoflex',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            description: 'Welcome to Phytoflex',
             timeDate: '03/30/22 12:00 PM',
             active: 'Bloom'
 
         },
-        {
-            imageURL: 'https://picsum.photos/700',
-            userPhoto: 'https://picsum.photos/80',
-            name: 'Phytoflex',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            timeDate: '03/30/22 12:00 PM',
-            active: 'Bloom'
-        }
+        // {
+        //     imageURL: 'https://picsum.photos/700',
+        //     userPhoto: 'https://picsum.photos/80',
+        //     name: 'Phytoflex',
+        //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        //     timeDate: '03/30/22 12:00 PM',
+        //     active: 'Bloom'
+        // }
+    ],
+
+    cardPostData1: [
+        
     ],
 
     cardPostNoImageData: [
-        {
-            imageURL: 'https://picsum.photos/700',
-            userPhoto: 'https://picsum.photos/80',
-            name: 'Phytoflex',
-            description: 'Welcome to Phytoflex!',
-            timeDate: '03/30/22 12:00 PM',
-            active: 'Bloom'
-        },
         {
             imageURL: 'https://picsum.photos/700',
             userPhoto: 'https://picsum.photos/80',

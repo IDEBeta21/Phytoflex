@@ -100,7 +100,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
         // <KeyboardAvoidingView behavior={Platform.OS === "android" ? "padding" : "height"} style={styles.loginContainer}>
             <ImageBackground 
-                source={require('../../assets/drawerIcons/login.png')} 
+                source={require('../../assets/drawerIcons/Login1.png')} 
                 resizeMode= 'stretch' 
                 style={styles.loginContainer}>
                 {/* Display Header */}
@@ -135,7 +135,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         <Text style={styles.label}>YOUR EMAIL</Text>
                         <TextInput
                             style={styles.textbox}
-                            placeholder="Enter your email address"
+                            placeholder=" Enter your email address"
                             onChangeText = {(text) => setuserEmail(text)}
                             value={userEmail}
                             selectionColor={'#CBDEAB'}
@@ -144,7 +144,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         <Text style={styles.label}>PASSWORD</Text>
                         <TextInput
                             style={styles.pwtextbox}
-                            placeholder="Enter your password"
+                            placeholder=" Enter your password"
                             onChangeText = {(text) => setUserPass(text)}
                             value={userPass}
                             selectionColor={'#CBDEAB'}

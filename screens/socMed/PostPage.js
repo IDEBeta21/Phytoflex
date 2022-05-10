@@ -31,7 +31,7 @@ export default function PostPage({navigation}) {
         <Image
           // FAB using TouchableOpacity with an image
           // For online image
-          source={ require('../../assets/img/logo.png')}
+          source={ require('../../assets/logo.png')}
           // For local image
           //source={require('./images/float-add-icon.png')}
           style={styles.userPhoto}
@@ -47,12 +47,12 @@ export default function PostPage({navigation}) {
               //source={require('./images/float-add-icon.png')}
               style={styles.iconStyle}
             />
-            <PFText size={11} style={{marginLeft: 5}}>Public</PFText>
+            <PFText size={11} style={{marginLeft: 5}}>03/30/22 12:00 PM</PFText>
           </View>
         </View>
       </View>
 
-      <PFText size={13} style={{marginTop: 10, marginBottom: 10}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</PFText>
+      <PFText size={13} style={{marginTop: 10, marginBottom: 10}}>Welcome to Phytoflex!</PFText>
       <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => navigation.navigate('')}
@@ -60,7 +60,7 @@ export default function PostPage({navigation}) {
         <Image
           // FAB using TouchableOpacity with an image
           // For online image
-          source={ require('../../assets/img/socmed/sc1.png')}
+          source={ require('../../assets/img/socmed/Cover.png')}
           // For local image
           //source={require('./images/float-add-icon.png')}
           style={styles.image}
@@ -165,9 +165,10 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   iconStyle: {
-    height: 15,
-    width: 15,
-    marginLeft: 10
+    height: 12,
+    width: 12,
+    marginLeft: 10,
+    marginTop: 2
   },
   container: {
     flexDirection:'row'
