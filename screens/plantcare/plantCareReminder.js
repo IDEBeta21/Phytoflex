@@ -1,5 +1,5 @@
 import { Text, StyleSheet, SafeAreaView, View, ScrollView, Platform, Image, Picker, Pressable, TouchableOpacity } from 'react-native';
-import React, { Component, useState} from 'react';
+import React, { Component, useState, useEffect} from 'react';
 import useAutoFocusInputs from 'use-auto-focus-inputs';
 import { TextInput, Button } from 'react-native-paper';
 
@@ -33,6 +33,11 @@ export default function PlantCareReminder({navigation}) {
   // const t = (time.getHours() == 24 ? "PM" : "AM");
 
   // const [date, setDate] = useState(new Date(Date.now()));
+  useEffect(() => {
+    console.log("Monitor Screen")
+    // console.log()
+  }, [])
+  
 
   const showDatePicker = () => {
     setIsPickerShow(true);

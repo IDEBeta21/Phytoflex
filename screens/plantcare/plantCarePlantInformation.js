@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, Image, Colors, FlatList, SectionList, SafeAreaView, TouchableOpacity, ScrollView} from 'react-native';
+import { Text, StyleSheet, View, Image, Colors, FlatList, SectionList, SafeAreaView, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import React, { Component, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { PFText } from '../../components';
@@ -28,30 +28,84 @@ export default function PlantCarePlantInformation({navigation, route}) {
     const [plantFam, setplantFam] = useState('')
     const [plantKingdom, setplantKingdom] = useState('')
 
+    const [plantPrediction, setplantPrediction] = useState('')
+
+    // useEffect(() => {
+    //     (async () => {
+    //         setloadingText('Loading Tensorflow')
+    //         await tf.ready()
+
+    //         setloadingText('Loading Mobilenet')
+    //         const model = await mobilenet.load()
+
+    //         setloadingText('Converting image to tensor')
+    //         const response = await fetch(route.params.imageUrl, {}, { isBinary: true });
+
+    //         const imageData = await response.arrayBuffer();
+
+    //         // const imageTensor = decodeJpeg(imageData);
+    //         setloadingText('Decoding Image')
+    //         const imageTensor = jpeg.decode(imageData);
+
+    //         setloadingText('Classifying Image')
+    //         const prediction = await model.classify(imageTensor);
+
+    //         console.log(`Prediction: ${prediction[0]['className']} ${prediction[0]['probability']}`)
+            
+
+    //         const fbPlantIdentity = await firebase.firestore().collection('PlantIdentity').doc(prediction[0]['className']).get().then((doc) => {
+    //             if (doc.exists) {
+    //                 console.log("Document data:", doc.data());
+    //                 setplantName(doc.data().plantName)
+    //                 setplantDesc(doc.data().description)
+    //                 setplantFam(doc.data().family)
+    //                 setplantKingdom(doc.data().kingdom)
+    //                 setpredicting(false)
+    //             } else {
+    //                 // doc.data() will be undefined in this case
+    //                 setloadingText('Failed to identify plant :(')
+    //                 console.log("No such document!");
+    //             }
+    //         }).catch((error) => {
+    //             console.log("Error getting document:", error);
+    //         });
+    //         // if (!fbPlantIdentity.exists()) {
+    //         //     console.log ('No such document!');
+    //         //     setloadingText('No such Plant!');
+    //         // } else {
+    //         //     console.log(fbPlantIdentity.data());
+    //         //     setpredicting(false)
+    //         // }
+    //     })();
+    //   }, []);
+
+    let plantPredictionName = ''
+    let plantPredictionDesc = ''
+
     useEffect(() => {
         (async () => {
             setloadingText('Loading Tensorflow')
             await tf.ready()
-
             setloadingText('Loading Mobilenet')
             const model = await mobilenet.load()
-
             setloadingText('Converting image to tensor')
             const response = await fetch(route.params.imageUrl, {}, { isBinary: true });
-
             const imageData = await response.arrayBuffer();
-
             // const imageTensor = decodeJpeg(imageData);
             setloadingText('Decoding Image')
             const imageTensor = jpeg.decode(imageData);
 
             setloadingText('Classifying Image')
             const prediction = await model.classify(imageTensor);
-
             console.log(`Prediction: ${prediction[0]['className']} ${prediction[0]['probability']}`)
+            setplantPrediction(String(prediction[0]['className']))
+            plantPredictionName = prediction[0]['className']
             
-
-            const fbPlantIdentity = await firebase.firestore().collection('PlantIdentity').doc(prediction[0]['className']).get().then((doc) => {
+            
+        })()
+        .then((res) => {
+            const fbPlantIdentity = firebase.firestore().collection('PlantIdentity').doc(plantPredictionName).get()
+            .then((doc) => {
                 if (doc.exists) {
                     console.log("Document data:", doc.data());
                     setplantName(doc.data().plantName)
@@ -61,20 +115,36 @@ export default function PlantCarePlantInformation({navigation, route}) {
                     setpredicting(false)
                 } else {
                     // doc.data() will be undefined in this case
+                    setloadingText('Failed to identify plant :(')
                     console.log("No such document!");
                 }
-            }).catch((error) => {
-                console.log("Error getting document:", error);
-            });
-            // if (!fbPlantIdentity.exists()) {
-            //     console.log ('No such document!');
-            //     setloadingText('No such Plant!');
-            // } else {
-            //     console.log(fbPlantIdentity.data());
-            //     setpredicting(false)
-            // }
-        })();
+            })
+        });
       }, []);
+
+      const onMonitorPress = async () => {
+        if(firebase.auth().currentUser){
+            // upload to firebase
+            await firebase.firestore().collection('PlantMonitoring').add({
+                imageUrl: route.params.imageUrl,
+                firebaseDirectory: route.params.firebaseDirectory,
+                plantName: plantPrediction,
+                plantDescription: plantDesc,
+                userId: firebase.auth().currentUser.uid
+            }).then((res) => {
+                navigation.navigate('PlantCareReminder',{
+                    documentId: res.id
+                }) 
+                console.log('Document Id: ' + res.id)
+            }).catch((err) => {
+                console.log(err)
+            })
+            
+        }else{
+            Alert.alert('You have to Login to use this feature')
+            return
+        }
+      }
 
     return (
         <SafeAreaView  style={styles.container}>
@@ -144,7 +214,7 @@ export default function PlantCarePlantInformation({navigation, route}) {
             </View>
 
             {/* Images */}
-            <View style={styles.flatListContainer}>
+            {/* <View style={styles.flatListContainer}> */}
                     
                 {/* <FlatList 
                     style={styles.flatListImage}
@@ -165,12 +235,13 @@ export default function PlantCarePlantInformation({navigation, route}) {
                     )}
                 /> */}
 
-            </View>
+            {/* </View> */}
 
             </ScrollView>
 
             <View style={styles.btnBG}>
-                <TouchableOpacity onPress={() => alert('Haluu!')}>
+                {/* <TouchableOpacity onPress={() => alert('Haluu!')}> */}
+                <TouchableOpacity onPress={onMonitorPress}>
                     <View style={styles.btnMonitor}>
                         <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Monitor this plant</Text>
                     </View>
@@ -187,7 +258,8 @@ const styles = StyleSheet.create({
 
     loadingContainer: {
         flex: 1,
-        alignContent: 'center',
+        // alignContent: 'center',
+        alignItems: 'center',
         justifyContent: 'center'
     },
 
@@ -201,7 +273,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#ffffff", 
         paddingHorizontal: 0,
-        marginBottom: 13,
+        marginBottom: 0,
    },
    
     btnMonitor: {
@@ -221,7 +293,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         width: '100%',
-        height: 64,   
+        height: 60,   
         backgroundColor: '#ffffff',   
 
         //shadow effect
