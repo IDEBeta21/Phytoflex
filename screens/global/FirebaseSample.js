@@ -20,7 +20,7 @@ export default function FirebaseSample(){
       PostId: 'Postid',
       UserId: 'userid'
     }).then((res) => {
-      Alert.alert(res)
+      console.log(res.id)
     }).catch((err) => {
       Alert.alert(err)
     })
@@ -28,6 +28,12 @@ export default function FirebaseSample(){
 
   function onPostClick(id){
 
+  }
+
+  function updateData(){
+    firebase.firestore().collection('Comment').doc('dTksrDWqjgI7s9KHsVGS').update({
+      dataset: 'Array'
+    })
   }
 
   const getData = async() => {
@@ -68,6 +74,12 @@ export default function FirebaseSample(){
           icon='eye' 
           title='Click Me' 
           onPress={() => getData()}
+          roundness={7}/>
+
+        <PFPrimaryButton 
+          icon='eye' 
+          title='Click Me' 
+          onPress={() => updateData()}
           roundness={7}/>
 
         <View>

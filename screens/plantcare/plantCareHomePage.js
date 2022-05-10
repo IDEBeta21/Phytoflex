@@ -1,5 +1,5 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable} from 'react-native';
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 
 import { globalStyles } from '../global/globalStyles';
@@ -43,11 +43,30 @@ export default function PlantCareHomePage({navigation}) {
 
   const [checked, setchecked] = useState(false)
 
+  const [userSnaps, setuserSnaps] = useState([])
+
   const imgref = (url) => {
     firebase.storage().refFromURL(url).then((res) => {
       return res;
     })
   }
+
+  useEffect(() => {
+    (async() => {
+      await firebase.firestore()
+      .collection('PlantMonitoring').where('userId', '==' , firebase.auth().currentUser.uid).get()
+      .then((res) => {
+        let snap = res.docs.map(doc => { // saka gumamit ako ng map
+          const data = doc.data();
+          const id = doc.id;
+          return {id, ...data}
+        })
+        setuserSnaps(snap);
+        // console.log();
+      })
+    })()
+  }, [])
+  
 
   return (
     <View style={ styles.mainContainer }>
@@ -78,13 +97,14 @@ export default function PlantCareHomePage({navigation}) {
                   horizontal={true} 
                   showsHorizontalScrollIndicator={false} 
                   contentContainerStyle={{ paddingLeft: 1, paddingRight: 7 }}
-                  data={SampleData.myGarden}
+                  // data={SampleData.myGarden}
+                  data={userSnaps}
                   renderItem={({item}) => (
                   
                     <RecentSnapsItem
                         // imageURL={firebase.storage().refFromURL(item.imageURL)}
-                        imageURL={item.imageURL}
-                        description={item.commonName}
+                        imageURL={item.firebaseDirectory}
+                        description={item.plantName}
                         onPress={() => alert("Hello")}/>
 
                     )}
@@ -99,14 +119,15 @@ export default function PlantCareHomePage({navigation}) {
         <PFFlatList
             numColumns={2}
             noDataMessage='No Plant item to post'
-            data={SampleData.myGarden}
+            // data={SampleData.myGarden}
+            data={userSnaps}
             renderItem={(item) => (
               <MyGardenItem 
                 // imageURL={firebase.storage().refFromURL(item.imageURL)}
-                imageURL={item.imageURL}
-                plantType={item.plantType}
-                commonName={item.commonName}
-                onPress={() => Alert.alert(item.commonName)}/>
+                imageURL={item.firebaseDirectory}
+                plantType={item.plantName}
+                commonName={item.plantName}
+                onPress={() => Alert.alert(item.plantName)}/>
               )}
             keyExtractor={(item,index) => index}
           />

@@ -89,9 +89,9 @@ function FuncPlantCareMonitor({navigation}) {
     <PlantCareMonitor navigation={navigation}/>);
 }
 
-function FuncPlantCareReminder({navigation}) {
+function FuncPlantCareReminder({route, navigation}) {
   return(
-    <PlantCareReminder navigation={navigation}/>);
+    <PlantCareReminder navigation={navigation} route={route}/>);
 }
 
 function FuncNavigationPage({navigation}) {
