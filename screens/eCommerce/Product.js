@@ -4,12 +4,15 @@ import { globalStyles } from '../global/globalStyles';
 import Colors from '../../utils/globalColors';
 import { PFCard, PFText } from '../../components';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {PFCardShopReviews, PFFlatList, PFCardProduct, PFCardShop, PFPrimaryButton, PFCardShopCartItems} from './../../components';
 import DropDownPicker from 'react-native-dropdown-picker';
 import firebase from 'firebase';
 
  
 export default function  ProductPage   ({ route, navigation}){ 
+
+  const [liked, setLiked] = useState(false);
 
   //productReviews
   const [refdata, setrefdata] = useState([]); // declaration
@@ -131,11 +134,24 @@ export default function  ProductPage   ({ route, navigation}){
             <View>
               <View style={{flexDirection: 'row', padding: 15, paddingBottom: 5}}>
                 <PFText weight='semi-bold' size = {18} style={{width: 250, alignItems:'flex-start'}}>{route.params.itemName} </PFText>
-                <PFText color={Colors.secondary} weight='semi-bold' size = {20} style={{flex: 1, alignItems: 'flex-end', marginLeft: 20}}>P {route.params.price}</PFText>
+                <View style={styles.heartReact}>
+                  <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                    <MaterialCommunityIcons
+                      name={liked ? "heart" : "heart-outline"}
+                      size={30}
+                      color={liked ? "#1D4123" : "#1D4123"}
+                      // style={{borderRadius: 100, borderWidth: 1}}
+                    />
+                  </Pressable>
+                </View>
+                {/* <PFText color={Colors.secondary} weight='semi-bold' size = {20} style={{flex: 1, alignItems: 'flex-end', marginLeft: 20}}>P {route.params.price}</PFText> */}
               </View>
-              <View style={styles.categoryStyle}>
-                <PFText size = {15}>{route.params.category} </PFText>
-              </View>
+
+              {/* <View style={styles.categoryStyle}>
+                <PFText size = {13}>{route.params.category} </PFText>
+              </View> */}
+
+              <PFText color={Colors.secondary} weight='semi-bold' size = {20} style={styles.price}>P {route.params.price}</PFText>
 
               <View style={styles.detailsContainer}>
                 <View style={{alignItems:'flex-start'}}>
@@ -297,7 +313,6 @@ const styles = StyleSheet.create({
   categoryStyle:{
     alignItems:'flex-start',
     marginLeft: 15,
-    marginBottom: 15,
 
   },
   dropdownPicker:{
@@ -370,4 +385,22 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start'
   },
+  heartReact: {
+    paddingLeft: 0,
+    marginLeft: 45,
+    marginRight: 3,
+    marginTop: 5,
+    alignItems: 'flex-end'
+  },
+  price: {
+    flex: 1, 
+    paddingTop: 3, 
+    marginLeft: 15, 
+    marginBottom: 15, 
+    paddingLeft: 15, 
+    borderWidth: 1, 
+    borderRadius: 50, 
+    borderColor: '#639D04', 
+    width: 85, height: 35
+  }
 })

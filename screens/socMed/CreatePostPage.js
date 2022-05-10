@@ -95,13 +95,23 @@ export default function CreatePostPage({navigation}) {
         </View>
 
         {/* <PFText size={15} style={{marginLeft: 25, marginTop: 20, marginBottom: 205}}>Write something...</PFText> */}
-        <TextInput 
-        placeholder="Write something..."
-        style={styles.input} 
-        multiline={true} 
-        numberOfLines={2}
-        onChangeText = {(text) => setCaption(text)}
-        value= {postCaption}/>
+        <View style={{height: 200}}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <TextInput 
+              placeholder=" Write something... "
+              style={styles.input} 
+              multiline={true} 
+              numberOfLines={2}
+              onChangeText = {(text) => setCaption(text)}
+              value= {postCaption}/>
+          </ScrollView>
+        </View>
+
+        {/*This is where the uploaded image show*/}
+        <View style={{height: 80, padding: 20}}>
+          
+        </View>
+
         <View>
           <View style={styles.hr} />
             {/* <Text style={styles.or}>or</Text> */}
@@ -154,7 +164,7 @@ export default function CreatePostPage({navigation}) {
             source={ require('../../assets/drawerIcons/socmedIcons/change_privacy_green.png')}
             // For local image
             //source={require('./images/float-add-icon.png')}
-            style={styles.addbtn}
+            style={styles.addbtn1}
           />
           <PFText size={15} style={{marginLeft: 10, marginTop: 5}}>Change Privacy</PFText>
         </View>
@@ -172,9 +182,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
    // numberOfLines: 4
+   fontFamily: 'poppins-light',
+   fontSize: 15,
+   marginBottom: 202
   },
   mainContainer: {
-    height: 440,
+    height: 470,
     borderWidth: 1,
     borderRadius: 15,
     margin: 15
@@ -185,9 +198,10 @@ const styles = StyleSheet.create({
     borderRadius: 100
   },
   iconStyle: {
-    height: 15,
-    width: 15,
-    marginLeft: 10
+    height: 12,
+    width: 12,
+    marginLeft: 10,
+    marginTop: 2
   },
   container: {
     flexDirection:'row',
@@ -202,10 +216,16 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   addbtn: {
-    height: 30,
-    width: 30,
+    height: 25,
+    width: 25,
     marginLeft: 5,
-    borderRadius: 100
+    marginTop: 3
+  },
+  addbtn1: {
+    height: 22,
+    width: 22,
+    marginLeft: 5,
+    marginTop: 4
   },
   hr: {
     position: 'relative',
