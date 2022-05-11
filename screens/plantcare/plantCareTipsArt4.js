@@ -20,12 +20,11 @@ export default function PlantCareTipsArt4 ({navigation}) {
                 
                 <View style={styles.content}>
                     <Text weight='semi-bold' style={styles.category}>GARDEN MAINTENANCE</Text>
-                    <PFText weight='semi-bold' style={styles.title}>When and how to water containers, pots and containerized plants</PFText>
-                    {/* PLANTING */}
-                   
+                    <PFText weight='semi-bold' style={styles.title}>When and how to water containers, pots and containerised plants</PFText>
+
 
                     <PFText style={styles.description}>
-                    <PFText weight='semi-bold'>When to water pots or containers:</PFText>
+                    <PFText weight='semi-bold' style={styles.section}>When to water pots or containers:</PFText>
                     {'\n'} 
                     How often you water containers depends on the plants you grow in them. 
                     It’s important to group plants with the same watering requirements together – check the water requirement icon on plants in the PlantInfo database. 
@@ -38,13 +37,12 @@ export default function PlantCareTipsArt4 ({navigation}) {
                     Remember, containers dry out faster than garden soil and smaller containers dry out faster than larger ones, so they may often require watering daily. 
                     Also, remember not to water during, before, or after rainy weather. 
                     {'\n'} {'\n'} 
-                    <PFText weight='semi-bold'>How to water pots or containers: </PFText>
+                    <PFText weight='semi-bold' style={styles.section}>How to water pots or containers: </PFText>
                     {'\n'} 
                     To avoid soil and dirt splashing from the containers when watered with a spray, try to stick the nozzle beneath the foliage when watering. 
                     This not only reduces splashing but it prevents water from gathering on and between foliage and flowers, which helps avoid disease buildup and encourages a healthy plant. 
                     When watering containers, do so thoroughly, watering to the point where water runs out the bottom of the container.
-                    {'\n'}
-                    
+                    {'\n'}{'\n'}{'\n'}
                     </PFText>
 
                     <Text style={styles.source}>
@@ -63,7 +61,7 @@ export default function PlantCareTipsArt4 ({navigation}) {
 const styles = StyleSheet.create({
 
     title:{
-        paddingBottom: 6,
+        paddingBottom: 15,
         paddingTop: 4,
         fontSize: 19
 
@@ -72,8 +70,11 @@ const styles = StyleSheet.create({
     description:{
         textAlign: 'justify',
         lineHeight: 22,
-        paddingBottom: 20,
         fontSize: 14,
+    },
+
+    section: {
+        lineHeight: 28,
     },
 
     imageContainer: {

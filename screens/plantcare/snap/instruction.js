@@ -12,7 +12,7 @@ export default function Instruction({navigation}) {
         backgroundColor: '#ffffff', 
         marginHorizontal: 12,
         paddingBottom: 14,
-        marginTop: 16
+        marginTop: 20
       }}>
 
 
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   }, 
 
   card: { 
-    paddingBottom: 20,
+    paddingBottom: 26,
     flex: 1,
   },
 
@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     width: 336, 
     height: 139, 
     resizeMode: 'contain', 
-    alignItems: 'center', 
+    // alignItems: 'center', 
+    alignSelf: 'center',
   },
 
 

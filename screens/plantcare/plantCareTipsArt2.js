@@ -36,6 +36,7 @@ export default function PlantCareTipsArt2 ({navigation}) {
                     The addition of organic matter, such as compost, mushroom or acid compost, and kraal manure, helps to bind sandy soil, enabling it to retain moisture at the roots of plants.
                     The spaces in clay soils are smaller, so overwatering fills them to the exclusion of air, causing waterlogging. 
                     A long-term remedy for breaking up clay soil is to add lots of organic matter, coarse sand, and lime.
+                    {'\n'}{'\n'}{'\n'}
                     </PFText>
 
                     <Text style={styles.source}>
@@ -55,7 +56,7 @@ export default function PlantCareTipsArt2 ({navigation}) {
 const styles = StyleSheet.create({
 
     title:{
-        paddingBottom: 6,
+        paddingBottom: 11,
         paddingTop: 4,
         fontSize: 19
 
@@ -64,7 +65,6 @@ const styles = StyleSheet.create({
     description:{
         textAlign: 'justify',
         lineHeight: 22,
-        paddingBottom: 20,
         fontSize: 14,
     },
 

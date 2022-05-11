@@ -28,6 +28,7 @@ export default function PlantCareTipsArt1 ({navigation}) {
                     Evergreen trees and shrubs are best planted or transplanted during the rainy season. Before transplanting an evergreen tree or shrub, remove half its leaves to prevent excessive moisture loss until the roots have had a chance to redevelop. You can limit transplant shock by spraying with a solution such as Wilt-Pruf, which reduces transpiration through the leaves.
                     {'\n'} {'\n'} 
                     Bare-rooted trees and shrubs, usually deciduous, should be planted in late winter or spring, before their active growing season starts. Before planting, it is advisable to soak their roots in a bucket of water and cut back all damaged and broken roots to healthy tissue.
+                    {'\n'}{'\n'}{'\n'}
                     </PFText>
 
                     <Text style={styles.source}>
@@ -56,7 +57,6 @@ const styles = StyleSheet.create({
     description:{
         textAlign: 'justify',
         lineHeight: 22,
-        paddingBottom: 20,
         fontSize: 14,
     },
 
