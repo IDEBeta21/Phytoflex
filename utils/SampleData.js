@@ -164,6 +164,14 @@ export default SampleData = {
         },
     ],
 
+    shippingDetails: [
+        {
+            name: 'Juan Dela Cruz',
+            contactNumber: '+(63) 956 480 5698',
+            customerAddress: '89 Ilang-Ilang St. Bo. Concepcion Tala Caloocan City Brgy. 188 1427 Metro Manila'
+        }
+    ],
+
     itemList: [
         {
             imageURL: 'https://picsum.photos/700',

@@ -214,6 +214,7 @@ let totalPayment = route.params.subtotal + 200;
 
 
     return (
+<<<<<<< Updated upstream
      <View style={{...styles.pageContainer}}>
          <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
          
@@ -226,19 +227,29 @@ let totalPayment = route.params.subtotal + 200;
                 <View style={{flexDirection: 'row', marginBottom: 10}}>
                   <View style={{flex: 6}}>
                   <PFText weight='semi-bold'>{item.fName} {item.lName}</PFText>
+=======
+      <View style={{...styles.pageContainer}}>
+        <ScrollView>
+          <View style={{flex: 1,}}>
+            <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
+            <PFFlatList
+              noDataMessage='Loading'
+              data={refdata2}
+              renderItem={(item) => (
+                <View style={{borderColor: Colors.primary, borderWidth: 1, borderRadius: 5, marginBottom: 10, padding: 15,  width: 330  }}>
+                  <View style={{flexDirection: 'row', marginBottom: 10}}>
+                    <View style={{flex: 6, margin: 0}}>
+                    <PFText weight='semi-bold' size={15}>{item.fName} {item.lName}</PFText>
+                    <PFText size={12}>{item.contactNumber}</PFText>
+                    <PFText size={12}>{item.Address}</PFText>
+                    </View>
+>>>>>>> Stashed changes
                   </View>
                 </View>
-                <PFText>{item.contactNumber}</PFText>
-                <PFText>{item.Address}</PFText>
-
-              </View>
-            )}
-            keyExtractor={(item,index) => index}
-          />
-        
+              )}
+              keyExtractor={(item,index) => index}
+            />
           </View>
-          
-         
          
           <View style={{flex: 3}}>
                 <View style={{paddingBottom: 5}}>
@@ -285,6 +296,7 @@ let totalPayment = route.params.subtotal + 200;
               )}
               keyExtractor={(item,index) => index}
             />
+<<<<<<< Updated upstream
             <View style={{flexDirection: "row"}}>
             <View style={{paddingRight: 5}}>
             <PFText weight ="semi-bold">Subtotal: </PFText>
@@ -307,6 +319,45 @@ let totalPayment = route.params.subtotal + 200;
           </View>
            
           </View>
+=======
+            <PFText>Subtotal: </PFText>
+            <PFText>Delivery Fee: </PFText>
+            <PFText>Total Payment: </PFText>
+        
+            <PFSecondaryButton style={{marginTop: 10}} title={'Place Order'} roundness={7} onPress={() => 
+                   placeOrder()} />
+          </View>
+
+          {/* <View>
+            <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
+            <PFFlatList
+              noDataMessage='Loading'
+              data={refdata2}
+              renderItem={(item) => (
+                <View style={{borderColor: Colors.primary, borderWidth: 1, borderRadius: 5, marginBottom: 10, padding: 15,  width: 330  }}>
+                  <View style={{flexDirection: 'row', marginBottom: 10}}>
+                    <View style={{flex: 6, margin: 0}}>
+                    <PFText weight='semi-bold' size={15}>{item.fName} {item.lName}</PFText>
+                    <PFText size={12}>{item.contactNumber}</PFText>
+                    <PFText size={12}>{item.Address}</PFText>
+                    </View>
+                  </View>
+                </View>
+              )}
+              keyExtractor={(item,index) => index}
+            />
+          </View>
+
+          <View>
+
+          </View>
+
+          <View>
+
+          </View> */}
+        </ScrollView>
+      </View>
+>>>>>>> Stashed changes
       
     );
 
@@ -317,10 +368,7 @@ const styles = StyleSheet.create({
     // marginLeft: 8, 
     // width: (Dimensions.get('window').width/2) * 0.93
     flex: 1,
-  
-    paddingLeft: 15,
-    marginVertical: 4,
-    padding: 10
+    padding: 15
 
     
   },

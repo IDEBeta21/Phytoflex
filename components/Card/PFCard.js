@@ -1017,6 +1017,17 @@ export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
   )
 };
 
+export const PFShippingAddressCard =({name, contactNumber, customerAddress}, 
+  style, cardContentStyle) => {
+    return (
+      <View style={styles.shippingAddress}>
+        <PFText weight='semi-bold' size={15}>{name}</PFText>
+        <PFText size={12}>{contactNumber}</PFText>
+        <PFText size={12}>{customerAddress}</PFText>
+      </View>
+    )
+}
+
 export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
 style, cardContentStyle) => {
   return (
@@ -1201,6 +1212,14 @@ const styles = StyleSheet.create({
     marginTop: 2
   },
   //Social Media---------------------------
+  shippingAddress: {
+    flexDirection: 'column', 
+    padding: 15, 
+    borderWidth: 1, 
+    borderColor: '#1d4123', 
+    borderRadius: 5, 
+    marginTop: 5
+  },
   cardShopContainer: {
     
     marginBottom: 5,

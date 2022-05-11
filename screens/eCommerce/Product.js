@@ -151,7 +151,7 @@ export default function  ProductPage   ({ route, navigation}){
                 <PFText size = {13}>{route.params.category} </PFText>
               </View> */}
 
-              <PFText color={Colors.secondary} weight='semi-bold' size = {20} style={styles.price}>P {route.params.price}</PFText>
+              <PFText color={Colors.secondary} weight='semi-bold' size = {20} style={styles.price}> P{route.params.price}</PFText>
 
               <View style={styles.detailsContainer}>
                 <View style={{alignItems:'flex-start'}}>
@@ -262,6 +262,7 @@ export default function  ProductPage   ({ route, navigation}){
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => addData() }>
+            {/* <TouchableOpacity onPress={() => navigation.navigate('CheckoutPage') }> */}
               <View style={styles.buttonArea}>
               <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Add to Crate</Text>
               </View>
@@ -401,6 +402,8 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     borderRadius: 50, 
     borderColor: '#639D04', 
-    width: 85, height: 35
+    width: 85, 
+    height: 35,
+    alignItems: 'center'
   }
 })

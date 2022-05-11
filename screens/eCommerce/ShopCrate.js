@@ -46,14 +46,14 @@ export default function  ShopCratePage   ({ route, navigation}){
       <Card style={{flex: 1}} onPress={() => onPress()}>
         <View style= {{...styles.cardShopCrateContent, flexDirection:'row'}}>
           <View style={{...styles.checkBoxArea}}>
-    <TouchableOpacity style={[{width: 32, height: 32}]} onPress={onSelected}>
-		<Ionicons name={item.checked == 1 ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"} size={25} color={item.checked == 1 ? "#1D4123" : "#aaaaaa"} />
-		</TouchableOpacity>
+            <TouchableOpacity style={[{width: 32, height: 32, marginLeft: 5}]} onPress={onSelected}>
+		          <Ionicons name={item.checked == 1 ? "ios-checkmark-circle" : "ios-checkmark-circle-outline"} size={25} color={item.checked == 1 ? "#1D4123" : "#aaaaaa"} />
+		        </TouchableOpacity>
           </View>
         <Image 
           source={{ uri: image}}
           style={{
-            marginTop: 8,
+            marginTop: 5,
             height: 60,
             width: (Dimensions.get('window').width/1) * 0.15,
             borderRadius: 8
@@ -333,20 +333,18 @@ refdata2.forEach((item) => {
 
 
     return (
-      <ScrollView>
-       
-      <View style={{...styles.cardContainer}}>
-            <View style={{flexDirection:'row'}}>
-            <View  style={{flex: 1, paddingLeft: 8}}>
+      <View style={styles.cardContainer}>
+        <View style={{flexDirection:'row', marginLeft: 8, marginTop: 8}}>
+          <View  style={{flex: 1, paddingLeft: 8, }}>
             <CheckBox
-                value={isSelected}
-                onValueChange={setSelection}
-                style={styles.checkbox}
-              />
-               
-            </View>
-            <View  style={{flex: 10  , padding: 7}}>
+              value={isSelected}
+              onValueChange={setSelection}
+              style={styles.checkbox}
+            />
+          </View>
+          <View  style={{flex: 10, padding: 7}}>
             <PFText>Select All</PFText>
+<<<<<<< Updated upstream
             </View>
             </View>      
              <View style={{...styles.detailsContainer, flex: 1, alignItems:'flex-start'}}>
@@ -396,8 +394,45 @@ refdata2.forEach((item) => {
           
       </ScrollView>
       
+=======
+          </View>
+        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{...styles.detailsContainer, flex: 1, alignItems:'flex-start'}}>
+              <PFFlatList
+                styles={{...styles.reviewsArea}}
+                numColumns={1}
+                noDataMessage='Loading...'
+                data={refdata2}
+                renderItem={(item, index, value) => (
+                  <PFCardShopCartItems1
+                    imageURL={item.imageURL}
+                    itemName ={item.itemName}
+                    item = {item}
+                    price = {item.price}
+               
+                    onSubtract={() => onSubtract(item, index)}
+                    onAdd={() => onAdd(item, index)}
+                    onSelected={() => selectHandler(index, value)}
+                    onPress={() => onAdd(item, index)}
+                  />   
+                )}
+                keyExtractor={(item, index) => index}
+              />
+            </View>
+        </ScrollView>
+        <View style={{flexDirection: 'row', width: (Dimensions.get('window').width/2),}}>
+          <View style={{height: 60, width: (Dimensions.get('window').width/2) * 1, padding: 8, paddingLeft: 15, alignItems: 'flex-start'}}>
+            <PFText>Sub Total: </PFText>
+            <PFText weight='semi-bold'>{totalPrice}</PFText>
+          </View>
+          <TouchableOpacity style={styles.checkoutDesign} onPress={() => navigation.navigate('CheckoutPage')}>
+            <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Check Out</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+>>>>>>> Stashed changes
     );
-
 }
 
 const styles = StyleSheet.create({
@@ -418,11 +453,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   cardContainer: {
-    flex: 1,
     // justifyContent: 'center',
     borderColor: Colors.primary,
-    alignItems: 'center', 
-    padding: 8,
+    // alignItems: 'center', 
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start'
    
   },
   textShopContainer: {
@@ -436,9 +472,10 @@ const styles = StyleSheet.create({
     
   },
   detailsContainer: {
-    paddingTop: 12,
+    paddingTop: 5,
     paddingVertical: 4,
-   
+    marginLeft: 10
+    // height: 400
   },
   categoryStyle:{
     paddingTop: 1
@@ -468,8 +505,9 @@ const styles = StyleSheet.create({
     shadowColor: "black",
   },
   buttonAlignment:{
-    marginBottom: 0,
-    paddingLeft: 5
+    paddingLeft: 5,
+    flex: 1,
+    width: (Dimensions.get('window').width) * 1,
   },
   reviewsArea:{
     paddingLeft: 3,
@@ -486,8 +524,10 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   }, 
   checkoutDesign:{
-    marginTop: 310,
-    marginStart: 5
+    backgroundColor: '#639D04', 
+    width: (Dimensions.get('window').width/2), 
+    alignItems: 'center', 
+    justifyContent: 'center'
   },
   buttonAlignment:{
     marginBottom: 0,
@@ -530,8 +570,8 @@ const styles = StyleSheet.create({
    
   },
   cartPriceArea:{
-    marginStart: 80,
-    padding: 5
+    marginStart: 75,
+    padding: 5,
   },
   cartDeleteButtonArea:{
     marginStart: 20,
@@ -545,7 +585,7 @@ const styles = StyleSheet.create({
   headerIcons:{
     height: 24, 
     width: 24, 
-    
+    marginRight: 3
   },
 
 })

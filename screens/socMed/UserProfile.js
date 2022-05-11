@@ -1,10 +1,10 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Dimensions, Alert, FlatList, Pressable, ViewPropTypes} from 'react-native';
 import React, { Component, useState } from 'react';
 import { Portal } from 'react-native-paper';
-
 import { globalStyles } from '../global/globalStyles';
-
 import { NavigationContainer } from '@react-navigation/native';
+import { FAB, Provider, Title, } from 'react-native-paper';
+import { AntDesign } from '@expo/vector-icons';
 
 import { 
   PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
@@ -97,8 +97,8 @@ export default function UserProfilePage({navigation}) {
         <View style={styles.mainPostContainer}>
           <PFFlatList
             numColumns={1}
-            noDataMessage='No Followers'
-            data={SampleData.cardPostData}
+            noDataMessage='You have no Post'
+            data={SampleData.cardPostData1}
             renderItem={(item) => (
               <PFPostsCard 
                 imageURL={item.imageURL}
@@ -112,6 +112,13 @@ export default function UserProfilePage({navigation}) {
           />
         </View>
       </ScrollView>
+
+      <FAB
+        icon= { <AntDesign name="plus" size={24} color="white" /> }
+        style={{ position: 'absolute', backgroundColor: '#1d4123', margin: 16, right: 0, bottom: -1, }} 
+        onPress={() => navigation.navigate('CreatePostPage')}
+        />
+
     </View>
   );
 }
@@ -138,8 +145,8 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   userPhoto1: {
-    height: 40,
-    width: 40,
+    height: 25,
+    width: 25,
     borderRadius: 100
   },
   userPhoto2: {
