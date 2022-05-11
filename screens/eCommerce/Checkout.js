@@ -219,7 +219,7 @@ let totalPayment = route.params.subtotal + 200;
           <View style={{flex: 1,}}>
             <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
             <PFFlatList
-              noDataMessage='Loading'
+              noDataMessage='No Data'
               data={refdata2}
               renderItem={(item) => (
                 <View style={{borderColor: Colors.primary, borderWidth: 1, borderRadius: 5, marginBottom: 10, padding: 15,  width: 330  }}>
@@ -281,12 +281,25 @@ let totalPayment = route.params.subtotal + 200;
               )}
               keyExtractor={(item,index) => index}
             />
-            <PFText>Subtotal: </PFText>
-            <PFText>Delivery Fee: </PFText>
-            <PFText>Total Payment: </PFText>
-        
-            <PFSecondaryButton style={{marginTop: 10}} title={'Place Order'} roundness={7} onPress={() => 
-                   placeOrder()} />
+            <View style={{flexDirection: "row"}}>
+              <View style={{paddingRight: 5}}>
+                <PFText weight ="semi-bold">Subtotal: </PFText>
+              </View>
+              <PFText>{route.params.subtotal}</PFText>
+            </View>
+            <View style={{flexDirection: "row"}}>
+              <View style={{paddingRight: 5}}>
+                <PFText weight='semi-bold'>Delivery Fee:  </PFText>
+              </View>
+              <PFText>200</PFText>
+            </View>
+            <View style={{flexDirection: "row"}}>
+              <View style={{paddingRight: 5}}><PFText weight='semi-bold'>Total Payment: </PFText></View>
+              <View><PFText>{totalPayment}</PFText></View>
+            </View>
+
+            
+            <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => placeOrder()} />
           </View>
 
           {/* <View>

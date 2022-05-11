@@ -21,15 +21,10 @@ export default function  ShopCratePage   ({ route, navigation}){
   const [colour, setColour] = useState(getColour(0));
   const handleClick = () => { setColour(getColour()); }
   
-  const PFCardShopCartItems1 = ({imageURL,  item, itemName, price, onSubtract, onAdd, onSelected, deleteItem, onPress = () => {}}, style, 
+  const PFCardShopCartItems1 = ({imageURL,  item, itemName, price, onSubtract, onAdd, onSelected, deleteItem, onPress = () => {}}, style,    
   cardContentStyle) => {
   
     //Changing of bgColor
-
-   
-
-
-    
     
     const [isSelected, setSelection] = useState(false);
   
@@ -344,57 +339,6 @@ refdata2.forEach((item) => {
           </View>
           <View  style={{flex: 10, padding: 7}}>
             <PFText>Select All</PFText>
-<<<<<<< Updated upstream
-            </View>
-            </View>      
-             <View style={{...styles.detailsContainer, flex: 1, alignItems:'flex-start'}}>
-              
-              <PFFlatList
-              
-              styles={{...styles.reviewsArea}}
-            numColumns={1}
-            noDataMessage='Loading...'
-            data={refdata2}
-            renderItem={(item, index, value) => (
-              <PFCardShopCartItems1
-               imageURL={item.imageURL}
-               itemName ={item.itemName}
-               item = {item}
-               price = {item.price}
-               
-               onSubtract={() => onSubtract(item, index)}
-               onAdd={() => onAdd(item, index)}
-               onSelected={() => selectHandler(index, value)}
-               deleteItem={() => deleteSelectedItem(item, index)}
-               onPress={() => onAdd(item, index)}
-              />   
-            )}
-            keyExtractor={(item, index) => index}
-          />
-          
-          </View>
-          
-              
-          </View> 
-          <View style={{...styles.buttonAlignment, flexDirection:'row'}}>
-          <View  style={{...styles.checkoutDesign}}>
-            <View style={{...styles.buttonAlignment, alignItems: 'center'}}>
-                  <PFText > Sub Total: </PFText>
-                  <PFText weight='semi-bold'>{totalPrice}</PFText> 
-            </View>
-            </View>
-            <View  style={{...styles.checkoutDesign}}>
-            <TouchableOpacity onPress={() => navigation.navigate('CheckoutPage', {subtotal: totalPrice}) }>
-                  <View style={styles.buttonArea}>
-                  <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Check Out</Text>
-                  </View>
-         </TouchableOpacity>  
-            </View>
-            </View>
-          
-      </ScrollView>
-      
-=======
           </View>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -431,7 +375,6 @@ refdata2.forEach((item) => {
           </TouchableOpacity>
         </View>
       </View>
->>>>>>> Stashed changes
     );
 }
 
