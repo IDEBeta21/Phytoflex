@@ -12,7 +12,7 @@ import {
   PFPrimaryButton, PFSecondaryButton,
   PFFlatList, PFFriendCard,
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
-  PFCard, PFPostsCard, FriendListItem,
+  PFCard, PFPostsCard, PFPostsNoImageCard, FriendListItem, PFPostsImageOnlyCard, 
   PFSwitch
 } from '../../components';
 
@@ -29,7 +29,7 @@ export default function FollowingScreenPage({navigation}) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{marginLeft: 20, marginRight: 15}}>
         <View style={{height: 150, marginTop: 10, width: 110}}>
-          <View style={ styles.conFollow }>
+          <TouchableOpacity style={ styles.conFollow }>
             <Image
               // FAB using TouchableOpacity with an image
               // For online image
@@ -44,7 +44,7 @@ export default function FollowingScreenPage({navigation}) {
                 <Text style={{ color: '#1d4123', fontSize: 10, fontFamily: 'poppins-regular'}}>Following</Text>
               </View>
             </TouchableOpacity> */}
-          </View>
+          </TouchableOpacity>
         </View>
           {/* <ScrollView horizontal = {true}>
             <PFFlatList
@@ -66,8 +66,8 @@ export default function FollowingScreenPage({navigation}) {
         <View>
           <PFFlatList
             numColumns={1}
-            noDataMessage='No Followers'
-            data={SampleData.cardPostData}
+            noDataMessage='                                                                   You have no friends yet. Click the add button or search your friend.'
+            data={SampleData.cardPostData1}
             renderItem={(item) => (
               <PFPostsCard 
                 imageURL={item.imageURL}

@@ -63,7 +63,7 @@ export default function UserProfilePage({navigation}) {
           </View>
         </View>
         
-        <View style={styles.followCon}>
+        <TouchableOpacity style={styles.followCon} onPress={() => navigation.navigate('')}>
           <View style={styles.container2}>
             <Text style={styles.txt}>150</Text>
             <Text style={styles.txt1}>Followers</Text>
@@ -72,7 +72,7 @@ export default function UserProfilePage({navigation}) {
             <Text style={styles.txt}>200</Text>
             <Text style={styles.txt1}>Following</Text>
           </View>
-        </View>
+        </TouchableOpacity>
 
         <View>
           <View style={styles.hr} />
@@ -82,7 +82,7 @@ export default function UserProfilePage({navigation}) {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={ require('../../assets/drawerIcons/socmedIcons/plant.png')}
+            source={ require('../../assets/drawerIcons/socmedIcons/member.png')}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.userPhoto1}
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   userPhoto1: {
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     borderRadius: 100
   },
   userPhoto2: {
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     top: 0,
     borderBottomColor: '#639d04',
-    borderBottomWidth: 2,
+    borderBottomWidth: 2.5,
   },
   hr1: {
     position: 'relative',
@@ -232,21 +232,22 @@ const styles = StyleSheet.create({
   txtStyles: {
     padding: 3,
     paddingLeft: 18,
-    height: 38,
+    height: 40,
     flexDirection: 'row',
     margin: 5
   },
   txt3: {
     fontFamily: 'poppins-regular',
     color: Colors.primary,
-    fontSize: 13,
+    fontSize: 14,
     marginLeft: 10,
-    marginTop: 5,
+    marginTop: 7,
   },
   followCon: {
     flexDirection: 'row', 
     backgroundColor: '#1d4123', 
     paddingLeft: 30, 
-    paddingRight: 30
+    paddingRight: 30,
+    width: (Dimensions.get('window').width) * 1
   }
 })

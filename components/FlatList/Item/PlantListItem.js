@@ -109,12 +109,12 @@ export const SearchPlant = ({
         style={{
           height: 60,
           width: (Dimensions.get('window').width/4) * 0.70,
-          margin: 4,
-          borderRadius: 8
+          margin: 2,
+          borderRadius: 100
         }}
       />
           <View style={{...styles.cardContent}}>
-              <PFText weight='semi-bold'>{categoryName}</PFText> 
+              <PFText size={12} weight='semi-bold' style={{textAlign: 'center', textAlignVertical: 'center'}}>{categoryName}</PFText> 
           </View>
     </View>
     }
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
 
   cardContainer: {
     flex: 1,
-    marginLeft: (Dimensions.get('window').width/2) * 0.03, 
+    marginLeft: (Dimensions.get('window').width/1) * 0.03, 
     // width: (Dimensions.get('window').width/2) * 0.90,
     alignItems: 'center', 
     // justifyContent: 'center',
@@ -154,19 +154,18 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   cardContent: {
-    padding: 12,
+    padding: 10,
     paddingTop: 10,
-    margin: 0
+    margin: 0,
   },
   searchPlant:{
     flex: 1,
     paddingHorizontal: 8,
     borderWidth: 1,
-    borderColor: Colors.primary, 
-    borderRadius: 7,
+    borderColor: Colors.primary
   },
   categoryContainer:{
-    width: (Dimensions.get('window').width/4) * 0.90,
+    width: (Dimensions.get('window').width/4) * 0.92,
     alignItems: 'center',
     //borderWidth: 1, 
     borderColor: Colors.primary, 

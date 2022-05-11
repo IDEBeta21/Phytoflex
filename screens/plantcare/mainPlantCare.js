@@ -2,12 +2,12 @@ import * as React from 'react';
 import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import 'react-native-gesture-handler';
 
 import PlantCareHomePage from "../../screens/plantcare/plantCareHomePage";
 import PlantCareSearchPage from "./plantCareSearch";
 import PlantCareCamera from './snap/camera/plantCareCamera';
 
-import PlantCarePlantCareTips from './plantCarePlantCareTips';
 import PlantCare from './plantCare';
 import PlantCarePlantInformation from './plantCarePlantInformation';
 import PlantCareResult from './plantCareResult';
@@ -16,6 +16,13 @@ import PlantCareMonitor from './plantCareMonitor';
 import PlantCareReminderDetails from './plantCareReminderDetails';
 import PlantCareReminder from './plantCareReminder';
 import PlantCareAlbum from './plantCareAlbum';
+
+import PlantCareTips from './plantCareTips';
+import PlantCareTipsArt1 from './plantCareTipsArt1';
+import PlantCareTipsArt2 from './plantCareTipsArt2';
+import PlantCareTipsArt3 from './plantCareTipsArt3';
+import PlantCareTipsArt4 from './plantCareTipsArt4';
+import PlantCareTipsArt5 from './plantCareTipsArt5';
 
 import NavigationPage from './navigationPage';
 import PlantCareCameraPreview from './snap/camera/plantCareCameraPreview';
@@ -67,11 +74,6 @@ function FuncPlantCarePlantInformation({navigation, route}) {
     <PlantCarePlantInformation navigation={navigation} route={route}/>);
 }
 
-function FuncPlantCarePlantCareTips({navigation}) {
-  return(
-    <PlantCarePlantCareTips navigation={navigation}/>);
-}
-
 function FuncPlantCare({navigation}) {
   return(
     <PlantCare navigation={navigation}/>);
@@ -87,9 +89,9 @@ function FuncPlantCareMonitor({navigation}) {
     <PlantCareMonitor navigation={navigation}/>);
 }
 
-function FuncPlantCareReminder({navigation}) {
+function FuncPlantCareReminder({route, navigation}) {
   return(
-    <PlantCareReminder navigation={navigation}/>);
+    <PlantCareReminder navigation={navigation} route={route}/>);
 }
 
 function FuncNavigationPage({navigation}) {
@@ -102,6 +104,7 @@ function FuncPlantCareAlbum({navigation}) {
     <PlantCareAlbum navigation={navigation}/>);
 }
 
+
 function FuncPlantCareCameraPreview({route, navigation}){
   return(
     <PlantCareCameraPreview
@@ -109,6 +112,38 @@ function FuncPlantCareCameraPreview({route, navigation}){
       route={route} 
     />
   );
+}
+
+// Articles
+
+function FuncPlantCareTips({navigation}) {
+  return(
+    <PlantCareTips navigation={navigation}/>);
+}
+
+function FuncPlantCareTipsArt1({navigation}) {
+  return(
+    <PlantCareTipsArt1 navigation={navigation}/>);
+}
+
+function FuncPlantCareTipsArt2({navigation}) {
+  return(
+    <PlantCareTipsArt2 navigation={navigation}/>);
+}
+
+function FuncPlantCareTipsArt3({navigation}) {
+  return(
+    <PlantCareTipsArt3 navigation={navigation}/>);
+}
+
+function FuncPlantCareTipsArt4({navigation}) {
+  return(
+    <PlantCareTipsArt4 navigation={navigation}/>);
+}
+
+function FuncPlantCareTipsArt5({navigation}) {
+  return(
+    <PlantCareTipsArt5 navigation={navigation}/>);
 }
 
 const Stack = createNativeStackNavigator(); //navigation.setOptions({ tabBarVisible: false })
@@ -176,18 +211,6 @@ function App({navigation}) {
           component={FuncPlantCareResult}
           options={{ 
             headerTitle: (props) => <Header title={'Result'} navigation={navigation} boolHome={false}/>, 
-            headerStyle: {
-              backgroundColor: '#1D4123'
-            },
-            headerTintColor: 'white'
-          }}
-        />
-
-        <Stack.Screen
-          name="PlantCarePlantCareTips"
-          component={FuncPlantCarePlantCareTips}
-          options={{ 
-            headerTitle: (props) => <Header title={'Tips'} navigation={navigation} boolHome={false}/>, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },
@@ -314,6 +337,86 @@ function App({navigation}) {
             
           }}
         />
+
+        {/* ARTICLES */}
+
+        <Stack.Screen
+          name="PlantCareTips"
+          component={FuncPlantCareTips}
+          options={{ 
+            headerTitle: (props) => <Header title={'Tips'} navigation={navigation} boolHome={false}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
+        <Stack.Screen
+          name="PlantCareTipsArt1"
+          component={FuncPlantCareTipsArt1}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Tips'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
+        <Stack.Screen
+          name="PlantCareTipsArt2"
+          component={FuncPlantCareTipsArt2}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Tips'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
+        <Stack.Screen
+          name="PlantCareTipsArt3"
+          component={FuncPlantCareTipsArt3}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Tips'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
+        <Stack.Screen
+          name="PlantCareTipsArt4"
+          component={FuncPlantCareTipsArt4}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Tips'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
+        <Stack.Screen
+          name="PlantCareTipsArt5"
+          component={FuncPlantCareTipsArt5}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Tips'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+
 
       </Stack.Navigator>
     // </NavigationContainer>

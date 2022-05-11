@@ -81,7 +81,7 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
             />
           </Pressable>
           {/* <Pressable onPress={() => navigation.navigate('PlantCareOpportunity')} > */}
-          <Pressable onPress={() => navigation.navigate('PlantCarePlantCareTips')} >
+          <Pressable onPress={() => navigation.navigate('PlantCareTips')} >
             <Image
               style={style.plantCareHeaderIcons}
               source={require('../../assets/drawerIcons/plantCareIcons/opportunity.png')}
@@ -162,11 +162,18 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
       }
 
       {title == 'Ask Community' ? /*Discussion Main Page*/
-        <View style={style.headerIconContainer}>
+        <View style={style.headerIconContainer1}>
           <Pressable onPress={() => navigation.navigate('AddPhotosPage')} >
             <Image
               style={style.dscheaderIcons}
               source={require('../../assets/drawerIcons/discussionIcons/ri_image-add-fill.png')}
+              resizeMode='contain'
+            />
+          </Pressable>
+          <Pressable>
+            <Image
+              style={style.whiteHeaderIcons}
+              source={require('../../assets/drawerIcons/wSearch.png')}
               resizeMode='contain'
             />
           </Pressable>
@@ -357,6 +364,13 @@ const style = StyleSheet.create({
     justifyContent: 'flex-end', 
     alignItems: 'flex-end', 
     paddingRight: 32, 
+    flexDirection: 'row'
+  },
+  headerIconContainer1:{
+    flex: 1,
+    justifyContent: 'flex-end', 
+    alignItems: 'flex-end', 
+    paddingRight: 45, 
     flexDirection: 'row'
   },
   headerIconContainerCheckout:{

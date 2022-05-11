@@ -240,6 +240,10 @@ import { View } from 'react-native-web';
 const Drawer = createDrawerNavigator();
 
 function SideBar({navigation}){
+
+  
+  
+
   return(
       // <NavigationContainer independent={true}>
       <Drawer.Navigator
@@ -496,12 +500,28 @@ function App() {
     'poppins-italic': require('./assets/fonts/Poppins-Italic.ttf'),
   })
 
+  const [userLoggedIn, setuserLoggedIn] = useState(false)
+
+  useEffect(() => {
+    
+    (async() => {
+      const user = await firebase.auth().currentUser
+      if(user){
+        setuserLoggedIn(true)
+      }else{
+        setuserLoggedIn(false)
+      }
+    })
+    
+  }, [])
+
   if (fontsLoaded) {
     return (
       <NavigationContainer independent={true}>
         <AuthStack.Navigator 
           // initialRouteName={(firebase.auth().onAuthStateChanged((user) => {return user})) ? "Login" : "MyTabs"}  
-          initialRouteName={(firebase.auth().currentUser) ? "MyTabs" : "Login"  }  
+          // initialRouteName={(firebase.auth().currentUser) ? "MyTabs" : "Login"  }  
+          initialRouteName={userLoggedIn ? "MyTabs" : "Login"  }  
           screenOptions={{headerShown: false}}
         >
             <AuthStack.Screen name="Onboarding" component={FuncOnboarding}/>

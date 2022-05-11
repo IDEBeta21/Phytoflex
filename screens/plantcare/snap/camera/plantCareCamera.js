@@ -147,6 +147,16 @@ export default function plantCareCamera({navigation}) {
     blob.close();
   }
 
+  const photoPress = async () => {
+    const user = await firebase.auth().currentUser
+    if(user){
+      console.log(user.uid)
+    }else{
+      console.log("No user")
+    }
+    // navigation.navigate('PlantCareMonitor');
+  }
+
   return (
     <View
       // style={{flex: 1,}}
@@ -276,6 +286,7 @@ export default function plantCareCamera({navigation}) {
                   width: 110,
                 }}
                 color={Colors.primary}
+                onPress={photoPress}
               ><PFText center size={14}>Photos</PFText></TouchableOpacity>
             </View>
             <View style={{flex: 4, alignItems: 'center', justifyContent: 'center', }}>

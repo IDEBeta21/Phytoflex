@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 15,
     width: (Dimensions.get('window').width/1),
-    backgroundColor: '#639d04'
+    backgroundColor: '#2a5123'
   },
   textFormat: {
     paddingLeft: 10,

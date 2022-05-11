@@ -54,30 +54,26 @@ export default SampleData = {
             imageURL: 'https://picsum.photos/700',
             userPhoto: 'https://picsum.photos/80',
             name: 'Phytoflex',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            description: 'Welcome to Phytoflex',
             timeDate: '03/30/22 12:00 PM',
             active: 'Bloom'
 
         },
-        {
-            imageURL: 'https://picsum.photos/700',
-            userPhoto: 'https://picsum.photos/80',
-            name: 'Phytoflex',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            timeDate: '03/30/22 12:00 PM',
-            active: 'Bloom'
-        }
+        // {
+        //     imageURL: 'https://picsum.photos/700',
+        //     userPhoto: 'https://picsum.photos/80',
+        //     name: 'Phytoflex',
+        //     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        //     timeDate: '03/30/22 12:00 PM',
+        //     active: 'Bloom'
+        // }
+    ],
+
+    cardPostData1: [
+        
     ],
 
     cardPostNoImageData: [
-        {
-            imageURL: 'https://picsum.photos/700',
-            userPhoto: 'https://picsum.photos/80',
-            name: 'Phytoflex',
-            description: 'Welcome to Phytoflex!',
-            timeDate: '03/30/22 12:00 PM',
-            active: 'Bloom'
-        },
         {
             imageURL: 'https://picsum.photos/700',
             userPhoto: 'https://picsum.photos/80',
@@ -134,19 +130,37 @@ export default SampleData = {
     followFriend: [
         {
             userPhoto: 'https://picsum.photos/90',
-            name: 'Follow a friend'
-        },
-        {
-            userPhoto: 'https://picsum.photos/90',
             name: 'Jocelyn Vega'
         },
         {
             userPhoto: 'https://picsum.photos/90',
-            name: 'Jocelyn Vega'
+            name: 'Lorgie Ann Talosig'
         },
         {
             userPhoto: 'https://picsum.photos/90',
-            name: 'Jocelyn Vega'
+            name: 'Jasmin Marzan'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            name: 'ian Deladia'
+        },
+    ],
+
+    notificationDetails: [
+        {
+            userPhoto: 'https://picsum.photos/90',
+            notifTitle: 'You have a new follower',
+            notifdetail: 'Rose Ann Joy follows you. Click here to view profile.'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            notifTitle: 'Someone liked your post',
+            notifdetail: 'Jocelyn liked your post. Click here to view post'
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            notifTitle: 'You have a new follower',
+            notifdetail: 'Jasmin follows you. Click here to view profile.'
         },
     ],
 
@@ -498,7 +512,8 @@ export default SampleData = {
             badgePoints: '750',
             forumPost: 'Hey guys, what do you think is the reason why the leaves are turning yellow.. I have been trying to monitor since last.. Need help guys',
             dateTime: '09/27/2021 05:56 AM'
-        }
+        },
+        
     ]
 }
 

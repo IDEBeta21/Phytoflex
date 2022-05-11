@@ -12,7 +12,7 @@ import {
   PFPrimaryButton, PFSecondaryButton,
   PFFlatList, 
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
-  PFCard, PFPostsCard, PFPostsNoImageCard,
+  PFCard, PFPostsCard, PFPostsNoImageCard, PFPostsImageOnlyCard,
   PFSwitch
 } from '../../components';
 
@@ -31,6 +31,23 @@ export default function AllScreenPage({navigation}) {
           <PFFlatList
             numColumns={1}
             noDataMessage='No Followers'
+            data={SampleData.cardPostData}
+            renderItem={(item) => (
+              <PFPostsCard 
+                imageURL={item.imageURL}
+                userPhoto={item.userPhoto}
+                name={item.name}
+                description={item.description}
+                timeDate={item.timeDate}
+                onPress={() => navigation.navigate('PostPage')}/>
+            )}
+            keyExtractor={(item,index) => index}
+          />
+        </View>
+        <View>
+          <PFFlatList
+            numColumns={1}
+            noDataMessage='No Followers'
             data={SampleData.cardPostNoImageData}
             renderItem={(item) => (
               <PFPostsNoImageCard 
@@ -40,7 +57,23 @@ export default function AllScreenPage({navigation}) {
             )}
             keyExtractor={(item,index) => index}
           />
-        </View>      
+        </View>
+        <View>
+          <PFFlatList
+            numColumns={1}
+            noDataMessage='No Followers'
+            data={SampleData.cardPostData}
+            renderItem={(item) => (
+              <PFPostsImageOnlyCard 
+                userPhoto={item.userPhoto}
+                name={item.name}
+                description={item.description}
+                timeDate={item.timeDate}
+                onPress={() => navigation.navigate('PostPage')}/>
+            )}
+            keyExtractor={(item,index) => index}
+          />
+        </View>     
       </ScrollView>
       <View style={styles.createpost}>
             <TouchableOpacity
