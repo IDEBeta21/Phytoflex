@@ -63,7 +63,9 @@ import TermsAndConditions from './screens/DrawerContents/SettingsScreens/TermsAn
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
 import HeaderContent from './screens/global/Header';
-
+// Import Activity Logs
+import PostsLog from './screens/DrawerContents/ActivityLogScreens/PostsLog';
+import ThreadsLog from './screens/DrawerContents/ActivityLogScreens/ThreadsLog';
 // 
 // import { AppLoading } from 'expo';\
 // import { AppLoading } from 'expo';
@@ -216,6 +218,17 @@ function FuncForgotPassword({navigation}) {
   );
 }
 
+function FuncPostsLog({navigation}){
+  return(
+    <PostsLog navigation={navigation}/>
+  )
+}
+function FuncThreadsLog({navigation}){
+  return(
+    <ThreadsLog navigation={navigation}/>
+  )
+}
+
 const AuthStack = createNativeStackNavigator();
 
 
@@ -339,7 +352,7 @@ function SideBar({navigation}){
           name="DrawerPostScreen"
           component={FuncPost}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'PostsScreen'} title={'My Posts'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
@@ -351,7 +364,7 @@ function SideBar({navigation}){
           name="DrawerThread"
           component={FuncThread}
           options={{ 
-            headerTitle: (props) => <DrawerHeader screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'ThreadsScreen'} title={'My Threads'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
