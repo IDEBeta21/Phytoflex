@@ -29,7 +29,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
         const auth = firebase.auth();
         firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
             .then((result) => {
-                Alert.alert(result.message);
+                Alert.alert("Welcome to Phytoflex");
                 console.log(result);
                 setuserEmail('');
                 setUserPass('');

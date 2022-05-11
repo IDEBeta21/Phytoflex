@@ -99,9 +99,9 @@ function FuncNavigationPage({navigation}) {
     <NavigationPage navigation={navigation}/>);
 }
 
-function FuncPlantCareAlbum({navigation}) {
+function FuncPlantCareAlbum({route, navigation}) {
   return(
-    <PlantCareAlbum navigation={navigation}/>);
+    <PlantCareAlbum navigation={navigation} route={route}/>);
 }
 
 
@@ -328,7 +328,7 @@ function App({navigation}) {
           name="PlantCareAlbum"
           component={FuncPlantCareAlbum}
           options={{ 
-            headerTitle: (props) => <Header title={'Album name'} navigation={navigation} boolBack={true} />, 
+            headerTitle: (props) => <Header title={'Plant Album'} navigation={navigation} boolBack={true} />, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },

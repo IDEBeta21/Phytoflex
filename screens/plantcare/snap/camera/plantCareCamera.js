@@ -148,13 +148,13 @@ export default function plantCareCamera({navigation}) {
   }
 
   const photoPress = async () => {
-    const user = await firebase.auth().currentUser
-    if(user){
-      console.log(user.uid)
-    }else{
-      console.log("No user")
-    }
-    // navigation.navigate('PlantCareMonitor');
+    // const user = await firebase.auth().currentUser
+    // if(user){
+    //   console.log(user.uid)
+    // }else{
+    //   console.log("No user")
+    // }
+    navigation.navigate('PlantCareAlbum');
   }
 
   return (
@@ -274,7 +274,7 @@ export default function plantCareCamera({navigation}) {
           </Camera>
           <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
             <View style={{flex: 4, alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }}>
-              <TouchableOpacity 
+              {/* <TouchableOpacity 
                 style={{
                   width: 100,
                   borderColor: Colors.primary,
@@ -287,7 +287,7 @@ export default function plantCareCamera({navigation}) {
                 }}
                 color={Colors.primary}
                 onPress={photoPress}
-              ><PFText center size={14}>Photos</PFText></TouchableOpacity>
+              ><PFText center size={14}>Photos</PFText></TouchableOpacity> */}
             </View>
             <View style={{flex: 4, alignItems: 'center', justifyContent: 'center', }}>
               {!loadingCapture ? 
