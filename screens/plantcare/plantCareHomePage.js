@@ -45,6 +45,8 @@ export default function PlantCareHomePage({navigation}) {
 
   const [userSnaps, setuserSnaps] = useState([])
 
+  const [noSnapMessage, setnoSnapMessage] = useState('No Plant Item to post')
+
   const imgref = (url) => {
     firebase.storage().refFromURL(url).then((res) => {
       return res;
@@ -53,17 +55,28 @@ export default function PlantCareHomePage({navigation}) {
 
   useEffect(() => {
     (async() => {
-      await firebase.firestore()
-      .collection('PlantMonitoring').where('userId', '==' , firebase.auth().currentUser.uid).get()
-      .then((res) => {
-        let snap = res.docs.map(doc => { // saka gumamit ako ng map
-          const data = doc.data();
-          const id = doc.id;
-          return {id, ...data}
+      const user = firebase.auth().currentUser
+
+      if(user){
+        await firebase.firestore()
+        .collection('PlantMonitoring').where('userId', '==' , user.uid).get()
+        .then((res) => {
+          let snap = res.docs.map(doc => { // saka gumamit ako ng map
+            const data = doc.data();
+            const id = doc.id;
+            return {id, ...data}
+          })
+          setuserSnaps(snap);
+          // console.log();
         })
-        setuserSnaps(snap);
-        // console.log();
-      })
+      }else{
+        setnoSnapMessage('Login First to Monitor Plants')
+      }
+
+      
+      // await firebase.auth().then((res) => {
+      //   console.log(res.currentUser.uid)
+      // })
     })()
   }, [])
   
@@ -118,7 +131,8 @@ export default function PlantCareHomePage({navigation}) {
 
         <PFFlatList
             numColumns={2}
-            noDataMessage='No Plant item to post'
+            noDataMessage={noSnapMessage}
+            // noDataMessage='No Plant item to post'
             // data={SampleData.myGarden}
             data={userSnaps}
             renderItem={(item) => (
@@ -127,7 +141,9 @@ export default function PlantCareHomePage({navigation}) {
                 imageURL={item.firebaseDirectory}
                 plantType={item.plantName}
                 commonName={item.plantName}
-                onPress={() => Alert.alert(item.plantName)}/>
+                onPress={() => navigation.navigate('PlantCareAlbum',{
+                  plantMonitoringId: item.id
+                })}/>
               )}
             keyExtractor={(item,index) => index}
           />

@@ -56,7 +56,8 @@
     "react-native-web": "^0.17.1",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
-    "use-auto-focus-inputs": "^0.1.2"
+    "use-auto-focus-inputs": "^0.1.2",
+    "expo-updates": "~0.8.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

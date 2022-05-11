@@ -1,5 +1,5 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable, StatusBar} from 'react-native';
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 // import { StatusBar } from 'expo-status-bar';
 
 import { globalStyles } from '../global/globalStyles';
@@ -27,11 +27,36 @@ import { DrawerContent } from '../global/Drawer';
 import { ScrollView } from 'react-native-gesture-handler';
 import { DailyPlantMonitor } from '../../components/FlatList/Item/DailyPlantMonitor';
 
-export default function PlantCareAlbum ({navigation}) {
+export default function PlantCareAlbum ({navigation, route}) {
+
+  const [plantDesc, setplantDesc] = useState('')
+  const [formalPlantName, setformalPlantName] = useState('')
+  const [plantImageUrl, setplantImageUrl] = useState('')
+  const [reminders, setreminders] = useState([])
+
+  useEffect(() => {
+    (async() => {
+      console.log(route.params.plantMonitoringId)
+      await firebase.firestore()
+      .collection('PlantMonitoring').doc(route.params.plantMonitoringId)
+      .get().then((doc) => {
+        console.log(doc.data())
+        setformalPlantName(doc.data().plantName)
+        setplantDesc(doc.data().plantDescription)
+        setplantImageUrl(doc.data().imageUrl)
+        setreminders(doc.data().reminders)
+      })
+    })()
+  }, [])
+  
+
   return (
 
-    <SafeAreaView 
-      contentContainerStyle={{ flex: 1, }}> 
+    <View 
+      // contentContainerStyle={{ flex: 1, }}
+      style={{flex: 1}}
+      > 
+      <View >
 
       <ScrollView 
         showsVerticalScrollIndicator={false}>
@@ -42,17 +67,22 @@ export default function PlantCareAlbum ({navigation}) {
             <View style={{ width: '27%' }}>
               <Image
                   style={styles.imageStyle}
-                  source={require('./../../assets/img/plantcare/pc_photo1.png')} 
+                  // source={require('./../../assets/img/plantcare/pc_photo1.png')} 
+                  source={{uri: plantImageUrl}} 
                 />
             </View>
 
               {/* Text container */}
             <View style={{ width: '73%' }}>
-              <Text style={styles.title}>WATER THE PLANTS - 08:00 AM</Text>
+              {/* <Text style={styles.title}>WATER THE PLANTS - 08:00 AM</Text> */}
+              <Text style={styles.title}>{formalPlantName}</Text>
               <View style={{ flex: 1 }}>
-                <Text  
+                {/* <Text  
                   numberOfLines={4} 
-                  style={styles.description}>Small reddish spots appear on the leaves in the early stage  reddish spots appear on the leaves in the early stage  reddish. Small reddish spots appear on the leaves in the early stage.</Text>
+                  style={styles.description}>Small reddish spots appear on the leaves in the early stage  reddish spots appear on the leaves in the early stage  reddish. Small reddish spots appear on the leaves in the early stage.</Text> */}
+                <Text  
+                  // numberOfLines={4} 
+                  style={styles.description}>{plantDesc}</Text>
               </View>
             </View>  
 
@@ -64,7 +94,8 @@ export default function PlantCareAlbum ({navigation}) {
           <FlatList 
               numColumns={2} 
               showsHorizontalScrollIndicator={false} 
-              data={SampleData.myGarden}
+              // data={SampleData.myGarden}
+              data={reminders}
               contentContainerStyle={{ paddingTop: 15, paddingBottom: 10, borderTopLeftRadius: 10, borderTopRightRadius: 10  }}
               renderItem={({item}) => (
               
@@ -79,14 +110,15 @@ export default function PlantCareAlbum ({navigation}) {
           />
 
       </ScrollView>
+      </View>
 
         <FAB
-          style={styles.fab}
+          style={{ position: 'absolute', backgroundColor: '#ffffff', margin: 16, right: 0, bottom: -1, }} 
           icon="plus"
-          onPress={() => alert('Pressed')}
+          onPress={() => navigation.navigate('PlantCareReminder')}
         />
 
-    </SafeAreaView>
+    </View>
     
   )
 }
@@ -117,10 +149,10 @@ const styles = StyleSheet.create({
 
   fab: {
     position: 'absolute', 
+    backgroundColor: '#ffffff', 
     margin: 16, 
     right: 0, 
-    bottom: 0, 
-    backgroundColor: '#ffffff', 
+    bottom: -1, 
   },
 
   divider: {
