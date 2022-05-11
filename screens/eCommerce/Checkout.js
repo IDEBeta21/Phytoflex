@@ -216,8 +216,8 @@ let totalPayment = route.params.subtotal + 200;
     return (
       <View style={{...styles.pageContainer}}>
         <ScrollView>
-          <View style={{flex: 1,}}>
-            <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
+          <View style={{flex: 3,}}>
+          <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={15}>Shipping Address</PFText>
             <PFFlatList
               noDataMessage='No Data'
               data={refdata2}
@@ -237,51 +237,57 @@ let totalPayment = route.params.subtotal + 200;
           </View>
          
           <View style={{flex: 3}}>
-                <View style={{paddingBottom: 5}}>
-                <PFText weight = 'semi-bold' size={15}>Delivery</PFText>
+            <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={15}>Delivery</PFText>
+            <PFFlatList
+              data={deliveryInfo}
+              renderItem={(item) => (
+                <View style={{borderColor: Colors.primary, borderWidth: 1, borderRadius: 5, marginBottom: 5, padding: 10,  width: 330, paddingBottom: 2  }}>
+                  <View style={{flexDirection: 'column', marginBottom: 10}}>
+                      <View style={{flexDirection: 'row'}}>
+                      <PFText>Courier Service:</PFText>
+                      <View style={{marginStart: 70}}>
+                      <PFText weight = 'semi-bold'>{item.Courier}</PFText>
+                      </View>
+                      
+                      </View>
+                      <View style={{flexDirection: 'row'}}>
+                      <PFText>Shipping Fee:</PFText>
+                      <View style={{marginStart: 85}}>
+                      <PFText weight = 'semi-bold'>{item.ShippingFee}</PFText>
+                      </View>
+                      
+                      </View>
+                  </View>
                 </View>
-            
-          
-          <PFFlatList
-            data={deliveryInfo}
-            renderItem={(item) => (
-              <View style={{borderColor: Colors.primary, borderWidth: 1, borderRadius: 5, marginBottom: 5, padding: 10,  width: 330, paddingBottom: 2  }}>
-                <View style={{flexDirection: 'column', marginBottom: 10}}>
-                    <View style={{flexDirection: 'row'}}>
-                    <PFText>Courier Service:</PFText>
-                    <View style={{marginStart: 70}}>
-                    <PFText weight = 'semi-bold'>{item.Courier}</PFText>
-                    </View>
-                    
-                    </View>
-                    <View style={{flexDirection: 'row'}}>
-                    <PFText>Shipping Fee:</PFText>
-                    <View style={{marginStart: 85}}>
-                    <PFText weight = 'semi-bold'>{item.ShippingFee}</PFText>
-                    </View>
-                    
-                    </View>
-                </View>
-              </View>
-            )}
-            keyExtractor={(item,index) => index}
-          />
-          <PFText weight= "semi-bold">Items</PFText>
-        
-          <PFFlatList
-            data={orderedItems}
-            renderItem={(item) => (
-              <PFCardShopCartItems1
-              imageURL={item.imageURL}
-              itemName={item.itemName}
-              price = {item.price}
-              quantity = {item.quantity}
-              onPress ={ () => Alert.alert("Go to Product Again")}
-              />
               )}
               keyExtractor={(item,index) => index}
             />
-            <View style={{flexDirection: "row"}}>
+          </View>
+
+          <View style={{flex: 3}}>  
+            <PFText style={{marginBottom: 5, marginTop: 10}} weight = 'semi-bold' size={15}>Items</PFText>
+            <PFFlatList
+              data={orderedItems}
+              renderItem={(item) => (
+                <PFCardShopCartItems1
+                imageURL={item.imageURL}
+                itemName={item.itemName}
+                price = {item.price}
+                quantity = {item.quantity}
+                onPress ={ () => Alert.alert("Go to Product Again")}
+                />
+                )}
+                keyExtractor={(item,index) => index}
+              />
+          </View>
+
+          
+          <View>
+            <View style={styles.hr} />
+          </View>
+            
+          <View style={{marginBottom: 15}}>  
+            <View style={{flexDirection: "row", marginTop: 10}}>
               <View style={{paddingRight: 5}}>
                 <PFText weight ="semi-bold">Subtotal: </PFText>
               </View>
@@ -297,10 +303,9 @@ let totalPayment = route.params.subtotal + 200;
               <View style={{paddingRight: 5}}><PFText weight='semi-bold'>Total Payment: </PFText></View>
               <View><PFText>{totalPayment}</PFText></View>
             </View>
-
-            
-            <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => placeOrder()} />
           </View>
+            
+          <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => placeOrder()} />
 
           {/* <View>
             <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
@@ -341,7 +346,8 @@ const styles = StyleSheet.create({
     // marginLeft: 8, 
     // width: (Dimensions.get('window').width/2) * 0.93
     flex: 1,
-    padding: 15
+    padding: 14,
+    marginLeft: 2
 
     
   },
@@ -353,17 +359,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#1D4123",
     borderRadius: 4,
-   
-    
-    
   },
 
   cardContainer:{
-
     marginTop: 10,
     padding: 2
-    
-   
+  },
+  hr: {
+    position: 'relative',
+    top: 0,
+    borderBottomColor: '#639d04',
+    borderBottomWidth: 2,
+    marginTop: 40
   },
   
 })
