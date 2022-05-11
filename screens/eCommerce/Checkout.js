@@ -78,9 +78,7 @@ export default function  CheckoutPage  ({ route, navigation}){
       style={{
         marginTop: 4,
         height: 60,
-        width: (Dimensions.get('window').width/1) * 0.15,
-        
-        
+        width: (Dimensions.get('window').width/1) * 0.15,  
       }}
     />
       <View style={{flexDirection: 'column', paddingTop: 7, paddingLeft: 20}}>
@@ -92,9 +90,7 @@ export default function  CheckoutPage  ({ route, navigation}){
         <View style={{paddingLeft: 80}}>
         <PFText> x {quantity}</PFText>
         </View>
-      
         </View>
-        
         </View>
       </View>
 
@@ -107,24 +103,6 @@ export default function  CheckoutPage  ({ route, navigation}){
     
     )
   }
-  
-  
-
- 
-  //doc_Id
- 
-  
-  var user = firebase.auth().currentUser;
- 
-  
-  if (user) {
-  
-   
-    console.log("Sign in")
-  }
-  //
-
- 
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -144,28 +122,25 @@ export default function  CheckoutPage  ({ route, navigation}){
       if (user) {
         // User logged in already or has just logged in.
         console.log(user.email);
+        firebase.firestore()
+        .collection('users').where("userEmail", "==", user.email).get().then((snapshot) => {
+          let users = snapshot.docs.map(doc => { 
+            const data2 = doc.data();
+            const id2 = doc.id;
+            return {id2, ...data2}
+          })
+          setrefdata2(users);
+          console.log(refdata2);
+          setrefnull2(false);
+        }).catch((err) => {
+          Alert.alert(err)
+        })
       } else {
         // User not logged in or has just logged out.
       }
     });
             // Get data inside document
-    firebase.firestore()
-    .collection('users').where("userEmail", "==", user.email).get().then((snapshot) => {
-      let users = snapshot.docs.map(doc => { 
-        const data2 = doc.data();
-        const id2 = doc.id;
-        return {id2, ...data2}
-      })
-      setrefdata2(users);
-      console.log(refdata2);
-      setrefnull2(false);
-    }).catch((err) => {
-      Alert.alert(err)
-    })
-    
-    
-
-    
+   
   }
 
   //get customer's info
@@ -198,7 +173,6 @@ export default function  CheckoutPage  ({ route, navigation}){
   function placeOrder(){
 
   firebase.firestore().collection('Orders').add({
-
       ResultMacthed : "False",
       contactNumber : contactNumber,
       customerName: customerName,
@@ -208,6 +182,7 @@ export default function  CheckoutPage  ({ route, navigation}){
       orderId: "0", 
       orderedItems,
       userId: userId,
+      totalPayment: totalPayment
     }).then((res) => {
       console.log(res.id)
 
@@ -218,12 +193,8 @@ export default function  CheckoutPage  ({ route, navigation}){
                       docRef.update({
                 orderId: res.id
               })
-        
       }
-      
     updateOrderId()
-        
-      
     }).catch((err) => {
       Alert.alert(err)
     })
@@ -237,8 +208,9 @@ export default function  CheckoutPage  ({ route, navigation}){
   useEffect(() => {
     getData();
     getUsers();
-}, [])
+    }, [])
 
+let totalPayment = route.params.subtotal + 200;
 
 
     return (
@@ -247,7 +219,7 @@ export default function  CheckoutPage  ({ route, navigation}){
          
          <View style={{flex: 1, paddingTop: 8}}>
          <PFFlatList
-            noDataMessage='Loading'
+            noDataMessage='No Data'
             data={refdata2}
             renderItem={(item) => (
               <View style={{borderColor: Colors.primary, borderWidth: 1, borderRadius: 5, marginBottom: 10, padding: 15,  width: 330  }}>
@@ -310,20 +282,31 @@ export default function  CheckoutPage  ({ route, navigation}){
               quantity = {item.quantity}
               onPress ={ () => Alert.alert("Go to Product Again")}
               />
-          
               )}
               keyExtractor={(item,index) => index}
             />
-            <PFText>Subtotal: </PFText>
-            <PFText>Delivery Fee: </PFText>
-            <PFText>Total Payment: </PFText>
-        
-            <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => 
-                   placeOrder()} />
+            <View style={{flexDirection: "row"}}>
+            <View style={{paddingRight: 5}}>
+            <PFText weight ="semi-bold">Subtotal: </PFText>
+            </View>
+            <PFText>{route.params.subtotal}</PFText>
+            </View>
+            <View style={{flexDirection: "row"}}>
+            <View style={{paddingRight: 5}}>
+            <PFText weight='semi-bold'>Delivery Fee:  </PFText>
+            </View>
+            <PFText>200</PFText>
+            </View>
+            <View style={{flexDirection: "row"}}>
+              <View style={{paddingRight: 5}}><PFText weight='semi-bold'>Total Payment: </PFText></View>
+              <View><PFText>{totalPayment}</PFText></View>
+            </View>
+
+            
+            <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => placeOrder()} />
           </View>
-         
            
-         </View>
+          </View>
       
     );
 

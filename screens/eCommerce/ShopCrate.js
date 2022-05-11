@@ -21,7 +21,7 @@ export default function  ShopCratePage   ({ route, navigation}){
   const [colour, setColour] = useState(getColour(0));
   const handleClick = () => { setColour(getColour()); }
   
-  const PFCardShopCartItems1 = ({imageURL,  item, itemName, price, onSubtract, onAdd, onSelected, onPress = () => {}}, style, 
+  const PFCardShopCartItems1 = ({imageURL,  item, itemName, price, onSubtract, onAdd, onSelected, deleteItem, onPress = () => {}}, style, 
   cardContentStyle) => {
   
     //Changing of bgColor
@@ -69,7 +69,7 @@ export default function  ShopCratePage   ({ route, navigation}){
                 >{itemName}</PFText>
                 <View style={{...styles.cartDeleteButtonArea}}>
               
-                <Pressable onPress={() => Alert.alert('Remove')}>
+                <Pressable onPress={deleteItem}>
               <Image
                 style={{...styles.headerIcons}}
                 source={require('../../assets/drawerIcons/shopIcons/Delete.png')}
@@ -125,19 +125,6 @@ export default function  ShopCratePage   ({ route, navigation}){
 
   
 
-// addData function for productItem 
-  function addData(){
-    firebase.firestore().collection('tempOrders').add({
-      itemName: route.params.itemName,
-      userId: userId
-      
-    }).then((res) => {
-      Alert.alert('Added to Crate Successfully')
-    }).catch((err) => {
-      Alert.alert(err)
-    })
-  }
-
 
 
   
@@ -166,22 +153,18 @@ export default function  ShopCratePage   ({ route, navigation}){
     firebase.firestore()
     .collection('ProductItem').where('userId','==' , userId).get().then((snapshot) => {
 
-      let plantItem = snapshot.docs.map(doc => { 
-
-
-        const data2 = doc.data();
-        const id2 = doc.id;
-        return {id2, ...data2}
-
-        
-      })
-      setrefdata2(plantItem);
-      console.log(refdata2);
-      setrefnull2(false);
-    }).catch((err) => {
-      Alert.alert(err)
-    })
-    
+        let plantItem = snapshot.docs.map(doc => { 
+          const data2 = doc.data();
+          const id2 = doc.id;
+          return {id2, ...data2}
+        })
+        setrefdata2(plantItem);
+        console.log(refdata2);
+        setrefnull2(false);
+        }).catch((err) => {
+        Alert.alert(err)
+       })
+      
   }
 
  
@@ -199,6 +182,53 @@ let bgColor = '#D8F9C9';
 //Computation for check out
 
 const [counter1, setProducts] = useState(0);
+
+// addData function for productItem 
+function addData(){
+  firebase.firestore().collection('tempOrders').add({
+    itemName: route.params.itemName,
+    userId: userId
+    
+  }).then((res) => {
+    Alert.alert('Added to Crate Successfully')
+  }).catch((err) => {
+    Alert.alert(err)
+  })
+}
+
+ //remove selected items from check out
+
+ const deleteSelectedItem = (item, index) => {
+  const nextProducts = [...refdata2];
+  setProducts(nextProducts)
+
+  function deleteItems() {
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        console.log(user.email);
+  
+        firebase.firestore()
+        .collection('ProductItem').where('itemName', '==', nextProducts[index].itemName).get().then((res) => {
+          res.forEach(doc => {
+            console.log(doc.id, '=>', doc.data());
+            const docRef = firebase.firestore().collection('ProductItem').doc(doc.id).delete()
+            .then(() => {
+             Alert.alert("Item deleted successfully")
+            }); 
+          })
+        })
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
+  
+  
+  }
+  deleteItems();
+ }
+
 
 const onSubtract = (item, index) => {
   const nextProducts = [...refdata2];
@@ -241,7 +271,7 @@ const onAdd = (item, index) => {
       res.forEach(doc => {
         console.log(doc.id, '=>', doc.data());
         const docRef = firebase.firestore().collection('tempOrders').doc(doc.id);
-            // 
+            // add quantity of selected item
             const res = docRef.update("quantity", firebase.firestore.FieldValue.increment(1))
       })
       let comment = res.docs.map(doc => {
@@ -318,12 +348,7 @@ refdata2.forEach((item) => {
             <View  style={{flex: 10  , padding: 7}}>
             <PFText>Select All</PFText>
             </View>
-              
-              
-            </View>
-           
-            
-              
+            </View>      
              <View style={{...styles.detailsContainer, flex: 1, alignItems:'flex-start'}}>
               
               <PFFlatList
@@ -342,6 +367,7 @@ refdata2.forEach((item) => {
                onSubtract={() => onSubtract(item, index)}
                onAdd={() => onAdd(item, index)}
                onSelected={() => selectHandler(index, value)}
+               deleteItem={() => deleteSelectedItem(item, index)}
                onPress={() => onAdd(item, index)}
               />   
             )}
@@ -355,18 +381,12 @@ refdata2.forEach((item) => {
           <View style={{...styles.buttonAlignment, flexDirection:'row'}}>
           <View  style={{...styles.checkoutDesign}}>
             <View style={{...styles.buttonAlignment, alignItems: 'center'}}>
-                  <PFText >
-                    Sub Total: 
-                  </PFText>
-                  <PFText weight='semi-bold'>{totalPrice}</PFText>
-                  
-                 
-                 
-               
+                  <PFText > Sub Total: </PFText>
+                  <PFText weight='semi-bold'>{totalPrice}</PFText> 
             </View>
             </View>
             <View  style={{...styles.checkoutDesign}}>
-            <TouchableOpacity onPress={() => navigation.navigate('CheckoutPage') }>
+            <TouchableOpacity onPress={() => navigation.navigate('CheckoutPage', {subtotal: totalPrice}) }>
                   <View style={styles.buttonArea}>
                   <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Check Out</Text>
                   </View>
