@@ -214,20 +214,6 @@ let totalPayment = route.params.subtotal + 200;
 
 
     return (
-<<<<<<< Updated upstream
-     <View style={{...styles.pageContainer}}>
-         <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
-         
-         <View style={{flex: 1, paddingTop: 8}}>
-         <PFFlatList
-            noDataMessage='No Data'
-            data={refdata2}
-            renderItem={(item) => (
-              <View style={{borderColor: Colors.primary, borderWidth: 1, borderRadius: 5, marginBottom: 10, padding: 15,  width: 330  }}>
-                <View style={{flexDirection: 'row', marginBottom: 10}}>
-                  <View style={{flex: 6}}>
-                  <PFText weight='semi-bold'>{item.fName} {item.lName}</PFText>
-=======
       <View style={{...styles.pageContainer}}>
         <ScrollView>
           <View style={{flex: 1,}}>
@@ -243,7 +229,6 @@ let totalPayment = route.params.subtotal + 200;
                     <PFText size={12}>{item.contactNumber}</PFText>
                     <PFText size={12}>{item.Address}</PFText>
                     </View>
->>>>>>> Stashed changes
                   </View>
                 </View>
               )}
@@ -296,30 +281,6 @@ let totalPayment = route.params.subtotal + 200;
               )}
               keyExtractor={(item,index) => index}
             />
-<<<<<<< Updated upstream
-            <View style={{flexDirection: "row"}}>
-            <View style={{paddingRight: 5}}>
-            <PFText weight ="semi-bold">Subtotal: </PFText>
-            </View>
-            <PFText>{route.params.subtotal}</PFText>
-            </View>
-            <View style={{flexDirection: "row"}}>
-            <View style={{paddingRight: 5}}>
-            <PFText weight='semi-bold'>Delivery Fee:  </PFText>
-            </View>
-            <PFText>200</PFText>
-            </View>
-            <View style={{flexDirection: "row"}}>
-              <View style={{paddingRight: 5}}><PFText weight='semi-bold'>Total Payment: </PFText></View>
-              <View><PFText>{totalPayment}</PFText></View>
-            </View>
-
-            
-            <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => placeOrder()} />
-          </View>
-           
-          </View>
-=======
             <PFText>Subtotal: </PFText>
             <PFText>Delivery Fee: </PFText>
             <PFText>Total Payment: </PFText>
@@ -357,7 +318,6 @@ let totalPayment = route.params.subtotal + 200;
           </View> */}
         </ScrollView>
       </View>
->>>>>>> Stashed changes
       
     );
 
