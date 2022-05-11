@@ -11,6 +11,7 @@ import firebase from 'firebase';
 
 
 
+
 export default function  CheckoutPage  ({ route, navigation}){ 
 
     let deliveryInfo = [
@@ -21,10 +22,10 @@ export default function  CheckoutPage  ({ route, navigation}){
       ]
 
       const userId = window.userId
-      //productReviews
+      //orderedItems
       const [orderedItems, setrefdata] = useState([]); // declaration
       const [refnull, setrefnull] = useState(true);
-      //plantlistitem
+      //get user info
       const [refdata2, setrefdata2] = useState([]); // declaration 
       const [refnull2, setrefnull2] = useState(true);
       
@@ -116,19 +117,40 @@ export default function  CheckoutPage  ({ route, navigation}){
   var user = firebase.auth().currentUser;
  
   
-  if (user != null) {
+  if (user) {
   
-    let email = user.userEmail;
-    console.log(email)
+   
+    console.log("Sign in")
   }
+  //
+
+ 
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User logged in already or has just logged in.
+      console.log(user.uid);
+   
+      
+    } else {
+      // User not logged in or has just logged out.
+    }
+  });
+
+
 
   const getUsers = async() => {
-
-  
-    
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        console.log(user.email);
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
             // Get data inside document
     firebase.firestore()
-    .collection('users').where("userEmail", "==", user).get().then((snapshot) => {
+    .collection('users').where("userEmail", "==", user.email).get().then((snapshot) => {
       let users = snapshot.docs.map(doc => { 
         const data2 = doc.data();
         const id2 = doc.id;
@@ -222,6 +244,7 @@ export default function  CheckoutPage  ({ route, navigation}){
     return (
      <View style={{...styles.pageContainer}}>
          <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
+         
          <View style={{flex: 1, paddingTop: 8}}>
          <PFFlatList
             noDataMessage='Loading'
@@ -240,6 +263,7 @@ export default function  CheckoutPage  ({ route, navigation}){
             )}
             keyExtractor={(item,index) => index}
           />
+        
           </View>
           
          
@@ -248,6 +272,7 @@ export default function  CheckoutPage  ({ route, navigation}){
                 <View style={{paddingBottom: 5}}>
                 <PFText weight = 'semi-bold' size={15}>Delivery</PFText>
                 </View>
+            
           
           <PFFlatList
             data={deliveryInfo}
@@ -292,6 +317,7 @@ export default function  CheckoutPage  ({ route, navigation}){
             <PFText>Subtotal: </PFText>
             <PFText>Delivery Fee: </PFText>
             <PFText>Total Payment: </PFText>
+        
             <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => 
                    placeOrder()} />
           </View>
