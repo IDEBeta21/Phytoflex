@@ -358,6 +358,7 @@ refdata2.forEach((item) => {
                     onSubtract={() => onSubtract(item, index)}
                     onAdd={() => onAdd(item, index)}
                     onSelected={() => selectHandler(index, value)}
+                    deleteItem={() => deleteSelectedItem(item, index)}
                     onPress={() => onAdd(item, index)}
                   />   
                 )}
@@ -370,7 +371,7 @@ refdata2.forEach((item) => {
             <PFText>Sub Total: </PFText>
             <PFText weight='semi-bold'>{totalPrice}</PFText>
           </View>
-          <TouchableOpacity style={styles.checkoutDesign} onPress={() => navigation.navigate('CheckoutPage')}>
+          <TouchableOpacity style={styles.checkoutDesign} onPress={() => navigation.navigate('CheckoutPage', {subtotal: totalPrice}) }>
             <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Check Out</Text>
           </TouchableOpacity>
         </View>
