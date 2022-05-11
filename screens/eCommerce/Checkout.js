@@ -112,14 +112,23 @@ export default function  CheckoutPage  ({ route, navigation}){
  
   //doc_Id
  
-
   
+  var user = firebase.auth().currentUser;
+ 
+  
+  if (user != null) {
+  
+    let email = user.userEmail;
+    console.log(email)
+  }
 
   const getUsers = async() => {
 
-    // Get data inside document
+  
+    
+            // Get data inside document
     firebase.firestore()
-    .collection('users').where("userEmail", "==", window.userEmail).get().then((snapshot) => {
+    .collection('users').where("userEmail", "==", user).get().then((snapshot) => {
       let users = snapshot.docs.map(doc => { 
         const data2 = doc.data();
         const id2 = doc.id;
@@ -131,6 +140,9 @@ export default function  CheckoutPage  ({ route, navigation}){
     }).catch((err) => {
       Alert.alert(err)
     })
+    
+    
+
     
   }
 
