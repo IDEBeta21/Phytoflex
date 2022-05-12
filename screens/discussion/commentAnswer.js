@@ -107,7 +107,7 @@ export default function CommentAnswerPage({navigation, route}) {
                   profilePic: userImage
                 }).then((res) => {
                   console.log(res.id)
-                  Alert.alert("You added a comment")
+                
                 })
                 getAnswers();
               }
