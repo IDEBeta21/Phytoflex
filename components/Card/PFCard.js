@@ -381,7 +381,7 @@ export const PFFriendCard = ({
 export const PFMessageCard = ({userPhoto, userName, lastMsg, onPress = () =>{}},
 style, cardContentStyle) => {
   return (
-      <TouchableOpacity style={styles.msgCard}>
+      <TouchableOpacity style={styles.msgCard} onPress={() => onPress()}>
           <View>
             <Image 
             source={require('../../assets/logo.png')}

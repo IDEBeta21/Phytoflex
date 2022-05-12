@@ -35,7 +35,7 @@ export default function InboxZonePage({navigation}) {
                 userPhoto={item.userPhoto}
                 userName={item.userName}
                 lastMsg={item.lastMsg}
-                onPress={() => Alert.alert(item.userName)}
+                onPress={() => navigation.navigate('ChatPage')}
               />
             )}
             keyExtractor={(item,index) => index}

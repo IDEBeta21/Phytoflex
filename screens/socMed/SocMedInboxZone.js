@@ -39,7 +39,7 @@ function MyTopTabs({navigation}) {
         tabBarActiveTintColor: '#1D4123',
         tabBarInactiveTintColor: 'white',
         tabBarLabelStyle: { fontSize: 12, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
-        tabBarStyle: { backgroundColor: '#2a5123', elevation:0  },
+        tabBarStyle: { backgroundColor: '#1D4123', elevation:0  },
         tabBarIndicatorStyle: {backgroundColor: 'white', borderColor: 'white', height: '100%'}
       }}
     >
