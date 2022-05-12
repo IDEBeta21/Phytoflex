@@ -151,6 +151,15 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                             secureTextEntry={true}
                         ></TextInput>
 
+                        <Text style={styles.labelError}>
+                        Login Incorrect. Either the email or password is incorrect. 
+                        Please try again or reset your password
+                        </Text>
+
+                        <Text style={styles.labelError}>
+                        Both email and password are required a login.
+                        </Text>
+
                         <TouchableOpacity onPress={funcForgotPass}>
                             <View style={{color: 'white', justifyContent: 'center', alignItems: 'flex-end', marginBottom: 0, marginEnd: 11}}>
                                 <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 12}}>Forgot Password?</Text>
@@ -222,7 +231,21 @@ const styles = StyleSheet.create({
         // borderTopRightRadius: 35,
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: 50
+        paddingBottom: 30
+    },
+    labelError:{
+        color: 'red',
+        marginBottom:6,
+        paddingStart: 8,
+        fontSize: 13,
+        fontFamily: 'poppins-semiBold'
+    },
+    labelCorrect:{
+        color: '#639d04',
+        marginBottom:6,
+        paddingStart: 8,
+        fontSize: 13,
+        fontFamily: 'poppins-semiBold'
     },
     container: {
         flex: 1,
