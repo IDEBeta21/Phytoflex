@@ -52,7 +52,7 @@ export default function PostPage({navigation}) {
         </View>
       </View>
 
-      <PFText size={13} style={{marginTop: 10, marginBottom: 10}}>Welcome to Phytoflex!</PFText>
+      <PFText size={13} style={{marginTop: 10, marginBottom: 10, marginLeft: 10}}>Welcome to Phytoflex!</PFText>
       <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => navigation.navigate('')}
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 15,
     margin: 15,
-    padding: 20
+    padding: 15
   },
   userPhoto: {
     height: 40,
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height:290,
-    width: (Dimensions.get('window').width/2) * 1.6,
+    width: (Dimensions.get('window').width/1) * 0.82,
     borderRadius: 10
   },
   reactContainer: {

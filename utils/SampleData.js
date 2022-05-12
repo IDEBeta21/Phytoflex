@@ -154,6 +154,14 @@ export default SampleData = {
         },
     ],
 
+    messageDetails: [
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Welcome to Phytoflex!',
+            lastMsg: 'Hello!'
+        }
+    ],
+
     shippingDetails: [
         {
             name: 'Juan Dela Cruz',

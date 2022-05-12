@@ -377,6 +377,30 @@ export const PFFriendCard = ({
       </View>
     </View>
 );
+  
+export const PFMessageCard = ({userPhoto, userName, lastMsg, onPress = () =>{}},
+style, cardContentStyle) => {
+  return (
+      <TouchableOpacity style={styles.msgCard}>
+          <View>
+            <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 50,
+              width: 50,
+              borderRadius: 100,
+              marginRight: 5
+            }} 
+            />
+          </View>
+          {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
+          <View styles={styles.msgContent}>
+            <PFText weight='semi-bold' size={15}>{userName}</PFText>
+            <Text style={{fontFamily: 'poppins-light', fontSize: 12, }}>{lastMsg}</Text>
+          </View>
+      </TouchableOpacity>
+  )
+};
 
 export const PFCardShop = ({imageURL, category, itemName, price, quantity, sold, onPress = () => {}}, 
 style, cardContentStyle) => {
@@ -1067,9 +1091,6 @@ style, cardContentStyle) => {
 };
 
 
-
-
-
 export const PFActiveOrders = ({
   statusIndicator,
   imageURL,
@@ -1360,6 +1381,15 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     height: 80,
   },
+  msgCard: {
+    width: (Dimensions.get('window').width),
+    flexDirection: 'row', 
+    padding: 15, 
+    backgroundColor: 'rgba(29,65,35,0.2)', 
+    marginBottom: 3,
+    paddingLeft: 20,
+    height: 80,
+  },
   iconStyle: {
     height: 12,
     width: 12,
@@ -1367,6 +1397,10 @@ const styles = StyleSheet.create({
     marginTop: 2
   },
   notifContent: {
+    flexDirection: 'column', 
+    padding: 10
+  },
+  msgContent: {
     flexDirection: 'column', 
     padding: 10
   },
