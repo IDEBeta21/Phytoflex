@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  { Component, useState, useEffect } from 'react';
 import { View, StyleSheet, Image, Pressable, TouchableOpacity } from 'react-native';
 import {
   useTheme,
@@ -18,6 +18,7 @@ import {
 import firebase from 'firebase';
 // import { StackActions, NavigationActions, NavigationEvents } from 'react-navigation';
 import { StackActions, NavigationActions, NavigationEvents } from '@react-navigation/native';
+
 
 
 // import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -52,6 +53,56 @@ export function DrawerContent(props) {
   }
 
   // const { signOut, toggleTheme } = React.useContext(AuthContext);
+
+      //get user info
+      const [refdata2, setrefdata2] = useState([]); // declaration 
+      const [refnull2, setrefnull2] = useState(true);
+      
+
+        //get user
+        
+      const getUsers = async() => {
+          firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              // User logged in already or has just logged in.
+              console.log(user.email);
+              firebase.firestore()
+              .collection('users').where("userEmail", "==", user.email).get().then((snapshot) => {
+                let users = snapshot.docs.map(doc => { 
+                  const data2 = doc.data();
+                  const id2 = doc.id;
+                  return {id2, ...data2}
+                })
+                setrefdata2(users);
+                console.log(refdata2);
+                setrefnull2(false);
+              }).catch((err) => {
+                Alert.alert(err)
+              })
+            } else {
+              // User not logged in or has just logged out.
+            }
+          });
+        
+        }
+      //display userImage
+      let userImage = "";
+      let userfullName = "";
+      refdata2.forEach((item) => {
+        userImage = item.profilePic
+        userfullName = item.fName + "  " + item.lName 
+      })
+      const [image, setimage] = useState(null)
+  
+  
+      firebase.storage().ref().child(userImage).getDownloadURL().then((url) => {
+        setimage(url);
+      })
+
+        useEffect(() => {
+         
+          getUsers();
+          }, [])
  
   return(
     <View style={{flex:1}}>
@@ -63,15 +114,15 @@ export function DrawerContent(props) {
             <TouchableOpacity>
               <Avatar.Image 
                 source={{
-                  uri: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/assets%2Fimg%2FsampleProfile.jpg?alt=media&token=3ed2140a-9593-49e7-80d2-9217b8580a2c'
+                  uri: image
                 }} size={90}
               />
             </TouchableOpacity>
             </View>
                 <View style={{flexDirection:'column', alignSelf: "center", padding: 8, paddingLeft: 10}}>
                       <Caption style={styles.caption}>Hello!</Caption>
-                      <Title style={styles.title}>Leila Jane Alejandre</Title>
-                  </View>
+                      <Title style={styles.title}>{userfullName}</Title>
+                </View>
           </View>
               
           </Drawer.Section>

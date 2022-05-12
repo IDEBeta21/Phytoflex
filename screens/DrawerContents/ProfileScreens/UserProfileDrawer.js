@@ -9,7 +9,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import HomeLog from './HomeLog';
 import DiscussionLog from './DiscussionLog';
-
+import firebase from 'firebase';
 function FuncHomeLog({navigation}){
   return(
     <HomeLog navigation={navigation}/>
@@ -25,6 +25,64 @@ function FuncDiscussionLog({navigation}){
 const Tab = createMaterialTopTabNavigator();
 
 export default function UserProfileDrawer({navigation}) {
+ //get user info
+ const [refdata2, setrefdata2] = useState([]); // declaration 
+ const [refnull2, setrefnull2] = useState(true);
+ 
+
+          //get user
+   
+          const getUsers = async() => {
+              firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                  // User logged in already or has just logged in.
+                  console.log(user.email);
+                  firebase.firestore()
+                  .collection('users').where("userEmail", "==", user.email).get().then((snapshot) => {
+                    let users = snapshot.docs.map(doc => { 
+                      const data2 = doc.data();
+                      const id2 = doc.id;
+                      return {id2, ...data2}
+                    })
+                    setrefdata2(users);
+                    console.log(refdata2);
+                    setrefnull2(false);
+                  }).catch((err) => {
+                    Alert.alert(err)
+                  })
+                } else {
+                  // User not logged in or has just logged out.
+                }
+              });
+            
+            }
+          //display userImage
+          let userImage = "";
+          let userfullName = "";
+          let userName = "";
+          let followers = "";
+          let following = "";
+          let badgePoints = "";
+          refdata2.forEach((item) => {
+            userImage = item.profilePic
+            userfullName = item.fName + "  " + item.lName 
+            userName = item.userName
+            followers = item.followers
+            following = item.following
+            badgePoints = item.userBadgePoints
+
+          })
+          const [image, setimage] = useState(null)
+
+
+          firebase.storage().ref().child(userImage).getDownloadURL().then((url) => {
+            setimage(url);
+          })
+
+            useEffect(() => {
+              
+              getUsers();
+              }, [])
   return (
     <View>
     <StatusBar style="auto" />
@@ -34,7 +92,7 @@ export default function UserProfileDrawer({navigation}) {
           <View style={styles.item}>
               <TouchableOpacity>
                   <Image
-                    source={require('../../../assets/drawerIcons/discussionIcons/sampleProfile.jpg')}
+                    source={{uri : image}}
                     style={{ width:120, height:120, borderRadius:120, resizeMode:'cover'}}>
                   </Image>
               </TouchableOpacity>
@@ -46,13 +104,13 @@ export default function UserProfileDrawer({navigation}) {
                 fontFamily: 'poppins-semiBold', 
                 fontSize: 25,
                 marginTop: 6,}}>
-                Leila Alejandre
+                {userfullName}
             </Text> 
             <Text style={{
                 color: 'white', 
                 fontFamily: 'poppins-light', 
                 fontSize: 16 }}>
-                @titoDusik
+                @{userName}
             </Text>
           <View style={{ flexDirection: 'row', marginTop: 8, justifyContent: 'flex-start', marginBottom: 26}}>
               <TouchableOpacity 
@@ -78,7 +136,7 @@ export default function UserProfileDrawer({navigation}) {
         <View style={styles.container1}>
           <View style={styles.item1}>
             <Text style={styles.textNum}>
-                556
+                {followers}
             </Text> 
             <Text style={styles.textCaption}>
                 Followers
@@ -86,7 +144,7 @@ export default function UserProfileDrawer({navigation}) {
           </View>
           <View style={styles.item1}>
             <Text style={styles.textNum}>
-                1025
+                {following}
             </Text> 
             <Text style={styles.textCaption}>
                 Following
@@ -94,7 +152,7 @@ export default function UserProfileDrawer({navigation}) {
           </View>
           <View style={styles.item1}>
             <Text style={styles.textNum}>
-                300
+                {badgePoints }
             </Text> 
             <Text style={styles.textCaption}>
                 Badge Points

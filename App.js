@@ -441,7 +441,7 @@ function SideBar({navigation}){
           name="DrawerTrackOrderDetails"
           component={FuncTrackOrderDetails}
           options={{ 
-            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerTrackHistory'} screenDescription={'TrackOrderDetails'} title={'Active Orders'} navigation={navigation} />, 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerTrackHistory'} screenDescription={'TrackOrderDetails'} title={'Track Orders'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123',

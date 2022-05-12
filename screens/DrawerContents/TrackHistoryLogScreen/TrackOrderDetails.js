@@ -145,16 +145,10 @@ let subtotal = "";
      subtotal = item.subTotal
      orderedItems.forEach((items) => {
       itemPic = items.imageURL
-      
-      
      })
   })
   
- 
-  
   const [image, setimage] = useState(null)
-  
-  
   firebase.storage().ref().child(itemPic).getDownloadURL().then((url) => {
     setimage(url);
   })
@@ -209,7 +203,7 @@ let subtotal = "";
               />
               </View>
               </View>
-      <PFText size={18} weight={'semi-bold'} >Order Summary</PFText>
+      <PFText size={20} weight={'semi-bold'} >Order Summary</PFText>
     </View>
     <PFFlatList
     noDataMessage='No Orders'
