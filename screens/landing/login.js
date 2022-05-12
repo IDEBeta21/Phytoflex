@@ -23,13 +23,27 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
     const [userEmail, setuserEmail] = useState('');
     const [userPass, setUserPass] = useState('');
 
+    const [errorMessage, seterrorMessage] = useState('')
 
     window.userEmail = userEmail
     function logInClick() {
+
+        if(userEmail == '' && userPass == ''){
+            seterrorMessage('Please Enter your Email and Password')
+            return
+        }
+
+        if(userPass == ''){
+            seterrorMessage('Please Enter your Password')
+            return
+        }
+
+        
+
         const auth = firebase.auth();
         firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
             .then((result) => {
-                Alert.alert("Welcome to Phytoflex");
+                // Alert.alert("Welcome to Phytoflex");
                 console.log(result);
                 setuserEmail('');
                 setUserPass('');
@@ -48,15 +62,16 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
             }).catch((error) => {
                 // Alert.alert(error.message);
                 let str_msg = error.message;
-                console.log(error);
-                ToastAndroid.showWithGravityAndOffset(
-                    // "A wild toast appeared!",
-                    str_msg,
-                    ToastAndroid.LONG,
-                    ToastAndroid.BOTTOM,
-                    0,
-                    150
-                );
+                // console.log(error);
+                // ToastAndroid.showWithGravityAndOffset(
+                //     // "A wild toast appeared!",
+                //     str_msg,
+                //     ToastAndroid.LONG,
+                //     ToastAndroid.BOTTOM,
+                //     0,
+                //     150
+                // );
+                seterrorMessage(str_msg)
             });
 
         // toTabs();
@@ -136,28 +151,30 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         <TextInput
                             style={styles.textbox}
                             placeholder="Enter your email address"
-                            onChangeText = {(text) => setuserEmail(text)}
+                            onChangeText = {(text) => {setuserEmail(text); seterrorMessage('')}}
                             value={userEmail}
                             selectionColor={'#CBDEAB'}
+                            onFocus={() => seterrorMessage('')}
                         ></TextInput>
                         
                         <Text style={styles.label}>PASSWORD</Text>
                         <TextInput
                             style={styles.pwtextbox}
                             placeholder="Enter your password"
-                            onChangeText = {(text) => setUserPass(text)}
+                            onChangeText = {(text) => {setUserPass(text); seterrorMessage('')}}
                             value={userPass}
                             selectionColor={'#CBDEAB'}
                             secureTextEntry={true}
+                            onFocus={() => seterrorMessage('')}
                         ></TextInput>
 
-                        <Text style={styles.labelError}>
+                        {/* <Text style={styles.labelError}>
                         Login Incorrect. Either the email or password is incorrect. 
                         Please try again or reset your password
-                        </Text>
+                        </Text> */}
 
                         <Text style={styles.labelError}>
-                        Both email and password are required a login.
+                        {errorMessage}
                         </Text>
 
                         <TouchableOpacity onPress={funcForgotPass}>
@@ -221,7 +238,7 @@ const styles = StyleSheet.create({
         // borderTopRightRadius: 35,
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: 57
+        paddingBottom: 10
     },
     loginViewKeyUp: {
         backgroundColor: '#1D4123',

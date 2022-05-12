@@ -45,7 +45,9 @@ export default function PlantCareHomePage({navigation}) {
 
   const [userSnaps, setuserSnaps] = useState([])
 
-  const [noSnapMessage, setnoSnapMessage] = useState('No Plant Item to post')
+  const [noSnapMessage, setnoSnapMessage] = useState('')
+
+  const [snapLoading, setsnapLoading] = useState(true)
 
   const imgref = (url) => {
     firebase.storage().refFromURL(url).then((res) => {
@@ -67,10 +69,12 @@ export default function PlantCareHomePage({navigation}) {
             return {id, ...data}
           })
           setuserSnaps(snap);
+          setsnapLoading(false)
           // console.log();
         })
       }else{
-        setnoSnapMessage('Login First to Monitor Plants')
+        setnoSnapMessage('Login First to Monitor your Plants')
+        setsnapLoading(false)
       }
 
       
@@ -79,16 +83,36 @@ export default function PlantCareHomePage({navigation}) {
       // })
     })()
   }, [])
+
+  async function onRefresh () {
+    setsnapLoading(true)
+    const user = firebase.auth().currentUser
+
+      if(user){
+        await firebase.firestore()
+        .collection('PlantMonitoring').where('userId', '==' , user.uid).get()
+        .then((res) => {
+          let snap = res.docs.map(doc => { // saka gumamit ako ng map
+            const data = doc.data();
+            const id = doc.id;
+            return {id, ...data}
+          })
+          setuserSnaps(snap);
+          setsnapLoading(false)
+          // console.log();
+        })
+      }else{
+        setnoSnapMessage('Login First to Monitor your Plants')
+        setsnapLoading(false)
+      }
+
+  }
   
 
   return (
     <View style={ styles.mainContainer }>
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-      >
         {/* Search box */}
-        <View style={styles.searchBoxContainer}>
+        {/* <View style={styles.searchBoxContainer}>
           <Image
             style={styles.searchBoxIcon}
             source={require('../../assets/drawerIcons/plantCareIcons/search.png')}
@@ -98,71 +122,78 @@ export default function PlantCareHomePage({navigation}) {
             style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1}}
             placeholder='Search' 
           />
-        </View>
+        </View> */}
 
-        <View style={styles.flContainer}>
+       
 
-          <Title style={{ color: 'black', marginLeft: 7, fontSize: 15, fontFamily: 'poppins-regular', color: '#1D4123' }}>Recent Snaps</Title> 
+          
+
         
-            <SafeAreaView style={{ height: 169 }}>
+            
 
-                <FlatList 
-                  horizontal={true} 
-                  showsHorizontalScrollIndicator={false} 
-                  contentContainerStyle={{ paddingLeft: 1, paddingRight: 7 }}
+          {snapLoading ? 
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <PFText size={16}>Loading...</PFText>
+            </View>
+            :
+            <ScrollView
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={styles.flContainer}>
+                {
+                  noSnapMessage == '' ? 
+                    <View style={{flexDirection: 'row'}}>
+                      <Title style={{ color: Colors.primary , marginLeft: 7, fontSize: 15, fontFamily: 'poppins-regular', color: '#1D4123' ,flex: 1}}>
+                        Recent Snaps</Title> 
+                      <TouchableOpacity style={{alignItems: 'flex-end', marginRight: 7}} onPress = {() => onRefresh()}>
+                        <Title style={{ color: Colors.primary , marginLeft: 7, fontSize: 15, fontFamily: 'poppins-regular', color: '#1D4123', flex: 1, }}>
+                        Refresh</Title> 
+                      </TouchableOpacity>
+                    </View>
+                  :
+                  null
+                }
+                <SafeAreaView style={{ height: 169 }}>
+                  <FlatList 
+                    horizontal={true} 
+                    showsHorizontalScrollIndicator={false} 
+                    contentContainerStyle={{ paddingLeft: 1, paddingRight: 7 }}
+                    // data={SampleData.myGarden}
+                    data={userSnaps}
+                    renderItem={({item}) => (
+                    
+                      <RecentSnapsItem
+                          // imageURL={firebase.storage().refFromURL(item.imageURL)}
+                          imageURL={item.firebaseDirectory}
+                          description={item.plantName}
+                          onPress={() => alert("Hello")}/>
+
+                      )}
+                    keyExtractor={(item,index) => index}
+                  />
+                </SafeAreaView> 
+              </View>
+              <PFFlatList
+                  numColumns={2}
+                  noDataMessage={noSnapMessage}
+                  // noDataMessage='No Plant item to post'
                   // data={SampleData.myGarden}
                   data={userSnaps}
-                  renderItem={({item}) => (
-                  
-                    <RecentSnapsItem
-                        // imageURL={firebase.storage().refFromURL(item.imageURL)}
-                        imageURL={item.firebaseDirectory}
-                        description={item.plantName}
-                        onPress={() => alert("Hello")}/>
-
+                  renderItem={(item) => (
+                    <MyGardenItem 
+                      // imageURL={firebase.storage().refFromURL(item.imageURL)}
+                      imageURL={item.firebaseDirectory}
+                      plantType={item.plantName}
+                      commonName={item.plantName}
+                      onPress={() => navigation.navigate('PlantCareAlbum',{
+                        plantMonitoringId: item.id
+                      })}/>
                     )}
                   keyExtractor={(item,index) => index}
-              />
-
-            </SafeAreaView>
-
-            </View>
-        {/* </View> */}
-
-        <PFFlatList
-            numColumns={2}
-            noDataMessage={noSnapMessage}
-            // noDataMessage='No Plant item to post'
-            // data={SampleData.myGarden}
-            data={userSnaps}
-            renderItem={(item) => (
-              <MyGardenItem 
-                // imageURL={firebase.storage().refFromURL(item.imageURL)}
-                imageURL={item.firebaseDirectory}
-                plantType={item.plantName}
-                commonName={item.plantName}
-                onPress={() => navigation.navigate('PlantCareAlbum',{
-                  plantMonitoringId: item.id
-                })}/>
-              )}
-            keyExtractor={(item,index) => index}
-          />
-
-      </ScrollView>
-
-      {/* <FAB
-        icon="plus"
-        style={{ position: 'absolute', margin: 1, right: 15, bottom: 85 }}
-        onPress={() => navigation.navigate('NavigationPage')}
-      />
-
-       <Button 
-          position='absolute'
-          title='Result'
-          onPress={ () => navigation.navigate('PlantCareResult')}
-          // backgroundColor = "#000000"
-          color = "#1A9B95"
-          /> */}
+                />
+            </ScrollView>
+          }
 
       <FAB
         icon="camera-outline"
@@ -170,22 +201,6 @@ export default function PlantCareHomePage({navigation}) {
         onPress={() => navigation.navigate('PlantCareCamera')}
         />
 
-      {/* <TouchableOpacity
-        activeOpacity={0.7}
-        style={styles.fabContainer}
-        // onPress={() => navigation.navigate('Instruction')}
-        onPress={() => navigation.navigate('PlantCareCamera')}
-        >
-        <Image
-          // FAB using TouchableOpacity with an image
-          // For online image
-          source={ require('../../assets/drawerIcons/plantCareIcons/camera.png')}
-          // For local image
-          //source={require('./images/float-add-icon.png')}
-          style={styles.fabImage}
-        />
-      </TouchableOpacity> */}
-      
 
     </View>
   );

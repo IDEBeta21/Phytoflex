@@ -6,7 +6,7 @@ import {
   View, ScrollView, KeyboardAvoidingView, 
   Image, Text, TextInput, TouchableOpacity,  
   StyleSheet,
-  Alert, ImageBackground
+  Alert, ImageBackground, RecyclerViewBackedScrollViewBase
 } from 'react-native';
 
 import Onboarding from './Onboarding';
@@ -14,6 +14,8 @@ import Onboarding from './Onboarding';
 import firebase from 'firebase';
 import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import { computeOutShape } from '@tensorflow/tfjs-core/dist/ops/concat_util';
+import Colors from '../../utils/globalColors';
 
 export default function SignUpScreen({navigation}){
   
@@ -24,28 +26,43 @@ export default function SignUpScreen({navigation}){
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
+
+  const [userConfirmPass, setuserConfirmPass] = useState('')
+
+  // Validation hooks
+  const [emaiValidationText, setemaiValidationText] = useState('')
+  const [passwordValidationText, setpasswordValidationText] = useState('')
+  const [passwordConfirmValidationText, setpasswordConfirmValidationText] = useState('')
+
+  const [emailValidationStatus, setemailValidationStatus] = useState(false)
+  const [passwordValidationStatus, setpasswordValidationStatus] = useState(false)
+
+  const [passwordStrength, setpasswordStrength] = useState('')
+
+  const [passwordMatched, setpasswordMatched] = useState(false)
   
   
   function signUpClick() {
-    const auth = firebase.auth();
-    firebase.auth().createUserWithEmailAndPassword(userEmail, userPass)
-    .then((result) => {
-      Alert.alert(result.message);
-      firebase.firestore().collection("users")
-      .doc(firebase.auth().currentUser.uid)
-      .set({
-        fName,
-        lName,
-        userName,
-        userEmail,
-        userPass
-      })
-      console.log(result);
-    })
-    .catch((error) => {
-      Alert.alert(error.message);
-      console.log(error);
-    });
+    // const auth = firebase.auth();
+    // firebase.auth().createUserWithEmailAndPassword(userEmail, userPass)
+    // .then((result) => {
+    //   Alert.alert(result.message);
+    //   firebase.firestore().collection("users")
+    //   .doc(firebase.auth().currentUser.uid)
+    //   .set({
+    //     fName,
+    //     lName,
+    //     userName,
+    //     userEmail,
+    //     userPass
+    //   })
+    //   console.log(result);
+    // })
+    // .catch((error) => {
+    //   Alert.alert(error.message);
+    //   console.log(error);
+    // });
+    console.log(userEmail)
   }
   
     function gotoOnboarding() {
@@ -54,6 +71,108 @@ export default function SignUpScreen({navigation}){
       
     const toOnboarding = () => {
         navigation.push('Onboarding');
+    }
+
+    // Check Email Address
+    function checkEmail(text){
+      setUserEmail(text)
+      if (text == ''){
+        return
+      }
+
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(text))
+      {
+        setemaiValidationText('Valid Email Address')
+        setemailValidationStatus(true)
+        return
+      }
+        // setemaiValidationText("You have entered an invalid email address!")
+        setemaiValidationText("Please enter your email address in format. yourname@example.com")
+        setemailValidationStatus(false)
+        return
+    }
+
+    // Check Password
+    function checkPassword(text){
+      setUserPass(text)
+
+      if(text == ''){
+        setpasswordValidationText('')
+        if(String(text) == String(userConfirmPass)){
+          setpasswordConfirmValidationText('Password Matched')
+          setpasswordMatched(true)
+          // return
+        }else{
+          setpasswordConfirmValidationText('Password Did not Matched')
+          setpasswordMatched(false)
+        }
+        return
+      }
+
+      if(String(text) == String(userConfirmPass)){
+        setpasswordConfirmValidationText('Password Matched')
+        setpasswordMatched(true)
+        // return
+      }else{
+        setpasswordConfirmValidationText('Password Did not Matched')
+        setpasswordMatched(false)
+      }
+      
+      var pattern = new RegExp(
+        '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$' 
+      );
+      
+      // test if password has lower case and upper case letters
+      if(new RegExp('^(?=.*[a-z])(?=.*[A-Z]).+$').test(text)){
+        // test if password has atleast 1 numerical character
+        if(new RegExp('^(?=.*\\d).+$').test(text)){
+          //test if password has atleast 8 characters
+          if(String(text).length >= 8){
+            // console.log('Your Password is secure')
+            setpasswordValidationText('Your Password is secure')
+            setpasswordValidationStatus(true)
+            setpasswordStrength('FAIR')
+            if(new RegExp('^(?=.*[-+_!@#$%^&*., ?]).+$').test(text)){
+              setpasswordStrength('GOOD')
+              if(String(text).length >= 10){
+                setpasswordStrength('STRONG')
+                return
+              }
+              return
+            }
+            return
+          }
+          // console.log('MUST constain atleast 8 character')
+          setpasswordValidationText('Please enter at least 8 characters')
+          setpasswordValidationStatus(false)
+          setpasswordStrength('WEAK')
+          return
+        }
+        // console.log("MUST contain atleast one numerical value (0-9)")
+        setpasswordValidationText("Please include at least one number")
+        setpasswordValidationStatus(false)
+        setpasswordStrength('WEAK')
+        return
+      }
+      // console.log("MUST contain both uppercase and lower case letters ")
+      setpasswordValidationText("Please inlude both uppercase and lower case letters ")
+      setpasswordValidationStatus(false)
+      setpasswordStrength('WEAK')
+      return
+
+    }
+
+    function checkPasswordConfirmation(text){
+      setuserConfirmPass(text)
+
+      if(String(text) == String(userPass)){
+        setpasswordConfirmValidationText('Password Matched')
+        setpasswordMatched(true)
+        return
+      }
+      setpasswordConfirmValidationText('Password Did not Matched')
+      setpasswordMatched(false)
+      return
     }
 
   return (
@@ -137,38 +256,66 @@ export default function SignUpScreen({navigation}){
           <TextInput
             style={styles.textbox}
             placeholder="Enter your email address"
-            onChangeText = {(text) => setUserEmail(text)}
+            onChangeText = {(text) => checkEmail(text)}
             value={userEmail}
             selectionColor={'#CBDEAB'}
           >
         </TextInput>
 
-        <Text style={styles.labelError}>A domain name MUST be included.</Text>      
-  
-        <Text style={styles.label}>PASSWORD</Text>
+        {/* <Text style={styles.labelError}>{emaiValidationText}</Text>       */}
+        {!userEmail == '' ? <Text style={(emailValidationStatus) ?  styles.labelCorrect : styles.labelError}>{emaiValidationText}</Text> : null}      
+          
+          <View style={{flexDirection: 'row'}}>
+            <View style={{flex: 4}}>
+              <Text style={styles.label}>PASSWORD</Text>
+            </View>
+            {!userPass == '' ? 
+              <View style={{flex: 8, marginRight: 10, alignItems: 'flex-end'}}>
+                <View style={{flexDirection: 'row'}}>
+                  <View style={{flex: 8, alignItems: 'flex-end'}}>
+                    <Text style={styles.labelCorrect}>Password Strength: </Text>
+                  </View>
+                  <View style={{flex: 4, alignItems: 'flex-end'}}>
+                    {passwordStrength == 'WEAK' ? <Text style={{...styles.labelCorrect, color: 'red'}}>{passwordStrength}</Text> : null}
+                    {passwordStrength == 'FAIR' ? <Text style={{...styles.labelCorrect, color: 'orange'}}>{passwordStrength}</Text> : null}
+                    {passwordStrength == 'GOOD' ? <Text style={{...styles.labelCorrect, color: 'yellow'}}>{passwordStrength}</Text> : null}
+                    {passwordStrength == 'STRONG' ? <Text style={{...styles.labelCorrect}}>{passwordStrength}</Text> : null}
+                  </View>
+                </View>
+              </View>
+              :
+              null
+            }
+            
+          </View>
+        
           <TextInput
             style={styles.textbox}
             placeholder="Enter your password"
-            onChangeText = {(text) => setUserPass(text)}
+            onChangeText = {(text) => checkPassword(text)}
             value={userPass}
             secureTextEntry={true}
             selectionColor={'#CBDEAB'}
           >
         </TextInput>
 
-          <Text style={styles.labelError}>MUST contain at least one uppercase letter</Text>
+          {/* <Text style={styles.labelError}>MUST contain at least one uppercase letter</Text> */}
+          
+          <Text style={(passwordValidationStatus) ? styles.labelCorrect : styles.labelError }>{passwordValidationText}</Text>
+           
+          
 
           <Text style={styles.label}> CONFIRM PASSWORD</Text>
           <TextInput
             style={styles.textbox}
             placeholder="Re-enter your password"
-            onChangeText = {(text) => setUserPass(text)}
-            value={userPass}
+            onChangeText = {(text) => checkPasswordConfirmation(text)}
+            value={userConfirmPass}
             selectionColor={'#CBDEAB'}
           >
         </TextInput>
-
-        <Text style={styles.labelCorrect}>Password Strength: STRONG || Passwords Matched</Text>
+        
+        {!userConfirmPass == '' ? <Text style={(passwordMatched) ? styles.labelCorrect : styles.labelError}>{passwordConfirmValidationText}</Text> : null}
 
         <View style={{ flexDirection: 'row', marginTop: 16, justifyContent: 'center', marginBottom: 0}}>
             <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 8.5}}>By signing up you agree to our </Text>

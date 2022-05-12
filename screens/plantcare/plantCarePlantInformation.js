@@ -29,6 +29,7 @@ export default function PlantCarePlantInformation({navigation, route}) {
     const [plantKingdom, setplantKingdom] = useState('')
 
     const [plantPrediction, setplantPrediction] = useState('')
+    const [failedToPredict, setfailedToPredict] = useState(false)
 
     // useEffect(() => {
     //     (async () => {
@@ -151,9 +152,16 @@ export default function PlantCarePlantInformation({navigation, route}) {
             <StatusBar style='auto'/>
 
         { predicting ? 
-            
-                <View style={styles.loadingContainer}>
-                    <PFText>{loadingText}</PFText>
+                <View>
+                    { failedToPredict ? 
+                        <View>
+                            
+                        </View>
+                        :
+                        <View style={styles.loadingContainer}>
+                            <PFText>{loadingText}</PFText>
+                        </View>
+                    }
                 </View>
              : 
             <View style={{paddingBottom: 150}}>

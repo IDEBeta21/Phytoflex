@@ -583,7 +583,8 @@ function App() {
         <AuthStack.Navigator 
           // initialRouteName={(firebase.auth().onAuthStateChanged((user) => {return user})) ? "Login" : "MyTabs"}  
           // initialRouteName={(firebase.auth().currentUser) ? "MyTabs" : "Login"  }  
-          initialRouteName={userLoggedIn ? "MyTabs" : "Login"  }  
+          initialRouteName={(userLoggedIn) ? "MyTabs" : "Login"  } 
+          // initialRouteName={(userLoggedIn) ? "Login" : "MyTabs"  } 
           screenOptions={{headerShown: false}}
         >
             <AuthStack.Screen name="Onboarding" component={FuncOnboarding}/>
