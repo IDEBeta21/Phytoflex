@@ -149,18 +149,8 @@ export default SampleData = {
     notificationDetails: [
         {
             userPhoto: 'https://picsum.photos/90',
-            notifTitle: 'You have a new follower',
-            notifdetail: 'Rose Ann Joy follows you. Click here to view profile.'
-        },
-        {
-            userPhoto: 'https://picsum.photos/90',
-            notifTitle: 'Someone liked your post',
-            notifdetail: 'Jocelyn liked your post. Click here to view post'
-        },
-        {
-            userPhoto: 'https://picsum.photos/90',
-            notifTitle: 'You have a new follower',
-            notifdetail: 'Jasmin follows you. Click here to view profile.'
+            notifTitle: 'Welcome to Phytoflex!',
+            notifdetail: 'Click here to see a full tutorial.'
         },
     ],
 

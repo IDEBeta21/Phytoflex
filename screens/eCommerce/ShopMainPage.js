@@ -121,7 +121,7 @@ useEffect(() => {
           />
         </View>
       <View>
-      <PFText weight = "semi-bold" size = {18} style={{marginTop: 5, marginLeft: 8}}> Categories</PFText>
+      <PFText weight = "semi-bold" size = {18} style={{marginTop: 5, marginLeft: 8}}>Categories</PFText>
       <PFFlatList
             numColumns={4}
             noDataMessage='No Plant item to post'
@@ -143,7 +143,7 @@ useEffect(() => {
               
         <View>
               
-        <PFText weight = "semi-bold" size = {18} style={{marginTop: 5, marginLeft: 8, marginBottom: 5}}>Discover Plants</PFText>
+        <PFText weight = "semi-bold" size = {18} style={{marginTop: 5, marginLeft: 12, marginBottom: 5}}>Discover Plants</PFText>
         <PFFlatList
             numColumns={2}
             noDataMessage='Loading...'

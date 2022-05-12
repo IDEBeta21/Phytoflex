@@ -409,12 +409,12 @@ style, cardContentStyle) => {
 
       <Card.Content style={{...styles.cardShopContent, ...cardContentStyle}}>
         <View style={{flexDirection:'row'}}>
-          <PFText weight='semi-bold' size={14}>{itemName}</PFText>
-          <View style={{...styles.heartReact, alignItems:'center'}}>
+          <PFText weight='semi-bold' size={13} style={{width: 115}}>{itemName}</PFText>
+          <View style={{...styles.heartReact, alignItems:'flex-start'}}>
             <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
               <MaterialCommunityIcons
                 name={liked ? "heart" : "heart-outline"}
-                size={25}
+                size={22}
                 color={liked ? "#1D4123" : "#1D4123"}
               />
             </Pressable>
@@ -1031,25 +1031,24 @@ export const PFShippingAddressCard =({name, contactNumber, customerAddress},
 export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
 style, cardContentStyle) => {
   return (
-    <View>
       <TouchableOpacity style={styles.notifCard}>
-        <Image 
-        source={{ uri: userPhoto }}
-        style={{
-          height: 50,
-          width: 50,
-          borderRadius: 100,
-          margin: 5,
-          marginRight: 15
-        }} 
-        />
-        {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
-        <View styles={{flexDirection: ' column'}}>
-          <PFText weight='semi-bold' size={15}>{notifTitle}</PFText>
-          <Text style={{fontFamily: 'poppins-light', fontSize: 12, width: 230}}>{notifdetail}</Text>
-        </View>
+          <View>
+            <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 50,
+              width: 50,
+              borderRadius: 100,
+              marginRight: 5
+            }} 
+            />
+          </View>
+          {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
+          <View styles={styles.notifContent}>
+            <PFText weight='semi-bold' size={15}>{notifTitle}</PFText>
+            <Text style={{fontFamily: 'poppins-light', fontSize: 12, }}>{notifdetail}</Text>
+          </View>
       </TouchableOpacity>
-    </View>
   )
 };
 
@@ -1339,19 +1338,23 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   notifCard: {
-    width: (Dimensions.get('window').width) * 1,
+    width: (Dimensions.get('window').width),
     flexDirection: 'row', 
-    padding: 10, 
+    padding: 15, 
     backgroundColor: 'rgba(29,65,35,0.2)', 
-    marginBottom: 5,
-    paddingLeft: 15,
-    height: 85,
+    marginBottom: 3,
+    paddingLeft: 20,
+    height: 80,
   },
   iconStyle: {
     height: 12,
     width: 12,
     marginRight: 5,
     marginTop: 2
+  },
+  notifContent: {
+    flexDirection: 'column', 
+    padding: 10
   },
   //Social Media---------------------------
   shippingAddress: {
@@ -1393,7 +1396,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 0,
     marginTop: 10,
-    width: 155,
+    width: 140,
   //borderWidth:1
   },
   cardShopReview:{
@@ -1409,9 +1412,8 @@ const styles = StyleSheet.create({
 
   },
   heartReact: {
-    paddingLeft: 0,
-    marginLeft: 7,
-    marginRight: 3,
+    marginLeft: 5,
+    marginRight: 5,
     marginTop: 5
   },
   buttonAlignment:{

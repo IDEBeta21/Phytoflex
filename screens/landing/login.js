@@ -135,7 +135,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         <Text style={styles.label}>YOUR EMAIL</Text>
                         <TextInput
                             style={styles.textbox}
-                            placeholder=" Enter your email address"
+                            placeholder="Enter your email address"
                             onChangeText = {(text) => setuserEmail(text)}
                             value={userEmail}
                             selectionColor={'#CBDEAB'}
@@ -144,7 +144,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         <Text style={styles.label}>PASSWORD</Text>
                         <TextInput
                             style={styles.pwtextbox}
-                            placeholder=" Enter your password"
+                            placeholder="Enter your password"
                             onChangeText = {(text) => setUserPass(text)}
                             value={userPass}
                             selectionColor={'#CBDEAB'}
@@ -170,10 +170,10 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                         </TouchableOpacity>
 
                         <View style={{ flexDirection: 'row', marginTop: 16, justifyContent: 'center', marginBottom: 22}}>
-                            <Text style={{color: 'white', fontFamily: 'poppins-light'}}>Don't have an account yet?</Text>
+                            <Text size={12} style={{color: 'white', fontFamily: 'poppins-light', marginLeft: 15}}>Don't have an account yet?</Text>
                             <TouchableOpacity onPress={toSignUp}>
                                 <View style={{color: 'white', }}>
-                                    <Text style={{color: '#639D04', fontFamily: 'poppins-semiBold', paddingHorizontal: 16}}>Sign Up</Text>
+                                    <Text size={12} style={{color: '#639D04', fontFamily: 'poppins-semiBold', paddingHorizontal: 16}}>Sign Up</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 0,
         paddingHorizontal: 8,
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: 'poppins-light',
         marginStart: 8,
         marginEnd: 8,
@@ -258,6 +258,7 @@ const styles = StyleSheet.create({
         height: 40,
         color: '#1D4123',
         justifyContent: 'center',
+        paddingLeft: 15,
     },
     label:{
         color: 'white',
@@ -272,7 +273,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 12,
         paddingHorizontal: 8,
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: 'poppins-light',
         marginStart: 8,
         marginEnd: 8,
@@ -280,6 +281,7 @@ const styles = StyleSheet.create({
         height: 40,
         color: '#1D4123',
         justifyContent: 'center',
+        paddingLeft: 15,
     },
     logo: {
         width: 180,

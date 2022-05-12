@@ -30,9 +30,9 @@ return (
     initialRouteName="SocMedHome"
     screenOptions={{
       tabBarActiveTintColor: '#1D4123',
-      tabBarInactiveTintColor: 'white',
+      tabBarInactiveTintColor: '#1D4123',
       tabBarLabelStyle: { fontSize: 14, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
-      tabBarStyle: { backgroundColor: '#2a5123', elevation:0,  },
+      tabBarStyle: { backgroundColor: 'white', elevation:0,  },
       tabBarIndicatorStyle: {backgroundColor: 'white', borderColor: 'white', height: '100%'}
     }}
   >
