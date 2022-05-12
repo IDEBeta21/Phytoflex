@@ -1,4 +1,3 @@
-
 import { Button, Text, View , StyleSheet, StatusBar} from 'react-native';
 import React, {useState, useEffect, Component } from 'react';
 import { globalStyles } from '../../global/globalStyles';
@@ -23,7 +22,7 @@ const customStyles = {
   currentStepIndicatorSize:30,
   separatorStrokeWidth: 2,
   currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: '#fe7013',
+  stepStrokeCurrentColor: '#1D4123',
   stepStrokeWidth: 3,
   stepStrokeFinishedColor: '#fe7013',
   stepStrokeUnFinishedColor: '#aaaaaa',
@@ -34,7 +33,7 @@ const customStyles = {
   stepIndicatorCurrentColor: '#ffffff',
   stepIndicatorLabelFontSize: 13,
   currentStepIndicatorLabelFontSize: 13,
-  stepIndicatorLabelCurrentColor: '#fe7013',
+  stepIndicatorLabelCurrentColor: '#1D4123',
   stepIndicatorLabelFinishedColor: '#ffffff',
   stepIndicatorLabelUnFinishedColor: '#aaaaaa',
   labelColor: '#999999',
@@ -80,13 +79,12 @@ export default App;
 
 const styles = StyleSheet.create({
     indicatorContainer: {
-    height: height - 170,
+    height: height - 500,
     width: width - 30,
     padding: 20,
     margin: 15,
-    elevation:10,
     borderRadius: 20,
-    backgroundColor: '#fff'
+    backgroundColor: 'transparent'
 
 
   }, 

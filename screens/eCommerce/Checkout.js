@@ -182,9 +182,13 @@ export default function  CheckoutPage  ({ route, navigation}){
       orderId: "0", 
       orderedItems,
       userId: userId,
-      totalPayment: totalPayment
+      totalPayment: totalPayment,
+      orderStatus: "Order Placed",
+      orderStatNum: 0,
+      subTotal: route.params.subtotal
     }).then((res) => {
       console.log(res.id)
+      Alert.alert("Order placed successfully!")
 
       function updateOrderId() {
        

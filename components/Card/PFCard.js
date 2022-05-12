@@ -1066,47 +1066,53 @@ export const PFActiveOrders = ({
   items,
   onPress = () => {}}, 
   style, 
-  cardContentStyle) => (
-  <View style={{...styles.cardActiveOrderContainer, ...style}}>
-    <Card style={{flex: 1}} onPress={() => onPress()}>
-      
-    <View style={{...styles.cardActiveOrder, ...style}}>
-    <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
-      <View style= {{flexDirection:'row', alignItems: 'center', }}>
-             <Image 
-                 source={{ uri: imageURL}}
-                  style={{
-                  marginTop: 5,
-                  height: 100,
-                  width: (Dimensions.get('window').width/1) * 0.25,
-                 borderRadius: 10 }} />
+  cardContentStyle) => {
 
-      <Card.Content style={{...styles.cardActiveOrderContent, ...cardContentStyle}}>
-               
-              <View style={{ flexDirection:'row', }}> 
-              <PFText weight='semi-bold' size = {18}>Order ID: </PFText>
-              <PFText weight='semi-bold' size = {18}>{orderIDNo} </PFText>
-              </View>
-              <View>
-              <PFText weight='medium' size = {14}>{timePurchase}</PFText>
-             {/*<PFText weight='medium' size = {16}>{items}</PFText> */ }
+    
+    return(
+      <View style={{...styles.cardActiveOrderContainer, ...style}}>
+      <Card style={{flex: 1}} onPress={() => onPress()}>
+        
+      <View style={{...styles.cardActiveOrder, ...style}}>
+      <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+        <View style= {{flexDirection:'row', alignItems: 'center', }}>
+               <Image 
+                   source={require('../../assets/logo.png')}
+                    style={{
+                    marginTop: 5,
+                    height: 100,
+                    width: (Dimensions.get('window').width/1) * 0.25,
+                    resizeMode:'contain',
+                   borderRadius: 10 }} />
+  
+        <Card.Content style={{...styles.cardActiveOrderContent, ...cardContentStyle}}>
+                 
+                <View style={{ flexDirection:'row', }}> 
+                <PFText weight='semi-bold' size = {18}>Order ID: {orderIDNo} </PFText>
+                </View>
+                <View>
+                <PFText weight='medium' size = {14}>{timePurchase}</PFText>
+               {/*<PFText weight='medium' size = {16}>{items}</PFText> */ }
+  
+                <View style={{ flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                <PFText weight='medium' size = {14} color = {"green"}> {'\u2B24'} {statusIndicator} </PFText>
+                <PFText weight='semi-bold' size = {20} color = {"green"}>P {total}</PFText>
+  
+                </View>
+  
+                </View>
+              
+        </Card.Content>
+             
+              </View>   
+      </Card>
+    </View>
+      </Card>
+    </View>
 
-              <View style={{ flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
-              <PFText weight='medium' size = {14} color = {"green"}> {'\u2B24'} {statusIndicator} </PFText>
-              <PFText weight='semi-bold' size = {20} color = {"green"}>{total}</PFText>
+    )
 
-              </View>
-
-              </View>
-            
-      </Card.Content>
-           
-            </View>   
-    </Card>
-  </View>
-    </Card>
-  </View>
-);
+  };
 
 
 
