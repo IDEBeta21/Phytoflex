@@ -15,7 +15,7 @@ export default function ThreadsScreen({navigation}) {
             width: '90%',
             height: '90%',
         }}
-          source={require('../../assets/noData.png')}>
+          source={require('../../assets/noDataPics/noData.png')}>
         </Image>
   </View>
   );
