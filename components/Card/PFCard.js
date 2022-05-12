@@ -946,13 +946,20 @@ export const PFCommentCard2 = ({
   userPhoto, name, comment, reactionNum, replyNum, time,
   onPress = () => {}}, 
   style, 
-  cardContentStyle) => (
-    <View style={styles.commentSection2}>
+  cardContentStyle) => {
+
+    const [image, setimage] = useState(null)
+
+    firebase.storage().ref().child(userPhoto).getDownloadURL().then((url) => {
+      setimage(url);
+    })
+    return(
+      <View style={styles.commentSection2}>
     <View style={ styles.container }>
       <Image
         // FAB using TouchableOpacity with an image
         // For online image
-        source={{ uri: userPhoto }}
+        source={{ uri: image }}
         // For local image
         //source={require('./images/float-add-icon.png')}
         style={styles.userPhoto1}
@@ -994,7 +1001,14 @@ export const PFCommentCard2 = ({
       </View>
     </View>
   </View>
-);
+
+
+    )
+
+    
+  }
+    
+
 
 
 export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {

@@ -36,9 +36,9 @@ function FuncCreateQuestion({navigation}) {
     <CreateQuestionPage navigation={navigation}/>
   );
 }
-function FuncCommentAnswer({navigation}) {
+function FuncCommentAnswer({navigation, route}) {
   return (
-    <CommentAnswerPage navigation={navigation}/>
+    <CommentAnswerPage navigation={navigation} route={route}/>
   );
 }
 function FuncEditQuestion({navigation}) {

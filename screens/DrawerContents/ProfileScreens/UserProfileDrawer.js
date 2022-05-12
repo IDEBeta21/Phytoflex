@@ -1,4 +1,3 @@
-import React,  { useState, useEffect } from 'react';
 import {
     View, Text, StyleSheet, ScrollView, TextInput, 
     Image, TouchableOpacity, Pressable, Button, 
@@ -10,6 +9,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import HomeLog from './HomeLog';
 import DiscussionLog from './DiscussionLog';
 import firebase from 'firebase';
+import React,  { useState, useEffect } from 'react';
 function FuncHomeLog({navigation}){
   return(
     <HomeLog navigation={navigation}/>

@@ -59,7 +59,7 @@ useEffect(() => {
                 forumPost={item.qstContent}
                 bloomQuantity={item.qstReactQuantity}
                 liked={item.qstReact}
-                onPressText={() => navigation.navigate('CommentAnswerPage')}
+                onPressText={() => navigation.navigate('CommentAnswerPage', {qstID: item.qstID})}
                 onPressImage = {() => Alert.alert('Modal dapat e')}
               />
             )}

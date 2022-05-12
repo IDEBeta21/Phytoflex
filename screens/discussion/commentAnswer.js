@@ -1,5 +1,6 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Dimensions, Alert, FlatList, Pressable, ViewPropTypes} from 'react-native';
-import React, { Component, useState } from 'react';
+import firebase from 'firebase';
+import React,  { useState, useEffect } from 'react';
 import { Portal } from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { globalStyles } from '../global/globalStyles';
@@ -22,8 +23,102 @@ import SampleData from '../../utils/SampleData';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-export default function CommentAnswerPage({navigation}) {
+export default function CommentAnswerPage({navigation, route}) {
+  //get user info
+ const [refdata2, setrefdata2] = useState([]); // declaration 
+ const [refnull2, setrefnull2] = useState(true);
 
+ const [refdata, setrefdata] = useState([]); // declaration for getAnswers function
+ const [refnull, setrefnull] = useState(true);
+              //get user
+                
+              const getUsers = async() => {
+                firebase.auth().onAuthStateChanged((user) => {
+                  if (user) {
+                    // User logged in already or has just logged in.
+                    console.log(user.email);
+                    firebase.firestore()
+                    .collection('users').where("userEmail", "==", user.email).get().then((snapshot) => {
+                      let users = snapshot.docs.map(doc => { 
+                        const data2 = doc.data();
+                        const id2 = doc.id;
+                        return {id2, ...data2}
+                      })
+                      setrefdata2(users);
+                      console.log(refdata2);
+                      setrefnull2(false);
+                    }).catch((err) => {
+                      Alert.alert(err)
+                    })
+                  } else {
+                    // User not logged in or has just logged out.
+                  }
+                });
+
+              }
+              //display userImage
+              let userImage = "";
+              let userfullName = "";
+              let userName = "";
+              let followers = "";
+              let following = "";
+              let badgePoints = "";
+              refdata2.forEach((item) => {
+              userImage = item.profilePic
+              userfullName = item.fName + "  " + item.lName 
+              userName = item.userName
+              followers = item.followers
+              following = item.following
+              badgePoints = item.userBadgePoints
+
+              })
+              const [image, setimage] = useState(null)
+
+
+              firebase.storage().ref().child(userImage).getDownloadURL().then((url) => {
+              setimage(url);
+              })
+              //get comment
+              const getAnswers = async() => {
+
+                firebase.firestore().collection('Question').doc(route.params.qstID).collection('Answer').where("qstID", "==", route.params.qstID).get().then((snapshot) => {
+                      
+                
+                  let users = snapshot.docs.map(doc => { 
+                    const data2 = doc.data();
+                    const id2 = doc.id;
+                    return {id2, ...data2}
+                  })
+                  setrefdata(users);
+                  console.log(refdata);
+                  setrefnull(false);
+                }).catch((err) => {
+                  Alert.alert(err)
+                }) 
+              }
+              const [ansContent, setansContent] = useState('');
+
+              function addComment(){
+                firebase.firestore().collection("Question").doc(route.params.qstID).collection('Answer').add({
+                  userfullName: userfullName,
+                  ansContent: ansContent,
+                  ansTime: "3:45 PM",
+                  qstID: route.params.qstID,
+                  profilePic: userImage
+                }).then((res) => {
+                  console.log(res.id)
+                  Alert.alert("You added a comment")
+                })
+                getAnswers();
+              }
+
+
+              useEffect(() => {
+                getAnswers();
+                getUsers();
+            }, []);
+
+   
   return (
     <View style={ styles.mainContainer }>
       <ScrollView>
@@ -49,15 +144,13 @@ export default function CommentAnswerPage({navigation}) {
           <PFFlatList
             numColumns={1}
             noDataMessage='No Comment'
-            data={SampleData.commentDetails}
+            data={refdata}
             renderItem={(item) => (
               <PFCommentCard2 
-                userPhoto={item.userPhoto}
-                name={item.name}
-                comment={item.comment}
-                reactionNum={item.reactionNum}
-                replyNum={item.replyNum}
-                time={item.time}/>
+                userPhoto={item.profilePic}
+                name={item.userfullName}
+                comment={item.ansContent}
+                time={item.ansTime}/>
             )}
             keyExtractor={(item,index) => index}
           />
@@ -68,15 +161,19 @@ export default function CommentAnswerPage({navigation}) {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={ require('../../assets/img/profiles/Alejandre.jpg')}
+            source={ {uri: image}}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.userImage}
           />
           <View styles={{flexDirection: 'column'}}>
             <View style={ styles.container }>
-              <TextInput style={styles.commentTxtBox} placeholder={'Aa'}></TextInput>
+              <TextInput style={styles.commentTxtBox} 
+              placeholder={'Aa'}
+              onChangeText = {(text) => setansContent(text)}
+              ></TextInput>
                 <View style={{margin: 5, marginLeft: 15}}>
+                  <TouchableOpacity onPress={() => addComment()}>
                   <Image
                     // FAB using TouchableOpacity with an image
                     // For online image
@@ -85,6 +182,8 @@ export default function CommentAnswerPage({navigation}) {
                     //source={require('./images/float-add-icon.png')}
                     style={styles.commentReactSize}
                   />
+                  </TouchableOpacity>
+                
                 </View>
             </View>
           </View>
