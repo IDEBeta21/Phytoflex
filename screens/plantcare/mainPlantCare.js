@@ -16,6 +16,7 @@ import PlantCareMonitor from './plantCareMonitor';
 import PlantCareReminderDetails from './plantCareReminderDetails';
 import PlantCareReminder from './plantCareReminder';
 import PlantCareAlbum from './plantCareAlbum';
+import PlantCareDescription from './plantCareDescription';
 
 import PlantCareTips from './plantCareTips';
 import PlantCareTipsArt1 from './plantCareTipsArt1';
@@ -104,6 +105,10 @@ function FuncPlantCareAlbum({route, navigation}) {
     <PlantCareAlbum navigation={navigation} route={route}/>);
 }
 
+function FuncPlantCareDescription({navigation}) {
+  return(
+    <PlantCareDescription navigation={navigation} />);
+}
 
 function FuncPlantCareCameraPreview({route, navigation}){
   return(
@@ -334,6 +339,20 @@ function App({navigation}) {
             },
             headerTintColor: 'white',
             headerBackVisible: false,   
+            
+          }}
+        />
+
+        <Stack.Screen
+          name="PlantCareDescription"
+          component={FuncPlantCareDescription}
+          options={{ 
+            headerTitle: (props) => <Header title={'Plant Description'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white',
+            // headerBackVisible: false,   
             
           }}
         />

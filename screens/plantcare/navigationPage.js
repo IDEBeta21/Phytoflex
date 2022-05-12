@@ -67,6 +67,11 @@ export default function NavigationPage ({navigation}) {
                         onPress: () => navigation.navigate('PlantCareResult')
                     },
                     {
+                        icon: 'file',
+                        label: 'Description',
+                        onPress: () => navigation.navigate('PlantCareDescription')
+                    },
+                    {
                         icon: 'information',
                         label: 'Plant info',
                         onPress: () => navigation.navigate('PlantCarePlantInformation'),
