@@ -1,8 +1,6 @@
 import { Button, Text, View, Image, StyleSheet} from 'react-native';
 import React, { Component } from 'react';
-import { globalStyles } from '../global/globalStyles';
 
-import { DrawerContent } from '../global/Drawer';
 
 export default function ThreadsScreen({navigation}) {
   
@@ -15,7 +13,7 @@ export default function ThreadsScreen({navigation}) {
             width: '90%',
             height: '90%',
         }}
-          source={require('../../assets/noDataPics/noData.png')}>
+          source={require('../../assets/noDataPics/noDataFound.png')}>
         </Image>
   </View>
   );
