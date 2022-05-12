@@ -14,18 +14,9 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { ScrollView } from 'react-native-gesture-handler';
 import { DrawerContent } from '../global/Drawer';
 
-import { 
-  PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
-  PFModalLogin , PFModalAlert, PFModalPrompt, 
-  PFPrimaryButton, PFSecondaryButton,
-  PFFlatList,  PFNotifCard, PFSwitch
-} from '../../components';
-
 import Colors from '../../utils/globalColors';
 
 import SampleData from '../../utils/SampleData';
-
-import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function InboxZonePage({navigation}) {
