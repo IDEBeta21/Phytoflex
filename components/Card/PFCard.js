@@ -68,6 +68,7 @@ export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate,
             style={{
               height: 300,
               width: (Dimensions.get('window').width) * 0.90,
+              margin:0,
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20
             }}
@@ -401,7 +402,7 @@ style, cardContentStyle) => {
           height: 140,
           width: (Dimensions.get('window').width/2) * 0.87,
           margin: 0,
-          borderTopLeftRadius: 5,
+         // borderTopLeftRadius: 5,
           borderTopRightRadius: 5
         }}
       />
@@ -413,7 +414,7 @@ style, cardContentStyle) => {
             <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
               <MaterialCommunityIcons
                 name={liked ? "heart" : "heart-outline"}
-                size={17}
+                size={25}
                 color={liked ? "#1D4123" : "#1D4123"}
               />
             </Pressable>
@@ -447,8 +448,7 @@ export const PFCardShopCategory = ({imageURL, category, onPress = () => {}}, sty
   <View style={{...styles.cardShopContainer, ...style}}>
     <Card stye={{flex: 1}} onPress={() => onPress()}>
 
-
-      
+ 
       <Card.Cover 
         source={{ uri: imageURL }} 
         style={{
@@ -1365,6 +1365,7 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     borderColor: Colors.primary, 
     borderRadius: 7,
+    
    
   },
   cardShopContent: {
@@ -1376,14 +1377,18 @@ const styles = StyleSheet.create({
     paddingLeft: 7,
     paddingRight: 7,
     margin: 0,
-    width: 140
+    width: 140,
+  //  borderWidth: 1
+    
   },
   textShopContainer: {
     // paddingVertical: 2,
     // flexDirection: 'row',
     flex: 1,
     paddingHorizontal: 0,
-    marginTop: 10
+    marginTop: 10,
+    width: 155,
+  //borderWidth:1
   },
   cardShopReview:{
     width: 323,
@@ -1399,7 +1404,7 @@ const styles = StyleSheet.create({
   },
   heartReact: {
     paddingLeft: 0,
-    marginLeft: 1,
+    marginLeft: 7,
     marginRight: 3,
     marginTop: 5
   },

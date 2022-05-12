@@ -175,20 +175,17 @@ export default function  ProductPage   ({ route, navigation}){
                 <PFText>    {route.params.plantDesc}</PFText>
 
                 <PFText weight='semi-bold' size={15} style={{marginTop: 15}}>Delivery</PFText>
-                <View style={{...styles.dropdownPicker, flexDirection: 'row'}}>
-                  <DropDownPicker
-                    style={{fontSize: 15, fontFamily: 'poppins-regular', flex: 1}}
-                    open={open}
-                    value={value}
-                    items={items}
-                    setOpen={setOpen}
-                    setValue={setValue}
-                    setItems={setItems}
-                    placeholder = 'Select Courier'
-                  />
+
+                <View style={{...styles.dropdownPicker, flexDirection: 'row', justifyContent:'space-between'}}>
+                <View style={{...styles.deliveryStyle, alignItems: 'flex-start'}}>
+                <PFText weight='semi-bold'>Phytoflex Delivery</PFText>
+                </View>
                   <View style={{...styles.deliveryStyle, alignItems: 'flex-start'}}>
-                    <PFText weight='semi-bold'>200</PFText>
+                  <PFText weight='semi-bold'>200</PFText>
                   </View>
+                 
+                    
+                  
                 </View>
               </View>
 
@@ -316,20 +313,18 @@ const styles = StyleSheet.create({
     marginLeft: 15,
 
   },
-  dropdownPicker:{
-    width: 150,
-    height: 50,
-    borderColor: '#1D4123'
-  },
+ 
   deliveryStyle:{
+    marginTop: 5,
     borderWidth: 1,
     paddingHorizontal: 10,
     paddingVertical: 13,
     alignItems: 'center',
-    marginLeft: 30,
+  //  marginLeft: 30,
     borderRadius: 10,
-    width: 150,
-    borderColor: '#1D4123'
+    width: 175,
+    borderColor: '#1D4123',
+    paddingRight:5
   },
 
   buttonArea: {

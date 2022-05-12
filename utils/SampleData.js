@@ -479,7 +479,7 @@ export default SampleData = {
 
     plantCategory: [
         {
-          imageURL: 'https://picsum.photos/700',
+          imageURL: 'https://picsum.photos/700' ,
           category: 'Indoor Plant'
         },
         {

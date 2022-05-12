@@ -58,7 +58,7 @@ useEffect(() => {
     
   }
   
-
+  
  
   return (
    
@@ -131,7 +131,9 @@ useEffect(() => {
               <PlantCategory
                 imageURL={item.imageURL}
                 categoryName={item.category}
-                onPress={() => Alert.alert(item.category)}
+                onPress={() => {navigation.navigate('ShopCategoryPage',{
+                  category: item.category
+                  })}}
               />
             )}
             keyExtractor={(item,index) => index}

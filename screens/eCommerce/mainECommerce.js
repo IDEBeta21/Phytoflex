@@ -11,6 +11,7 @@ import Header from '../global/Header';
 import ProductPage from "./Product";
 import SamplePage from './Sample';
 import CheckoutPage from './Checkout';
+import ShopCategoryPage from './ShopCategory';
 // Functions for calling the screens
 
 function FuncCheckoutPage({route, navigation}) {
@@ -44,6 +45,12 @@ function FuncShopNotifBell({navigation}) {
 function FuncSamplePage({navigation}) {
   return (
     <SamplePage navigation={navigation}/>
+  );
+}
+
+function FuncShopCategory({route, navigation}) {
+  return (
+    <ShopCategoryPage navigation={navigation}  route = {route}/>
   );
 }
 
@@ -129,6 +136,24 @@ function App({navigation}) {
             headerBackVisible: false, 
           }}
         />
+
+
+         <Stack.Screen
+          name="ShopCategoryPage"
+          component={FuncShopCategory}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Category'} navigation={navigation} />, 
+
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white',
+            
+          }}
+        />
+ 
+
 
         
        

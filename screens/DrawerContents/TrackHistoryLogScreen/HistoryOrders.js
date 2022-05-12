@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 import { Button, Text, View , StyleSheet, StatusBar} from 'react-native';
 import React, {useState, useEffect, Component } from 'react';
 import { globalStyles } from '../../global/globalStyles';
