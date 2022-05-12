@@ -120,7 +120,8 @@ export default function CreatePostPage({navigation}) {
         <View style={ styles.container2 }>
           <TouchableOpacity
             activeOpacity={0.7}
-            //onPress={() => navigation.navigate('')} 
+            //to Delete
+            onPress={() => navigation.navigate('ChatPage')} 
             style={{flexDirection: 'row'}}
           >
             <Image

@@ -12,24 +12,25 @@ import CreatePostPage from './CreatePostPage';
 import PostPage from './PostPage';
 import UserProfilePage from './UserProfile';
 import CommentPage from './CommentPage';
+import ChatPage from './ChatPage';
 
 import DrawerHeader from '../DrawerContents/DrawerHeader';
 
 import Header from '../global/Header';
 
 // functions for calling screens
-function funcPlantCareHome({navigation}) {
+function FuncPlantCareHome({navigation}) {
   return (
     <SocialMediaHomePage navigation={navigation}/>
   );
 }
 
-function funcInbox({navigation}) {
+function FuncInbox({navigation}) {
   return (
     <InboxZonePage navigation={navigation}/>
   );
 }
-function funcSocMedSearch({navigation}) {
+function FuncSocMedSearch({navigation}) {
   return (
     <SocMedSearchPage navigation={navigation}/>
   );
@@ -54,7 +55,11 @@ function FuncComments({navigation}) {
     <CommentPage navigation={navigation}/>
   );
 }
-
+function FuncChat({navigation}) {
+  return (
+    <ChatPage navigation={navigation}/>
+  );
+}
 
 
 const Stack = createNativeStackNavigator();
@@ -68,7 +73,7 @@ function App({navigation}) {
       
         <Stack.Screen
           name="SocialMediaHome"
-          component={funcPlantCareHome}
+          component={FuncPlantCareHome}
           options={{ 
             headerTitle: (props) => <Header title={'Social Media'} navigation={navigation} boolHome={true}/>, 
             headerStyle: {
@@ -80,7 +85,7 @@ function App({navigation}) {
         
         <Stack.Screen
           name="SocMedInboxZone"
-          component={funcInbox}
+          component={FuncInbox}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Inbox'} navigation={navigation}/>, 
@@ -92,7 +97,7 @@ function App({navigation}) {
         />
         <Stack.Screen
           name="SocMedSearch"
-          component={funcSocMedSearch}
+          component={FuncSocMedSearch}
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'socMedSearch'} navigation={navigation}/>, 
@@ -107,6 +112,18 @@ function App({navigation}) {
           component={FuncCreatePost}
           options={{ 
             headerTitle: (props) => <Header title={'Create Post'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+        {/* Di ako sure */}
+        <Stack.Screen
+          name="ChatPage"
+          component={FuncChat}
+          options={{ 
+            headerTitle: (props) => <Header title={'Message'} navigation={navigation} />, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },

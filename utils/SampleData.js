@@ -162,6 +162,14 @@ export default SampleData = {
         }
     ],
 
+    messageDetails:[
+        {
+            userPhoto: '../..assets/img/profiles/Labrento.jpg',
+            notifTitle: 'Marc Edrian Labrento',
+            notifdetail: 'Marc Edrian sent you a message.'
+        }
+    ],
+
     shippingDetails: [
         {
             name: 'Juan Dela Cruz',

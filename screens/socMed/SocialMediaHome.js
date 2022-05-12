@@ -12,12 +12,12 @@ import FollowingScrn from '../socMed/Home2-FollowingScreen'
 //import SocMedSwapReqScrn from '../socMed/SocMedSwapReq'
 
 //the TopTabNavigator
-function funcAllScrn({navigation}) {
+function FuncAllScrn({navigation}) {
   return (
     <AllScrn navigation={navigation}/>
   );
 }
-function funcFollowingScrn({navigation}) {
+function FuncFollowingScrn({navigation}) {
   return (
     <FollowingScrn navigation={navigation}/>
   );
@@ -30,20 +30,20 @@ return (
     initialRouteName="SocMedHome"
     screenOptions={{
       tabBarActiveTintColor: '#1D4123',
-      tabBarInactiveTintColor: '#1D4123',
+      tabBarInactiveTintColor: 'white',
       tabBarLabelStyle: { fontSize: 14, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
-      tabBarStyle: { backgroundColor: 'white', elevation:0,  },
+      tabBarStyle: { backgroundColor: '#2a5123', elevation:0,  },
       tabBarIndicatorStyle: {backgroundColor: 'white', borderColor: 'white', height: '100%'}
     }}
   >
     <Tab.Screen
       name="SocMedHome"
-      component={funcAllScrn}
+      component={FuncAllScrn}
       options={{ tabBarLabel: 'All' }}
     />
     <Tab.Screen
       name="SocMedChatRoomScrn"
-      component={funcFollowingScrn}
+      component={FuncFollowingScrn}
       options={{ tabBarLabel: 'Following' }}
     />
   </Tab.Navigator>
