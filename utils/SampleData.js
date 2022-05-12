@@ -522,7 +522,134 @@ export default SampleData = {
             dateTime: '09/27/2021 05:56 AM'
         },
         
-    ]
+    ],
+    activeOrder: [
+        {
+            status: "Status: ",
+            statusIndicator: "ORDER PLACED",
+            imageURL: "https://picsum.photos/700",
+            timePurchase: "03 May, 10:34 am",
+            orderIDLabel: "Order ID: ",
+            orderIDNo: "2205030001",
+            items: "2 Items",
+            totalLabel: "Total: ",
+            total: "P3254",
+        },
+        {
+            status: "Status: ",
+            statusIndicator: "ON THE WAY",
+            imageURL: "https://picsum.photos/700",
+            timePurchase: "03 May, 10:34 am",
+            orderIDLabel: "Order ID: ",
+            orderIDNo: "2205030002",
+            items: "2 Items",
+            totalLabel: "Total: ",
+            total: "P3254",
+        },
+        {
+            status: "Status: ",
+            statusIndicator: "PROCESSING",
+            imageURL: "https://picsum.photos/700",
+            timePurchase: "03 May, 10:34 am",
+            orderIDLabel: "Order ID: ",
+            orderIDNo: "2205030003",
+            items: "2 Items",
+            totalLabel: "Total: ",
+            total: "P3254",
+        },
+        {
+            status: "Status: ",
+            statusIndicator: "PROCESSING",
+            imageURL: "https://picsum.photos/700",
+            timePurchase: "03 May, 10:34 am",
+            orderIDLabel: "Order ID: ",
+            orderIDNo: "2205030004",
+            items: "2 Items",
+            totalLabel: "Total: ",
+            total: "P3254",
+        },
+
+    ],
+    trackOrderDetails: [
+        {
+            orderIDLabel: "Order ID: ",
+            orderIDNo: "2205030001",
+            timePurchase: "03 May 2022",
+            custName: "Juana Dela Cruz",
+            custcontactNum: "+(63) 956 480 5698",
+            shipAddress: "89 Ilang-Ilang St. Bo. Concepcion Tala Caloocan Brgy 188",
+            items1: "Pilea Cadierei Aluminum Plant ",
+            quantity: "x 1",
+            imageURL1: "https://picsum.photos/700",
+            price1: "P 300",
+            items2: "Gymnocalycium Chin Cactus Small For Sale",
+            quantity: "x 1",
+            imageURL2: "https://picsum.photos/700",
+            price2: "P 549",
+            deliveryFee: "P 299",
+            subTotal: "849",
+            totalPayment: "1148",
+            
+        }
+    ],
+
+    trackOrderStatus:[
+        {
+            status1: "ORDER PLACED",
+            time: "03 May 2022, 10:34 am",
+        },
+        {
+            status2: "ORDER PLACED",
+            time: "03 May 2022, 10:34 am"
+        },
+    ],
+    myOrders : [
+        {
+            orderId: "2110250003",
+            date: "19 April, 2:48 am",
+            customerName: "Juan Dela Cruz",
+            contactNumber: "+ (63) 956 480 5698",
+            address: "89 ilang-ilang St.Bo.Conception Tala Caloocan City Brgy 188",
+        },
+        {
+          orderId: "2110250003",
+          date: "19 April, 2:48 am",
+          customerName: "Juan Dela Cruz",
+          contactNumber: "+ (63) 956 480 5698",
+          address: "89 ilang-ilang St.Bo.Conception Tala Caloocan City Brgy 188",
+        },
+        {
+          orderId: "2110250003",
+          date: "19 April, 2:48 am",
+          customerName: "Juan Dela Cruz",
+          contactNumber: "+ (63) 956 480 5698",
+          address: "89 ilang-ilang St.Bo.Conception Tala Caloocan City Brgy 188",
+        },
+        {
+          orderId: "2110250003",
+          date: "19 April, 2:48 am",
+          customerName: "Juan Dela Cruz",
+          contactNumber: "+ (63) 956 480 5698",
+          address: "89 ilang-ilang St.Bo.Conception Tala Caloocan City Brgy 188",
+        },
+      ],
+
+      orderDetails: [
+        {   
+            customerName: "Juan Dela Cruz",
+            contactNumber: "+ (63) 956 480 5698",
+            address: "89 ilang-ilang St.Bo.Conception Tala Caloocan City Brgy 188",
+            imageURL: 'https://picsum.photos/700',
+            itemName: 'Gymnocalycium Chin',
+            category: 'Indoor Plant',
+            price: 549,
+            quantity: 1,
+            sold: 3,
+            size: "Large"
+        },
+        
+    ],
+
 }
 
 

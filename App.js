@@ -66,7 +66,12 @@ import HeaderContent from './screens/global/Header';
 // Import Activity Logs
 import PostsLog from './screens/DrawerContents/ActivityLogScreens/PostsLog';
 import ThreadsLog from './screens/DrawerContents/ActivityLogScreens/ThreadsLog';
-// 
+// Import Track History
+import ActiveOrders from './screens/DrawerContents/TrackHistoryLogScreen/ActiveOrders';
+import HistoryOrders from './screens/DrawerContents/TrackHistoryLogScreen/HistoryOrders';
+import TrackOrderDetails from './screens/DrawerContents/TrackHistoryLogScreen/TrackOrderDetails';
+
+
 // import { AppLoading } from 'expo';\
 // import { AppLoading } from 'expo';
 import AppLoading from 'expo-app-loading';
@@ -229,6 +234,25 @@ function FuncThreadsLog({navigation}){
   )
 }
 
+
+function FuncActiveOrders({navigation, route}){
+  return(
+    <ActiveOrders navigation={navigation} route ={route}/>
+  )
+}
+
+function FuncHistoryOrders({navigation, route}){
+  return(
+    <HistoryOrders navigation={navigation} route ={route}/>
+  )
+}
+function FuncTrackOrderDetails({navigation, route}){
+  return(
+    <TrackOrderDetails navigation={navigation} route ={route}/>
+  )
+}
+
+
 const AuthStack = createNativeStackNavigator();
 
 
@@ -384,6 +408,44 @@ function SideBar({navigation}){
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />
+          <Drawer.Screen 
+          name="DrawerActiveOrders"
+          component={FuncActiveOrders}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'ActiveOrders'} title={'Active Orders'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123',
+              elevation: 0
+            },
+            headerTintColor: 'white'
+          }} />
+
+          <Drawer.Screen 
+          name="DrawerHistoryOrders"
+          component={FuncHistoryOrders}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'SocialMediaHome'} screenDescription={'HistoryOrders'} title={'Active Orders'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123',
+              elevation: 0
+            },
+            headerTintColor: 'white'
+          }} />
+
+          <Drawer.Screen 
+          name="DrawerTrackOrderDetails"
+          component={FuncTrackOrderDetails}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerTrackHistory'} screenDescription={'TrackOrderDetails'} title={'Active Orders'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123',
+              elevation: 0
             },
             headerTintColor: 'white'
           }} />
