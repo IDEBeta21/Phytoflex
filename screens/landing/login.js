@@ -100,7 +100,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
 
         // <KeyboardAvoidingView behavior={Platform.OS === "android" ? "padding" : "height"} style={styles.loginContainer}>
             <ImageBackground 
-                source={require('../../assets/drawerIcons/Login1.png')} 
+                source={require('../../assets/drawerIcons/login.png')} 
                 resizeMode= 'stretch' 
                 style={styles.loginContainer}>
                 {/* Display Header */}
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         // borderTopRightRadius: 35,
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: 47
+        paddingBottom: 57
     },
     loginViewKeyUp: {
         backgroundColor: '#1D4123',

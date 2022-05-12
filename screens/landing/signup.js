@@ -13,6 +13,7 @@ import Onboarding from './Onboarding';
 
 import firebase from 'firebase';
 import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
 export default function SignUpScreen({navigation}){
   
@@ -57,7 +58,7 @@ export default function SignUpScreen({navigation}){
 
   return (
     <ImageBackground source={require('../../assets/drawerIcons/register.png')} resizeMode= "cover" style={styles.loginContainer}>
-      <View style={styles.loginContainer}>
+      <ScrollView>
         <StatusBar style="auto" />
         {/* Display Header */}
         
@@ -79,65 +80,105 @@ export default function SignUpScreen({navigation}){
         <Text style={styles.headerText}> and Plantitas</Text>
       </View> */}
         <TouchableOpacity onPress={() => gotoOnboarding()} >
-            <View style={{color: 'white', alignItems: 'flex-end', flex: 1, marginEnd: 8, paddingTop: 48}}>
-                <Text style={{color: 'white', fontFamily: 'poppins-regular', paddingHorizontal: 14, fontSize: 14}}>Cancel</Text>
+            <View style={{color: 'white', alignItems: 'flex-end', flex: 1, marginEnd: 8, paddingTop: 54}}>
+                <Text style={{color: 'white', fontFamily: 'poppins-regular', paddingHorizontal: 14, fontSize: 16}}>CANCEL</Text>
             </View>
         </TouchableOpacity>
 
-        <View style={{ flexDirection: 'row', paddingTop: 48, paddingBottom: 2, alignItems: 'flex-end', flexDirection: 'column', marginEnd: 48}}>
+        <View style={{ flexDirection: 'row', paddingTop: 24, paddingBottom: 2, alignItems: 'flex-end', flexDirection: 'column', marginEnd: 48}}>
             <Text style={{color: 'white', fontFamily: 'poppins-semiBold', fontSize: 20}}>Join the Community</Text>
         </View>          
               
-      <View style={({paddingHorizontal: 30, paddingHorizontal: 40})}> 
+      <View style={{paddingHorizontal: 32}}> 
         {/* Text Input Area */}
         <Text style={styles.label}>FIRST NAME</Text>
           <TextInput
             style={styles.textbox}
-            placeholder="First Name"
+            placeholder="Enter your first name"
             onChangeText = {(text) => setFName(text)}
             value={fName}
+            selectionColor={'#CBDEAB'}
           >
         </TextInput>
         
         <Text style={styles.label}>LAST NAME</Text>
           <TextInput
             style={styles.textbox}
-            placeholder="Last Name"
+            placeholder="Enter your last name"
             onChangeText = {(text) => setLName(text)}
             value={lName}
+            selectionColor={'#CBDEAB'}
           >
         </TextInput>
         
         <Text style={styles.label}>USERNAME</Text>
           <TextInput
             style={styles.textbox}
-            placeholder="user@email.com"
+            placeholder="Enter your username "
             onChangeText = {(text) => setUserName(text)}
             value={userName}
-          >
-        </TextInput>
-        
-        <Text style={styles.label}>YOUR EMAIL</Text>
-          <TextInput
-            style={styles.textbox}
-            placeholder="Username"
-            onChangeText = {(text) => setUserEmail(text)}
-            value={userEmail}
-          >
-        </TextInput>
-        
-        <Text style={styles.label}>PASSWORD</Text>
-          <TextInput
-            style={styles.textbox}
-            placeholder="Password"
-            onChangeText = {(text) => setUserPass(text)}
-            value={userPass}
-            secureTextEntry={true}
+            selectionColor={'#CBDEAB'}
           >
         </TextInput>
 
+        <View style={{alignContent: 'center'}}>
+          <Image
+          style={{
+            paddingTop: 32,
+            resizeMode: 'contain', 
+            alignSelf: 'center',
+            width: '95%',
+          }}
+          source={require('../../assets/sectionLine.png')}>
+          </Image>
+        </View>
+        
+        <Text style={styles.label1}>YOUR EMAIL</Text>
+          <TextInput
+            style={styles.textbox}
+            placeholder="Enter your email address"
+            onChangeText = {(text) => setUserEmail(text)}
+            value={userEmail}
+            selectionColor={'#CBDEAB'}
+          >
+        </TextInput>
+
+        <Text style={styles.labelError}>A domain name MUST be included.</Text>      
+  
+        <Text style={styles.label}>PASSWORD</Text>
+          <TextInput
+            style={styles.textbox}
+            placeholder="Enter your password"
+            onChangeText = {(text) => setUserPass(text)}
+            value={userPass}
+            secureTextEntry={true}
+            selectionColor={'#CBDEAB'}
+          >
+        </TextInput>
+
+          <Text style={styles.labelError}>MUST contain at least one uppercase letter</Text>
+
+          <Text style={styles.label}> CONFIRM PASSWORD</Text>
+          <TextInput
+            style={styles.textbox}
+            placeholder="Re-enter your password"
+            onChangeText = {(text) => setUserPass(text)}
+            value={userPass}
+            selectionColor={'#CBDEAB'}
+          >
+        </TextInput>
+
+        <Text style={styles.labelCorrect}>Password Strength: STRONG || Passwords Matched</Text>
+
         <View style={{ flexDirection: 'row', marginTop: 16, justifyContent: 'center', marginBottom: 0}}>
-            <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 8.5}}>By signing up you agree to our terms and conditions and privacy policy</Text>
+            <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 8.5}}>By signing up you agree to our </Text>
+            <Pressable>
+            <Text style={{color: 'white', fontFamily: 'poppins-regular', fontSize: 8.5, color: '#639D04'}}>Terms and Conditions </Text>
+            </Pressable>
+            <Text style={{color: 'white', fontFamily: 'poppins-light', fontSize: 8.5}}>and </Text>
+            <Pressable>
+            <Text style={{color: 'white', fontFamily: 'poppins-regular', fontSize: 8.5, color: '#639D04'}}>Privacy Policy</Text>              
+            </Pressable>
         </View>        
         
         <TouchableOpacity onPress={() => signUpClick()}>
@@ -147,11 +188,11 @@ export default function SignUpScreen({navigation}){
         </TouchableOpacity>
       </View>
                     
-      <TouchableOpacity>
+      {/* <TouchableOpacity>
         <View style={styles.guestButtonArea}>
         <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-regular'}}>CONTINUE AS A GUEST</Text>
             </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
             <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'center', marginBottom: 10}}>
                 <Text style={{color: 'white', fontFamily: 'poppins-light'}}>Already signed up?</Text>
@@ -163,7 +204,7 @@ export default function SignUpScreen({navigation}){
             </View>      
       
       {/* </KeyboardAvoidingView> */}
-    </View>
+    </ScrollView>
   </ImageBackground>
   )
 }
@@ -174,6 +215,11 @@ const styles = StyleSheet.create({
         fontFamily: 'poppins-regular',
         justifyContent: 'flex-start',
         alignItems: 'stretch',
+    },
+    txtPolicy: {
+      color: 'white', 
+      fontFamily: 'poppins-light', 
+      fontSize: 8.5
     },
     loginView: {
         // backgroundColor: '#040',
@@ -207,25 +253,46 @@ const styles = StyleSheet.create({
         fontFamily: 'poppins-semiBold'
     },
     textbox: {
-        borderColor: '#1D4123',
-        backgroundColor: 'white',
-        borderRadius: 15,
-        borderWidth: 1,
+        backgroundColor: '#f2f2f2',
+        color: '#1D4123',
+        borderRadius: 10,
         marginBottom: 0,
-        padding: 8,
+        padding: 4,
+        paddingStart: 8,
         fontSize: 14,
         fontFamily: 'poppins-light',
         marginStart: 8,
         marginEnd: 8,
         alignItems: 'center'
     },
+    label1:{
+        color: 'white',
+        paddingStart: 8,
+        paddingBottom: 5,
+        fontSize: 12,
+        fontFamily: 'poppins-regular'
+    },
     label:{
         color: 'white',
         marginTop:6,
         paddingStart: 8,
         paddingBottom: 5,
-        fontSize: 13,
+        fontSize: 12,
         fontFamily: 'poppins-regular'
+    },
+    labelError:{
+        color: 'red',
+        marginTop:6,
+        paddingStart: 8,
+        fontSize: 12,
+        fontFamily: 'poppins-semiBold'
+    },
+    labelCorrect:{
+        color: '#639d04',
+        marginTop:6,
+        paddingStart: 8,
+        fontSize: 12,
+        fontFamily: 'poppins-semiBold'
     },
     pwtextbox: {
         borderColor: '#1D4123',
@@ -270,7 +337,7 @@ const styles = StyleSheet.create({
 
     },
     guestButtonArea: {
-        marginTop: 34,
+        marginTop: 16,
         padding: 8,
         marginStart: 48,
         marginEnd: 48,

@@ -4,7 +4,7 @@
     "slug": "Phytoflex",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/drawerIcons/discussionIcons/iconMain.png",
     "splash": {
       "image": "./assets/splashScreen.png",
       "resizeMode": "cover",
@@ -21,13 +21,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/drawerIcons/discussionIcons/adaptive-iconMain.png",
+        "backgroundColor": "#000000"
       },
       "package": "com.ianermino.Phytoflex"
     },
     "web": {
-      "favicon": "./assets/logo.png"
+      "favicon": "./assets/drawerIcons/discussionIcons/iconMain.png"
     }
   }
 }
