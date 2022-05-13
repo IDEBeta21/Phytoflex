@@ -1,7 +1,7 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, Pressable, ViewPropTypes} from 'react-native';
 import React,  { Component, useState, useEffect } from 'react';
 import { Portal } from 'react-native-paper';
-
+import {ImagePicker} from 'react-native-image-picker';
 import { globalStyles } from '../global/globalStyles';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -24,9 +24,10 @@ import SampleData from '../../utils/SampleData';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-export default function CreateQuestionPage({navigation}) {
+export default function CreateQuestionPage({navigation, route}) {
   const [refdata2, setrefdata2] = useState([]); // declaration 
   const [refnull2, setrefnull2] = useState(true);
+  
 
   //get user info
 
@@ -72,7 +73,8 @@ export default function CreateQuestionPage({navigation}) {
   firebase.storage().ref().child(profilePic).getDownloadURL().then((url) => {
     setimage(url);
     })
- 
+  //Create Post
+    const [qstContent,setContent] = useState('');
 
   return (
     <View style={ styles.mainContainer }>
@@ -87,24 +89,62 @@ export default function CreateQuestionPage({navigation}) {
         />
         <View styles={{flexDirection: 'column'}}>
           <PFText weight='semi-bold' size={15} style={{marginLeft: 10}}>@{userName}</PFText>
-          <PFText size={11} style={{marginLeft: 10}}>Public //pending part</PFText>
+          <PFText weight='light' size={10} style={{marginLeft: 10}}>05/13/22 2:50 PM</PFText>
         </View>
       </View>
 
-      <PFText size={15} style={{marginLeft: 25, marginTop: 20, marginBottom: 100}}>Your Question...</PFText>
+      <View style={{height: 200}}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <TextInput
+              multiline
+              placeholder="Write your Question?"
+              style={{ height: 200, padding: 10, textAlignVertical: 'top' }}
+              value={qstContent}
+              onChangeText={setContent}/>
+          </ScrollView>
+        </View>
+
+        {/*This is where the uploaded image show*/}
+        <View style={{height: 80, padding: 20}}>
+          
+        </View>
       <View>
         <View style={styles.hr} />
            {/*<Text style={styles.or}>or</Text>*/}
       </View>
       
-      <PFPrimaryButton style={{marginTop: 310, marginLeft: 25, marginRight: 20}} title={'Post'} onPress={() => navigation.navigate('DiscussionHomePage')}></PFPrimaryButton>
-    </View>
+      <PFPrimaryButton style={{marginTop: 30, marginLeft: 25, marginRight: 20}} title={'Edit'} onPress={() => navigation.navigate('EditQuestionPage')}></PFPrimaryButton>
+      <PFPrimaryButton
+        style={{marginTop: 15, marginLeft: 25, marginRight: 20 }}
+        title="Post"
+        onPress={() => {
+          // Pass and merge params back to home screen
+          navigation.navigate({
+            name: '',
+            params: { post: qstContent },
+            merge: true,
+          });
+        }}
+      />
+      </View>
+    
   );
 }
 
 const styles = StyleSheet.create({
+  input: {
+    borderColor: "gray",
+    width: "100%",
+    //borderWidth: 1,
+    borderRadius: 10,
+    padding: 20,
+   // numberOfLines: 4
+   fontFamily: 'poppins-light',
+   fontSize: 15,
+   marginBottom: 202
+  },
   mainContainer: {
-    height: 600,
+    height:530,
     borderWidth: 1,
     borderRadius: 15,
     margin: 15
