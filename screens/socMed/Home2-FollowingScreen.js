@@ -180,7 +180,6 @@ const styles = StyleSheet.create({
   createpostIcon: {
     height: 30,
     width: 30,
-    marginLeft: 90,
     marginTop: 5
   },
   createpost: {
@@ -192,7 +191,8 @@ const styles = StyleSheet.create({
   },
   textFormat: {
     paddingLeft: 10,
-    paddingTop: 8
+    paddingTop: 8,
+    width: 250
   },
   userPhoto: {
     height: 40,
