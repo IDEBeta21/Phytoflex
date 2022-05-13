@@ -1,7 +1,7 @@
 import { Text, StyleSheet, View, Image, Colors, FlatList, SectionList, SafeAreaView, TouchableOpacity, ScrollView, Alert} from 'react-native';
 import React, { Component, useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { PFText } from '../../components';
+import { PFPrimaryButton, PFText } from '../../components';
 import SampleData from '../../utils/SampleData';
 import ImageModal from 'react-native-image-modal';
 
@@ -152,10 +152,15 @@ export default function PlantCarePlantInformation({navigation, route}) {
             <StatusBar style='auto'/>
 
         { predicting ? 
-                <View>
+                <View style={{flex: 1, padding: 10}}>
                     { failedToPredict ? 
-                        <View>
-                            
+                        <View style={{flex: 1}}>
+                            <View style={{alignItems: 'center'}}>
+                                <PFText size={16}>Failed to identify plant</PFText>
+                            </View>
+                            <View>
+                                <PFPrimaryButton title={'Monitor with your own description'}/>
+                            </View>
                         </View>
                         :
                         <View style={styles.loadingContainer}>
@@ -163,100 +168,100 @@ export default function PlantCarePlantInformation({navigation, route}) {
                         </View>
                     }
                 </View>
-             : 
-            <View style={{paddingBottom: 150}}>
+            : 
+                <View style={{paddingBottom: 150}}>
 
-            <ScrollView
-                showsVerticalScrollIndicator={false}>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}>
 
-            <View>
-            <Image 
-                style={{ height: 220, resizeMode: 'cover'}}
-                // source={require('./../../assets/img/plantcare/pc_photo1.png')}/>
-                source={{
-                    uri: route.params.imageUrl
-                }}/>
-            </View>
-
-            {/* Floating icon */}
-            <View>
-            <TouchableOpacity
-                activeOpacity={0.7}
-                style={styles.iconContainer}
-                // onPress={() => navigation.navigate('Instruction')}
-                onPress={() => alert('Succesfully added to favorites!')}>
-
-                <Image
-                source={ require('../../assets/img/plantcare/icn_heart.png')}
-                // source={ require('../../assets/img/plantcare/icn_heart-active.png')}
-                style={styles.iconHeart}
-                />
-            </TouchableOpacity>
-            </View>
-
-            {/* Plant Information */}
-            <View style={styles.plantDetailsContainer}>
-
-            <PFText weight='semi-bold' style={styles.plantName}>{plantName}</PFText>
-
-                <View style={styles.plantType}>
-                <View style={styles.kingdom}>
-                    <PFText weight='semi-bold' style={{ marginEnd: 20 }}>Kingdom</PFText>  
-                    {/* <PFText weight='medium'>Plantae</PFText> */}
-                    <PFText weight='medium'>{plantKingdom} </PFText>
+                <View>
+                <Image 
+                    style={{ height: 220, resizeMode: 'cover'}}
+                    // source={require('./../../assets/img/plantcare/pc_photo1.png')}/>
+                    source={{
+                        uri: route.params.imageUrl
+                    }}/>
                 </View>
 
-                <View style={styles.family}>
-                    <PFText weight='semi-bold' style={{ marginEnd: 34 }}>Family</PFText>   
-                    <PFText weight='light'>{plantFam} </PFText>
-                    {/* <PFText weight='light'>Amaranthaceae</PFText> */}
-                </View>
-                </View>
+                {/* Floating icon */}
+                <View>
+                <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={styles.iconContainer}
+                    // onPress={() => navigation.navigate('Instruction')}
+                    onPress={() => alert('Succesfully added to favorites!')}>
 
-                <View style={styles.plantDescription}>
-                <PFText weight='semi-bold' style={{ paddingBottom: 3 }}>Description</PFText>
-                <PFText weight='light' style={styles.description}>{plantDesc}.{'\n'}</PFText>
-                {/* <PFText weight='light' style={styles.description}>Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently introduced to ancient China, where it was known as "Persian vegetable". Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently introduced to ancient China, where it was known as "Persian vegetable.". Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries).{'\n'}</PFText> */}
-                </View>
-
-            </View>
-
-            {/* Images */}
-            {/* <View style={styles.flatListContainer}> */}
-                    
-                {/* <FlatList 
-                    style={styles.flatListImage}
-                    horizontal={true} 
-                    contentContainerStyle={{ paddingHorizontal: 10 }}
-                    showsHorizontalScrollIndicator={false} 
-                    data={SampleData.myPlantCare}
-                    renderItem={ ({ item, index }) => (
-
-                    <ImageModal
-                        resizeMode="contain"
-                        imageBackgroundColor="#FFFFFF"
-                        source={{ uri: item.imageURL }}
-                        style={styles.imageModalStyle}
-                        key={index} // Important to set a key for list items, but its wrong to use indexes as keys 
-                    /> 
-                        
-                    )}
-                /> */}
-
-            {/* </View> */}
-
-            </ScrollView>
-
-            <View style={styles.btnBG}>
-                {/* <TouchableOpacity onPress={() => alert('Haluu!')}> */}
-                <TouchableOpacity onPress={onMonitorPress}>
-                    <View style={styles.btnMonitor}>
-                        <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Monitor this plant</Text>
-                    </View>
+                    <Image
+                    source={ require('../../assets/img/plantcare/icn_heart.png')}
+                    // source={ require('../../assets/img/plantcare/icn_heart-active.png')}
+                    style={styles.iconHeart}
+                    />
                 </TouchableOpacity>
-            </View>
+                </View>
 
-        </View>
+                {/* Plant Information */}
+                <View style={styles.plantDetailsContainer}>
+
+                <PFText weight='semi-bold' style={styles.plantName}>{plantName}</PFText>
+
+                    <View style={styles.plantType}>
+                    <View style={styles.kingdom}>
+                        <PFText weight='semi-bold' style={{ marginEnd: 20 }}>Kingdom</PFText>  
+                        {/* <PFText weight='medium'>Plantae</PFText> */}
+                        <PFText weight='medium'>{plantKingdom} </PFText>
+                    </View>
+
+                    <View style={styles.family}>
+                        <PFText weight='semi-bold' style={{ marginEnd: 34 }}>Family</PFText>   
+                        <PFText weight='light'>{plantFam} </PFText>
+                        {/* <PFText weight='light'>Amaranthaceae</PFText> */}
+                    </View>
+                    </View>
+
+                    <View style={styles.plantDescription}>
+                    <PFText weight='semi-bold' style={{ paddingBottom: 3 }}>Description</PFText>
+                    <PFText weight='light' style={styles.description}>{plantDesc}.{'\n'}</PFText>
+                    {/* <PFText weight='light' style={styles.description}>Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently introduced to ancient China, where it was known as "Persian vegetable". Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently introduced to ancient China, where it was known as "Persian vegetable.". Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries).{'\n'}</PFText> */}
+                    </View>
+
+                </View>
+
+                {/* Images */}
+                {/* <View style={styles.flatListContainer}> */}
+                        
+                    {/* <FlatList 
+                        style={styles.flatListImage}
+                        horizontal={true} 
+                        contentContainerStyle={{ paddingHorizontal: 10 }}
+                        showsHorizontalScrollIndicator={false} 
+                        data={SampleData.myPlantCare}
+                        renderItem={ ({ item, index }) => (
+
+                        <ImageModal
+                            resizeMode="contain"
+                            imageBackgroundColor="#FFFFFF"
+                            source={{ uri: item.imageURL }}
+                            style={styles.imageModalStyle}
+                            key={index} // Important to set a key for list items, but its wrong to use indexes as keys 
+                        /> 
+                            
+                        )}
+                    /> */}
+
+                {/* </View> */}
+
+                </ScrollView>
+
+                <View style={styles.btnBG}>
+                    {/* <TouchableOpacity onPress={() => alert('Haluu!')}> */}
+                    <TouchableOpacity onPress={onMonitorPress}>
+                        <View style={styles.btnMonitor}>
+                            <Text style={{ color: 'white', fontSize: 18, fontFamily: 'poppins-semiBold'}}>Monitor this plant</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
     }
     </SafeAreaView>
     );          

@@ -457,7 +457,7 @@ function SideBar({navigation}){
             },
             headerTintColor: 'white'
           }} />
-          <Drawer.Screen 
+          {/* <Drawer.Screen 
               name="DrawerReviewPlant"
               component={FuncReviewPlant}
               options={{ 
@@ -468,7 +468,7 @@ function SideBar({navigation}){
                   elevation: 0
                 },
                 headerTintColor: 'white'
-              }} />
+              }} /> */}
 
             <Drawer.Screen 
               name="DrawerReviewPlant"
