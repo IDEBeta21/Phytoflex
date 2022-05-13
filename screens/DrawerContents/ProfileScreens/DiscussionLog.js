@@ -1,16 +1,26 @@
-import React,  { useState, useEffect } from 'react';
-import {
-    View, Text, StyleSheet, ScrollView, TextInput, 
-    Image, TouchableOpacity, Pressable, Button, 
-    Alert, Modal,
-} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { Button, Text, View, Image, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
 
 export default function DiscussionLog({navigation}) {
+  
   return (
-    <View>
-    <StatusBar style="auto" />
-      <Text>DiscussionLog</Text>
-    </View>
-  )
+    <View style={styles.screen}>
+        <Image
+          style={{
+            resizeMode: 'contain', 
+            alignSelf: 'center',
+            width: '90%',
+            height: '90%',
+        }}
+          source={require('../../../assets/noDataPics/noDataFound.png')}>
+        </Image>
+  </View>
+  );
 }
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

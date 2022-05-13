@@ -116,7 +116,7 @@ export default function FollowingScreenPage({navigation}) {
         <View>
           <PFFlatList
             numColumns={1}
-            noDataMessage='                                                                   You have no friends yet. Click the add button or search your friend.'
+            noDataMessage='\You have no friends yet. Click the add button or search your friend.'
             data={SampleData.cardPostData1}
             renderItem={(item) => (
               <PFPostsCard 
