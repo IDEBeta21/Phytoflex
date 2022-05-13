@@ -207,6 +207,9 @@ export default function  CheckoutPage  ({ route, navigation}){
    
   }
 
+
+   
+
   
  
   useEffect(() => {
@@ -284,7 +287,7 @@ let totalPayment = route.params.subtotal + 200;
                 keyExtractor={(item,index) => index}
               />
           </View>
-
+                
           
           <View>
             <View style={styles.hr} />
@@ -339,7 +342,7 @@ let totalPayment = route.params.subtotal + 200;
 
           </View> */}
         </ScrollView>
-      </View>
+      </View>  
       
     );
 

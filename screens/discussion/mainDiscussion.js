@@ -12,6 +12,7 @@ import CreateQuestionPage from './createQuestion';
 import CommentAnswerPage from './commentAnswer';
 import EditQuestionPage from './editQuestion';
 import AddPhotosPage from './addPhotos'
+import TakePhoto from './TakePhoto'
 
 // Functions for calling the screens
 function FuncDiscussionHome({navigation}) {
@@ -49,6 +50,11 @@ function FuncEditQuestion({navigation}) {
 function FuncAddPhotos({navigation}) {
   return (
     <AddPhotosPage navigation={navigation}/>
+  );
+}
+function FuncTakePhotos({navigation,route}) {
+  return (
+    <TakePhoto navigation={navigation}  route={route}/>
   );
 }
 const Stack = createNativeStackNavigator();
@@ -141,6 +147,19 @@ function App({navigation}) {
           // options={{ headerTitle: (props) => <Header {...props} /> }}
           options={{ 
             headerTitle: (props) => <Header title={'Photos'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: '#1D4123',
+            },
+            headerTintColor: 'white',
+          }}
+
+          />
+          <Stack.Screen
+          name="TakePhoto"
+          component={FuncTakePhotos}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Take a Photo'} navigation={navigation}/>, 
             headerStyle: {
               backgroundColor: '#1D4123',
             },

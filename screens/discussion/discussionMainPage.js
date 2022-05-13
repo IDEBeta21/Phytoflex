@@ -49,9 +49,8 @@ useEffect(() => {
             noDataMessage='Loading...'
             data={refdata}
             renderItem={(item) => (
-             
               <PFCardForumPost2
-                imageURL={item.qstImages}
+                imageURL={item.qstImage}
                 userName={item.userName}
                 dateTime={item.qstDate}
                 userImage={item.profilePic}

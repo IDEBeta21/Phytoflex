@@ -1,21 +1,17 @@
-import { Button, Text, View } from 'react-native';
-import React, { Component } from 'react';
+import { Button, Text, View, TextInput } from 'react-native';
+import React,  { Component, useState, useEffect } from 'react';
 import { globalStyles } from '../global/globalStyles';
-
+import firebase from 'firebase';
 import { DrawerContent } from '../global/Drawer';
+import {PFCardShopReviews, PFFlatList,PFSecondaryButton,  PFCardProduct, PFCardShop, PFPrimaryButton, PFCardShopCartItems, PFCartImage} from './../../components';
 
 export default function ShopNotifBellPage({navigation}) {
-  // Calling Plantcare search screen
-  
+ 
+
   return (
     <View style={ globalStyles.textContainer }>
-      <Text style={ globalStyles.titleText }>
-        Naks Lumilipat hahaha
-      </Text>
-      <Text style={ globalStyles.paragraphText }>
-        Di ko na alam sunod hahaha
-      </Text>
-
+        
+    <Text>Phytoflex</Text>
     
     </View>
   );

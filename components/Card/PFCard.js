@@ -548,7 +548,6 @@ cardContentStyle) => {
 
   )
 }
-
 export const PFCardProduct = ({imageURL, onPress = () =>{}}, style) => {
   const [image, setimage] = useState(null)
 
@@ -566,7 +565,6 @@ export const PFCardProduct = ({imageURL, onPress = () =>{}}, style) => {
           
         }}
       />
-
   )
 };
 
@@ -872,7 +870,7 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
       <View style={{...styles.cardforumPostContainer, ...style}}>
     <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
       <Card.Cover 
-        source={require('../../assets/img/socmed/sc1.png')} 
+        source={{uri: image}} 
         style={{
           height: 200,
           width: (Dimensions.get('window').width) * 0.90,

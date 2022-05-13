@@ -9,11 +9,36 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import firebase from 'firebase';
 import ImagePicker from 'react-native-image-picker'
 import globalVariable from '../landing/login';
- 
+import { FAB } from 'react-native-paper';
 export default function  AddPhotosPage   ({navigation}){ 
 return(
     <View>
-        <PFText>Hello World</PFText>
+        <View style={{ flex: 1 }}>
+        <View style={{
+            alignItems: 'center', 
+        // alignSelf: 'center'
+        }}>
+
+                    
+            <FAB
+            small
+            icon="camera-outline"
+            color="#FFFFFF"
+            label='Take a photo'
+            onPress={() => navigation.navigate('TakePhoto')}
+
+                style={{
+                    backgroundColor: '#2A9C43',
+                    position: 'absolute',
+                    top: 400,
+                    // margin: 16,
+                    // right: 0,
+                    // bottom: 34,
+                }}
+            />
+        </View>
+      </View>
+
     </View>
 )
 
