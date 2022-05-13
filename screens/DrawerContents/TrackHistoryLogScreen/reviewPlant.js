@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import { View, Text, Pressable,Dimensions,StyleSheet,TouchableOpacity,Image, TextInput } from 'react-native'
+=======
+//ReviewPlantPage
+
+import { View, Text, Pressable,Dimensions,StyleSheet,TouchableOpacity, } from 'react-native'
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
 import React, {useState, useEffect, Component } from 'react';
 import firebase from 'firebase';
 import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../../global/globalStyles';
 import StepIndicator from 'react-native-step-indicator';
+<<<<<<< HEAD
 import StarRating from 'react-native-star-rating-widget';
 import Colors from '../../../utils/globalColors';
 
@@ -12,12 +19,22 @@ import { PFText , PFCard, PFActiveOrders, PFReviewPlant,PFFlatList } from '../..
 import SampleData from '../../../utils/SampleData';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Alert } from 'react-native';
+=======
+
+import { PFText , PFCard, PFActiveOrders, PFReviewPlant,PFFlatList } from '../../../components';
+//import TrackOrderDetails from './TrackOrderDetails';
+
+
+import SampleData from '../../../utils/SampleData';
+import { ScrollView } from 'react-native-gesture-handler';
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
 
 
 
 
 
 export default function ReviewPlantPage({navigation, route}) {
+<<<<<<< HEAD
 
    
       const [refdata, setrefdata] = useState([]); // declaration 
@@ -133,10 +150,13 @@ export default function ReviewPlantPage({navigation, route}) {
         getOrders()
         getUsers();
         }, [])
+=======
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
  
   
  
   return (
+<<<<<<< HEAD
     <ScrollView style={{paddingHorizontal: 10, paddingTop: 10, paddingBottom: 20}} showsHorizontalScrollIndicator={false} >
     <View style={ globalStyles.textContainer }>
     
@@ -146,6 +166,18 @@ export default function ReviewPlantPage({navigation, route}) {
           data={refdata}
           renderItem={(item) => (
             <PFReviewPlant
+=======
+    <View style={ globalStyles.textContainer }>
+      
+      <PFFlatList
+          numColumns={1}
+          noDataMessage='No Orders'
+          data={SampleData.orderDetails}
+          renderItem={(item) => (
+            <PFReviewPlant
+             statusIndicator = {item.orderStatus}
+             itemName = {item.itemName}
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
              timePurchase={item.date}
              orderIDNo = {item.orderId}
              total = {item.totalPayment}
@@ -160,6 +192,7 @@ export default function ReviewPlantPage({navigation, route}) {
             />
           )}
           keyExtractor={(item,index) => index}
+<<<<<<< HEAD
         />
 <View style={{borderWidth: 1, borderColor: Colors.primary, borderRadius: 5, paddingHorizontal: 12, marginBottom: 20, width: "100%"}}>
       <PFFlatList
@@ -229,6 +262,17 @@ export default function ReviewPlantPage({navigation, route}) {
                   </View>
 
 </ScrollView>
+=======
+ 
+        />
+
+            <TouchableOpacity  style = {{width:"91%"}} >
+                  <View style = {{...styles.submitReviewBtn, backgroundColor: '#1D4123', paddingTop:10, paddingBottom:10, alignItems: 'center', justifyContent: 'center',}}>
+                  <Text style={{ color: '#ffff', fontSize: 16, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>Submit Review</Text>
+                  </View>
+                  </TouchableOpacity>        
+    </View>
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
 
 
   )
@@ -244,6 +288,7 @@ const styles = StyleSheet.create({
   
   
   }, 
+<<<<<<< HEAD
   inputReview: {
     padding:15,
   paddingLeft:25,
@@ -258,4 +303,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
   },
+=======
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
 })

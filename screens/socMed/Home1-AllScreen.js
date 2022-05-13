@@ -1,5 +1,5 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable, ViewPropTypes} from 'react-native';
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Portal } from 'react-native-paper';
 import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../global/globalStyles';
@@ -22,7 +22,60 @@ import SampleData from '../../utils/SampleData';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
+import firebase from 'firebase';
+
 export default function AllScreenPage({navigation}) {
+
+  const [refdata2, setrefdata2] = useState([]); // declaration 
+  const [refnull2, setrefnull2] = useState(true);
+
+  //get user info
+
+  const getUsers = async() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        console.log(user.email);
+        firebase.firestore()
+    .collection('users').where("userEmail", "==", user.email).get().then((snapshot) => {
+      let users = snapshot.docs.map(doc => { 
+        const data2 = doc.data();
+        const id2 = doc.id;
+        return {id2, ...data2}
+      })
+      setrefdata2(users);
+      console.log(refdata2);
+      setrefnull2(false);
+    }).catch((err) => {
+      Alert.alert(err)
+    }) 
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
+            // Get data inside document
+    
+  }
+  useEffect(() => {
+  
+    getUsers();
+}, []);
+   
+  //display userImage from firebase
+  const [image, setimage] = useState(null)
+  let profilePic = "";
+  let userName = "";
+  let userfullName = "";
+  refdata2.forEach((item) => {
+   profilePic = item.profilePic
+   //userName = item.userName
+   userfullName = item.fName + "  " + item.lName 
+  });
+
+  firebase.storage().ref().child(profilePic).getDownloadURL().then((url) => {
+    setimage(url);
+    })
+
 
   return (
     <View style={ styles.mainContainer}>
@@ -83,13 +136,15 @@ export default function AllScreenPage({navigation}) {
               <Image
                 // FAB using TouchableOpacity with an image
                 // For online image
-                source={ require('../../assets/img/profiles/Alejandre.jpg')}
+                source={{uri : image}}
+                //source={ require('../../assets/img/profiles/Alejandre.jpg')}
                 // For local image
                 //source={require('./images/float-add-icon.png')}
-                style={styles.userImage}
+                style={styles.userPhoto}
+                //style={styles.userImage}
               />
             </TouchableOpacity>
-            <PFText weight='semi-bold' size={15} style={styles.textFormat}>Leila Jane Alejandre</PFText>
+            <PFText weight='semi-bold' size={15} style={styles.textFormat}>{userfullName}</PFText>
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => navigation.navigate('CreatePostPage')}
@@ -123,7 +178,6 @@ const styles = StyleSheet.create({
   createpostIcon: {
     height: 30,
     width: 30,
-    marginLeft: 90,
     marginTop: 5
   },
   createpost: {
@@ -135,7 +189,8 @@ const styles = StyleSheet.create({
   },
   textFormat: {
     paddingLeft: 10,
-    paddingTop: 8
+    paddingTop: 8,
+    width: 250
   },
   userPhoto: {
     height: 40,

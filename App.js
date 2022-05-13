@@ -80,6 +80,7 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 // import { View } from 'react-native-web';
 // import { Text } from 'react-native';
+// import AsyncStorage from '@react-native-async-storage/async-storage'
 
 // Drawer Navigation functions
 function FuncActivityLog({navigation}){
@@ -595,7 +596,11 @@ function App() {
     'poppins-italic': require('./assets/fonts/Poppins-Italic.ttf'),
   })
 
+  
+
   const [userLoggedIn, setuserLoggedIn] = useState(false)
+  const [viewedOnboarding, setviewedOnboarding] = useState(false)
+  const [loading, setloading] = useState(true)
 
   useEffect(() => {
     
@@ -605,6 +610,11 @@ function App() {
         setuserLoggedIn(true)
       }else{
         setuserLoggedIn(false)
+      }
+
+      const value = await AsyncStorage.getItem('@viewedOnboarding')
+      if(value !== null){
+        setviewedOnboarding(true)
       }
     })
     
@@ -616,7 +626,8 @@ function App() {
         <AuthStack.Navigator 
           // initialRouteName={(firebase.auth().onAuthStateChanged((user) => {return user})) ? "Login" : "MyTabs"}  
           // initialRouteName={(firebase.auth().currentUser) ? "MyTabs" : "Login"  }  
-          initialRouteName={(userLoggedIn) ? "MyTabs" : "Login"  } 
+          // initialRouteName={(userLoggedIn) ? "MyTabs" : "Login"  } 
+          initialRouteName={(userLoggedIn) ? "MyTabs" : "Onboarding"  } 
           // initialRouteName={(userLoggedIn) ? "Login" : "MyTabs"  } 
           screenOptions={{headerShown: false}}
         >

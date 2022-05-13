@@ -43,7 +43,7 @@ export default function CreatePostPage({navigation}) {
   //const db = getFirestore(app);
   const [fName, setFName] = useState('');
   const [lName, setLName] = useState('');
-  const [userName, setUserName] = useState('');
+  //const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [postCaption,setCaption] = useState('');
   
@@ -66,24 +66,72 @@ export default function CreatePostPage({navigation}) {
     })
   }
 
+  const [refdata2, setrefdata2] = useState([]); // declaration 
+  const [refnull2, setrefnull2] = useState(true);
+
+  //get user info
+
+  const getUsers = async() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        console.log(user.email);
+        firebase.firestore()
+    .collection('users').where("userEmail", "==", user.email).get().then((snapshot) => {
+      let users = snapshot.docs.map(doc => { 
+        const data2 = doc.data();
+        const id2 = doc.id;
+        return {id2, ...data2}
+      })
+      setrefdata2(users);
+      console.log(refdata2);
+      setrefnull2(false);
+    }).catch((err) => {
+      Alert.alert(err)
+    }) 
+      } else {
+        // User not logged in or has just logged out.
+      }
+    });
+            // Get data inside document
+    
+  }
+  useEffect(() => {
+  
+    getUsers();
+}, []);
+   
+  //display userImage from firebase
+  const [image, setimage] = useState(null)
+  let profilePic = "";
+  let userName = "";
+  let userfullName = "";
+  refdata2.forEach((item) => {
+   profilePic = item.profilePic
+   //userName = item.userName
+   userfullName = item.fName + "  " + item.lName 
+  });
+
+  firebase.storage().ref().child(profilePic).getDownloadURL().then((url) => {
+    setimage(url);
+    })
+
+
+
   return (
     <View>
       <View style={ styles.mainContainer }>
         <View style={ styles.container }>
           <Image
-            // FAB using TouchableOpacity with an image
             // For online image
-            source={ require('../../assets/img/profiles/Alejandre.jpg')}
+            source={{uri : image}}
             // For local image
-            //source={require('./images/float-add-icon.png')}
             style={styles.userPhoto}
           />
           <View styles={{flexDirection: 'column'}}>
-            <PFText weight='semi-bold' size={15} style={{marginLeft: 10}} value={userName}>Leila Jane Alejandre</PFText>
+            <PFText weight='semi-bold' size={15} style={{marginLeft: 10}} value={userName}>{userfullName}</PFText>
             <View style={ styles.container1 }>
               <Image
-                // FAB using TouchableOpacity with an image
-                // For online image
                 source={ require('../../assets/drawerIcons/socmedIcons/public_green.png')}
                 // For local image
                 //source={require('./images/float-add-icon.png')}

@@ -7,10 +7,10 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import {PFCardShopReviews, PFFlatList, PFCardProduct, PFCardShop, PFPrimaryButton, PFCardShopCartItems} from './../../components';
 import DropDownPicker from 'react-native-dropdown-picker';
 import firebase from 'firebase';
-
+import ImagePicker from 'react-native-image-picker'
 import globalVariable from '../landing/login';
  
-export default function  AdPhotosPage   ({navigation}){ 
+export default function  AddPhotosPage   ({navigation}){ 
 return(
     <View>
         <PFText>Hello World</PFText>

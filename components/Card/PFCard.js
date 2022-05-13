@@ -899,7 +899,7 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
            {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
             <PFText weight='light'size = {10}>{dateTime}</PFText>
           </View>
-          <View style={styles.followBtnContainer}>
+          <View style={styles.SolvedBtnContainer}>
             <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
           </View>        
         </View>
@@ -964,8 +964,6 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
   </View>
 
      )
-  
-
   }
 
 export const PFCommentCard2 = ({
@@ -1023,6 +1021,7 @@ export const PFCommentCard2 = ({
         </View>
         <View style={ styles.container }>
           <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Delete</PFText>
         </View>
       </View>
     </View>
@@ -1057,17 +1056,6 @@ export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
   )
 };
 
-export const PFShippingAddressCard =({name, contactNumber, customerAddress}, 
-  style, cardContentStyle) => {
-    return (
-      <View style={styles.shippingAddress}>
-        <PFText weight='semi-bold' size={15}>{name}</PFText>
-        <PFText size={12}>{contactNumber}</PFText>
-        <PFText size={12}>{customerAddress}</PFText>
-      </View>
-    )
-}
-
 export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
 style, cardContentStyle) => {
   return (
@@ -1092,6 +1080,8 @@ style, cardContentStyle) => {
   )
 };
 
+<<<<<<< Updated upstream
+=======
 
 export const PFActiveOrders = ({
   statusIndicator,
@@ -1161,7 +1151,11 @@ export const PFActiveOrders = ({
     onPress = () => {}}, 
     style, 
     cardContentStyle) => {
+<<<<<<< HEAD
       
+=======
+  
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
       
       return(
         <View style={{...styles.cardHistoryOrderContainer, ...style}}>
@@ -1221,6 +1215,81 @@ export const PFActiveOrders = ({
       orderIDNo,
       total, 
       items,
+<<<<<<< HEAD
+=======
+
+
+      itemName,
+      onPress = () => {}}, 
+      style, 
+      cardContentStyle) => {
+    
+        const [text, onChangeText] = React.useState("Useless Text");
+        const [number, onChangeNumber] = React.useState(null);
+        return(
+          <View style={{...styles.cardReviewPlantContainer, ...style,}}>
+          <Card style={{flex: 1}} onPress={() => onPress()}>
+            
+          <View style={{...styles.cardReviewPlant, ...style}}>
+          <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+            <View style= {{flexDirection:'row', alignItems: 'center', }}>
+                   <Image 
+                       source={require('../../assets/logo.png')}
+                        style={{
+                        marginTop: 5,
+                        height: 100,
+                        width: (Dimensions.get('window').width/1) * 0.25,
+                        resizeMode:'contain',
+                        borderRadius: 10 }} />
+      
+          <Card.Content style={{...styles.cardReviewPlantContent, ...cardContentStyle}}>
+                     
+                    <View style={{ flexDirection:'row', }}> 
+                    <PFText weight='semi-bold' size = {18}>{itemName} </PFText>
+                    </View>
+                    <View>
+                    <PFText weight='medium' size = {14}>by Phyto Shop</PFText>
+                    </View> 
+            </Card.Content>
+                  
+                  </View>   
+                  
+                  <View style = {{paddingLeft:5}}>
+                  <View style={{ flexDirection:'column',  paddingTop: 8, paddingBottom: 5,}}>
+                      <PFText weight='semi-bold' size = {18}>Rate this Plant</PFText>
+                      <PFText weight='semi-bold' size = {18}></PFText>
+                      <PFText weight='semi-bold' size = {18}></PFText>
+                    </View>
+                  <View style = {{paddingBottom: 5}}>
+                  <PFText weight='semi-bold' size = {18}>Write Your Review</PFText>
+                    </View>
+                  <TextInput style = {{...styles.inputReview, marginRight:5, marginLeft: 5}}
+               underlineColorAndroid = "transparent"
+               placeholder = "Add your comments and review about the plant. Add up to 100 characters"
+               placeholderTextColor = "light-gray"
+               autoCapitalize = "none"
+               multiline={true}
+               numberOfLines={2}
+               />
+
+                
+                  </View>
+          </Card>
+        </View>
+                  
+
+
+                  
+                    
+          </Card>
+        </View>
+    
+        )
+    
+      };
+
+
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
 
 
       itemName,
@@ -1493,6 +1562,7 @@ export const PFTrackOrderDetails = ({
 
 
 
+>>>>>>> Stashed changes
 const styles = StyleSheet.create({
   // Social Media----------------------------
   reactContainer: {
@@ -1669,6 +1739,7 @@ const styles = StyleSheet.create({
     padding: 10
   },
   //Social Media---------------------------
+<<<<<<< HEAD
   shippingAddress: {
     flexDirection: 'column', 
     padding: 15, 
@@ -1678,6 +1749,8 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
 
+=======
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
   cardShopContainer: {
     
     marginBottom: 5,
@@ -1861,6 +1934,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     flexGrow:1
   },
+  SolvedBtnContainer:{
+    alignItems: 'flex-end',
+    flexGrow:1
+  },
   cardForumContentStyle:{
     padding: 2,
   },
@@ -1894,6 +1971,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     paddingTop: 15,
     paddingBottom: 15
+<<<<<<< Updated upstream
+  }
+=======
   },
 
   //ACTIVE ORDERS
@@ -1993,7 +2073,12 @@ paddingLeft:25,
 },
 
 
+<<<<<<< HEAD
   
+=======
+
+
+>>>>>>> 0d5b13bb0db4d8994fc323b6eabf0f5f31df7c7b
   cardTrackOrderDetailsContainer:{
     flex:1,
    },
@@ -2044,4 +2129,5 @@ paddingLeft:25,
 
 
 
+>>>>>>> Stashed changes
 })
