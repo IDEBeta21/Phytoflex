@@ -25,6 +25,48 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function CreateQuestionPage({navigation, route}) {
+
+  const [qstDate, setCurrentDate] = useState('');
+  const [qstTime, setCurrentTime] = useState('');
+  useEffect(() => {
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
+    var sec = new Date().getSeconds(); //Current Seconds
+    setCurrentDate( date + '/' + month + '/' + year );
+    setCurrentTime( hours + ':' + min );
+  }, []);
+
+
+           const user = firebase.auth().currentUser;
+          // if (user) {
+          //  Alert.alert('Current UID(Current User): ', user.uid);
+          // }
+
+  function addData(){
+    firebase.firestore().collection('Question').add({
+      profilePic,
+      qstContent,
+      qstDate,
+      qstID:'',
+      qstImage:'assets/dscPlants/1632111098532.jpg',//Manual
+      qstReact:true,//Manual
+      qstReactBloomQuantity:0,//Manual
+      qstReactWitherQuantity:0,//Manual
+      qstStatus:true,//Manual
+      qstTime,
+      userBadgePoints: 1000,//Manual
+      userID: user.uid,
+      userName
+    }).then((res) => {
+      Alert.alert(res)
+    }).catch((err) => {
+      Alert.alert(err)
+    })
+  }
+
   const [refdata2, setrefdata2] = useState([]); // declaration 
   const [refnull2, setrefnull2] = useState(true);
   
@@ -57,7 +99,7 @@ export default function CreateQuestionPage({navigation, route}) {
     
   }
   useEffect(() => {
-  
+    //getAnswers();
     getUsers();
 }, []);
    
@@ -80,6 +122,7 @@ export default function CreateQuestionPage({navigation, route}) {
     <View style={ styles.mainContainer }>
       <View style={ styles.container }>
         <Image
+          value={profilePic}
           // FAB using TouchableOpacity with an image
           // For online image
           source={{uri : image}}
@@ -88,7 +131,7 @@ export default function CreateQuestionPage({navigation, route}) {
           style={styles.userPhoto}
         />
         <View styles={{flexDirection: 'column'}}>
-          <PFText weight='semi-bold' size={15} style={{marginLeft: 10}}>@{userName}</PFText>
+          <PFText weight='semi-bold' size={15} value={userName} style={{marginLeft: 10}}>@{userName}</PFText>
           <PFText weight='light' size={10} style={{marginLeft: 10}}>05/13/22 2:50 PM</PFText>
         </View>
       </View>
@@ -118,6 +161,7 @@ export default function CreateQuestionPage({navigation, route}) {
         style={{marginTop: 15, marginLeft: 25, marginRight: 20 }}
         title="Post"
         onPress={() => {
+          addData()
           // Pass and merge params back to home screen
           navigation.navigate({
             name: '',

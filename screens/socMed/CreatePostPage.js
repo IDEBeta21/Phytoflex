@@ -218,7 +218,7 @@ export default function CreatePostPage({navigation}) {
           <PFText size={15} style={{marginLeft: 10, marginTop: 5}}>Change Privacy</PFText>
         </View>
       </View>
-      <PFPrimaryButton style={{marginTop: 10, marginLeft: 25, marginRight: 20}} title={'Post'} onPress={() => addData()}                       ></PFPrimaryButton>
+      <PFPrimaryButton style={{marginTop: 10, marginLeft: 25, marginRight: 20}} title={'Post'} onPress={() => addData()}></PFPrimaryButton>
     </View>
   );
 }
