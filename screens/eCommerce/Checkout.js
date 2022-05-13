@@ -222,7 +222,7 @@ let totalPayment = route.params.subtotal + 200;
 
     return (
       <View style={{...styles.pageContainer}}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{flex: 3,}}>
           <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={15}>Shipping Address</PFText>
             <PFFlatList
@@ -298,17 +298,17 @@ let totalPayment = route.params.subtotal + 200;
               <View style={{paddingRight: 5}}>
                 <PFText weight ="semi-bold">Subtotal: </PFText>
               </View>
-              <PFText>{route.params.subtotal}</PFText>
+              <View style={{alignItems: 'flex-end'}}><PFText>{route.params.subtotal}</PFText></View>
             </View>
             <View style={{flexDirection: "row"}}>
               <View style={{paddingRight: 5}}>
                 <PFText weight='semi-bold'>Delivery Fee:  </PFText>
               </View>
-              <PFText>200</PFText>
+              <View style={{alignItems: 'flex-end'}}><PFText >200</PFText></View>
             </View>
             <View style={{flexDirection: "row"}}>
               <View style={{paddingRight: 5}}><PFText weight='semi-bold'>Total Payment: </PFText></View>
-              <View><PFText>{totalPayment}</PFText></View>
+              <View style={{alignItems: 'flex-end'}}><PFText weight='semi-bold'>{totalPayment}</PFText></View>
             </View>
           </View>
             

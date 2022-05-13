@@ -273,8 +273,8 @@ export default function plantCareCamera({navigation}) {
             </View>
           </Camera>
           <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
-            <View style={{flex: 4, alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }}>
-              <TouchableOpacity 
+            <View style={{flex: 5, alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }}>
+              {/* <TouchableOpacity 
                 style={{
                   width: 100,
                   borderColor: Colors.primary,
@@ -287,9 +287,9 @@ export default function plantCareCamera({navigation}) {
                 }}
                 color={Colors.primary}
                 onPress={photoPress}
-              ><PFText center size={14}>Photos</PFText></TouchableOpacity>
+              ><PFText center size={14}>Photos</PFText></TouchableOpacity> */}
             </View>
-            <View style={{flex: 4, alignItems: 'center', justifyContent: 'center', }}>
+            <View style={{flex: 3, alignItems: 'center', justifyContent: 'center', borderColor: Colors.primary, borderWidth: 2, paddingVertical: 7, paddingHorizontal: 3, borderRadius: 70, }}>
               {!loadingCapture ? 
                 <TouchableOpacity
                   onPress={takePicture}
@@ -299,13 +299,22 @@ export default function plantCareCamera({navigation}) {
                     bottom: 0,
                     borderRadius: 50,
                     // backgroundColor: "#fff",
-                    backgroundColor: 'grey'
+                    backgroundColor: Colors.primary
                   }}
-              /> : 
-                <PFText>Loading...</PFText>
+              >
+                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                  <PFText size={16} color={'white'} weight={'semi-bold'}>SNAP</PFText>
+                </View>
+              </TouchableOpacity> 
+              : 
+                <View style={{height:70, }}>
+                  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    <PFText>Loading...</PFText>
+                  </View>
+                </View>
               }
             </View>
-            <View style={{flex: 4, }}>
+            <View style={{flex: 5, }}>
               <Pressable onPress={() => navigation.navigate('Instruction')}>
                 <View style={{alignItems: 'center', justifyContent: 'center', }}>
                   <PFText style={{fontSize: 20}}>?</PFText>

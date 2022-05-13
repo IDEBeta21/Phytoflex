@@ -92,6 +92,7 @@ export default function AllScreenPage({navigation}) {
                 name={item.name}
                 description={item.description}
                 timeDate={item.timeDate}
+                bloomQuantity={item.bloomQuantity}
                 onPress={() => navigation.navigate('PostPage')}/>
             )}
             keyExtractor={(item,index) => index}
@@ -111,7 +112,7 @@ export default function AllScreenPage({navigation}) {
             keyExtractor={(item,index) => index}
           />
         </View>
-        <View>
+        {/* <View>
           <PFFlatList
             numColumns={1}
             noDataMessage='No Followers'
@@ -126,13 +127,10 @@ export default function AllScreenPage({navigation}) {
             )}
             keyExtractor={(item,index) => index}
           />
-        </View>     
+        </View>      */}
       </ScrollView>
       <View style={styles.createpost}>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={() => navigation.navigate('UserProfilePage')}
-            >
+            <View>
               <Image
                 // FAB using TouchableOpacity with an image
                 // For online image
@@ -143,7 +141,7 @@ export default function AllScreenPage({navigation}) {
                 style={styles.userPhoto}
                 //style={styles.userImage}
               />
-            </TouchableOpacity>
+            </View>
             <PFText weight='semi-bold' size={15} style={styles.textFormat}>{userfullName}</PFText>
             <TouchableOpacity
               activeOpacity={0.7}
