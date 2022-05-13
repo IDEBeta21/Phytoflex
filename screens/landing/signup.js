@@ -43,25 +43,25 @@ export default function SignUpScreen({navigation}){
   
   
   function signUpClick() {
-    // const auth = firebase.auth();
-    // firebase.auth().createUserWithEmailAndPassword(userEmail, userPass)
-    // .then((result) => {
-    //   Alert.alert(result.message);
-    //   firebase.firestore().collection("users")
-    //   .doc(firebase.auth().currentUser.uid)
-    //   .set({
-    //     fName,
-    //     lName,
-    //     userName,
-    //     userEmail,
-    //     userPass
-    //   })
-    //   console.log(result);
-    // })
-    // .catch((error) => {
-    //   Alert.alert(error.message);
-    //   console.log(error);
-    // });
+    const auth = firebase.auth();
+    firebase.auth().createUserWithEmailAndPassword(userEmail, userPass)
+    .then((result) => {
+      Alert.alert(result.message);
+      firebase.firestore().collection("users")
+      .doc(firebase.auth().currentUser.uid)
+      .set({
+        fName,
+        lName,
+        userName,
+        userEmail,
+        userPass
+      })
+      console.log(result);
+    })
+    .catch((error) => {
+      Alert.alert(error.message);
+      console.log(error);
+    });
     console.log(userEmail)
   }
   
