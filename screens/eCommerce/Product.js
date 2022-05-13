@@ -189,7 +189,7 @@ export default function  ProductPage   ({ route, navigation}){
                 </View>
               </View>
 
-              <View style={{padding: 15, backgroundColor: 'white'}}>
+              <View style={{padding: 15, backgroundColor: 'white',}}>
                 <PFText weight='semi-bold' size={15}>Reviews:</PFText>
                 <PFFlatList
                   styles={{...styles.reviewsArea}}
@@ -203,7 +203,7 @@ export default function  ProductPage   ({ route, navigation}){
                       customerName={item.customerName}
                       date={item.date}
                       rate={item.rating}
-                      onPress={() => Alert.alert(item.customerName)}
+                      onPress={() => {navigation.navigate('')}}
                     />
                   )}
                   keyExtractor={(item,index) => index}

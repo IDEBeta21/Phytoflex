@@ -12,6 +12,8 @@ import firebase from 'firebase';
 import { PFSecondaryButton } from '../Button/PFSecondaryButton';
 import { PFPrimaryButton } from '../Button/PFPrimaryButton';
 
+
+
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 export const PFCard = ({
@@ -1271,7 +1273,147 @@ export const PFActiveOrders = ({
     
       };
 
+  export const PFHistoryOrders = ({
+    statusIndicator,
+    imageURL,
+    timePurchase,
+    orderIDNo,
+    total, 
+    items,
+    navigate,
+    onPress = () => {}}, 
+    style, 
+    cardContentStyle) => {
+  
+      
+      return(
+        <View style={{...styles.cardHistoryOrderContainer, ...style}}>
+        <Card style={{flex: 1}} onPress={() => onPress()}>
+          
+        <View style={{...styles.cardHistoryOrder, ...style}}>
+        <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+          <View style= {{flexDirection:'row', alignItems: 'center', }}>
+                 <Image 
+                     source={require('../../assets/logo.png')}
+                      style={{
+                      marginTop: 5,
+                      height: 100,
+                      marginLeft:5,
+                      width: (Dimensions.get('window').width/1) * 0.25,
+                      resizeMode:'contain',
+                     borderRadius: 10 }} />
+    
+          <Card.Content style={{...styles.cardHistoryOrderContent, ...cardContentStyle}}>
+                   
+                  <View style={{ flexDirection:'row', }}> 
+                  <PFText weight='semi-bold' size = {18}>Order ID: {orderIDNo} </PFText>
+                  </View>
+                  <View>
+                  <PFText weight='medium' size = {14}>{timePurchase}</PFText>
+                 {/*<PFText weight='medium' size = {16}>{items}</PFText> */ }
+    
+                  <View style={{ flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                  <PFText weight='medium' size = {14} color = {"green"}> {'\u2B24'} {statusIndicator} </PFText>
+                  <PFText weight='semi-bold' size = {20} color = {"green"}>P {total}</PFText>
+                  </View>
+                  <TouchableOpacity   onPress={navigate}>
+                  <View style = {{...styles.cardHistoryOrder, ...style, backgroundColor: '#1D4123', paddingTop:5, paddingBottom:5,}}>
+                  <Text style={{ color: '#ffff', fontSize: 16, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>Rate</Text>
+                  </View>
+                  </TouchableOpacity>
+    
+                  </View>
+                
+          </Card.Content>
+               
+                </View>   
+        </Card>
+      </View>
+        </Card>
+      </View>
+  
+      )
+  
+    };
+  
 
+    export const PFReviewPlant = ({
+      statusIndicator,
+      imageURL,
+      timePurchase,
+      orderIDNo,
+      total, 
+      items,
+
+
+      itemName,
+      onPress = () => {}}, 
+      style, 
+      cardContentStyle) => {
+    
+        const [text, onChangeText] = React.useState("Useless Text");
+        const [number, onChangeNumber] = React.useState(null);
+        return(
+          <View style={{...styles.cardReviewPlantContainer, ...style,}}>
+          <Card style={{flex: 1}} onPress={() => onPress()}>
+            
+          <View style={{...styles.cardReviewPlant, ...style}}>
+          <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+            <View style= {{flexDirection:'row', alignItems: 'center', }}>
+                   <Image 
+                       source={require('../../assets/logo.png')}
+                        style={{
+                        marginTop: 5,
+                        height: 100,
+                        width: (Dimensions.get('window').width/1) * 0.25,
+                        resizeMode:'contain',
+                        borderRadius: 10 }} />
+      
+          <Card.Content style={{...styles.cardReviewPlantContent, ...cardContentStyle}}>
+                     
+                    <View style={{ flexDirection:'row', }}> 
+                    <PFText weight='semi-bold' size = {18}>{itemName} </PFText>
+                    </View>
+                    <View>
+                    <PFText weight='medium' size = {14}>by Phyto Shop</PFText>
+                    </View> 
+            </Card.Content>
+                  
+                  </View>   
+                  
+                  <View style = {{paddingLeft:5}}>
+                  <View style={{ flexDirection:'column',  paddingTop: 8, paddingBottom: 5,}}>
+                      <PFText weight='semi-bold' size = {18}>Rate this Plant</PFText>
+                      <PFText weight='semi-bold' size = {18}></PFText>
+                      <PFText weight='semi-bold' size = {18}></PFText>
+                    </View>
+                  <View style = {{paddingBottom: 5}}>
+                  <PFText weight='semi-bold' size = {18}>Write Your Review</PFText>
+                    </View>
+                  <TextInput style = {{...styles.inputReview, marginRight:5, marginLeft: 5}}
+               underlineColorAndroid = "transparent"
+               placeholder = "Add your comments and review about the plant. Add up to 100 characters"
+               placeholderTextColor = "light-gray"
+               autoCapitalize = "none"
+               multiline={true}
+               numberOfLines={2}
+               />
+
+                
+                  </View>
+          </Card>
+        </View>
+                  
+
+
+                  
+                    
+          </Card>
+        </View>
+    
+        )
+    
+      };
 
 
 
@@ -1535,6 +1677,7 @@ const styles = StyleSheet.create({
     borderRadius: 5, 
     marginTop: 5
   },
+
   cardShopContainer: {
     
     marginBottom: 5,
@@ -1544,8 +1687,7 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     borderColor: Colors.primary, 
     borderRadius: 7,
-    
-   
+
   },
   cardShopContent: {
     marginLeft: 0,
@@ -1557,6 +1699,7 @@ const styles = StyleSheet.create({
     paddingRight: 7,
     margin: 0,
     width: 140,
+    
   //  borderWidth: 1
     
   },
@@ -1771,6 +1914,26 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     width: '65%',
     paddingRight: 0,
+ //   padding: 12,
+  },
+  
+  cardHistoryOrderContainer:{
+    flex: 1,
+    marginTop: 10,
+
+  },
+  cardHistoryOrder: {
+    borderRadius: 10,
+    borderWidth: 1,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 0,
+  }, 
+
+  cardHistoryOrderContent:{
+    justifyContent: "space-evenly",
+    width: '65%',
+    paddingRight: 0,
     padding: 12,
   },
 
@@ -1874,7 +2037,8 @@ paddingLeft:25,
       margin: 10,
 
     },
- 
+  
+   
 
 
 

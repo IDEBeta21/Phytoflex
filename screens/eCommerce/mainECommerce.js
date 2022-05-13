@@ -12,6 +12,7 @@ import ProductPage from "./Product";
 import SamplePage from './Sample';
 import CheckoutPage from './Checkout';
 import ShopCategoryPage from './ShopCategory';
+import ShopReviewPage from './ShopReview';
 // Functions for calling the screens
 
 function FuncCheckoutPage({route, navigation}) {
@@ -53,6 +54,9 @@ function FuncShopCategory({route, navigation}) {
     <ShopCategoryPage navigation={navigation}  route = {route}/>
   );
 }
+
+
+
 
 const Stack = createNativeStackNavigator();
 // Stacking the Screens
@@ -152,6 +156,8 @@ function App({navigation}) {
             
           }}
         />
+          
+
  
 
 

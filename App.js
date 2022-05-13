@@ -469,6 +469,20 @@ function SideBar({navigation}){
                 headerTintColor: 'white'
               }} />
 
+            <Drawer.Screen 
+              name="DrawerReviewPlant"
+              component={FuncReviewPlant}
+              options={{ 
+                headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerTrackHistory'} screenDescription={'TrackOrderDetails'} title={'Write a Review'} navigation={navigation} />, 
+                headerLeft:false,
+                headerStyle: {
+                  backgroundColor: '#1D4123',
+                  elevation: 0
+                },
+                headerTintColor: 'white'
+              }} />
+
+
           <Drawer.Screen 
           name="DrawerSettings"
           component={FuncSettings}
