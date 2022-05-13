@@ -71,8 +71,12 @@ export default function PlantCareReminder({navigation}) {
         style={{ marginStart: 8, height: 32, marginEnd:8, color: '#639D04', fontFamily: 'poppins-light', fontSize: 18 }}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
-        <Picker.Item label="Water Plant" value="water" />
-        <Picker.Item label="Soil Erosion" value="soil" />
+        {/* <Picker.Item label="Water Plant" value="water" /> */}
+        <Picker.Item label="PLANTING"           value="PLANTING" />
+        <Picker.Item label="FERTILIZING"        value="FERTILIZING" />
+        <Picker.Item label="PESTS AND DISEASES" value="PESTS AND DISEASES" />
+        <Picker.Item label="GARDEN MAINTENANCE" value="GARDEN MAINTENANCE" />
+
       </Picker>
 
 

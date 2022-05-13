@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
         // borderTopRightRadius: 35,
         flex: 1,
         justifyContent: 'flex-end',
-        paddingBottom: 10
+        paddingBottom: 10   
     },
     loginViewKeyUp: {
         backgroundColor: '#1D4123',
