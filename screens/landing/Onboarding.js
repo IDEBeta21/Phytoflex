@@ -9,7 +9,7 @@ import slides from './slides';
 
 import { StatusBar } from 'expo-status-bar';
 
-export default Onboarding = () => {
+export default Onboarding = ({navigation}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
     const slidesRef = useRef(null);
@@ -24,6 +24,7 @@ export default Onboarding = () => {
             slidesRef.current.scrollToIndex({ index: currentIndex + 1});
         } else {
             console.log('Last item.');
+            navigation.navigate('Login')
         }
     };
 
