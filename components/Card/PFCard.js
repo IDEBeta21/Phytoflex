@@ -6,6 +6,7 @@ import { PFText } from '../PFText';
 import Colors from '../../utils/globalColors';
 import StarRating from 'react-native-star-rating-widget';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 
 import firebase from 'firebase';
@@ -42,15 +43,15 @@ export const PFCard = ({
   </View>
 );
 
-export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate, 
-  onPress = () => {}},
+export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate, bloomQuantity, 
+  onPress = () => {},
   onPressImage = () => {},
   onPressReact = () => {},
   onPressText = () => {}, 
   style,
-  cardContentStyle) =>  (
-    // const [unliked, setLiked2] = useState(false);
-    // const [liked, setLiked] = useState(false);
+  cardContentStyle}) =>  {
+    const [unliked, setLiked2] = useState(false);
+    const [liked, setLiked] = useState(false);
     // const [image, setimage] = useState(null)
     // const [userimage, setuserImage] = useState(null)
 
@@ -62,11 +63,12 @@ export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate,
     //   setuserImage(url);
     // })
 
-    // return (
+    return (
       <View style={{...styles.cardPostContainer, ...style}}>
         <Card style={{flex: 1}} onPress={() => onPress()}>
           <Card.Cover 
             source={require('../../assets/img/socmed/Cover.png')} 
+
             style={{
               height: 300,
               width: (Dimensions.get('window').width) * 0.90,
@@ -118,15 +120,19 @@ export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate,
               <View style={{paddingRight: 8}}></View>
                 <PFText>{bloomQuantity}</PFText>
               </View> */}
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => navigation.navigate('')}
-              >
-                <Image
-                  source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
-                  style={styles.reactSize}
-                />
-              </TouchableOpacity>
+              <View style={styles.reactSize}>
+                <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                  <MaterialCommunityIcons
+                    name={liked ? "flower-tulip": "flower-tulip-outline" }
+                    size={24} 
+                    color={liked ? "#1D4123" : "#1D4123"}
+                    style={{marginTop: 3}}
+                  />
+                </Pressable>
+                <View style={{paddingRight: 8}}></View>
+                <PFText>{bloomQuantity}</PFText>
+              </View>
+              
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => navigation.navigate('CommentPage')}
@@ -155,95 +161,110 @@ export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate,
       </View>
     // )
   )
+}
 
-export const PFPostsImageOnlyCard = ({ userPhoto, imageURL, name, description, timeDate, onPress = () => {}}, 
+export const PFPostsImageOnlyCard = ({ userPhoto, imageURL, name, description, timeDate, bloomQuantity, onPress = () => {}}, 
   style,
-  cardContentStyle) => (
-  <View style={{...styles.cardPostContainer, ...style}}>
-    <Card style={{flex: 1}} onPress={() => onPress()}>
-      <Card.Cover 
-        source={require('../../assets/img/socmed/img.png')} 
-        style={{
-          height: 300,
-          width: (Dimensions.get('window').width) * 0.90,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20
-        }}
-      />
-      <Card.Content style={{...styles.cardPostContent, ...cardContentStyle}}>
-        <View style= {{flexDirection:'row'}}>
-          <Image 
-            source={require('../../assets/logo.png')}
+  cardContentStyle) => {
+  
+  const [liked, setLiked] = useState(false);
+
+    return (
+      <View style={{...styles.cardPostContainer, ...style}}>
+        <Card style={{flex: 1}} onPress={() => onPress()}>
+          <Card.Cover 
+            source={require('../../assets/img/socmed/img.png')} 
             style={{
-              height: 40,
-              width: 40,
-              borderRadius: 100,
-              marginRight: 10
+              height: 300,
+              width: (Dimensions.get('window').width) * 0.90,
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20
             }}
           />
-          <View style={{flexDirection:'column', flexShrink:1}}>
-            <PFText weight='semi-bold' size = {14}>{name}</PFText>
-            <View style={{flexDirection: 'row'}}>
-              <Image
-                // FAB using TouchableOpacity with an image
-                // For online image
-                source={ require('../../assets/drawerIcons/socmedIcons/public_green.png')}
-                // For local image
-                //source={require('./images/float-add-icon.png')}
-                style={styles.iconStyle}
+          <Card.Content style={{...styles.cardPostContent, ...cardContentStyle}}>
+            <View style= {{flexDirection:'row'}}>
+              <Image 
+                source={require('../../assets/logo.png')}
+                style={{
+                  height: 40,
+                  width: 40,
+                  borderRadius: 100,
+                  marginRight: 10
+                }}
               />
-              <PFText weight='light'size = {10}>{timeDate}</PFText>
+              <View style={{flexDirection:'column', flexShrink:1}}>
+                <PFText weight='semi-bold' size = {14}>{name}</PFText>
+                <View style={{flexDirection: 'row'}}>
+                  <Image
+                    // FAB using TouchableOpacity with an image
+                    // For online image
+                    source={ require('../../assets/drawerIcons/socmedIcons/public_green.png')}
+                    // For local image
+                    //source={require('./images/float-add-icon.png')}
+                    style={styles.iconStyle}
+                  />
+                  <PFText weight='light'size = {10}>{timeDate}</PFText>
+                </View>
+              </View>
+              {/* <View style={styles.followBtnContainer}>
+                <PFPrimaryButton title={'+ Follow'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
+              </View>         */}
             </View>
-          </View>
-          {/* <View style={styles.followBtnContainer}>
-            <PFPrimaryButton title={'+ Follow'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
-          </View>         */}
-        </View>
 
-        {/* ReactionSection */}
-        <View style={styles.reactContainer}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('')}
-          >
-            <Image
-              source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
-              style={styles.reactSize}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('CommentPage')}
-          >
-            <Image
-              source={ require('../../assets/drawerIcons/socmedIcons/comments.png')}
-              style={styles.reactSize}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('')}
-          >
-            <Image
-              // FAB using TouchableOpacity with an image
-              // For online image
-              source={ require('../../assets/drawerIcons/socmedIcons/more_icon.png')}
-              // For local image
-              //source={require('./images/float-add-icon.png')}
-              style={styles.reactSize}
-            />
-          </TouchableOpacity>
-        </View>
-      </Card.Content>
-    </Card>
-  </View>
-);
+            {/* ReactionSection */}
+            <View style={styles.reactContainer}>
+              <View style={styles.reactSize}>
+                <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                  <MaterialCommunityIcons
+                    name={liked ? "flower-tulip": "flower-tulip-outline" }
+                    size={24} 
+                    color={liked ? "#1D4123" : "#1D4123"}
+                    style={{marginTop: 3}}
+                  />
+                </Pressable>
+                <View style={{paddingRight: 8}}></View>
+                <PFText>{bloomQuantity}</PFText>
+              </View>
+
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => navigation.navigate('CommentPage')}
+              >
+                <Image
+                  source={ require('../../assets/drawerIcons/socmedIcons/comments.png')}
+                  style={styles.reactSize}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => navigation.navigate('')}
+              >
+                <Image
+                  // FAB using TouchableOpacity with an image
+                  // For online image
+                  source={ require('../../assets/drawerIcons/socmedIcons/more_icon.png')}
+                  // For local image
+                  //source={require('./images/float-add-icon.png')}
+                  style={styles.reactSize}
+                />
+              </TouchableOpacity>
+            </View>
+          </Card.Content>
+        </Card>
+      </View>
+    )
+  }
 
 export const PFPostsNoImageCard = ({
-  name, description, timeDate, 
+  name, description, timeDate, bloomQuantity, 
   onPress = () => {}}, 
   style, 
-  cardContentStyle) => (
+  cardContentStyle) => {
+    
+  const [liked, setLiked] = useState(false);
+
+  return (
   <View style={{...styles.cardPostContainer, ...style}}>
     <Card style={{flex: 1}} onPress={() => navigation.navigate('PostPage')}>
       <Card.Content style={{...styles.cardPostContent1, ...cardContentStyle}}>
@@ -276,15 +297,19 @@ export const PFPostsNoImageCard = ({
 
         {/* ReactionSection */}
         <View style={styles.reactContainer}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('')}
-          >
-            <Image
-              source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
-              style={styles.reactSize}
-            />
-          </TouchableOpacity>
+          <View style={styles.reactSize}>
+            <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+              <MaterialCommunityIcons
+                name={liked ? "flower-tulip": "flower-tulip-outline" }
+                size={24} 
+                color={liked ? "#1D4123" : "#1D4123"}
+                style={{marginTop: 3}}
+              />
+            </Pressable>
+            <View style={{paddingRight: 8}}></View>
+            <PFText>{bloomQuantity}</PFText>
+          </View>
+
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => navigation.navigate('')}
@@ -294,6 +319,7 @@ export const PFPostsNoImageCard = ({
               style={styles.reactSize}
             />
           </TouchableOpacity>
+
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => navigation.navigate('')}
@@ -311,7 +337,8 @@ export const PFPostsNoImageCard = ({
       </Card.Content>
     </Card>
   </View>
-);
+)
+}
 
 export const PFCommentCard = ({
   userPhoto, name, comment, reactionNum, replyNum, time,
@@ -399,6 +426,30 @@ style, cardContentStyle) => {
           <View styles={styles.msgContent}>
             <PFText weight='semi-bold' size={15}>{userName}</PFText>
             <Text style={{fontFamily: 'poppins-light', fontSize: 12, }}>{lastMsg}</Text>
+          </View>
+      </TouchableOpacity>
+  )
+};
+
+export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
+style, cardContentStyle) => {
+  return (
+      <TouchableOpacity style={styles.notifCard}>
+          <View>
+            <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 50,
+              width: 50,
+              borderRadius: 100,
+              marginRight: 5
+            }} 
+            />
+          </View>
+          {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
+          <View styles={styles.notifContent}>
+            <PFText weight='semi-bold' size={15}>{notifTitle}</PFText>
+            <Text style={{fontFamily: 'poppins-light', fontSize: 12, }}>{notifdetail}</Text>
           </View>
       </TouchableOpacity>
   )
@@ -1057,31 +1108,6 @@ export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
   )
 };
 
-export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
-style, cardContentStyle) => {
-  return (
-      <TouchableOpacity style={styles.notifCard}>
-          <View>
-            <Image 
-            source={require('../../assets/logo.png')}
-            style={{
-              height: 50,
-              width: 50,
-              borderRadius: 100,
-              marginRight: 5
-            }} 
-            />
-          </View>
-          {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
-          <View styles={styles.notifContent}>
-            <PFText weight='semi-bold' size={15}>{notifTitle}</PFText>
-            <Text style={{fontFamily: 'poppins-light', fontSize: 12, }}>{notifdetail}</Text>
-          </View>
-      </TouchableOpacity>
-  )
-};
-
-
 export const PFActiveOrders = ({
   statusIndicator,
   imageURL,
@@ -1277,7 +1303,7 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     borderRadius: 30, 
     alignItems: 'center', 
-    padding: 5,
+    padding: 15,
     paddingLeft: 20
   },
   userImage: {
@@ -1288,7 +1314,9 @@ const styles = StyleSheet.create({
     height: 30,
     width: (Dimensions.get('window').width) * 0.10,
     marginRight: 30,
-    marginLeft: 20
+    marginLeft: 20,
+    marginTop: 25,
+    justifyContent: 'center'
   },
   followBtnContainer:{
     alignItems: 'flex-end',

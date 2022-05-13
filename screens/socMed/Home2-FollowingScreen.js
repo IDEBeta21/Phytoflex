@@ -79,7 +79,7 @@ export default function FollowingScreenPage({navigation}) {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{marginLeft: 20, marginRight: 15}}>
         <View style={{height: 150, marginTop: 10, width: 110}}>
-          <TouchableOpacity style={ styles.conFollow }>
+          <TouchableOpacity style={ styles.conFollow } onPress={() => navigation.navigate('SocMedSearch')}>
             <Image
               // FAB using TouchableOpacity with an image
               // For online image
@@ -116,10 +116,10 @@ export default function FollowingScreenPage({navigation}) {
         <View>
           <PFFlatList
             numColumns={1}
-            noDataMessage='\You have no friends yet. Click the add button or search your friend.'
-            data={SampleData.cardPostData1}
+            noDataMessage='You have no friends yet. Click the add button or search your friend.'
+            data={SampleData.cardPostData}
             renderItem={(item) => (
-              <PFPostsCard 
+              <PFPostsImageOnlyCard 
                 imageURL={item.imageURL}
                 userPhoto={item.userPhoto}
                 name={item.name}
@@ -132,35 +132,33 @@ export default function FollowingScreenPage({navigation}) {
         </View>      
       </ScrollView>
       <View style={styles.createpost}>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={() => navigation.navigate('UserProfilePage')}
-            >
-              <Image
-                // FAB using TouchableOpacity with an image
-                // For online image
-                source={{uri : image}}
-                //source={ require('../../assets/img/profiles/Alejandre.jpg')}
-                // For local image
-                //source={require('./images/float-add-icon.png')}
-                style={styles.userPhoto}
-              />
-            </TouchableOpacity>
-            <PFText weight='semi-bold' size={15} style={styles.textFormat}>{userfullName}</PFText>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={() => navigation.navigate('CreatePostPage')}
-            >
-              <Image
-                // FAB using TouchableOpacity with an image
-                // For online image
-                source={ require('../../assets/drawerIcons/socmedIcons/add_post.png')}
-                // For local image
-                //source={require('./images/float-add-icon.png')}
-                style={styles.createpostIcon}
-              />
-            </TouchableOpacity>
-          </View>
+        <View>
+          <Image
+            // FAB using TouchableOpacity with an image
+            // For online image
+            source={{uri : image}}
+            //source={ require('../../assets/img/profiles/Alejandre.jpg')}
+            // For local image
+            //source={require('./images/float-add-icon.png')}
+            style={styles.userPhoto}
+            //style={styles.userImage}
+          />
+        </View>
+        <PFText weight='semi-bold' size={15} style={styles.textFormat}>{userfullName}</PFText>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => navigation.navigate('CreatePostPage')}
+        >
+          <Image
+            // FAB using TouchableOpacity with an image
+            // For online image
+            source={ require('../../assets/drawerIcons/socmedIcons/add_post.png')}
+            // For local image
+            //source={require('./images/float-add-icon.png')}
+            style={styles.createpostIcon}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

@@ -13,6 +13,7 @@ import PostPage from './PostPage';
 import UserProfilePage from './UserProfile';
 import CommentPage from './CommentPage';
 import ChatPage from './ChatPage';
+import TutorialPage from './Tutorial';
 
 import DrawerHeader from '../DrawerContents/DrawerHeader';
 
@@ -58,6 +59,11 @@ function FuncComments({navigation}) {
 function FuncChat({navigation}) {
   return (
     <ChatPage navigation={navigation}/>
+  );
+}
+function FuncTutorial({navigation}) {
+  return (
+    <TutorialPage navigation={navigation}/>
   );
 }
 
@@ -157,6 +163,17 @@ function App({navigation}) {
           component={FuncComments}
           options={{ 
             headerTitle: (props) => <Header title={'Comments'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
+        <Stack.Screen
+          name="Tutorial"
+          component={FuncTutorial}
+          options={{ 
+            headerTitle: (props) => <Header title={'Welcome to Phytoflex!'} navigation={navigation} />, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },
