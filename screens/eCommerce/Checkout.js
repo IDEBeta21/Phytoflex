@@ -176,7 +176,7 @@ export default function  CheckoutPage  ({ route, navigation}){
       ResultMacthed : "False",
       contactNumber : contactNumber,
       customerName: customerName,
-      date : today,
+      date : "5/14/2022",
       deliveredTime : "3:45 pm 04-27-2022",
       deliveryAddres : Address,
       orderId: "0", 
