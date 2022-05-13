@@ -1078,6 +1078,291 @@ style, cardContentStyle) => {
   )
 };
 
+<<<<<<< Updated upstream
+=======
+
+export const PFActiveOrders = ({
+  statusIndicator,
+  imageURL,
+  timePurchase,
+  orderIDNo,
+  total, 
+  items,
+  onPress = () => {}}, 
+  style, 
+  cardContentStyle) => {
+
+    
+    return(
+      <View style={{...styles.cardActiveOrderContainer, ...style}}>
+      <Card style={{flex: 1}} onPress={() => onPress()}>
+        
+      <View style={{...styles.cardActiveOrder, ...style}}>
+      <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+        <View style= {{flexDirection:'row', alignItems: 'center', }}>
+               <Image 
+                   source={require('../../assets/logo.png')}
+                    style={{
+                    marginTop: 5,
+                    height: 100,
+                    width: (Dimensions.get('window').width/1) * 0.25,
+                    resizeMode:'contain',
+                   borderRadius: 10 }} />
+  
+        <Card.Content style={{...styles.cardActiveOrderContent, ...cardContentStyle}}>
+                 
+                <View style={{ flexDirection:'row', }}> 
+                <PFText weight='semi-bold' size = {18}>Order ID: {orderIDNo} </PFText>
+                </View>
+                <View>
+                <PFText weight='medium' size = {14}>{timePurchase}</PFText>
+               {/*<PFText weight='medium' size = {16}>{items}</PFText> */ }
+  
+                <View style={{ flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                <PFText weight='medium' size = {14} color = {"green"}> {'\u2B24'} {statusIndicator} </PFText>
+                <PFText weight='semi-bold' size = {20} color = {"green"}>P {total}</PFText>
+  
+                </View>
+  
+                </View>
+              
+        </Card.Content>
+             
+              </View>   
+      </Card>
+    </View>
+      </Card>
+    </View>
+
+    )
+
+  };
+
+  export const PFHistoryOrders = ({
+    statusIndicator,
+    imageURL,
+    timePurchase,
+    orderIDNo,
+    total, 
+    items,
+    navigate,
+    onPress = () => {}}, 
+    style, 
+    cardContentStyle) => {
+  
+      
+      return(
+        <View style={{...styles.cardHistoryOrderContainer, ...style}}>
+        <Card style={{flex: 1}} onPress={() => onPress()}>
+          
+        <View style={{...styles.cardHistoryOrder, ...style}}>
+        <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+          <View style= {{flexDirection:'row', alignItems: 'center', }}>
+                 <Image 
+                     source={require('../../assets/logo.png')}
+                      style={{
+                      marginTop: 5,
+                      height: 100,
+                      marginLeft:5,
+                      width: (Dimensions.get('window').width/1) * 0.25,
+                      resizeMode:'contain',
+                     borderRadius: 10 }} />
+    
+          <Card.Content style={{...styles.cardHistoryOrderContent, ...cardContentStyle}}>
+                   
+                  <View style={{ flexDirection:'row', }}> 
+                  <PFText weight='semi-bold' size = {18}>Order ID: {orderIDNo} </PFText>
+                  </View>
+                  <View>
+                  <PFText weight='medium' size = {14}>{timePurchase}</PFText>
+                 {/*<PFText weight='medium' size = {16}>{items}</PFText> */ }
+    
+                  <View style={{ flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                  <PFText weight='medium' size = {14} color = {"green"}> {'\u2B24'} {statusIndicator} </PFText>
+                  <PFText weight='semi-bold' size = {20} color = {"green"}>P {total}</PFText>
+                  </View>
+                  <TouchableOpacity   onPress={navigate}>
+                  <View style = {{...styles.cardHistoryOrder, ...style, backgroundColor: '#1D4123', paddingTop:5, paddingBottom:5,}}>
+                  <Text style={{ color: '#ffff', fontSize: 16, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>Rate</Text>
+                  </View>
+                  </TouchableOpacity>
+    
+                  </View>
+                
+          </Card.Content>
+               
+                </View>   
+        </Card>
+      </View>
+        </Card>
+      </View>
+  
+      )
+  
+    };
+  
+
+    export const PFReviewPlant = ({
+      statusIndicator,
+      imageURL,
+      timePurchase,
+      orderIDNo,
+      total, 
+      items,
+
+
+      itemName,
+      onPress = () => {}}, 
+      style, 
+      cardContentStyle) => {
+    
+        const [text, onChangeText] = React.useState("Useless Text");
+        const [number, onChangeNumber] = React.useState(null);
+        return(
+          <View style={{...styles.cardReviewPlantContainer, ...style,}}>
+          <Card style={{flex: 1}} onPress={() => onPress()}>
+            
+          <View style={{...styles.cardReviewPlant, ...style}}>
+          <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+            <View style= {{flexDirection:'row', alignItems: 'center', }}>
+                   <Image 
+                       source={require('../../assets/logo.png')}
+                        style={{
+                        marginTop: 5,
+                        height: 100,
+                        width: (Dimensions.get('window').width/1) * 0.25,
+                        resizeMode:'contain',
+                        borderRadius: 10 }} />
+      
+          <Card.Content style={{...styles.cardReviewPlantContent, ...cardContentStyle}}>
+                     
+                    <View style={{ flexDirection:'row', }}> 
+                    <PFText weight='semi-bold' size = {18}>{itemName} </PFText>
+                    </View>
+                    <View>
+                    <PFText weight='medium' size = {14}>by Phyto Shop</PFText>
+                    </View> 
+            </Card.Content>
+                  
+                  </View>   
+                  
+                  <View style = {{paddingLeft:5}}>
+                  <View style={{ flexDirection:'column',  paddingTop: 8, paddingBottom: 5,}}>
+                      <PFText weight='semi-bold' size = {18}>Rate this Plant</PFText>
+                      <PFText weight='semi-bold' size = {18}></PFText>
+                      <PFText weight='semi-bold' size = {18}></PFText>
+                    </View>
+                  <View style = {{paddingBottom: 5}}>
+                  <PFText weight='semi-bold' size = {18}>Write Your Review</PFText>
+                    </View>
+                  <TextInput style = {{...styles.inputReview, marginRight:5, marginLeft: 5}}
+               underlineColorAndroid = "transparent"
+               placeholder = "Add your comments and review about the plant. Add up to 100 characters"
+               placeholderTextColor = "light-gray"
+               autoCapitalize = "none"
+               multiline={true}
+               numberOfLines={2}
+               />
+
+                
+                  </View>
+          </Card>
+        </View>
+                  
+
+
+                  
+                    
+          </Card>
+        </View>
+    
+        )
+    
+      };
+
+
+
+
+
+
+
+export const PFTrackOrderDetails = ({
+  orderIDLabel, 
+  orderIDNo,
+  timePurchase,
+  custName,
+  custcontactNum,
+  shipAddress,
+  items1,
+  quantity1,
+  imageURL1,
+  price1,
+  items2,
+  quantity2,
+  imageURL2,
+  price2,
+  deliveryFee,
+  subTotal,
+  totalPayment,
+  
+
+
+  onPress = () => {}}, 
+  style, 
+  cardContentStyle) => (
+  <View style={{...styles.cardTrackOrderDetailsContainer, ...style}}>
+    <Card style={{flex: 1, }} onPress={() => onPress()}>
+             
+         <Card.Content style={{...styles.cardTrackOrderDetailsContent, ...cardContentStyle}}>
+               <View style = {{flexDirection: 'row', flex: 1, justifyContent: 'space-between', marginBottom: 5 }}>
+               <PFText   weight='semi-bold' size = {14}>Order ID: </PFText>
+               <PFText  paddingRight= {0 }weight='semi-bold' size = {14}>{orderIDNo}</PFText>
+              <View style = {{}}>
+              <PFText  weight='light' size = {14}>{timePurchase}</PFText>
+              </View>
+              </View>
+              <View>
+              <PFText weight='semi-bold' size = {20}>Delivery Status</PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+              <PFText weight='semi-bold' size = {18}> </PFText>
+
+              </View>
+              
+              <PFText weight='semi-bold' size = {18}>Order Summary</PFText>
+             <View style ={{...styles.orderSummary, ...style}}>
+              <PFText  weight='semi-bold' size = {18}>{custName}</PFText>
+              <PFText  weight='medium' size = {14}>{custcontactNum}</PFText>
+              <View style = {{flex: 1, flexDirection: 'column'}}>
+              <PFText  weight='medium' size = {14}>{shipAddress}</PFText>
+              </View>
+              </View>
+              <PFText weight='semi-bold' size = {18}></PFText>
+
+              <PFText weight='semi-bold' size = {18}>Items</PFText>
+
+
+
+
+
+  
+          </Card.Content>
+                    
+    </Card>
+  </View>
+    
+);
+
+
+
+
+>>>>>>> Stashed changes
 const styles = StyleSheet.create({
   // Social Media----------------------------
   reactContainer: {
@@ -1474,5 +1759,138 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     paddingTop: 15,
     paddingBottom: 15
+<<<<<<< Updated upstream
   }
+=======
+  },
+
+  //ACTIVE ORDERS
+  cardActiveOrderContainer:{
+    flex: 1,
+    marginTop: 10,
+
+  },
+  cardActiveOrder: {
+    borderRadius: 10,
+    borderWidth: 1,
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 14,
+
+  }, 
+  cardActiveOrderContent:{
+    justifyContent: "space-evenly",
+    width: '65%',
+    paddingRight: 0,
+    padding: 12,
+  },
+
+//History Order
+cardHistoryOrderContainer:{
+  flex: 1,
+  marginTop: 10,
+
+},
+cardHistoryOrder: {
+  borderRadius: 10,
+  borderWidth: 1,
+  paddingTop: 5,
+  paddingBottom: 5,
+  paddingRight: 0,
+}, 
+
+cardHistoryOrderContent:{
+  justifyContent: "space-evenly",
+  width: '65%',
+  paddingRight: 0,
+  padding: 12,
+},
+
+//REVIEW PLANTS
+cardReviewPlantContainer:{
+  alignItems: 'center'
+//    alignSelf: 'center'
+},
+cardReviewPlant: {
+  padding:11,
+  alignSelf: 'center',
+  justifyContent: 'center'
+
+  
+}, 
+cardReviewPlantContent:{
+  width: '73%',
+  
+//  borderWidth:1,
+
+
+},
+inputReview: {
+  padding:15,
+paddingLeft:25,
+  paddingRight:25,
+
+  // textAlignVertical: "center",
+  fontSize:14,
+  fontFamily: 'poppins-light',
+ textAlignVertical: "top",
+  borderWidth: 1,
+  borderRadius: 10,
+  alignSelf: 'center',
+  justifyContent: 'center',
+},
+
+
+
+
+  cardTrackOrderDetailsContainer:{
+    flex:1,
+   },
+ 
+   cardTrackOrderDetailsContent:{
+     padding: 15,
+     marginTop: 0,
+     justifyContent: 'space-evenly',
+ 
+   },
+   orderSummary:{
+     paddingLeft: 15,
+     padding:5,
+     marginTop: 10,
+  //  marginBottom:15,
+     borderWidth:1,
+     borderRadius:5,
+   },
+   cardItemsOrderContainer: {
+    flex:1,
+
+   },
+    cardItemsOrder: {
+      flex:1,
+  marginStart: 10,
+      borderRadius: 10,
+    borderWidth: 1,
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    alignContent: 'center',
+  //  justifyContent: 'center',
+
+    width: '95%',
+
+
+  },
+    cardItemsOrderContent: {
+      paddingLeft: 25,
+      margin: 10,
+
+    },
+ 
+
+
+
+
+
+>>>>>>> Stashed changes
 })
