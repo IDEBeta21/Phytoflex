@@ -2,6 +2,7 @@ import { Button, StyleSheet, Text, View, Image, Pressable, TextInput} from 'reac
 import React, { Component } from 'react';
 import{ useState } from 'react';
 import { IconButton, Colors } from 'react-native-paper';
+import {ImagePicker} from 'react-native-image-picker'
 import firebase from 'firebase';
 
 // import * as React from 'react';
@@ -416,7 +417,15 @@ const style = StyleSheet.create({
   dscheaderIcons:{
     height: 24, 
     width: 24, 
-    marginLeft: 35
-  }
-  
+    marginLeft: 35,
+    //marginRight: 20
+
+  },
+  dscwhiteHeaderIcons:{
+    height: 24, 
+    width: 24, 
+    marginLeft: 20,
+    marginBottom: 1,
+    marginRight: 5
+  },
 });

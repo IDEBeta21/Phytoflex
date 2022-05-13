@@ -897,7 +897,7 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
            {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
             <PFText weight='light'size = {10}>{dateTime}</PFText>
           </View>
-          <View style={styles.followBtnContainer}>
+          <View style={styles.SolvedBtnContainer}>
             <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
           </View>        
         </View>
@@ -962,8 +962,6 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
   </View>
 
      )
-  
-
   }
 
 export const PFCommentCard2 = ({
@@ -1021,6 +1019,7 @@ export const PFCommentCard2 = ({
         </View>
         <View style={ styles.container }>
           <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Delete</PFText>
         </View>
       </View>
     </View>
@@ -1055,17 +1054,6 @@ export const PFCartImage = ({imageURL, onPress = () =>{}}, style) => {
   )
 };
 
-export const PFShippingAddressCard =({name, contactNumber, customerAddress}, 
-  style, cardContentStyle) => {
-    return (
-      <View style={styles.shippingAddress}>
-        <PFText weight='semi-bold' size={15}>{name}</PFText>
-        <PFText size={12}>{contactNumber}</PFText>
-        <PFText size={12}>{customerAddress}</PFText>
-      </View>
-    )
-}
-
 export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
 style, cardContentStyle) => {
   return (
@@ -1089,145 +1077,6 @@ style, cardContentStyle) => {
       </TouchableOpacity>
   )
 };
-
-
-export const PFActiveOrders = ({
-  statusIndicator,
-  imageURL,
-  timePurchase,
-  orderIDNo,
-  total, 
-  items,
-  onPress = () => {}}, 
-  style, 
-  cardContentStyle) => {
-
-    
-    return(
-      <View style={{...styles.cardActiveOrderContainer, ...style}}>
-      <Card style={{flex: 1}} onPress={() => onPress()}>
-        
-      <View style={{...styles.cardActiveOrder, ...style}}>
-      <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
-        <View style= {{flexDirection:'row', alignItems: 'center', }}>
-               <Image 
-                   source={require('../../assets/logo.png')}
-                    style={{
-                    marginTop: 5,
-                    height: 100,
-                    width: (Dimensions.get('window').width/1) * 0.25,
-                    resizeMode:'contain',
-                   borderRadius: 10 }} />
-  
-        <Card.Content style={{...styles.cardActiveOrderContent, ...cardContentStyle}}>
-                 
-                <View style={{ flexDirection:'row', }}> 
-                <PFText weight='semi-bold' size = {18}>Order ID: {orderIDNo} </PFText>
-                </View>
-                <View>
-                <PFText weight='medium' size = {14}>{timePurchase}</PFText>
-               {/*<PFText weight='medium' size = {16}>{items}</PFText> */ }
-  
-                <View style={{ flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
-                <PFText weight='medium' size = {14} color = {"green"}> {'\u2B24'} {statusIndicator} </PFText>
-                <PFText weight='semi-bold' size = {20} color = {"green"}>P {total}</PFText>
-  
-                </View>
-  
-                </View>
-              
-        </Card.Content>
-             
-              </View>   
-      </Card>
-    </View>
-      </Card>
-    </View>
-
-    )
-
-  };
-
-
-
-
-
-
-export const PFTrackOrderDetails = ({
-  orderIDLabel, 
-  orderIDNo,
-  timePurchase,
-  custName,
-  custcontactNum,
-  shipAddress,
-  items1,
-  quantity1,
-  imageURL1,
-  price1,
-  items2,
-  quantity2,
-  imageURL2,
-  price2,
-  deliveryFee,
-  subTotal,
-  totalPayment,
-  
-
-
-  onPress = () => {}}, 
-  style, 
-  cardContentStyle) => (
-  <View style={{...styles.cardTrackOrderDetailsContainer, ...style}}>
-    <Card style={{flex: 1, }} onPress={() => onPress()}>
-             
-         <Card.Content style={{...styles.cardTrackOrderDetailsContent, ...cardContentStyle}}>
-               <View style = {{flexDirection: 'row', flex: 1, justifyContent: 'space-between', marginBottom: 5 }}>
-               <PFText   weight='semi-bold' size = {14}>Order ID: </PFText>
-               <PFText  paddingRight= {0 }weight='semi-bold' size = {14}>{orderIDNo}</PFText>
-              <View style = {{}}>
-              <PFText  weight='light' size = {14}>{timePurchase}</PFText>
-              </View>
-              </View>
-              <View>
-              <PFText weight='semi-bold' size = {20}>Delivery Status</PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-              <PFText weight='semi-bold' size = {18}> </PFText>
-
-              </View>
-              
-              <PFText weight='semi-bold' size = {18}>Order Summary</PFText>
-             <View style ={{...styles.orderSummary, ...style}}>
-              <PFText  weight='semi-bold' size = {18}>{custName}</PFText>
-              <PFText  weight='medium' size = {14}>{custcontactNum}</PFText>
-              <View style = {{flex: 1, flexDirection: 'column'}}>
-              <PFText  weight='medium' size = {14}>{shipAddress}</PFText>
-              </View>
-              </View>
-              <PFText weight='semi-bold' size = {18}></PFText>
-
-              <PFText weight='semi-bold' size = {18}>Items</PFText>
-
-
-
-
-
-  
-          </Card.Content>
-                    
-    </Card>
-  </View>
-    
-);
-
-
-
 
 const styles = StyleSheet.create({
   // Social Media----------------------------
@@ -1405,14 +1254,6 @@ const styles = StyleSheet.create({
     padding: 10
   },
   //Social Media---------------------------
-  shippingAddress: {
-    flexDirection: 'column', 
-    padding: 15, 
-    borderWidth: 1, 
-    borderColor: '#1d4123', 
-    borderRadius: 5, 
-    marginTop: 5
-  },
   cardShopContainer: {
     
     marginBottom: 5,
@@ -1596,6 +1437,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     flexGrow:1
   },
+  SolvedBtnContainer:{
+    alignItems: 'flex-end',
+    flexGrow:1
+  },
   cardForumContentStyle:{
     padding: 2,
   },
@@ -1629,76 +1474,5 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     paddingTop: 15,
     paddingBottom: 15
-  },
-
-  //ACTIVE ORDERS
-  cardActiveOrderContainer:{
-    flex: 1,
-    marginTop: 10,
-
-  },
-  cardActiveOrder: {
-    borderRadius: 10,
-    borderWidth: 1,
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 14,
-
-  }, 
-  cardActiveOrderContent:{
-    justifyContent: "space-evenly",
-    width: '65%',
-    paddingRight: 0,
-    padding: 12,
-  },
-
-  cardTrackOrderDetailsContainer:{
-    flex:1,
-   },
- 
-   cardTrackOrderDetailsContent:{
-     padding: 15,
-     marginTop: 0,
-     justifyContent: 'space-evenly',
- 
-   },
-   orderSummary:{
-     paddingLeft: 15,
-     padding:5,
-     marginTop: 10,
-  //  marginBottom:15,
-     borderWidth:1,
-     borderRadius:5,
-   },
-   cardItemsOrderContainer: {
-    flex:1,
-
-   },
-    cardItemsOrder: {
-      flex:1,
-  marginStart: 10,
-      borderRadius: 10,
-    borderWidth: 1,
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 5,
-    paddingRight: 5,
-    alignContent: 'center',
-  //  justifyContent: 'center',
-
-    width: '95%',
-
-
-  },
-    cardItemsOrderContent: {
-      paddingLeft: 25,
-      margin: 10,
-
-    },
- 
-
-
-
-
-
+  }
 })

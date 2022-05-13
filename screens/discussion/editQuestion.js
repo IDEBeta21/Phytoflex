@@ -14,7 +14,7 @@ import globalVariable from '../landing/login';
 export default function  EditQuestionPage   ({navigation}){ 
 return(
     <View>
-        <PFText>Hello World</PFText>
+         <PFPrimaryButton style={{marginTop: 25, marginLeft: 25, marginRight: 20}} title={'Delete'} onPress={() => navigation.navigate('CreateQuestionPage')}></PFPrimaryButton>
     </View>
 )
 }
