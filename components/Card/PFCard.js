@@ -1148,6 +1148,128 @@ export const PFActiveOrders = ({
 
   };
 
+  export const PFHistoryOrders = ({
+    statusIndicator,
+    imageURL,
+    timePurchase,
+    orderIDNo,
+    total, 
+    items,
+    navigate,
+    onPress = () => {}}, 
+    style, 
+    cardContentStyle) => {
+      
+      
+      return(
+        <View style={{...styles.cardHistoryOrderContainer, ...style}}>
+        <Card style={{flex: 1}} onPress={() => onPress()}>
+          
+        <View style={{...styles.cardHistoryOrder, ...style}}>
+        <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+          <View style= {{flexDirection:'row', alignItems: 'center', }}>
+                 <Image 
+                     source={require('../../assets/logo.png')}
+                      style={{
+                      marginTop: 5,
+                      height: 100,
+                      marginLeft:5,
+                      width: (Dimensions.get('window').width/1) * 0.25,
+                      resizeMode:'contain',
+                     borderRadius: 10 }} />
+    
+          <Card.Content style={{...styles.cardHistoryOrderContent, ...cardContentStyle}}>
+                   
+                  <View style={{ flexDirection:'row', }}> 
+                  <PFText weight='semi-bold' size = {18}>Order ID: {orderIDNo} </PFText>
+                  </View>
+                  <View>
+                  <PFText weight='medium' size = {14}>{timePurchase}</PFText>
+                 {/*<PFText weight='medium' size = {16}>{items}</PFText> */ }
+    
+                  <View style={{ flexDirection:'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                  <PFText weight='medium' size = {14} color = {"green"}> {'\u2B24'} {statusIndicator} </PFText>
+                  <PFText weight='semi-bold' size = {20} color = {"green"}>P {total}</PFText>
+                  </View>
+                  <TouchableOpacity   onPress={navigate}>
+                  <View style = {{...styles.cardHistoryOrder, ...style, backgroundColor: '#1D4123', paddingTop:5, paddingBottom:5,}}>
+                  <Text style={{ color: '#ffff', fontSize: 16, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>Rate</Text>
+                  </View>
+                  </TouchableOpacity>
+    
+                  </View>
+                
+          </Card.Content>
+               
+                </View>   
+        </Card>
+      </View>
+        </Card>
+      </View>
+  
+      )
+  
+    };
+  
+
+    export const PFReviewPlant = ({
+      statusIndicator,
+      imageURL,
+      timePurchase,
+      orderIDNo,
+      total, 
+      items,
+
+
+      itemName,
+      onPress = () => {}}, 
+      style, 
+      cardContentStyle) => {
+
+        const [text, onChangeText] = React.useState("Useless Text");
+        const [number, onChangeNumber] = React.useState(null);
+        return(
+          <View style={{...styles.cardReviewPlantContainer, ...style,}}>
+          <Card style={{flex: 1}} onPress={() => onPress()}>
+            
+          <View style={{...styles.cardReviewPlant, ...style}}>
+          <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
+            <View style= {{flexDirection:'row', alignItems: 'center', }}>
+                   <Image 
+                       source={require('../../assets/logo.png')}
+                        style={{
+                        marginTop: 5,
+                        height: 100,
+                        width: (Dimensions.get('window').width/1) * 0.25,
+                        resizeMode:'contain',
+                        borderRadius: 10 }} />
+      
+          <Card.Content style={{...styles.cardReviewPlantContent, ...cardContentStyle}}>
+                     
+                    <View style={{ flexDirection:'row', }}> 
+                    <PFText weight='semi-bold' size = {18}>Order ID: {orderIDNo} </PFText>
+                    </View>
+                    <View>
+                    <PFText weight='medium' size = {14}>by Phyto Shop</PFText>
+                    </View> 
+            </Card.Content>
+                  
+                  </View>   
+                  <PFText weight='semi-bold' size = {18}>Rate this Plant Items</PFText>
+                 
+          </Card>
+        </View>
+                  
+
+
+                  
+                    
+          </Card>
+        </View>
+    
+        )
+    
+      };
 
 
 
@@ -1416,7 +1538,7 @@ const styles = StyleSheet.create({
   cardShopContainer: {
     
     marginBottom: 5,
-    marginLeft: 12,
+    marginLeft: 10,
     marginStart: 8,
     width: (Dimensions.get('window').width/2) * 0.88,
     borderWidth: 1, 
@@ -1652,6 +1774,63 @@ const styles = StyleSheet.create({
     padding: 12,
   },
 
+//History Order
+cardHistoryOrderContainer:{
+  flex: 1,
+  marginTop: 10,
+
+},
+cardHistoryOrder: {
+  borderRadius: 10,
+  borderWidth: 1,
+  paddingTop: 5,
+  paddingBottom: 5,
+  paddingRight: 0,
+}, 
+
+cardHistoryOrderContent:{
+  justifyContent: "space-evenly",
+  width: '65%',
+  paddingRight: 0,
+  padding: 12,
+},
+
+//REVIEW PLANTS
+cardReviewPlantContainer:{
+  alignItems: 'center'
+//    alignSelf: 'center'
+},
+cardReviewPlant: {
+  padding:11,
+  alignSelf: 'center',
+  justifyContent: 'center'
+
+  
+}, 
+cardReviewPlantContent:{
+  width: '73%',
+  
+//  borderWidth:1,
+
+
+},
+inputReview: {
+  padding:15,
+paddingLeft:25,
+  paddingRight:25,
+
+  // textAlignVertical: "center",
+  fontSize:14,
+  fontFamily: 'poppins-light',
+ textAlignVertical: "top",
+  borderWidth: 1,
+  borderRadius: 10,
+  alignSelf: 'center',
+  justifyContent: 'center',
+},
+
+
+  
   cardTrackOrderDetailsContainer:{
     flex:1,
    },

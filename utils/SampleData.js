@@ -485,19 +485,19 @@ export default SampleData = {
 
     plantCategory: [
         {
-          imageURL: 'https://picsum.photos/700' ,
+          imageURL: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/Shop%2FIndoor.png?alt=media&token=8ea48222-4d7c-4248-8f7c-8c18a72c714b' ,
           category: 'Indoor Plant'
         },
         {
-            imageURL: 'https://picsum.photos/700',
+            imageURL: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/Shop%2FOutdoor.png?alt=media&token=083a4d60-0ce2-4adc-9c12-5db5ea7a1f25',
             category: 'Outdoor Plant'
         },
         {
-            imageURL: 'https://picsum.photos/700',
+            imageURL: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/Shop%2FPlantCrops.png?alt=media&token=1a9f9fd0-64f7-4b37-8f6f-a9b6b6f33109',
             category: 'Plant Crops'
         },
         {
-            imageURL: 'https://picsum.photos/700',
+            imageURL: 'https://firebasestorage.googleapis.com/v0/b/phytoflex-3f53f.appspot.com/o/Shop%2FPotsAndPlanters.png?alt=media&token=c5ffcb68-acf4-430a-ac02-d137769ebc09',
             category: 'Pots and Planters'
         },
 
@@ -646,7 +646,7 @@ export default SampleData = {
             contactNumber: "+ (63) 956 480 5698",
             address: "89 ilang-ilang St.Bo.Conception Tala Caloocan City Brgy 188",
             imageURL: 'https://picsum.photos/700',
-            itemName: 'Gymnocalycium Chin',
+            itemName: 'Gymnocalycium Chin Cactus Small For Sale',
             category: 'Indoor Plant',
             price: 549,
             quantity: 1,

@@ -70,6 +70,7 @@ import ThreadsLog from './screens/DrawerContents/ActivityLogScreens/ThreadsLog';
 import ActiveOrders from './screens/DrawerContents/TrackHistoryLogScreen/ActiveOrders';
 import HistoryOrders from './screens/DrawerContents/TrackHistoryLogScreen/HistoryOrders';
 import TrackOrderDetails from './screens/DrawerContents/TrackHistoryLogScreen/TrackOrderDetails';
+import ReviewPlantPage from './screens/DrawerContents/TrackHistoryLogScreen/reviewPlant';
 
 
 // import { AppLoading } from 'expo';\
@@ -251,6 +252,11 @@ function FuncTrackOrderDetails({navigation, route}){
     <TrackOrderDetails navigation={navigation} route ={route}/>
   )
 }
+function FuncReviewPlant({navigation, route}){
+  return(
+    <ReviewPlantPage navigation={navigation} route ={route}/>
+  )
+}
 
 
 const AuthStack = createNativeStackNavigator();
@@ -411,6 +417,7 @@ function SideBar({navigation}){
             },
             headerTintColor: 'white'
           }} />
+
           <Drawer.Screen 
           name="DrawerActiveOrders"
           component={FuncActiveOrders}
@@ -449,6 +456,18 @@ function SideBar({navigation}){
             },
             headerTintColor: 'white'
           }} />
+          <Drawer.Screen 
+              name="DrawerReviewPlant"
+              component={FuncReviewPlant}
+              options={{ 
+                headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerTrackHistory'} screenDescription={'TrackOrderDetails'} title={'Write a Review'} navigation={navigation} />, 
+                headerLeft:false,
+                headerStyle: {
+                  backgroundColor: '#1D4123',
+                  elevation: 0
+                },
+                headerTintColor: 'white'
+              }} />
 
           <Drawer.Screen 
           name="DrawerSettings"
