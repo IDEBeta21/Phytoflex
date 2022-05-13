@@ -137,10 +137,11 @@ export default function ReviewPlantPage({navigation, route}) {
   
  
   return (
+
     <ScrollView style={{paddingHorizontal: 10, paddingTop: 10, paddingBottom: 20}} showsHorizontalScrollIndicator={false} >
-    <View style={ globalStyles.textContainer }>
-    
-      <PFFlatList
+    <View>
+    </View>
+      {/* <PFFlatList
           numColumns={1}
           noDataMessage='No Orders'
           data={refdata}
@@ -149,23 +150,38 @@ export default function ReviewPlantPage({navigation, route}) {
              timePurchase={item.date}
              orderIDNo = {item.orderId}
              total = {item.totalPayment}
-             onPress={() => {navigation.navigate('DrawerTrackOrderDetails', 
-             {
-              orderIDNo: item.orderId,
-              timePurchase: item.date,
-              orderStatus: item.orderStatNum
-            }            
-             ) }}          
+            //  onPress={() => {navigation.navigate('DrawerTrackOrderDetails', 
+            //  {
+            //   orderIDNo: item.orderId,
+            //   timePurchase: item.date,
+            //   orderStatus: item.orderStatNum
+            // }            
+            //  ) }}          
 
             />
           )}
           keyExtractor={(item,index) => index}
-        />
-<View style={{borderWidth: 1, borderColor: Colors.primary, borderRadius: 5, paddingHorizontal: 12, marginBottom: 20, width: "100%"}}>
+        /> */}
+        <View style= {{flexDirection:'row', width: '70%', marginBottom:20, }}>
+                   <Image 
+                       source={require('../../../assets/logo.png')}
+                        style={{
+                        marginTop: 5,
+                        height: 100,
+                        width: (Dimensions.get('window').width/1) * 0.25,
+                        resizeMode:'contain',
+                        borderRadius: 10 }} />
+           <View style = {{flexDirection:'column',alignContent: 'center', paddingLeft:10, justifyContent:'center' }}> 
+                    <PFText weight='semi-bold' size = {18}>Order ID: {route.params.orderIDNo} </PFText>
+                    <PFText weight='medium' size = {14}>by Phyto Shop</PFText>
+                    </View>
+      </View>
+      <View style = {{borderWidth:1, borderRadius:10,width:'96%', alignSelf: 'center' }}>
       <PFFlatList
         data={orderedItems}
         renderItem={(item) => (
-          <View style={{flexDirection: 'row', paddingVertical: 10, }}>
+          
+          <View style={{flexDirection: 'row', paddingVertical: 10, padding:10, }}>
             <View >
               <Image source={{uri : image}} style={{height: 50, width: 50, borderRadius: 5}} />
             </View>
@@ -192,41 +208,42 @@ export default function ReviewPlantPage({navigation, route}) {
         keyExtractor={(item,index) => index.toString()}
       />
     </View>
-    </View>
-
-                  <View style = {{paddingLeft:5}}>
-                  <View style={{ flexDirection:'column', paddingBottom: 5,}}>
-                   
-                      <PFText weight='semi-bold' size = {18}></PFText>
-                      <PFText weight='semi-bold' size = {18}></PFText>
-                    </View>
-                  <View style = {{paddingBottom: 5}}>
+                  
+                  
                   {/* star rating */}
-                        <StarRating
+                         <StarRating
                         rating={rating}
                         onChange={setRating}
-                        starSize={50}
-                        style={{marginTop: 10, marginLeft: 10}}
-                        />
-                  <PFText weight='semi-bold' size = {18}>Write Your Review</PFText>
+                        starSize={55}
+                        style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20 }}
+                        /> 
+                    <View style = {{paddingBottom:5, paddingLeft:5}}>
+                      <PFText weight='semi-bold' size = {18}>Write Your Review</PFText>
                     </View>
-                  <TextInput style = {{...styles.inputReview, marginRight:5, marginLeft: 5}}
+                    
+                    <View style = {{width: '98%',alignSelf: 'center', marginBottom:10}}>
+                    
+                    <TextInput style = {{...styles.inputReview, marginRight:5, marginLeft: 5, alignItems:"center",}}
                underlineColorAndroid = "transparent"
-               placeholder = "Add your comments and review about the plant. Add up to 100 characters"
+               placeholder = "Add your comments and review about the plants here. "
                placeholderTextColor = "light-gray"
                autoCapitalize = "none"
                multiline={true}
-               numberOfLines={2}
+               numberOfLines={4}
                onChangeText = {(text) => setaddReview(text)}
                />
-                  </View>
-                 <View style={{paddingTop: 100, alignItems:"center"}}>
-                  <TouchableOpacity  style = {{width:"91%"}}  onPress={() => addReview()}>
+               <View style = {{alignSelf: 'flex-end', padding:5}}>
+               <PFText weight='light' color = 'light-gray' size = {14}>Add up to 40 characters</PFText>
+               </View>
+               </View>
+                 <View style={{ alignItems:"center", }}>
+                  <TouchableOpacity style = {{width:"96%"}}  onPress={() => addReview()}>
                   <View style = {{...styles.submitReviewBtn, backgroundColor: '#1D4123', paddingTop:10, paddingBottom:10, alignItems: 'center', justifyContent: 'center',}}>
                   <Text style={{ color: '#ffff', fontSize: 16, fontFamily: 'poppins-semiBold', textAlign: 'center'}}>Submit Review</Text>
                   </View>
                   </TouchableOpacity>
                   </View>
+
 
 </ScrollView>
 

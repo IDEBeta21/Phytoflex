@@ -1218,12 +1218,12 @@ export const PFActiveOrders = ({
         const [text, onChangeText] = React.useState("Useless Text");
         const [number, onChangeNumber] = React.useState(null);
         return(
-          <View style={{...styles.cardReviewPlantContainer, ...style,}}>
+          <View style={{...styles.cardReviewPlantContainer, ...style,backgroundColor: 'blue' }}>
           <Card style={{flex: 1}} onPress={() => onPress()}>
             
           <View style={{...styles.cardReviewPlant, ...style}}>
           <Card style={{flex: 1, elevation: 0, }} onPress={() => onPress()}>
-            <View style= {{flexDirection:'row', alignItems: 'center', }}>
+            <View style= {{flexDirection:'row', alignItems: 'center',    }}>
                    <Image 
                        source={require('../../assets/logo.png')}
                         style={{
@@ -1743,18 +1743,22 @@ cardHistoryOrderContent:{
 
 //REVIEW PLANTS
 cardReviewPlantContainer:{
-  alignItems: 'center'
+ 
+
+
 //    alignSelf: 'center'
 },
 cardReviewPlant: {
   padding:11,
   alignSelf: 'center',
-  justifyContent: 'center'
-
+  justifyContent: 'center',
+  
   
 }, 
 cardReviewPlantContent:{
   width: '73%',
+  backgroundColor: 'transparent'
+
   
 //  borderWidth:1,
 

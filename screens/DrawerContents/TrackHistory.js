@@ -34,9 +34,9 @@ export default function TrackHistoryScreen({navigation}) {
     screenOptions={{
       tabBarActiveTintColor: '#1D4123',
       tabBarInactiveTintColor: '#f5f5f5',
-      tabBarLabelStyle: { fontSize: 13, fontFamily: 'poppins-regular', textTransform: 'capitalize' },
+      tabBarLabelStyle: { fontSize: 15, fontFamily:'poppins-semiBold', textTransform: 'capitalize' },
       tabBarStyle: { backgroundColor: '#1D4123', elevation:0  },
-      tabBarIndicatorStyle: {backgroundColor: '#f2f2f2',  borderColor: '#1D4123', height: '100%'}
+      tabBarIndicatorStyle: {backgroundColor: 'white',  borderColor: '#1D4123', height: '100%'}
     }}  
     >
     <Tab.Screen

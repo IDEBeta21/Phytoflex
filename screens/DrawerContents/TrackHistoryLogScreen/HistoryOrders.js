@@ -83,7 +83,13 @@ return (
            orderIDNo = {item.orderId}
            total = {item.totalPayment}
            navigate = {()=> gotoReview()}
-           onPress={() => Alert.alert(item.orderId)}          
+           onPress={() => {navigation.navigate('DrawerTrackOrderDetails', 
+             {
+              orderIDNo: item.orderId,
+              timePurchase: item.date,
+              orderStatus: item.orderStatNum
+            }            
+             ) }}         
           />       
         )}
         keyExtractor={(item,index) => index}
