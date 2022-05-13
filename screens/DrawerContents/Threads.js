@@ -8,7 +8,7 @@ export default function ThreadsScreen({navigation}) {
   
   return (
     <View style={styles.screen}>
-        <Image
+        {/* {/* <Image
           style={{
             resizeMode: 'contain', 
             alignSelf: 'center',
@@ -16,7 +16,7 @@ export default function ThreadsScreen({navigation}) {
             height: '90%'
         }}
           source={require('../../assets/noDataPics/noDataFound.png')}>
-        </Image>
+        </Image> */}
   </View>
   );
 }

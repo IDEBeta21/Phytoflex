@@ -163,10 +163,7 @@ export default function  ShopCratePage   ({ route, navigation}){
   }
 
  
-  useEffect(() => {
-    getData();
-    getPlantItems();
-}, [])
+
 
 
 
@@ -222,6 +219,7 @@ function addData(){
   
   }
   deleteItems();
+  
  }
 
 
@@ -326,7 +324,10 @@ refdata2.forEach((item) => {
 
 
 
-
+useEffect(() => {
+  getData();
+  getPlantItems();
+}, [])
     return (
       <View style={styles.cardContainer}>
         <View style={{flexDirection:'row', marginLeft: 8, marginTop: 8}}>
@@ -346,7 +347,7 @@ refdata2.forEach((item) => {
               <PFFlatList
                 styles={{...styles.reviewsArea}}
                 numColumns={1}
-                noDataMessage='Loading...'
+                noDataMessage='No Data'
                 data={refdata2}
                 renderItem={(item, index, value) => (
                   <PFCardShopCartItems1

@@ -560,8 +560,9 @@ export const PFCardProduct = ({imageURL, onPress = () =>{}}, style) => {
       <Image 
         source={{ uri: image}}
         style={{
-          height: 250,
+          height: 200,
           width: (Dimensions.get('window').width/1) * 1,
+          resizeMode: "cover"
           
         }}
       />
@@ -1489,11 +1490,12 @@ const styles = StyleSheet.create({
   //borderWidth:1
   },
   cardShopReview:{
-    width: 323,
+    width: 330,
     borderRadius: 10,
-    elevation: 3,
     borderWidth: 1,
-    borderColor: '#ccc'
+    borderColor: '#ccc',
+    marginBottom: 5,
+    alignContent: "center"
   },
   cardShopReviewContent:{
     marginLeft: 10,

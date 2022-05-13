@@ -103,6 +103,11 @@ export default function  ProductPage   ({ route, navigation}){
     })
     
   }
+  const [image, setimage] = useState(null)
+
+  firebase.storage().ref().child(route.params.imageURL).getDownloadURL().then((url) => {
+    setimage(url);
+  })
 
  
   useEffect(() => {
@@ -115,16 +120,14 @@ export default function  ProductPage   ({ route, navigation}){
       <View style={styles.mainContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View>
-            <PFFlatList
-              numColumns={1}
-              noDataMessage='Loading...'
-              data={refdata}
-              renderItem={(item) => (
-                <PFCardProduct
-                  imageURL={route.params.imageURL}
-                />
-              )}
-              keyExtractor={(item,index) => index}
+                <Image 
+              source={{ uri: image}}
+              style={{
+                height: 450,
+                width: (Dimensions.get('window').width/1) * 1,
+                resizeMode: "cover"
+                
+              }}
             />
 
             <View>
@@ -172,7 +175,7 @@ export default function  ProductPage   ({ route, navigation}){
               
               <View style={{padding: 15}}>
                 <PFText weight = 'semi-bold' size={15}>Description:</PFText>
-                <PFText>    {route.params.plantDesc}</PFText>
+                <PFText>{route.params.plantDesc}</PFText>
 
                 <PFText weight='semi-bold' size={15} style={{marginTop: 15}}>Delivery</PFText>
 
@@ -320,11 +323,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 13,
     alignItems: 'center',
-  //  marginLeft: 30,
+ 
     borderRadius: 10,
-    width: 175,
+    width: 150,
     borderColor: '#1D4123',
-    paddingRight:5
+  
   },
 
   buttonArea: {
