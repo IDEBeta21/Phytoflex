@@ -13,6 +13,29 @@ import firebase from 'firebase';
 
 
 export default function  CheckoutPage  ({ route, navigation}){ 
+  
+  // const [Date, setCurrentDate] = useState('');
+  // useEffect(() => {
+  //   var date = new window.Date().getDate(); //Current Date
+  //   var month = new window.Date().getMonth() + 1; //Current Month
+  //   var year = new window.Date().getFullYear(); //Current Year
+  //   setCurrentDate( date + '/' + month + '/' + year );
+ 
+  // }, []);
+
+  const [qstDate, setCurrentDate] = useState('');
+  const [qstTime, setCurrentTime] = useState('');
+  useEffect(() => {
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
+    var sec = new Date().getSeconds(); //Current Seconds
+    setCurrentDate( date + '/' + month + '/' + year );
+    setCurrentTime( hours + ':' + min );
+  }, []);
+
 
     let deliveryInfo = [
         {
@@ -176,7 +199,7 @@ export default function  CheckoutPage  ({ route, navigation}){
       ResultMacthed : "False",
       contactNumber : contactNumber,
       customerName: customerName,
-      date : "5/14/2022",
+      date : Date,
       deliveredTime : "3:45 pm 04-27-2022",
       deliveryAddres : Address,
       orderId: "0", 
@@ -210,9 +233,9 @@ export default function  CheckoutPage  ({ route, navigation}){
 
    
 
-  
- 
+
   useEffect(() => {
+    
     getData();
     getUsers();
     }, [])
@@ -224,7 +247,10 @@ let totalPayment = route.params.subtotal + 200;
       <View style={{...styles.pageContainer}}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{flex: 3,}}>
+          <View style = {{flexDirection:'row', justifyContent: 'space-between'}}>
           <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={15}>Shipping Address</PFText>
+          {/* <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'medium' size={14}>Date Today</PFText> */}
+          </View>
             <PFFlatList
               noDataMessage='No Data'
               data={refdata2}
@@ -287,32 +313,52 @@ let totalPayment = route.params.subtotal + 200;
                 keyExtractor={(item,index) => index}
               />
           </View>
-                
+          {/* PAYMENT METHOD */}
+          <View>
+          <View style={{flex: 1, }}>
+          <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={15}>Payment Method</PFText>
+                      <View style = {{borderWidth:1, paddingBottom: 15, paddingTop:15, borderRadius:5, flexDirection: 'row', alignItems: 'center',alignContent: 'flex-start'}}> 
+                      
+                      <Image 
+                      source={require('../../assets/img/ecommerce/payment.png')}
+                      style={{
+                     
+                      height: 24,
+                      width: (Dimensions.get('window').width/1) * 0.15,
+                      resizeMode:'contain',
+                      borderRadius: 10 }} /> 
+
+                      <PFText size={14} weight= 'medium'>Cash On Delivery</PFText>
+                      </View>         
+          </View>         
+          </View>
+
+              
           
           <View>
             <View style={styles.hr} />
           </View>
             
           <View style={{marginBottom: 15}}>  
-            <View style={{flexDirection: "row", marginTop: 10}}>
-              <View style={{paddingRight: 5}}>
+            <View style={{flexDirection: "row", marginTop: 20,alignItems:'center' ,justifyContent:'space-between'}}>
+              <View style={{paddingRight: 5, }}>
                 <PFText weight ="semi-bold">Subtotal: </PFText>
               </View>
-              <View style={{alignItems: 'flex-end'}}><PFText>{route.params.subtotal}</PFText></View>
+              <View style={{alignItems: 'flex-end'}}><PFText weight='semi-bold' size= {18}>P {route.params.subtotal}</PFText></View>
             </View>
-            <View style={{flexDirection: "row"}}>
-              <View style={{paddingRight: 5}}>
-                <PFText weight='semi-bold'>Delivery Fee:  </PFText>
+            <View style={{flexDirection: "row",alignItems:'center' ,justifyContent: 'space-between'}}>
+              <View style={{paddingRight: 5, }}>
+                <PFText weight='semi-bold' size= {14}>Delivery Fee:</PFText>
               </View>
-              <View style={{alignItems: 'flex-end'}}><PFText >200</PFText></View>
+              <View style={{alignItems: 'flex-end'}}><PFText size= {18} weight='semi-bold'>P 200</PFText></View>
             </View>
-            <View style={{flexDirection: "row"}}>
+            <View style={{flexDirection: "row", alignItems: 'center', justifyContent: 'space-between'}}>
               <View style={{paddingRight: 5}}><PFText weight='semi-bold'>Total Payment: </PFText></View>
-              <View style={{alignItems: 'flex-end'}}><PFText weight='semi-bold'>{totalPayment}</PFText></View>
+              <View style={{alignItems: 'flex-end'}}><PFText size= {24}weight='semi-bold'>P{totalPayment}</PFText></View>
             </View>
           </View>
             
-          <PFSecondaryButton title={'Place Order'} roundness={7} onPress={() => placeOrder()} />
+          <PFSecondaryButton  title={'Place Order'} roundness={7} onPress={() => placeOrder()} />
 
           {/* <View>
             <PFText weight = 'semi-bold' size={15}>Shipping Address</PFText>
@@ -377,7 +423,7 @@ const styles = StyleSheet.create({
     top: 0,
     borderBottomColor: '#639d04',
     borderBottomWidth: 2,
-    marginTop: 40
+   marginTop: 20
   },
   
 })

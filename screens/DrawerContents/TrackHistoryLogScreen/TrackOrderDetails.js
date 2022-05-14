@@ -229,7 +229,7 @@ let subtotal = "";
     
 
     <PFText size={18} weight={'semi-bold'} >Items</PFText>
-    <View style={{borderWidth: 1, borderColor: Colors.primary, borderRadius: 5, paddingHorizontal: 12, marginBottom: 20}}>
+    <View style={{borderWidth: 1, borderColor: Colors.primary, borderRadius: 5, paddingHorizontal: 12, marginBottom: 10}}>
       <PFFlatList
         data={orderedItems}
         renderItem={(item) => (
@@ -260,7 +260,17 @@ let subtotal = "";
         keyExtractor={(item,index) => index.toString()}
       />
     </View>
-      <View style={{flexDirection: 'row', marginBottom: 15}}>
+    <View>
+          <View style={{flex: 3, }}>
+            <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={18}>Payment Method</PFText>
+                      <View style = {{borderWidth:1, padding: 10, borderRadius:5}}>
+                      <PFText size={14} weight= 'medium'>Cash On Delivery</PFText>
+                      </View>         
+          </View>         
+          </View>
+
+
+      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 15}}>
         <View style={{flex: 9}}>
           <PFText weight='medium'>
             Sub Total ({SampleData.orderDetails.length} items): </PFText>
@@ -290,7 +300,7 @@ let subtotal = "";
       <TouchableOpacity style={{flex:1, marginBottom: 10}} onPress={() => Alert.alert('Cancel')}>
         <View style={{
             flex: 1, borderColor: Colors.secondary, backgroundColor: Colors.secondary , 
-            borderWidth: 1, borderRadius: 5, alignItems: 'center', justifyContent: 'center', padding: 7,
+            borderWidth: 1, borderRadius: 5, alignItems: 'center', justifyContent: 'center', padding: 7, marginTop:10
           }}>
           <Text style={{color: Colors.white, fontSize: 16, fontFamily: 'poppins-semiBold', }}>Cancel Order</Text>
         </View>
