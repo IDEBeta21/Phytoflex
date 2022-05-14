@@ -344,43 +344,48 @@ export const PFCommentCard = ({
   userPhoto, name, comment, reactionNum, replyNum, time,
   onPress = () => {}}, 
   style, 
-  cardContentStyle) => (
-    <View style={styles.commentSection}>
-    <View style={ styles.container }>
-      <Image
-        // FAB using TouchableOpacity with an image
-        // For online image
-        source={{ uri: userPhoto }}
-        // For local image
-        //source={require('./images/float-add-icon.png')}
-        style={styles.userPhoto1}
-      />
-      <View styles={{flexDirection: 'column'}}>
+  cardContentStyle) => {
+
+    const [liked, setLiked] = useState(false);
+
+    return (
+      <View style={styles.commentSection}>
       <View style={ styles.container }>
-      <PFText weight='semi-bold' size={13}>{name}</PFText>
-          <PFText weight='semi-bold' size={10} style={{marginLeft: 8, marginTop: 3}}>•</PFText>
-          <PFText size={10} style={{marginLeft: 8, marginTop: 3}}>{time}</PFText>
-        </View>
+        <Image
+          // FAB using TouchableOpacity with an image
+          // For online image
+          source={{ uri: userPhoto }}
+          // For local image
+          //source={require('./images/float-add-icon.png')}
+          style={styles.userPhoto1}
+        />
+        <View styles={{flexDirection: 'column'}}>
         <View style={ styles.container }>
-          <TextInput style={styles.commentTxtBox} editable={false}>{comment}</TextInput>
-            <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 10}}>
-              <Image
-                // FAB using TouchableOpacity with an image
-                // For online image
-                source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
-                // For local image
-                //source={require('./images/float-add-icon.png')}
-                style={styles.commentReactSize}
-              />
-            </View>
-        </View>
-        <View style={ styles.container }>
-          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+        <PFText weight='semi-bold' size={13}>{name}</PFText>
+            <PFText weight='semi-bold' size={10} style={{marginLeft: 8, marginTop: 3}}>•</PFText>
+            <PFText size={10} style={{marginLeft: 8, marginTop: 3}}>{time}</PFText>
+          </View>
+          <View style={ styles.container }>
+            <TextInput style={styles.commentTxtBox} editable={false}>{comment}</TextInput>
+              <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, paddingLeft: 2, paddingRight: 2, margin: 5, marginLeft: 10}}>
+                <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                  <MaterialCommunityIcons
+                    name={liked ? "flower": "flower-outline" }
+                    size={24} 
+                    color={liked ? "#1D4123" : "#1D4123"}
+                    style={{marginTop: 3}}
+                  />
+                </Pressable>
+              </View>
+          </View>
+          <View style={ styles.container }>
+            <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+          </View>
         </View>
       </View>
     </View>
-  </View>
-);
+  );
+}
 
 export const PFFriendCard = ({
   userPhoto, name,

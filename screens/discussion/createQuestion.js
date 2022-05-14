@@ -147,7 +147,7 @@ export default function CreateQuestionPage({navigation, route}) {
           style={styles.userPhoto}
         />
         <View styles={{flexDirection: 'column'}}>
-          <PFText weight='semi-bold' size={15} value={userName} style={{marginLeft: 10}}>@{userName}</PFText>
+          <PFText weight='semi-bold' size={15} value={userName} style={{marginLeft: 10}}>{userName}</PFText>
           <PFText weight='light' size={10} style={{marginLeft: 10}}>{qstDate} {qstTime}</PFText>
         </View>
       </View>
@@ -157,7 +157,7 @@ export default function CreateQuestionPage({navigation, route}) {
             <TextInput
               multiline
               placeholder="Write your Question?"
-              style={{ height: 200, padding: 10, textAlignVertical: 'top' }}
+              style={{ height: 200, padding: 10, textAlignVertical: 'top', fontFamily: 'poppins-light', marginLeft: 10}}
               value={qstContent}
               onChangeText={setContent}/>
           </ScrollView>

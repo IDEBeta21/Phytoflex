@@ -1,7 +1,7 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Dimensions, Alert, FlatList, Pressable, ViewPropTypes} from 'react-native';
 import React, { Component, useState } from 'react';
 import { Portal } from 'react-native-paper';
-
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { globalStyles } from '../global/globalStyles';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -23,6 +23,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function PostPage({navigation}) {
+
+  const [liked, setLiked] = useState(false);
 
   return (
     <View style={ styles.mainContainer }>
@@ -68,15 +70,16 @@ export default function PostPage({navigation}) {
       </TouchableOpacity>
       
       <View style={styles.reactContainer}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate('')}
-          >
-            <Image
-              source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
-              style={styles.reactSize}
-            />
-          </TouchableOpacity>
+          <View style={styles.reactSize}>
+            <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+              <MaterialCommunityIcons
+                name={liked ? "flower": "flower-outline" }
+                size={24} 
+                color={liked ? "#1D4123" : "#1D4123"}
+                style={{marginTop: 3}}
+              />
+            </Pressable>
+          </View>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => navigation.navigate('CommentPage')}
@@ -120,16 +123,16 @@ export default function PostPage({navigation}) {
               </View>
               <View style={ styles.container }>
                 <TextInput style={styles.commentTxtBox} editable={false}>Love that plant.</TextInput>
-                  <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 10}}>
-                    <Image
-                      // FAB using TouchableOpacity with an image
-                      // For online image
-                      source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
-                      // For local image
-                      //source={require('./images/float-add-icon.png')}
-                      style={styles.commentReactSize}
+                <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, paddingLeft: 2, paddingRight: 2, margin: 5, marginLeft: 10}}>
+                  <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                    <MaterialCommunityIcons
+                      name={liked ? "flower": "flower-outline" }
+                      size={24} 
+                      color={liked ? "#1D4123" : "#1D4123"}
+                      style={{marginTop: 3}}
                     />
-                  </View>
+                  </Pressable>
+                </View>
               </View>
               <View style={ styles.container }>
                 <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>Reply</PFText>

@@ -63,13 +63,13 @@ export default function UserProfilePage({navigation}) {
           </View>
         </View>
         
-        <TouchableOpacity style={styles.followCon} onPress={() => navigation.navigate('')}>
+        <TouchableOpacity style={styles.followCon} onPress={() => navigation.navigate('FriendsTabPage')}>
           <View style={styles.container2}>
-            <Text style={styles.txt}>150</Text>
+            <Text style={styles.txt}>5</Text>
             <Text style={styles.txt1}>Followers</Text>
           </View>
           <View style={styles.container3}>
-            <Text style={styles.txt}>200</Text>
+            <Text style={styles.txt}>7</Text>
             <Text style={styles.txt1}>Following</Text>
           </View>
         </TouchableOpacity>
