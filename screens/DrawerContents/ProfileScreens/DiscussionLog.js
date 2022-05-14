@@ -8,7 +8,7 @@ export default function DiscussionLog({navigation}) {
         <Image
           style={{
             resizeMode: 'contain', 
-            alignSelf: 'center',
+            alignSelf: 'flex-start',
             width: '90%',
             height: '90%',
         }}
@@ -20,7 +20,7 @@ export default function DiscussionLog({navigation}) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
 });

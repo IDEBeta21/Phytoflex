@@ -8,8 +8,10 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import HomeLog from './HomeLog';
 import DiscussionLog from './DiscussionLog';
+import EditAddress from './EditAddress';
 import firebase from 'firebase';
 import React,  { useState, useEffect } from 'react';
+
 function FuncHomeLog({navigation}){
   return(
     <HomeLog navigation={navigation}/>
@@ -19,6 +21,12 @@ function FuncHomeLog({navigation}){
 function FuncDiscussionLog({navigation}){
   return(
     <DiscussionLog navigation={navigation}/>
+  )
+}
+
+function FuncEditAddress({navigation}){
+  return(
+    <EditAddress navigation={navigation}/>
   )
 }
 
@@ -178,9 +186,9 @@ export default function UserProfileDrawer({navigation}) {
       options={{ tabBarLabel: 'Home' }}
     />
     <Tab.Screen
-      name="DiscussionLog"
-      component={FuncDiscussionLog}
-      options={{ tabBarLabel: 'Discussions' }}
+      name="EditAddress"
+      component={FuncEditAddress}
+      options={{ tabBarLabel: 'Edit' }}
     />
     </Tab.Navigator>
     </ScrollView>    

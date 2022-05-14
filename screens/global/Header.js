@@ -365,7 +365,8 @@ const style = StyleSheet.create({
     justifyContent: 'flex-end', 
     alignItems: 'flex-end', 
     paddingRight: 32, 
-    flexDirection: 'row'
+    flexDirection: 'row',
+    elevation: 0
   },
   headerIconContainer1:{
     flex: 1,

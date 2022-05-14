@@ -13,8 +13,15 @@ import CommentAnswerPage from './commentAnswer';
 import EditQuestionPage from './editQuestion';
 import AddPhotosPage from './addPhotos'
 import TakePhoto from './TakePhoto'
+import DscNotificationsScreen from './DscNotif';
 
 // Functions for calling the screens
+function FuncDscNotificationsScreen({navigation}) {
+  return (
+    <DscNotificationsScreen navigation={navigation}/>
+  );
+}
+
 function FuncDiscussionHome({navigation}) {
   return (
     <DiscussionHomePage navigation={navigation}/>
@@ -75,6 +82,20 @@ function App({navigation}) {
           }}
         />
 
+        <Stack.Screen
+          name="DscNotificationsScreen"
+          component={FuncDscNotificationsScreen}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header screenDescription={'NoDataNotif'} navigation={navigation}/>, 
+            headerStyle: {
+              backgroundColor: 'white'
+            },
+              headerTintColor: '#1D4123'
+          }}
+        />  
+
+        
         <Stack.Screen
           name="DiscussionSearchHeaderPage"
           component={FuncDiscussionSearchHeader}
