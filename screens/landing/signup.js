@@ -17,6 +17,7 @@ import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import { computeOutShape } from '@tensorflow/tfjs-core/dist/ops/concat_util';
 import Colors from '../../utils/globalColors';
 
+
 export default function SignUpScreen({navigation}){
   
   const def_usrname = "admin1"
@@ -54,7 +55,12 @@ export default function SignUpScreen({navigation}){
         lName,
         userName,
         userEmail,
-        userPass
+        userPass, 
+        profilePic: 'assets/icon.png',
+        followers: 0,
+        following: 0, 
+        userBadgePoints: 0,
+
       })
       console.log(result);
     })
