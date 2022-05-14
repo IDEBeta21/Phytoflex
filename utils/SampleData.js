@@ -162,13 +162,49 @@ export default SampleData = {
         }
     ],
 
-    messageDetails:[
+    followerDetails: [
         {
-            userPhoto: '../..assets/img/profiles/Labrento.jpg',
-            notifTitle: 'Marc Edrian Labrento',
-            notifdetail: 'Marc Edrian sent you a message.'
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Lorgie Ann Talosig',
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Rose Ann Dela Cruz',
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Pamela Kathleen Tupas',
         }
     ],
+
+    followingDetails: [
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Jocelyn Vega',
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Jasmin Marzan',
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Ian Deladia',
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Lorgie Ann Talosig',
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Rose Ann Dela Cruz',
+        },
+        {
+            userPhoto: 'https://picsum.photos/90',
+            userName: 'Pamela Kathleen Tupas',
+        },
+         
+    ],
+
 
     shippingDetails: [
         {
@@ -177,6 +213,7 @@ export default SampleData = {
             customerAddress: '89 Ilang-Ilang St. Bo. Concepcion Tala Caloocan City Brgy. 188 1427 Metro Manila'
         }
     ],
+
 
     itemList: [
         {

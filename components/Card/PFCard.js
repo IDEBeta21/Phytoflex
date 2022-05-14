@@ -460,6 +460,52 @@ style, cardContentStyle) => {
   )
 };
 
+export const PFFollowersCard = ({userPhoto, userName, onPress = () =>{}},
+style, cardContentStyle) => {
+  return (
+      <TouchableOpacity style={styles.friendCard}>
+          <View>
+            <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 5
+            }} 
+            />
+          </View>
+          {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
+          <View styles={styles.cardAlignment}>
+            <PFText weight='semi-bold' size={15}>{userName}</PFText>
+          </View>
+      </TouchableOpacity>
+  )
+};
+
+export const PFFollowingCard = ({userPhoto, userName, onPress = () =>{}},
+style, cardContentStyle) => {
+  return (
+      <TouchableOpacity style={styles.friendCard}>
+          <View>
+            <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 5
+            }} 
+            />
+          </View>
+          {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
+          <View>
+            <PFText weight='semi-bold' size={15} style={{width: 200, marginTop: 10, marginLeft: 5}}>{userName}</PFText>
+          </View>
+      </TouchableOpacity>
+  )
+};
+
 export const PFCardShop = ({imageURL, category, itemName, price, quantity, sold, onPress = () => {}}, 
 style, cardContentStyle) => {
 
@@ -1458,6 +1504,16 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     height: 80,
   },
+  friendCard: {
+    width: (Dimensions.get('window').width),
+    flexDirection: 'row', 
+    padding: 15,  
+    paddingLeft: 20,
+    height: 65,
+    borderBottomWidth: 0.5,
+    borderLeftWidth: 0.5,
+    borderColor: '#1d4123'
+  },
   msgCard: {
     width: (Dimensions.get('window').width),
     flexDirection: 'row', 
@@ -1476,6 +1532,12 @@ const styles = StyleSheet.create({
   notifContent: {
     flexDirection: 'column', 
     padding: 10
+  },
+  cardAlignment: {
+    padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20
   },
   msgContent: {
     flexDirection: 'column', 

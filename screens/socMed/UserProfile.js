@@ -94,7 +94,7 @@ export default function UserProfilePage({navigation}) {
           <View style={styles.hr1} />
         </View>
 
-        <View style={styles.mainPostContainer}>
+        {/* <View style={styles.mainPostContainer}>
           <PFFlatList
             numColumns={1}
             noDataMessage='You have no Post'
@@ -110,14 +110,25 @@ export default function UserProfilePage({navigation}) {
             )}
             keyExtractor={(item,index) => index}
           />
+        </View> */}
+        <View style={styles.screen}>
+          <Image
+            style={{
+              resizeMode: 'contain', 
+              alignSelf: 'center',
+              width: '90%',
+              height: '90%',
+          }}
+            source={require('../../../assets/noDataPics/noDataFound.png')}>
+          </Image>
         </View>
       </ScrollView>
 
       <FAB
-        icon= { <AntDesign name="plus" size={24} color="white" /> }
-        style={{ position: 'absolute', backgroundColor: '#1d4123', margin: 16, right: 0, bottom: -1, }} 
+        icon='plus'
+        style={styles.fab}
         onPress={() => navigation.navigate('CreatePostPage')}
-        />
+      />
 
     </View>
   );
@@ -256,5 +267,22 @@ const styles = StyleSheet.create({
     paddingLeft: 30, 
     paddingRight: 30,
     width: (Dimensions.get('window').width) * 1
-  }
+  },
+  fab: {
+    position: 'absolute',
+    // margin: 16,
+    // right: 0,
+    bottom: 0,
+    marginBottom: 12,
+    alignSelf: 'center',
+    // justifyContent: 'flex-end',
+    // flex: 1,
+    backgroundColor: '#1d4123',
+
+  },
+  screen: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })

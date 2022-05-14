@@ -101,7 +101,7 @@ export default function UserProfileDrawer({navigation}) {
               <TouchableOpacity>
                   <Image
                     source={{uri : image}}
-                    style={{ width:120, height:120, borderRadius:120, resizeMode:'cover'}}>
+                    style={{ width: 100, height: 100, borderRadius:120, resizeMode:'cover', marginTop: 10}}>
                   </Image>
               </TouchableOpacity>
           </View>
@@ -118,7 +118,7 @@ export default function UserProfileDrawer({navigation}) {
                 color: 'white', 
                 fontFamily: 'poppins-light', 
                 fontSize: 16 }}>
-                @{userName}
+                {userName}
             </Text>
           <View style={{ flexDirection: 'row', marginTop: 8, justifyContent: 'flex-start', marginBottom: 26}}>
               <TouchableOpacity 
@@ -211,6 +211,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'space-evenly',
     alignContent: 'space-around',
+    borderTopColor: 'white',
+    borderTopColor: 0.5,
 // if you want to fill rows left to right,
   },
   item1: {
