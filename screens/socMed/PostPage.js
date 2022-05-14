@@ -25,6 +25,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 export default function PostPage({navigation}) {
 
   const [liked, setLiked] = useState(false);
+  const [liked1, setLiked1] = useState(false);
 
   return (
     <View style={ styles.mainContainer }>
@@ -73,9 +74,9 @@ export default function PostPage({navigation}) {
           <View style={styles.reactSize}>
             <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
               <MaterialCommunityIcons
-                name={liked ? "flower": "flower-outline" }
+                name={liked ? "flower-tulip": "flower-tulip-outline" }
                 size={24} 
-                color={liked ? "#1D4123" : "#1D4123"}
+                color={liked ? "#639d04" : "#1D4123"}
                 style={{marginTop: 3}}
               />
             </Pressable>
@@ -123,12 +124,12 @@ export default function PostPage({navigation}) {
               </View>
               <View style={ styles.container }>
                 <TextInput style={styles.commentTxtBox} editable={false}>Love that plant.</TextInput>
-                <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, paddingLeft: 2, paddingRight: 2, margin: 5, marginLeft: 10}}>
-                  <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, paddingLeft: 3, paddingRight: 3, margin: 5, marginLeft: 10}}>
+                  <Pressable onPress={() => setLiked1((isLiked) => !isLiked)}>
                     <MaterialCommunityIcons
-                      name={liked ? "flower": "flower-outline" }
-                      size={24} 
-                      color={liked ? "#1D4123" : "#1D4123"}
+                      name={liked1 ? "leaf": "leaf" }
+                      size={22} 
+                      color={liked1 ? "#639d04" : "#1D4123"}
                       style={{marginTop: 3}}
                     />
                   </Pressable>

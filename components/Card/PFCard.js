@@ -125,7 +125,7 @@ export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate, 
                   <MaterialCommunityIcons
                     name={liked ? "flower-tulip": "flower-tulip-outline" }
                     size={24} 
-                    color={liked ? "#1D4123" : "#1D4123"}
+                    color={liked ? "#639d04" : "#1D4123"}
                     style={{marginTop: 3}}
                   />
                 </Pressable>
@@ -218,7 +218,7 @@ export const PFPostsImageOnlyCard = ({ userPhoto, imageURL, name, description, t
                   <MaterialCommunityIcons
                     name={liked ? "flower-tulip": "flower-tulip-outline" }
                     size={24} 
-                    color={liked ? "#1D4123" : "#1D4123"}
+                    color={liked ? "#639d04" : "#1D4123"}
                     style={{marginTop: 3}}
                   />
                 </Pressable>
@@ -302,7 +302,7 @@ export const PFPostsNoImageCard = ({
               <MaterialCommunityIcons
                 name={liked ? "flower-tulip": "flower-tulip-outline" }
                 size={24} 
-                color={liked ? "#1D4123" : "#1D4123"}
+                color={liked ? "#639d04" : "#1D4123"}
                 style={{marginTop: 3}}
               />
             </Pressable>
@@ -367,12 +367,12 @@ export const PFCommentCard = ({
           </View>
           <View style={ styles.container }>
             <TextInput style={styles.commentTxtBox} editable={false}>{comment}</TextInput>
-              <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, paddingLeft: 2, paddingRight: 2, margin: 5, marginLeft: 10}}>
+              <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, paddingLeft: 3, paddingRight: 3, margin: 5, marginLeft: 10}}>
                 <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
                   <MaterialCommunityIcons
-                    name={liked ? "flower": "flower-outline" }
-                    size={24} 
-                    color={liked ? "#1D4123" : "#1D4123"}
+                    name={liked ? "leaf": "leaf" }
+                    size={22} 
+                    color={liked ? "#639d04" : "#1D4123"}
                     style={{marginTop: 3}}
                   />
                 </Pressable>
@@ -439,7 +439,7 @@ style, cardContentStyle) => {
 export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
 style, cardContentStyle) => {
   return (
-      <TouchableOpacity style={styles.notifCard}>
+      <TouchableOpacity style={styles.notifCard} onPress={() => onPress()}>
           <View>
             <Image 
             source={require('../../assets/logo.png')}

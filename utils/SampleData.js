@@ -150,16 +150,16 @@ export default SampleData = {
         {
             userPhoto: 'https://picsum.photos/90',
             notifTitle: 'Welcome to Phytoflex!',
-            notifdetail: 'Click here to see a full tutorial.'
+            notifdetail: 'How to use the app?.'
         },
     ],
 
     messageDetails: [
-        {
-            userPhoto: 'https://picsum.photos/90',
-            userName: 'Welcome to Phytoflex!',
-            lastMsg: 'Hello!'
-        }
+        // {
+        //     userPhoto: 'https://picsum.photos/90',
+        //     userName: 'Welcome to Phytoflex!',
+        //     lastMsg: 'Hello!'
+        // }
     ],
 
     followerDetails: [

@@ -36,7 +36,7 @@ export default function NotifZonePage({navigation}) {
                 userPhoto={item.userPhoto}
                 notifTitle={item.notifTitle}
                 notifdetail={item.notifdetail}
-                onPress={() => Alert.alert(item.notifTitle)}
+                onPress={() => navigation.navigate('Tutorial')}
               />
             )}
             keyExtractor={(item,index) => index}

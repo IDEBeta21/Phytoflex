@@ -14,8 +14,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 export default function TutorialPage({navigation}) {
     return (
-        <View>
-            
+        <View style={{alignItems: 'center', justifyContent: 'center', height: '100%'}}>
+        <StatusBar style="auto" />
+          <Text>How To use the Phytoflex App</Text>
         </View>
     )
 }
