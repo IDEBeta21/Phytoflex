@@ -52,7 +52,8 @@ useEffect(() => {
               <PFCardForumPost2
                 imageURL={item.qstImage}
                 userName={item.userName}
-                dateTime={item.qstDate}
+                date={item.qstDate}
+                time={item.qstTime}
                 userImage={item.profilePic}
                 badgePoints={item.userBadgePoints}
                 forumPost={item.qstContent}

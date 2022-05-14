@@ -24,6 +24,16 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function CommentAnswerPage({navigation, route}) {
+
+  const [ansTime, setCurrentTime] = useState('');
+  useEffect(() => {
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
+    var sec = new Date().getSeconds(); //Current Seconds
+    setCurrentTime( hours + ':' + min );
+  }, []);
+
+
   //get user info
  const [refdata2, setrefdata2] = useState([]); // declaration 
  const [refnull2, setrefnull2] = useState(true);
@@ -102,7 +112,7 @@ export default function CommentAnswerPage({navigation, route}) {
                 firebase.firestore().collection("Question").doc(route.params.qstID).collection('Answer').add({
                   userfullName: userfullName,
                   ansContent: ansContent,
-                  ansTime: "3:45 PM",
+                  ansTime: ansTime,
                   qstID: route.params.qstID,
                   profilePic: userImage
                 }).then((res) => {
@@ -118,7 +128,8 @@ export default function CommentAnswerPage({navigation, route}) {
                 getUsers();
             }, []);
 
-   
+ // const {width} = Dimensions.get('window');
+            
   return (
     <View style={ styles.mainContainer }>
       <ScrollView>
@@ -171,8 +182,9 @@ export default function CommentAnswerPage({navigation, route}) {
               <TextInput style={styles.commentTxtBox} 
               placeholder={'Aa'}
               onChangeText = {(text) => setansContent(text)}
+              multiline
               ></TextInput>
-                <View style={{margin: 5, marginLeft: 15}}>
+                <View style={{margin: 5, marginLeft: 15, }}>
                   <TouchableOpacity onPress={() => addComment()}>
                   <Image
                     // FAB using TouchableOpacity with an image
@@ -249,6 +261,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection:'row',
+    //maxHeight: 100,
+    //position: 'absolute'
   },
   addbtn: {
     height: 30,
@@ -289,6 +303,7 @@ const styles = StyleSheet.create({
   commentReactSize: {
     height: 30,
     width: 30,
+    //maxHeight: 100
   },
   commentSection: {
     marginTop: 10
@@ -301,7 +316,7 @@ const styles = StyleSheet.create({
     fontFamily: 'poppins-light',
     color: '#1D4123',
     fontSize: 13,
-    padding: 10
+    padding: 10,
   }
 })
   

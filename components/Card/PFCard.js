@@ -877,7 +877,7 @@ cardContentStyle) => {
   </View>
 ); */}
 
-export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, userName, forumPost, badgePoints, dateTime, bloomQuantity,
+export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, userName, forumPost, badgePoints, date,time, bloomQuantity,
   onPress = () => {}, 
   onPressImage = () => {},
   onPressReact = () => {},
@@ -947,7 +947,7 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
               style={styles.forumBadgeSize}/>
             {badgePoints}</PFText>
            {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
-            <PFText weight='light'size = {10}>{dateTime}</PFText>
+            <PFText weight='light'size = {10}>{date} {time}</PFText>
           </View>
           <View style={styles.SolvedBtnContainer}>
             <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
@@ -1018,7 +1018,8 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
 
 export const PFCommentCard2 = ({
   userPhoto, name, comment, reactionNum, replyNum, time,
-  onPress = () => {}}, 
+  onPress = () => {},
+  onPressImage = () => {}},
   style, 
   cardContentStyle) => {
 
@@ -1057,7 +1058,7 @@ export const PFCommentCard2 = ({
                 style={styles.commentReactSize}
               />
             </View>
-            <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 1}}>
+            {/*<View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 1}}>
               <Image
                 // FAB using TouchableOpacity with an image
                 // For online image
@@ -1066,12 +1067,12 @@ export const PFCommentCard2 = ({
                 //source={require('./images/float-add-icon.png')}
                 style={styles.commentReactSize}
               />
-            </View>
+            </View> */}
             </View>  
         </View>
-        <View style={ styles.container }>
-          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
-          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Delete</PFText>
+        <View style={ styles.container1 }>
+          {/*<PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>*/}
+          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum} Delete</PFText>
         </View>
       </View>
     </View>
@@ -1373,6 +1374,10 @@ const styles = StyleSheet.create({
   container2: {
     flexDirection:'row'
   },
+  container1: {
+    flexDirection:'row',
+    alignItems: 'flex-end'
+  },
   reactContainer: {
     flexDirection: 'row', 
     borderWidth: 1, 
@@ -1399,7 +1404,7 @@ const styles = StyleSheet.create({
   },
   commentSection2: {
     marginTop: 20,
-    marginLeft: 8
+    marginLeft: 24
   },
   commentTxtBox: {
     backgroundColor: '#d3d3d3',
@@ -1849,4 +1854,4 @@ paddingLeft:25,
 
     },
   
-  })
+  }) 

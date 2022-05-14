@@ -148,7 +148,7 @@ export default function CreateQuestionPage({navigation, route}) {
         />
         <View styles={{flexDirection: 'column'}}>
           <PFText weight='semi-bold' size={15} value={userName} style={{marginLeft: 10}}>@{userName}</PFText>
-          <PFText weight='light' size={10} style={{marginLeft: 10}}>05/13/22 2:50 PM</PFText>
+          <PFText weight='light' size={10} style={{marginLeft: 10}}>{qstDate} {qstTime}</PFText>
         </View>
       </View>
 
