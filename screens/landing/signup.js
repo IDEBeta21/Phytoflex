@@ -46,6 +46,10 @@ export default function SignUpScreen({navigation}){
     const auth = firebase.auth();
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPass)
     .then((result) => {
+      // send verification mail.
+      result.user.sendEmailVerification();
+      auth.signOut();
+      Alert.alert("Email sent");
       Alert.alert(result.message);
       firebase.firestore().collection("users")
       .doc(firebase.auth().currentUser.uid)

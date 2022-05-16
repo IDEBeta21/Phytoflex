@@ -51,9 +51,13 @@ export default function ActiveOrders({navigation, route}) {
             // Get data inside document
    
   }
+ 
 
+ 
+
+  
+  
   useEffect(() => {
-    
     getOrders();
     }, [])
  
@@ -70,9 +74,9 @@ export default function ActiveOrders({navigation, route}) {
           renderItem={(item) => (
             <PFActiveOrders
              statusIndicator = {item.orderStatus}
-             timePurchase={item.date}
              orderIDNo = {item.orderId}
              total = {item.totalPayment}
+             timePurchase = {item.date}
              onPress={() => {navigation.navigate('DrawerTrackOrderDetails', 
              {
               orderIDNo: item.orderId,

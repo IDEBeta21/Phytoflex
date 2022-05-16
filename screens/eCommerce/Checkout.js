@@ -193,14 +193,15 @@ export default function  CheckoutPage  ({ route, navigation}){
   //place order function
 
   let orderId ="";
-  function placeOrder(){
+  let dateNow = new Date(firebase.firestore.Timestamp.now().seconds*10000).toLocaleDateString()
 
+  function placeOrder(){
   firebase.firestore().collection('Orders').add({
       ResultMacthed : "False",
       contactNumber : contactNumber,
       customerName: customerName,
-      date : Date,
-      deliveredTime : "3:45 pm 04-27-2022",
+      date : dateNow,
+      deliveredTime : "",
       deliveryAddres : Address,
       orderId: "0", 
       orderedItems,
@@ -225,9 +226,6 @@ export default function  CheckoutPage  ({ route, navigation}){
     }).catch((err) => {
       Alert.alert(err)
     })
-
-
-   
   }
 
 

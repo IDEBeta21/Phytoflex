@@ -74,6 +74,7 @@ export default function TakePhoto({navigation, route}) {
     
     
     blob.close();
+    navigation.navigate("DiscussionHomePage");
   }
 
    

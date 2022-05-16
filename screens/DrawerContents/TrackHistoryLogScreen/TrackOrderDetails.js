@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, Alert } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, TouchableOpacity, Alert, RefreshControl } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import { globalStyles } from '../../global/globalStyles';
 import { PFText, PFFlatList, PFSecondaryButton, PFActiveOrders, PFItemsOrder, PFTrackOrderDetails } from '../../../components';
@@ -17,7 +17,19 @@ const labels = ["Order Placed",
 "Delivered"
 ];
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 export default function TrackOrderDetails({navigation, route}) {
+
+  
+  
+    const [refreshing, setRefreshing] = React.useState(false);
+
+    const onRefresh = React.useCallback(() => {
+      setRefreshing(true);
+      wait(1000).then(() => setRefreshing(false));
+    }, []);
   const [refdata2, setrefdata2] = useState([]); // declaration 
   const [refnull2, setrefnull2] = useState(true);
 
@@ -163,7 +175,13 @@ let subtotal = "";
   return (
 
 
-    <ScrollView style={{paddingHorizontal: 10, paddingTop: 10, paddingBottom: 20}} showsHorizontalScrollIndicator={false} >
+    <ScrollView style={{paddingHorizontal: 10, paddingTop: 10, paddingBottom: 20}} showsHorizontalScrollIndicator={false} 
+     refreshControl={
+      <RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />
+    }>
     <View style={{flexDirection: 'row', paddingBottom: 20}}>
       <View style={{flex: 1, flexDirection: 'row'}}>
         {/* <PFText size={16} weight={'medium'} >Order ID: </PFText>

@@ -10,7 +10,8 @@ export default function DiscussionHomePage({navigation}) {
   const [refdata, setrefdata] = useState([]); // declaration
   const [refnull, setrefnull] = useState(true);
 
-
+ let dateString = new Date(firebase.firestore.Timestamp.now().seconds*10000).toLocaleDateString()
+ console.log(dateString)
 
 
   const getForumPost = async() => {
