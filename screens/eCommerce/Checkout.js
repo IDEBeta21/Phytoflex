@@ -23,18 +23,18 @@ export default function  CheckoutPage  ({ route, navigation}){
  
   // }, []);
 
-  const [qstDate, setCurrentDate] = useState('');
-  const [qstTime, setCurrentTime] = useState('');
-  useEffect(() => {
-    var date = new Date().getDate(); //Current Date
-    var month = new Date().getMonth() + 1; //Current Month
-    var year = new Date().getFullYear(); //Current Year
-    var hours = new Date().getHours(); //Current Hours
-    var min = new Date().getMinutes(); //Current Minutes
-    var sec = new Date().getSeconds(); //Current Seconds
-    setCurrentDate( date + '/' + month + '/' + year );
-    setCurrentTime( hours + ':' + min );
-  }, []);
+//   const [Date, setCurrentDate] = useState('');
+//  const [qstTime, setCurrentTime] = useState('');
+//   useEffect(() => {
+//     var date = new Date().getDate(); //Current Date
+//     var month = new Date().getMonth() + 1; //Current Month
+//     var year = new Date().getFullYear(); //Current Year
+//     var hours = new Date().getHours(); //Current Hours
+//     var min = new Date().getMinutes(); //Current Minutes
+//     var sec = new Date().getSeconds(); //Current Seconds
+//     setCurrentDate( date + '/' + month + '/' + year );
+//     setCurrentTime( hours + ':' + min );
+//   }, []);
 
 
     let deliveryInfo = [
@@ -247,7 +247,7 @@ let totalPayment = route.params.subtotal + 200;
           <View style={{flex: 3,}}>
           <View style = {{flexDirection:'row', justifyContent: 'space-between'}}>
           <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={15}>Shipping Address</PFText>
-          {/* <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'medium' size={14}>Date Today</PFText> */}
+          {/* <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'medium' size={14}>{Date}</PFText> */}
           </View>
             <PFFlatList
               noDataMessage='No Data'
@@ -351,7 +351,7 @@ let totalPayment = route.params.subtotal + 200;
               <View style={{alignItems: 'flex-end'}}><PFText size= {18} weight='semi-bold'>P 200</PFText></View>
             </View>
             <View style={{flexDirection: "row", alignItems: 'center', justifyContent: 'space-between'}}>
-              <View style={{paddingRight: 5}}><PFText weight='semi-bold'>Total Payment: </PFText></View>
+              <View style={{paddingRight: 5}}><PFText size= {18}weight='semi-bold'>Total Payment: </PFText></View>
               <View style={{alignItems: 'flex-end'}}><PFText size= {24}weight='semi-bold'>P{totalPayment}</PFText></View>
             </View>
           </View>
