@@ -193,7 +193,7 @@ export default function  CheckoutPage  ({ route, navigation}){
   //place order function
 
   let orderId ="";
-  let dateNow = new Date(firebase.firestore.Timestamp.now().seconds*10000).toLocaleDateString()
+  let dateNow = new Date(firebase.firestore.Timestamp.now().seconds*1000).toLocaleDateString()
 
   function placeOrder(){
   firebase.firestore().collection('Orders').add({
