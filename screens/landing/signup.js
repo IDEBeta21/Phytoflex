@@ -51,7 +51,7 @@ export default function SignUpScreen({navigation}){
       result.user.sendEmailVerification();
       auth.signOut();
       Alert.alert("Email sent");
-      Alert.alert(result.message);
+      //Alert.alert(result.message);
       firebase.firestore().collection("users")
       .doc(firebase.auth().currentUser.uid)
       .set({
@@ -64,7 +64,8 @@ export default function SignUpScreen({navigation}){
         followers: 0,
         following: 0, 
         userBadgePoints: 0,
-
+        Address: "89 ilang-ilang St.Bo.Conception Tala Caloocan City Brgy 188",
+        contactNumber: "9564913444"
       })
       console.log(result);
     })

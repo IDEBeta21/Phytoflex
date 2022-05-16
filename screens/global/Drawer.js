@@ -18,6 +18,7 @@ import {
 import firebase from 'firebase';
 // import { StackActions, NavigationActions, NavigationEvents } from 'react-navigation';
 import { StackActions, NavigationActions, NavigationEvents } from '@react-navigation/native';
+import { set } from 'react-native-reanimated';
 
 
 
@@ -90,7 +91,7 @@ export function DrawerContent(props) {
       let userfullName = "";
       refdata2.forEach((item) => {
         userImage = item.profilePic
-        userfullName = item.fName + "  " + item.lName 
+        userfullName = item.fName + " " + item.lName 
       })
       const [image, setimage] = useState(null)
   
@@ -98,6 +99,25 @@ export function DrawerContent(props) {
       firebase.storage().ref().child(userImage).getDownloadURL().then((url) => {
         setimage(url);
       })
+
+    let emailVerified = "";
+    const [userEmail, setuserEmail] = useState('');
+      //emailVerification
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          if (user.emailVerified === false) {
+           //email not verified
+            setuserEmail("Please verify your email address")
+           
+          } else {
+            // successful login 
+            setuserEmail("")
+    
+          }
+        } else {
+         
+        }
+      });
 
         useEffect(() => {
          
@@ -122,6 +142,7 @@ export function DrawerContent(props) {
                 <View style={{flexDirection:'column', alignSelf: "center", padding: 8, paddingLeft: 10}}>
                       <Caption style={styles.caption}>Hello!</Caption>
                       <Title style={styles.title}>{userfullName}</Title>
+                      <Caption style={styles.emailVerification}>{userEmail}</Caption>
                 </View>
           </View>
               
@@ -263,6 +284,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 20,
     color: 'white',
+    alignSelf: 'center'
   },
   caption: {
     lineHeight: 14,
@@ -333,5 +355,12 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 8,
     paddingLeft: 12,
+  },
+  emailVerification: {
+    lineHeight: 14,
+    color: 'orange', 
+    fontFamily: 'poppins-light', 
+    fontSize: 12,
+    alignSelf: 'center'
   },
 });

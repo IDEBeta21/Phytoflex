@@ -195,8 +195,8 @@ export default function  CheckoutPage  ({ route, navigation}){
   let orderId ="";
   let dateNow = new Date(firebase.firestore.Timestamp.now().seconds*1000).toLocaleDateString()
 
-  function placeOrder(){
-  firebase.firestore().collection('Orders').add({
+  function orderPlaced() {
+    firebase.firestore().collection('Orders').add({
       ResultMacthed : "False",
       contactNumber : contactNumber,
       customerName: customerName,
@@ -213,9 +213,7 @@ export default function  CheckoutPage  ({ route, navigation}){
     }).then((res) => {
       console.log(res.id)
       Alert.alert("Order placed successfully!")
-
       function updateOrderId() {
-       
           const docRef = firebase.firestore().collection('Orders').doc(res.id);
               // update doc Id
                       docRef.update({
@@ -228,9 +226,42 @@ export default function  CheckoutPage  ({ route, navigation}){
     })
   }
 
+  function placeOrder(){
+
+    //emailVerification
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      if (user.emailVerified === false) {
+      //email not verified
+       Alert.alert("Please verify your email first.")
+      } else {
+        orderPlaced()
+      }
+    } else {
+    
+    }
+  });
+  
+  }
+
 
    
+  //emailVerification
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      if (user.emailVerified === false) {
+      //email not verified
+      
+      
+      } else {
+        // successful login 
+      
 
+      }
+    } else {
+    
+    }
+  });
 
   useEffect(() => {
     

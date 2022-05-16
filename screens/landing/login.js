@@ -74,6 +74,20 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                 seterrorMessage(str_msg)
             });
 
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                  if (user.emailVerified === false) {
+                      
+                  } else {
+                    // successful login 
+                  
+                  }
+                } else {
+                 
+                }
+              });
+            
+
         // toTabs();
     }
 
