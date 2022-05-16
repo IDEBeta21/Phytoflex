@@ -145,8 +145,8 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   userPhoto1: {
-    height: 25,
-    width: 25,
+    height: 35,
+    width: 35,
     borderRadius: 100
   },
   userPhoto2: {
