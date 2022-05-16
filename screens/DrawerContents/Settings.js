@@ -62,6 +62,20 @@ export default function Settings({navigation}) {
 
       <Pressable
         style={styles.button} 
+        onPress={() => navigation.navigate('DrawerHowToUse')} >
+      <View style={styles.container}>
+        <Text style={styles.textLabel}>
+            How to use the Phytoflex App
+        </Text>
+            <Image
+              source={require('../../assets/drawerIcons/discussionIcons/go.png')}
+              style={styles.imageStyle}
+            />
+        </View>
+      </Pressable>      
+
+      <Pressable
+        style={styles.button} 
         onPress={() => navigation.navigate('DrawerAboutUs')} >
       <View style={styles.container}>
         <Text style={styles.textLabel}>

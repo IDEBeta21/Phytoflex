@@ -131,16 +131,21 @@ export default function AllScreenPage({navigation}) {
       </ScrollView>
       <View style={styles.createpost}>
             <View>
-              <Image
-                // FAB using TouchableOpacity with an image
-                // For online image
-                source={{uri : image}}
-                //source={ require('../../assets/img/profiles/Alejandre.jpg')}
-                // For local image
-                //source={require('./images/float-add-icon.png')}
-                style={styles.userPhoto}
-                //style={styles.userImage}
-              />
+              <TouchableOpacity 
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate('UserProfilePage')}
+              >
+                <Image
+                  // FAB using TouchableOpacity with an image
+                  // For online image
+                  source={{uri : image}}
+                  //source={ require('../../assets/img/profiles/Alejandre.jpg')}
+                  // For local image
+                  //source={require('./images/float-add-icon.png')}
+                  style={styles.userPhoto}
+                  //style={styles.userImage}
+                />
+              </TouchableOpacity>
             </View>
             <PFText weight='semi-bold' size={15} style={styles.textFormat}>{userfullName}</PFText>
             <TouchableOpacity

@@ -193,11 +193,11 @@ let subtotal = "";
     </View>
 
     <View style={{marginBottom: 15}}>
-    <View style = {{flexDirection: 'row', flex: 1, justifyContent: 'space-between', marginBottom: 5 }}>
-               <PFText   weight='semi-bold' size = {14}>Order ID: </PFText>
+    <View style = {{flexDirection: 'row', flex: 1, marginBottom: 5 }}>
+               <PFText   weight='semi-bold' size = {16}>Order ID: </PFText>
                <PFText  paddingRight= {0 }weight='semi-bold' size = {14}>{route.params.orderIDNo}</PFText>
               <View style = {{}}>
-              <PFText  weight='light' size = {14}>{route.params.timePurchase}</PFText>
+              {/* <PFText  weight='light' size = {14}>{route.params.timePurchase}</PFText> */}
               </View>
               </View>
               <View>
@@ -210,10 +210,10 @@ let subtotal = "";
                   stepCount = {4}
                   renderLabel = {({position, stepStatus, label,  currentPosition }) =>{
                             return(
-                              <View>
+                              <View style={{width: '90%',   alignItems:'flex-start'}}>
                                 <PFText weight='semi-bold'>{data[position].label}</PFText>
                                 <PFText color={'#999999'}>{data[position].status}</PFText>
-                                <PFText color={'#999999'}>{data[position].dateTime}</PFText>
+                                {/* <PFText color={'#999999'}>{data[position].dateTime}</PFText> */}
                               </View>
                             )
                   }}
@@ -279,39 +279,49 @@ let subtotal = "";
       />
     </View>
     <View>
-          <View style={{flex: 3, }}>
-            <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={18}>Payment Method</PFText>
-                      <View style = {{borderWidth:1, padding: 10, borderRadius:5}}>
+    <View style={{flex: 1, }}>
+          <PFText style={{marginBottom: 5, marginTop: 5}} weight = 'semi-bold' size={15}>Payment Method</PFText>
+                      <View style = {{borderWidth:1, paddingBottom: 15, paddingTop:15, borderRadius:5, flexDirection: 'row', alignItems: 'center',alignContent: 'flex-start'}}> 
+                      
+                      <Image 
+                      source={require('../../../assets/img/ecommerce/payment.png')}
+                      style={{
+                     
+                      height: 24,
+                      width: (Dimensions.get('window').width/1) * 0.15,
+                      resizeMode:'contain',
+                      borderRadius: 10 }} /> 
+
                       <PFText size={14} weight= 'medium'>Cash On Delivery</PFText>
                       </View>         
-          </View>         
+          </View>     
           </View>
 
 
-      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 15}}>
-        <View style={{flex: 9}}>
+      <View style={{flexDirection: 'row', marginTop: 20, marginBottom: 10, alignItems:'center', }}>
+        <View style={{flex: 9,  }}>
           <PFText weight='medium'>
             Sub Total ({SampleData.orderDetails.length} items): </PFText>
             
           <PFText weight='medium'>
             Delivery Fee: </PFText>
         </View>
-        <View style={{flex: 3}}>
-          <PFText weight='medium'>
+        <View style={{flex: 3, }}>
+          <PFText size= {16} weight='semi-bold'>
             P {subtotal} </PFText>
             
-          <PFText weight='medium'>
+          <PFText size= {16} weight='semi-bold'>
             P {deliveryfee}</PFText>
         </View>
       </View>
 
-      <View style={{flexDirection: 'row', marginBottom: 20}}>
+      <View style={{flexDirection: 'row', marginBottom: 10, alignItems:'center'}}>
         <View style={{flex: 9}}>
           <PFText weight='semi-bold' size={18}>
             Total Payment:</PFText>
         </View>
         <View style={{flex: 3}}>
-          <PFText weight='semi-bold' size={18}>
+          <PFText weight='semi-bold' size={20}>
             P {subtotal + deliveryfee}</PFText>
         </View>
       </View>

@@ -59,6 +59,7 @@ import FAQs from './screens/DrawerContents/SettingsScreens/FAQs';
 import Notifications from './screens/DrawerContents/SettingsScreens/Notifications';
 import PrivacyPolicy from './screens/DrawerContents/SettingsScreens/PrivacyPolicy';
 import TermsAndConditions from './screens/DrawerContents/SettingsScreens/TermsAndConditions';
+import HowToUse from './screens/DrawerContents/SettingsScreens/HowToUse';
 
 import ForumScreen from './screens/forum';
 import PlantCare from './screens/plantcare/mainPlantCare';
@@ -169,6 +170,11 @@ function FuncPrivacyPolicy({navigation}){
 function FuncTermsAndConditions({navigation}){
   return(
     <TermsAndConditions navigation={navigation}/>
+  )
+}
+function FuncHowToUse({navigation}){
+  return(
+    <HowToUse navigation={navigation}/>
   )
 }
 
@@ -533,6 +539,18 @@ function SideBar({navigation}){
           component={FuncTermsAndConditions}
           options={{ 
             headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'TermsAndConditions'} title={'Terms And Conditions'} navigation={navigation} />, 
+            headerLeft:false,
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }} />                                                  
+
+        <Drawer.Screen 
+          name="DrawerHowToUse"
+          component={FuncHowToUse}
+          options={{ 
+            headerTitle: (props) => <DrawerHeader goBackScreen={'DrawerSettings'} screenDescription={'HowToUse'} title={'How to use the App'} navigation={navigation} />, 
             headerLeft:false,
             headerStyle: {
               backgroundColor: '#1D4123'

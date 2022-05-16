@@ -28,6 +28,7 @@ export default function FollowingScreenPage({navigation}) {
 
   const [refdata2, setrefdata2] = useState([]); // declaration 
   const [refnull2, setrefnull2] = useState(true);
+  
 
   const getUsers = async() => {
     firebase.auth().onAuthStateChanged((user) => {

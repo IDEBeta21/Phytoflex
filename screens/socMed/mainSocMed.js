@@ -14,6 +14,7 @@ import UserProfilePage from './UserProfile';
 import CommentPage from './CommentPage';
 import ChatPage from './ChatPage';
 import TutorialPage from './Tutorial';
+import FriendsTabPage from './FriendsTab';
 
 import DrawerHeader from '../DrawerContents/DrawerHeader';
 
@@ -64,6 +65,11 @@ function FuncChat({navigation}) {
 function FuncTutorial({navigation}) {
   return (
     <TutorialPage navigation={navigation}/>
+  );
+}
+function FuncFriendsTab({navigation}) {
+  return (
+    <FriendsTabPage navigation={navigation}/>
   );
 }
 
@@ -180,7 +186,17 @@ function App({navigation}) {
             headerTintColor: 'white'
           }}
         />
-
+        <Stack.Screen
+          name="FriendsTabPage"
+          component={FuncFriendsTab}
+          options={{ 
+            headerTitle: (props) => <Header title={''} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white'
+          }}
+        />
       </Stack.Navigator>
       
     // </NavigationContainer>

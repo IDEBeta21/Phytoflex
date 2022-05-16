@@ -63,13 +63,13 @@ export default function UserProfilePage({navigation}) {
           </View>
         </View>
         
-        <TouchableOpacity style={styles.followCon} onPress={() => navigation.navigate('')}>
+        <TouchableOpacity style={styles.followCon} onPress={() => navigation.navigate('FriendsTabPage')}>
           <View style={styles.container2}>
-            <Text style={styles.txt}>150</Text>
+            <Text style={styles.txt}>5</Text>
             <Text style={styles.txt1}>Followers</Text>
           </View>
           <View style={styles.container3}>
-            <Text style={styles.txt}>200</Text>
+            <Text style={styles.txt}>7</Text>
             <Text style={styles.txt1}>Following</Text>
           </View>
         </TouchableOpacity>
@@ -97,7 +97,7 @@ export default function UserProfilePage({navigation}) {
         <View style={styles.mainPostContainer}>
           <PFFlatList
             numColumns={1}
-            noDataMessage='You have no Post'
+            noDataMessage=''
             data={SampleData.cardPostData1}
             renderItem={(item) => (
               <PFPostsCard 
@@ -114,10 +114,10 @@ export default function UserProfilePage({navigation}) {
       </ScrollView>
 
       <FAB
-        icon= { <AntDesign name="plus" size={24} color="white" /> }
-        style={{ position: 'absolute', backgroundColor: '#1d4123', margin: 16, right: 0, bottom: -1, }} 
+        icon='plus'
+        style={styles.fab}
         onPress={() => navigation.navigate('CreatePostPage')}
-        />
+      />
 
     </View>
   );
@@ -256,5 +256,16 @@ const styles = StyleSheet.create({
     paddingLeft: 30, 
     paddingRight: 30,
     width: (Dimensions.get('window').width) * 1
+  },
+  fab: {
+    position: 'absolute',
+    // margin: 16,
+    // right: 0,
+    bottom: 0,
+    marginBottom: 12,
+    alignSelf: 'center',
+    // justifyContent: 'flex-end',
+    // flex: 1,
+    backgroundColor: '#1d4123',
   }
 })

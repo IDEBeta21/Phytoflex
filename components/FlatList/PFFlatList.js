@@ -63,10 +63,10 @@ export const PFFlatList = ({
                 <View style={noDataStyles.container}>
                     <Text weight='medium' size={18} center>{noDataMessage}</Text>
                     <View style={noDataStyles.imgContainer}>
-                        {/* <Image 
-                            source={ require('../../../assets/img/nomessage.png') }
+                        <Image 
+                            source={ require('../../assets/noDataPics/noDataFound.png') }
                             style={noDataStyles.img}
-                        /> */}
+                        />
                     </View>
                 </View>
             )

@@ -125,7 +125,7 @@ export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate, 
                   <MaterialCommunityIcons
                     name={liked ? "flower-tulip": "flower-tulip-outline" }
                     size={24} 
-                    color={liked ? "#1D4123" : "#1D4123"}
+                    color={liked ? "#639d04" : "#1D4123"}
                     style={{marginTop: 3}}
                   />
                 </Pressable>
@@ -218,7 +218,7 @@ export const PFPostsImageOnlyCard = ({ userPhoto, imageURL, name, description, t
                   <MaterialCommunityIcons
                     name={liked ? "flower-tulip": "flower-tulip-outline" }
                     size={24} 
-                    color={liked ? "#1D4123" : "#1D4123"}
+                    color={liked ? "#639d04" : "#1D4123"}
                     style={{marginTop: 3}}
                   />
                 </Pressable>
@@ -302,7 +302,7 @@ export const PFPostsNoImageCard = ({
               <MaterialCommunityIcons
                 name={liked ? "flower-tulip": "flower-tulip-outline" }
                 size={24} 
-                color={liked ? "#1D4123" : "#1D4123"}
+                color={liked ? "#639d04" : "#1D4123"}
                 style={{marginTop: 3}}
               />
             </Pressable>
@@ -344,43 +344,48 @@ export const PFCommentCard = ({
   userPhoto, name, comment, reactionNum, replyNum, time,
   onPress = () => {}}, 
   style, 
-  cardContentStyle) => (
-    <View style={styles.commentSection}>
-    <View style={ styles.container }>
-      <Image
-        // FAB using TouchableOpacity with an image
-        // For online image
-        source={{ uri: userPhoto }}
-        // For local image
-        //source={require('./images/float-add-icon.png')}
-        style={styles.userPhoto1}
-      />
-      <View styles={{flexDirection: 'column'}}>
+  cardContentStyle) => {
+
+    const [liked, setLiked] = useState(false);
+
+    return (
+      <View style={styles.commentSection}>
       <View style={ styles.container }>
-      <PFText weight='semi-bold' size={13}>{name}</PFText>
-          <PFText weight='semi-bold' size={10} style={{marginLeft: 8, marginTop: 3}}>•</PFText>
-          <PFText size={10} style={{marginLeft: 8, marginTop: 3}}>{time}</PFText>
-        </View>
+        <Image
+          // FAB using TouchableOpacity with an image
+          // For online image
+          source={{ uri: userPhoto }}
+          // For local image
+          //source={require('./images/float-add-icon.png')}
+          style={styles.userPhoto1}
+        />
+        <View styles={{flexDirection: 'column'}}>
         <View style={ styles.container }>
-          <TextInput style={styles.commentTxtBox} editable={false}>{comment}</TextInput>
-            <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 10}}>
-              <Image
-                // FAB using TouchableOpacity with an image
-                // For online image
-                source={ require('../../assets/drawerIcons/socmedIcons/bloom_react.png')}
-                // For local image
-                //source={require('./images/float-add-icon.png')}
-                style={styles.commentReactSize}
-              />
-            </View>
-        </View>
-        <View style={ styles.container }>
-          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+        <PFText weight='semi-bold' size={13}>{name}</PFText>
+            <PFText weight='semi-bold' size={10} style={{marginLeft: 8, marginTop: 3}}>•</PFText>
+            <PFText size={10} style={{marginLeft: 8, marginTop: 3}}>{time}</PFText>
+          </View>
+          <View style={ styles.container }>
+            <TextInput style={styles.commentTxtBox} editable={false}>{comment}</TextInput>
+              <View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, paddingLeft: 3, paddingRight: 3, margin: 5, marginLeft: 10}}>
+                <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                  <MaterialCommunityIcons
+                    name={liked ? "leaf": "leaf" }
+                    size={22} 
+                    color={liked ? "#639d04" : "#1D4123"}
+                    style={{marginTop: 3}}
+                  />
+                </Pressable>
+              </View>
+          </View>
+          <View style={ styles.container }>
+            <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+          </View>
         </View>
       </View>
     </View>
-  </View>
-);
+  );
+}
 
 export const PFFriendCard = ({
   userPhoto, name,
@@ -434,7 +439,7 @@ style, cardContentStyle) => {
 export const PFNotifCard = ({userPhoto, notifTitle, notifdetail, onPress = () =>{}},
 style, cardContentStyle) => {
   return (
-      <TouchableOpacity style={styles.notifCard}>
+      <TouchableOpacity style={styles.notifCard} onPress={() => onPress()}>
           <View>
             <Image 
             source={require('../../assets/logo.png')}
@@ -450,6 +455,52 @@ style, cardContentStyle) => {
           <View styles={styles.notifContent}>
             <PFText weight='semi-bold' size={15}>{notifTitle}</PFText>
             <Text style={{fontFamily: 'poppins-light', fontSize: 12, }}>{notifdetail}</Text>
+          </View>
+      </TouchableOpacity>
+  )
+};
+
+export const PFFollowersCard = ({userPhoto, userName, onPress = () =>{}},
+style, cardContentStyle) => {
+  return (
+      <TouchableOpacity style={styles.friendCard}>
+          <View>
+            <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 5
+            }} 
+            />
+          </View>
+          {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
+          <View styles={styles.cardAlignment}>
+            <PFText weight='semi-bold' size={15}>{userName}</PFText>
+          </View>
+      </TouchableOpacity>
+  )
+};
+
+export const PFFollowingCard = ({userPhoto, userName, onPress = () =>{}},
+style, cardContentStyle) => {
+  return (
+      <TouchableOpacity style={styles.friendCard}>
+          <View>
+            <Image 
+            source={require('../../assets/logo.png')}
+            style={{
+              height: 40,
+              width: 40,
+              borderRadius: 100,
+              marginRight: 5
+            }} 
+            />
+          </View>
+          {/* style={{flexDirection: 'column', marginBottom: 0, }} */}
+          <View>
+            <PFText weight='semi-bold' size={15} style={{width: 200, marginTop: 10, marginLeft: 5}}>{userName}</PFText>
           </View>
       </TouchableOpacity>
   )
@@ -1453,6 +1504,16 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     height: 80,
   },
+  friendCard: {
+    width: (Dimensions.get('window').width),
+    flexDirection: 'row', 
+    padding: 15,  
+    paddingLeft: 20,
+    height: 65,
+    borderBottomWidth: 0.5,
+    borderLeftWidth: 0.5,
+    borderColor: '#1d4123'
+  },
   msgCard: {
     width: (Dimensions.get('window').width),
     flexDirection: 'row', 
@@ -1471,6 +1532,12 @@ const styles = StyleSheet.create({
   notifContent: {
     flexDirection: 'column', 
     padding: 10
+  },
+  cardAlignment: {
+    padding: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20
   },
   msgContent: {
     flexDirection: 'column', 

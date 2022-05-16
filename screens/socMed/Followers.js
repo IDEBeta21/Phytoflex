@@ -1,25 +1,26 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Dimensions, Alert, FlatList, Pressable, ViewPropTypes} from 'react-native';
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import { Portal } from 'react-native-paper';
+import DropDownPicker from 'react-native-dropdown-picker';
 import { globalStyles } from '../global/globalStyles';
+
+import { NavigationContainer } from '@react-navigation/native';
 
 import { 
   PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
   PFModalLogin , PFModalAlert, PFModalPrompt, 
   PFPrimaryButton, PFSecondaryButton,
-  PFFlatList,  PFMessageCard, PFSwitch
+  PFFlatList,  PFFollowersCard, PFSwitch
 } from '../../components';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { ScrollView } from 'react-native-gesture-handler';
-import { DrawerContent } from '../global/Drawer';
-import { FAB, Provider, Title, } from 'react-native-paper';
 import Colors from '../../utils/globalColors';
 
 import SampleData from '../../utils/SampleData';
 
+import { ScrollView } from 'react-native-gesture-handler';
 
-export default function InboxZonePage({navigation}) {
+
+export default function FollowerPage({navigation}) {
   // Calling Plantcare search screen
   
   return (
@@ -28,26 +29,19 @@ export default function InboxZonePage({navigation}) {
         <View>
           <PFFlatList
             numColumns={1}
-            noDataMessage=''
-            data={SampleData.messageDetails}
+            noDataMessage='No Notification Yet'
+            data={SampleData.followerDetails}
             renderItem={(item) => (
-              <PFMessageCard
+              <PFFollowersCard
                 userPhoto={item.userPhoto}
                 userName={item.userName}
-                lastMsg={item.lastMsg}
-                onPress={() => navigation.navigate('ChatPage')}
+                onPress={() => Alert.alert(item.userName)}
               />
             )}
             keyExtractor={(item,index) => index}
           />
         </View>
       </ScrollView>
-
-      <FAB
-        icon='plus'
-        style={styles.fab}
-        onPress={() => navigation.navigate('CreatePostPage')}
-      />
     </View>
   );
 }
@@ -59,15 +53,4 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start'
   },
-  fab: {
-    position: 'absolute',
-    // margin: 16,
-    // right: 0,
-    bottom: 0,
-    marginBottom: 12,
-    alignSelf: 'center',
-    // justifyContent: 'flex-end',
-    // flex: 1,
-    backgroundColor: '#1d4123',
-  }
 })
