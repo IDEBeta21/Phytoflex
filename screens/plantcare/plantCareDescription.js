@@ -8,8 +8,40 @@ import { NavigationContainer } from '@react-navigation/native';
 import { PFText } from '../../components';
 import { color } from 'react-native-reanimated';
 
+import firebase from 'firebase';
 
-export default function PlantCareDescription({navigation}) {
+
+
+export default function PlantCareDescription({navigation, route}) {
+
+  const [userPlantName, setuserPlantName] = useState('')
+  const [userPlantDesc, setuserPlantDesc] = useState('')
+
+  const onMonitorPress = async () => {
+    if(firebase.auth().currentUser){
+        // upload to firebase
+        await firebase.firestore().collection('PlantMonitoring').add({
+            imageUrl: route.params.imageUrl,
+            firebaseDirectory: route.params.firebaseDirectory,
+            plantName: userPlantName,
+            plantDescription: userPlantDesc,
+            userId: firebase.auth().currentUser.uid
+        }).then((res) => {
+            navigation.navigate('PlantCareMonitor',{
+                documentId: res.id,
+                reminderImageUrl: route.params.imageUrl
+            }) 
+            console.log('Document Id: ' + res.id)
+        }).catch((err) => {
+            console.log(err)
+        })
+        
+    }else{
+        Alert.alert('You have to Login to use this feature')
+        return
+    }
+  }
+
   return (
 
     <ScrollView showsVerticalScrollIndicator={false}
@@ -19,27 +51,29 @@ export default function PlantCareDescription({navigation}) {
         <View style={{ paddingBottom: 5, }}>
           <Image
           style={styles.image}
-          source={require('./../../assets/img/plantcare/Image.png')}/>
+          // source={require('./../../assets/img/plantcare/Image.png')}/>
+          source={{uri: route.params.imageUrl}}/>
         </View>
 
         <PFText weight='poppins-semiBold' style={styles.label}>Plant name</PFText>
           <TextInput
             style={styles.input}
-                mode="outlined"
-                placeholder="Cactus"
-                // label="Outlined input"
-                activeOutlineColor='green'
-                maxLength={40}
-                // multiline={true}
-                // numberOfLines={1}
-                // outlineColor='black'
+            mode="outlined"
+            placeholder="Enter your plant's name here..."
+            // label="Outlined input"
+            activeOutlineColor='green'
+            maxLength={40}
+            // multiline={true}
+            // numberOfLines={1}
+            // outlineColor='black'
+            onChangeText={(text) => setuserPlantName(text)}
           />
 
-        <PFText weight='regular' style={styles.label}>Kingdom</PFText>
+        {/* <PFText weight='regular' style={styles.label}>Kingdom</PFText>
           <TextInput
             style={styles.input}
                 mode="outlined"
-                placeholder="Plantae"
+                placeholder="Enter your plant's kingdom here..."
                 // label="Outlined input"
                 activeOutlineColor='green'
                 maxLength={50}
@@ -52,30 +86,31 @@ export default function PlantCareDescription({navigation}) {
           <TextInput
             style={styles.input}
                 mode="outlined"
-                placeholder="Amaranthaceae"
+                placeholder="Enter your plant's family here..."
                 // label="Outlined input"
                 activeOutlineColor='green'
                 maxLength={50}
                 // multiline={true}
                 // numberOfLines={1}
                 // outlineColor='black'
-          />
+          /> */}
 
 
         <PFText weight='regular' style={styles.label}>Description</PFText>
           <TextInput
             style={styles.input}
-                mode="outlined"
-                // label="Outlined input"
-                placeholder="Type something"
-                activeOutlineColor='green'
-                multiline={true}
-                scrollEnabled={true}
-                editable={true}
-                numberOfLines={8}
-                maxLength={140}
-                right={<TextInput.Affix text="/140" />}
-              />
+            mode="outlined"
+            // label="Outlined input"
+            placeholder="Type something here..."
+            activeOutlineColor='green'
+            multiline={true}
+            scrollEnabled={true}
+            editable={true}
+            numberOfLines={8}
+            maxLength={140}
+            right={<TextInput.Affix text="/140" />}
+            onChangeText={(text) => setuserPlantDesc(text)}
+          />
 
         <Button 
           style={styles.button}
@@ -83,7 +118,7 @@ export default function PlantCareDescription({navigation}) {
           // icon="image" 
           mode="contained" 
           color='#639D04' 
-          onPress={() => console.log('Pressed')}> Monitor this plant</Button>
+          onPress={() => onMonitorPress()}> Monitor this plant</Button>
     
 
       </SafeAreaView>

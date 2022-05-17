@@ -1,5 +1,5 @@
 import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, StatusBar, SafeAreaView, Title, Paragraph, Alert, FlatList, Card, Pressable} from 'react-native';
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { Portal } from 'react-native-paper';
 import { globalStyles } from '../global/globalStyles';
 import { useNavigation } from '@react-navigation/native';
@@ -23,8 +23,62 @@ import SampleData from '../../utils/SampleData';
 import { ScrollView } from 'react-native-gesture-handler';
 // import { SafeAreaView } from 'react-native-safe-area-context';
 
-
 export default function PlantCare({navigation}) {
+
+  const [userLoggedIn, setuserLoggedIn] = useState(false)
+  const [reminderSet, setreminderSet] = useState([])
+
+  useEffect(() => {
+    
+    (async() => {
+      const user = firebase.auth().currentUser
+      console.log(user.uid)
+
+      if(user){
+        setuserLoggedIn(true)
+        await firebase.firestore()
+        .collection('PlantReminder').where('userId', '==', user.uid)
+        .get().then((res) => {
+          let snap = res.docs.map(doc => { // saka gumamit ako ng map
+            const data = doc.data();
+            const id = doc.id;
+            return {id, ...data}
+          })
+          setreminderSet(snap);
+          console.log(snap)
+        })
+      }
+    })()
+    
+  }, [])
+
+
+  const onCheckPress = async(id) => {
+    await firebase.firestore().collection('PlantReminder').doc(id).update({
+      doneStatus: true
+    })
+
+    const user = firebase.auth().currentUser
+    console.log(user.uid)
+
+    if(user){
+      setuserLoggedIn(true)
+      await firebase.firestore()
+      .collection('PlantReminder').where('userId', '==', user.uid)
+      .get().then((res) => {
+        let snap = res.docs.map(doc => { // saka gumamit ako ng map
+          const data = doc.data();
+          const id = doc.id;
+          return {id, ...data}
+        })
+        setreminderSet(snap);
+        console.log(snap)
+      })
+    }
+
+  }
+  
+
   return (
 
     <View style={ styles.mainContainer }>
@@ -35,17 +89,24 @@ export default function PlantCare({navigation}) {
 
         <SafeAreaView style={styles.container}>
         <PFFlatList style={styles.flatList}
-          data={SampleData.myPlantCare}
+          data={reminderSet}
           renderItem={(item) => (
-
-            <MyComponent
-              // imageURL={firebase.storage().refFromURL(item.imageURL)}
-              imageURL={item.imageURL}
-              title={item.title}
-              description={item.description}
-              
-              onPress={() => alert('Hello')}
-            />
+            
+            <View>
+              {(!item.doneStatus) ? 
+                <MyComponent
+                  // imageURL={firebase.storage().refFromURL(item.imageURL)}
+                  imageURL={item.reminderImageUrl}
+                  title={item.notifMessage}
+                  description={item.remiderDesc}
+                  
+                  onPress={() => alert('Hello')}
+                  onCheckPress={() => onCheckPress(item.id)}
+                />: null
+              }
+            </View> 
+            
+            
                
               )}
             keyExtractor={(item,index) => index}
@@ -55,11 +116,11 @@ export default function PlantCare({navigation}) {
       </ScrollView>
 
       {/* Floating icon */}
-      <FAB
+      {/* <FAB
         icon="plus"
         style={styles.fab}
         onPress={() => alert('Instruction')}
-      />
+      /> */}
    
     </View>
   );
@@ -77,7 +138,9 @@ const styles = StyleSheet.create({
 
   mainContainer: {
     flex: 1,
-    backgroundColor: '#DFDFDF',
+    // backgroundColor: '#DFDFDF',
+    backgroundColor: '#f5f2f2',
+
   },
   
   card: {

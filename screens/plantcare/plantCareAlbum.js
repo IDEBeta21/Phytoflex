@@ -1,4 +1,4 @@
-import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable, StatusBar} from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, Image, TouchableOpacity, Alert, FlatList, SafeAreaView, Pressable, StatusBar, DatePickerAndroid} from 'react-native';
 import React, { Component, useState, useEffect } from 'react';
 // import { StatusBar } from 'expo-status-bar';
 
@@ -44,7 +44,18 @@ export default function PlantCareAlbum ({navigation, route}) {
         setformalPlantName(doc.data().plantName)
         setplantDesc(doc.data().plantDescription)
         setplantImageUrl(doc.data().imageUrl)
-        setreminders(doc.data().reminders)
+        // setreminders(doc.data().reminders)
+      })
+
+      await firebase.firestore()
+      .collection('PlantReminder').where('documentId', '==', route.params.plantMonitoringId)
+      .get().then((res) => {
+        let snap = res.docs.map(doc => { // saka gumamit ako ng map
+          const data = doc.data();
+          const id = doc.id;
+          return {id, ...data}
+        })
+        setreminders(snap)
       })
     })()
   }, [])
@@ -101,9 +112,13 @@ export default function PlantCareAlbum ({navigation, route}) {
               
                 <DailyPlantMonitor
                     // imageURL={firebase.storage().refFromURL(item.imageURL)}
-                    imageURL={item.imageURL}
-                    description={item.commonName}
-                    onPress={() => alert("Hello")}
+                    imageURL={item.reminderImageUrl}
+                    description={item.title}
+                    onPress={() => navigation.navigate('PlantCareReminderDetails',{
+                      imageUrl: item.reminderImageUrl,
+                      title: item.title,
+                      description: item.remiderDesc
+                    })}
                 />
               )}
                 keyExtractor={(item,index) => index}
@@ -115,7 +130,10 @@ export default function PlantCareAlbum ({navigation, route}) {
         <FAB
           style={{ position: 'absolute', backgroundColor: '#ffffff', margin: 16, right: 0, bottom: -1, }} 
           icon="plus"
-          onPress={() => navigation.navigate('PlantCareReminder')}
+          onPress={() => {navigation.navigate('PlantCareMonitor', { 
+            documentId: route.params.plantMonitoringId,
+            reminderImageUrl: plantImageUrl
+          }) }}
         />
 
     </View>

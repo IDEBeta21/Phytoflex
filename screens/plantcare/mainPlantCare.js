@@ -80,14 +80,14 @@ function FuncPlantCare({navigation}) {
     <PlantCare navigation={navigation}/>);
 }
 
-function FuncPlantCareReminderDetails({navigation}) {
+function FuncPlantCareReminderDetails({route, navigation}) {
   return(
-    <PlantCareReminderDetails navigation={navigation}/>);
+    <PlantCareReminderDetails navigation={navigation} route={route}/>);
 }
 
-function FuncPlantCareMonitor({navigation}) {
+function FuncPlantCareMonitor({route, navigation}) {
   return(
-    <PlantCareMonitor navigation={navigation}/>);
+    <PlantCareMonitor navigation={navigation} route={route}/>);
 }
 
 function FuncPlantCareReminder({route, navigation}) {
@@ -105,9 +105,9 @@ function FuncPlantCareAlbum({route, navigation}) {
     <PlantCareAlbum navigation={navigation} route={route}/>);
 }
 
-function FuncPlantCareDescription({navigation}) {
+function FuncPlantCareDescription({route, navigation}) {
   return(
-    <PlantCareDescription navigation={navigation} />);
+    <PlantCareDescription navigation={navigation} route={route} />);
 }
 
 function FuncPlantCareCameraPreview({route, navigation}){

@@ -16,7 +16,24 @@ import {
 import { color } from 'react-native-reanimated';
 
 
-export default function PlantCareMonitor({navigation}) {
+export default function PlantCareMonitor({navigation, route}) {
+
+
+  const [title, settitle] = useState('')
+  const [description, setdescription] = useState('')
+
+  const onContinue = () => {
+    navigation.navigate('PlantCareReminder',{
+      title: title,
+      description: description,
+
+      documentId: route.params.documentId,
+      reminderImageUrl: route.params.reminderImageUrl,
+
+    })
+  }
+
+
   return (
 
     <ScrollView>
@@ -26,13 +43,14 @@ export default function PlantCareMonitor({navigation}) {
           <TextInput
             style={{marginStart: 12, marginEnd: 12, borderColor: 'green', fontFamily: 'poppins-light', }}
                 mode="outlined"
-                placeholder="Type something"
+                placeholder="Day..."
                 // label="Outlined input"
                 activeOutlineColor='green'
                 maxLength={50}
                 // multiline={true}
                 // numberOfLines={1}
                 // outlineColor='black'
+                onChangeText={(text) => settitle(text)}
               />
 
         <PFText weight='regular' style={styles.label}>Description</PFText>
@@ -40,7 +58,7 @@ export default function PlantCareMonitor({navigation}) {
             style={{marginStart: 12, marginEnd: 12, borderColor: 'pink' }}
                 mode="outlined"
                 // label="Outlined input"
-                placeholder="Type something"
+                placeholder="Type something..."
                 activeOutlineColor='green'
                 multiline={true}
                 scrollEnabled={true}
@@ -48,16 +66,17 @@ export default function PlantCareMonitor({navigation}) {
                 numberOfLines={8}
                 maxLength={140}
                 right={<TextInput.Affix text="/140" />}
+                onChangeText={(text) => setdescription(text)}
               />
 
         <Button 
           style={{ marginTop: 15, marginStart: 12, marginEnd: 12, padding: 10}}
         
           labelStyle={{ color: 'white', fontFamily: 'poppins-semiBold' }}
-          icon="image" 
+          // icon="image" 
           mode="contained" 
           color='#639D04' 
-          onPress={() => console.log('Pressed')}> Upload a photo</Button>
+          onPress={() => onContinue()}> Continue </Button>
     
 
       </SafeAreaView>

@@ -19,6 +19,7 @@ export const MyComponent = ({
   title,
   description, 
   onPress = () => {}, 
+  onCheckPress = () => {},
 }) => {
 
   /*     // Avatar
@@ -60,7 +61,7 @@ export const MyComponent = ({
           // left={LeftContent}
           // right={RightContent} 
           left={(props) => <Avatar.Image {...props} source={{ uri: imageURL }} />}  
-          right={(props) => <IconButton {...props} icon="check-circle-outline" color={'#639D04'} onPress={() => alert('You need to...')} />}
+          right={(props) => <IconButton {...props} icon="check-circle-outline" color={'#639D04'} onPress={() => onCheckPress()} />}
         />
 
       </Card>

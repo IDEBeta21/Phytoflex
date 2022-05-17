@@ -20,16 +20,17 @@ export const DailyPlantMonitor = ({
     
     const [image, setimage] = useState(null)
 
-    firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
-      setimage(url);
-    })
+    // firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+    //   setimage(url);
+    // })
 
     return(
       <View style={{...styles.cardContainer, ...style}}>
         <Card style={{ flex: 1 }} onPress={() => onPress()}>
           
           <Card.Cover 
-            source={{ uri: image }} 
+            // source={{ uri: image }} 
+            source={{ uri: imageURL }} 
             style={{ borderBottomLeftRadius: 5, borderBottomRightRadius: 5, borderTopLeftRadius: 5, borderTopRightRadius: 5, }}
           />
           

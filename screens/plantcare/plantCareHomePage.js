@@ -141,8 +141,8 @@ export default function PlantCareHomePage({navigation}) {
               showsVerticalScrollIndicator={false}
             >
               <View style={styles.flContainer}>
-                {
-                  noSnapMessage == '' ? 
+                {/* {
+                  noSnapMessage == '' ?  */}
                     <View style={{flexDirection: 'row'}}>
                       <Title style={{ color: Colors.primary , marginLeft: 7, fontSize: 15, fontFamily: 'poppins-regular', color: '#1D4123' ,flex: 1}}>
                         Recent Snaps</Title> 
@@ -151,9 +151,9 @@ export default function PlantCareHomePage({navigation}) {
                         Refresh</Title> 
                       </TouchableOpacity>
                     </View>
-                  :
+                  {/* :
                   null
-                }
+                } */}
                 <SafeAreaView style={{ height: 169 }}>
                   <FlatList 
                     horizontal={true} 
@@ -184,7 +184,7 @@ export default function PlantCareHomePage({navigation}) {
                     <MyGardenItem 
                       // imageURL={firebase.storage().refFromURL(item.imageURL)}
                       imageURL={item.firebaseDirectory}
-                      plantType={item.plantName}
+                      plantType={""}
                       commonName={item.plantName}
                       onPress={() => navigation.navigate('PlantCareAlbum',{
                         plantMonitoringId: item.id

@@ -64,6 +64,14 @@ export default function FirebaseSample(){
     // })
   }
 
+  const testColInDoc = async() => {
+    firebase.firestore().collection('PlantMonitoring').doc('5I290UXQEnmhOJU9Pvff').collection('Reminders').add({
+      description: 'Hello'
+    }).then((res) => {
+      Alert.alert("Check testing")
+    })
+  }
+
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
@@ -80,6 +88,13 @@ export default function FirebaseSample(){
           icon='eye' 
           title='Click Me' 
           onPress={() => updateData()}
+          roundness={7}/>
+
+
+        <PFPrimaryButton 
+          icon='eye' 
+          title='Click Me For testing' 
+          onPress={() => testColInDoc()}
           roundness={7}/>
 
         <View>
