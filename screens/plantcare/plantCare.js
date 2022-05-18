@@ -104,7 +104,14 @@ export default function PlantCare({navigation}) {
                   onPress={() => navigation.navigate('PlantCareReminderDetails',{
                     imageUrl: item.reminderImageUrl,
                     title: item.title,
-                    description: item.remiderDesc
+                    description: item.remiderDesc,
+
+                    reminderMsg: item.notifMessage,
+                    reminderType: item.reminderType,
+                    reminderTime: item.reminderTime,
+                    reminderDate: item.reminderDate,
+                    reminderFreq: item.frequency,
+                    doneStatus: item.doneStatus,
                   })}
                   onCheckPress={() => onCheckPress(item.id)}
                 />: null

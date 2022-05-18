@@ -17,7 +17,12 @@ import {
 } from '../../components';
 import { color } from 'react-native-reanimated';
 
+import Colors from '../../utils/globalColors';
+
 export default function PlantCareReminderDetails({navigation, route}) {
+
+  console.log(route.params.reminderTime)
+
   return (
 
       <View style={{flex: 1}}>
@@ -39,9 +44,21 @@ export default function PlantCareReminderDetails({navigation, route}) {
 
         <View style={{ flex: 1, height: '50%', padding: 20 }}>
           {/* <PFText weight='semi-bold' style={styles.textStyle}> DAY 1 {'\n'}</PFText> */}
-          <PFText weight='semi-bold' style={styles.textStyle}> {route.params.title} {'\n'}</PFText>
+          <PFText weight='semi-bold' style={styles.textStyle} size={20}>{route.params.title} {'\n'}</PFText>
           {/* <PFText style={styles.textStyle}>Small reddish spots appear on the leaves in the early stage  spots appear on the leaves in the early stage spots appear. Small reddish spots appear on the leaves in the early stage  spots appear on the leaves in the early stage spots appear. Small reddish spots appear on the leaves in the early stage  spots appear on the leaves in the early stage spots appear.</PFText> */}
-          <PFText style={styles.textStyle}>{route.params.description}</PFText>
+          <PFText style={styles.textStyle} size={16}>{route.params.description}</PFText>
+        </View>
+        <View style={{ flex: 1, height: '50%', padding: 10, borderWidth: 2, borderColor: Colors.primary, borderRadius: 15, margin: 10 }}>
+          {/* <PFText weight='semi-bold' style={styles.textStyle}> DAY 1 {'\n'}</PFText> */}
+          <PFText weight='semi-bold' size={20}>Reminder Description</PFText>
+          {/* <PFText style={styles.textStyle}>Small reddish spots appear on the leaves in the early stage  spots appear on the leaves in the early stage spots appear. Small reddish spots appear on the leaves in the early stage  spots appear on the leaves in the early stage spots appear. Small reddish spots appear on the leaves in the early stage  spots appear on the leaves in the early stage spots appear.</PFText> */}
+          {/* <PFText></PFText> */}
+          <PFText size={16}>Status: {(route.params.doneStatus) ? 'Done' : 'To be Done'}</PFText>
+          <PFText></PFText>
+          <PFText size={16}>Category: {route.params.reminderType}</PFText>
+          <PFText size={16}>Reminder: {route.params.reminderMsg}</PFText>
+          <PFText size={16}>How frequent: Every {route.params.reminderFreq} week</PFText>
+          {/* <PFText>Time: {(new Date(route.params.reminderTime.seconds).getMinutes().toString()).toString(2)}:{(new Date(route.params.reminderTime.seconds).getSeconds().toString()).toString(2)}</PFText> */}
         </View>
 
       </View>

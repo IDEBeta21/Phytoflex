@@ -319,7 +319,7 @@ function App({navigation}) {
           name="PlantCareReminderDetails"
           component={FuncPlantCareReminderDetails}
           options={{ 
-            headerTitle: (props) => <Header title={'Edit'} navigation={navigation} boolClose={true}/>, 
+            headerTitle: (props) => <Header title={'Monitoring Description'} navigation={navigation} boolClose={true}/>, 
             headerStyle: {
               backgroundColor: '#1D4123'
             },
