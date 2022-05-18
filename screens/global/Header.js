@@ -77,7 +77,8 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
           <Pressable onPress={() => navigation.navigate('PlantCare')} >
             <Image
               style={style.plantCareHeaderIcons}
-              source={require('../../assets/drawerIcons/plantCareIcons/healthCare.png')}
+              // source={require('../../assets/drawerIcons/plantCareIcons/healthCare.png')}
+              source={require('../../assets/drawerIcons/plantCareIcons/icn_bell.png')}
               resizeMode='contain'
             />
           </Pressable>
