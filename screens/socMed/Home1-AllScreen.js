@@ -10,7 +10,7 @@ import {
   PFText , PFTextInput, PFPopupMenu, PFActivityIndicator,
   PFModalLogin , PFModalAlert, PFModalPrompt, 
   PFPrimaryButton, PFSecondaryButton,
-  PFFlatList, 
+  PFFlatList, PFCardForumPost2, PFCardPost,
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
   PFCard, PFPostsCard, PFPostsNoImageCard, PFPostsImageOnlyCard,
   PFSwitch
@@ -25,6 +25,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import firebase from 'firebase';
 
 export default function AllScreenPage({navigation}) {
+  const [refdata, setrefdata] = useState([]); // declaration
+  const [refnull, setrefnull] = useState(true);
 
   const [refdata2, setrefdata2] = useState([]); // declaration 
   const [refnull2, setrefnull2] = useState(true);
@@ -56,8 +58,29 @@ export default function AllScreenPage({navigation}) {
             // Get data inside document
     
   }
+  const getPost = async() => {
+
+    // Get data inside document
+    firebase.firestore()
+    .collection('Posts').get().then((res) => {
+      let comment = res.docs.map(doc => { 
+        const data = doc.data();
+        const id = doc.id;
+        return {id, ...data}
+      })
+      setrefdata(comment);
+      console.log(refdata);
+      setrefnull(false);
+    }).catch((err) => {
+      Alert.alert(err)
+    })
+    
+  }
+
+
   useEffect(() => {
-  
+    getPost();
+
     getUsers();
 }, []);
    
@@ -98,37 +121,29 @@ export default function AllScreenPage({navigation}) {
             keyExtractor={(item,index) => index}
           />
         </View>
-        <View>
-          <PFFlatList
-            numColumns={1}
-            noDataMessage='No Followers'
-            data={SampleData.cardPostNoImageData}
-            renderItem={(item) => (
-              <PFPostsNoImageCard 
-                name={item.name}
-                description={item.description}
-                timeDate={item.timeDate}/>
-            )}
-            keyExtractor={(item,index) => index}
-          />
-        </View>
-        {/* <View>
-          <PFFlatList
-            numColumns={1}
-            noDataMessage='No Followers'
-            data={SampleData.cardPostData}
-            renderItem={(item) => (
-              <PFPostsImageOnlyCard 
-                userPhoto={item.userPhoto}
-                name={item.name}
-                description={item.description}
-                timeDate={item.timeDate}
-                onPress={() => navigation.navigate('PostPage')}/>
-            )}
-            keyExtractor={(item,index) => index}
-          />
-        </View>      */}
       </ScrollView>
+      <View>
+      <PFFlatList
+            numColumns={1}
+            noDataMessage='Loading...'
+            data={refdata}
+            renderItem={(item) => (
+              <PFCardPost
+                imageURL={item.postImageURL}
+                userName={item.userfullName}
+                date={item.postcurrentDate}
+                time={item.postcurrentTime}
+                userImage={item.profilePic}
+                badgePoints={item.userBadgePoints}
+                postPost={item.postCaption}
+                bloomQuantity={item.qstReactQuantity}
+                liked={item.postReact}
+                user={item.userName}
+              />
+            )}
+            keyExtractor={(item,index) => index}
+          />
+      </View>
       <View style={styles.createpost}>
             <View>
               <TouchableOpacity 

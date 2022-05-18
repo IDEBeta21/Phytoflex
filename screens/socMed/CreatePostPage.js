@@ -47,20 +47,43 @@ export default function CreatePostPage({navigation}) {
   const [userEmail, setUserEmail] = useState('');
   const [postCaption,setCaption] = useState('');
   
+  const user = firebase.auth().currentUser;
 
   function addData(){
     firebase.firestore().collection('Posts').add({
-      fName:'Pedro',
-      lName:'Penduko',
-      imageURL:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+      profilePic,
+      postImageURL:'https://www.gardeningknowhow.com/wp-content/uploads/2021/07/sulfur-cosmos-mexican-aster-flowers.jpg',//Manual
       postCaption,
       postcurrentDate,
       postcurrentTime,
-      userId:'',
-      postId:'',
+      postId:'0',
+      postReact:true,//Manual
+      postReactBloomQuantity:0,//Manual
+      postReactWitherQuantity:0,//Manual
+      postStatus:true,//Manual
+      userBadgePoints: 1000,//Manual
+      userID: user.uid,
+      postReact:true,
+      userfullName,
       userName
     }).then((res) => {
-      Alert.alert(res)
+      console.log(res.id)
+      
+      function updatepostId() {
+                 
+        const docRef = firebase.firestore().collection('Posts').doc(res.id);
+            // update doc Id
+                    docRef.update({
+                    postId: res.id
+            })
+            navigation.navigate('',{
+              postId: res.id
+            })
+    }
+  updatepostId()
+    
+    
+    
     }).catch((err) => {
       Alert.alert(err)
     })
@@ -108,7 +131,7 @@ export default function CreatePostPage({navigation}) {
   let userfullName = "";
   refdata2.forEach((item) => {
    profilePic = item.profilePic
-   //userName = item.userName
+   userName = item.userName
    userfullName = item.fName + "  " + item.lName 
   });
 

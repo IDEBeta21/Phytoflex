@@ -110,16 +110,6 @@ export const PFPostsCard = ({ userPhoto, imageURL, name, description, timeDate, 
 
             {/* ReactionSection */}
             <View style={styles.reactContainer}>
-              {/* <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
-                <MaterialCommunityIcons
-                  name={liked ? "flower-tulip": "flower-tulip-outline" }
-                  size={24} 
-                  color={liked ? "#1D4123" : "#1D4123"}
-                />
-              </Pressable>
-              <View style={{paddingRight: 8}}></View>
-                <PFText>{bloomQuantity}</PFText>
-              </View> */}
               <View style={styles.reactSize}>
                 <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
                   <MaterialCommunityIcons
@@ -255,6 +245,110 @@ export const PFPostsImageOnlyCard = ({ userPhoto, imageURL, name, description, t
       </View>
     )
   }
+
+  export const PFCardPost = ({ imageURL, user, userImage, navigation, userName, postPost, date,time, bloomQuantity,
+    onPress = () => {}, 
+    onPressImage = () => {},
+    onPressReact = () => {},
+    onPressText = () => {},
+    style, 
+    cardContentStyle}) =>
+    
+    {
+      
+      const [unliked, setLiked2] = useState(false);
+      const [liked, setLiked] = useState(false);
+      const [image, setimage] = useState(null)
+      const [userimage, setuserImage] = useState(null)
+  
+    firebase.storage().ref().child(imageURL).getDownloadURL().then((url) => {
+      setimage(url);
+    })
+  
+    firebase.storage().ref().child(userImage).getDownloadURL().then((url) => {
+      setuserImage(url);
+    })
+  
+       return(
+  
+        <View style={{...styles.cardPostContainer, ...style}}>
+      <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
+        <Card.Cover 
+          source={{uri: image}} 
+          style={{
+            height: 200,
+            width: (Dimensions.get('window').width) * 0.90,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          }}
+        />
+        <Card.Content style={{...styles.cardPostContent, ...cardContentStyle}}>
+          <View style= {{flexDirection:'row'}}>
+            <Image 
+              source={{uri : userimage}}
+              style={{
+                height: 40,
+                width: 40,
+                borderRadius: 100,
+                marginRight: 10,
+              }}
+            />
+            <View style={{flexDirection:'column', flexShrink:1}}>
+              
+              <PFText weight='semi-bold' size = {14}>@{user}</PFText>
+             {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
+              <PFText weight='light'size = {10}>{date} {time}</PFText>
+            </View>
+          </View>
+  
+          
+            <Card style={{flex: 1, elevation: 0}} onPress={() => onPress()}>
+              <Card.Content style={{...styles.cardPostContent, ...cardContentStyle}}>
+                <PFText style ={{padding:5}}>{postPost}</PFText>
+              </Card.Content>
+            </Card>
+          
+  
+          {/* ReactionSection */}
+          <View style={styles.reactContainer}>
+              <View style={styles.reactSize}>
+                <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                  <MaterialCommunityIcons
+                    name={liked ? "flower-tulip": "flower-tulip-outline" }
+                    size={24} 
+                    color={liked ? "#639d04" : "#1D4123"}
+                    style={{marginTop: 3}}
+                  />
+                </Pressable>
+                <View style={{paddingRight: 8}}></View>
+                <PFText>{bloomQuantity}</PFText>
+              </View>
+              
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => navigation.navigate('CommentPage')}
+              >
+                <Image
+                  source={ require('../../assets/drawerIcons/socmedIcons/comments.png')}
+                  style={styles.reactSize}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => navigation.navigate('')}
+              >
+                <Image
+                  source={ require('../../assets/drawerIcons/socmedIcons/more_icon.png')}
+                  style={styles.reactSize}
+                />
+              </TouchableOpacity>
+            </View>
+        </Card.Content>
+      </Card>
+    </View>
+  
+       )
+    }
 
 export const PFPostsNoImageCard = ({
   name, description, timeDate, bloomQuantity, 
