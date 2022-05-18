@@ -12,7 +12,7 @@ import ProductPage from "./Product";
 import SamplePage from './Sample';
 import CheckoutPage from './Checkout';
 import ShopCategoryPage from './ShopCategory';
-import ShopReviewPage from './ShopReview';
+import SearchPlantItems from './SearchPlantItems'
 // Functions for calling the screens
 
 function FuncCheckoutPage({route, navigation}) {
@@ -55,6 +55,11 @@ function FuncShopCategory({route, navigation}) {
   );
 }
 
+function FuncShopSearch({route, navigation}) {
+  return (
+    <SearchPlantItems navigation={navigation}  route = {route}/>
+  );
+}
 
 
 
@@ -157,7 +162,19 @@ function App({navigation}) {
           }}
         />
           
-
+          <Stack.Screen
+          name="SearchPlantItems"
+          component={FuncShopSearch}
+          // options={{ headerTitle: (props) => <Header {...props} /> }}
+          options={{ 
+            headerTitle: (props) => <Header title={'Search Plant'} navigation={navigation} />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white',
+            
+          }}
+        />
  
 
 
