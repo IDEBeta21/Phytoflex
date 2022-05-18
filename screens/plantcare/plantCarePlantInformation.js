@@ -118,6 +118,7 @@ export default function PlantCarePlantInformation({navigation, route}) {
                 } else {
                     // doc.data() will be undefined in this case
                     setloadingText('Failed to identify plant :(')
+                    setfailedToPredict(true)
                     console.log("No such document!");
                 }
             })
