@@ -55,11 +55,11 @@ export default function SignUpScreen({navigation}){
       firebase.firestore().collection("users")
       .doc(firebase.auth().currentUser.uid)
       .set({
-        fName,
-        lName,
-        userName,
-        userEmail,
-        userPass, 
+        fName: fName,
+        lName: lName,
+        userName: userName,
+        userEmail: userEmail,
+        userPass: userPass, 
         profilePic: 'assets/icon.png',
         followers: 0,
         following: 0, 
