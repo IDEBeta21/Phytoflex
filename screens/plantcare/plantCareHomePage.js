@@ -30,6 +30,9 @@ import { DrawerContent } from '../global/Drawer';
 
 import { ScrollView } from 'react-native-gesture-handler';
 
+
+
+
 export default function PlantCareHomePage({navigation}) {
   // Calling Plantcare search screen
 
@@ -49,6 +52,46 @@ export default function PlantCareHomePage({navigation}) {
 
   const [snapLoading, setsnapLoading] = useState(true)
 
+  // Delete an Album
+  const deletePlantAlbum = async(itemId) => {
+    await firebase.firestore().collection('PlantMonitoring').doc(itemId).delete()
+    .then(async(res) => {
+      var itemId_query = firebase.firestore().collection('PlantReminder').where('documentId','==', itemId);
+      await itemId_query.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          doc.ref.delete();
+        });
+      }).then((res) => {
+        Alert.alert('Plant removed successfully')
+        onRefresh();
+      });
+    })
+    
+  }
+
+  // Show the prompt to detele an Album
+  const showDeleteAlert = (itemId) =>{
+    return Alert.alert(
+      "Delete this Album?",
+      "Are you sure you want to remove this Plant Album?",
+      [
+        // The "Yes" button
+        {
+          text: "Yes",
+          onPress: () => {
+            deletePlantAlbum(itemId)
+            // Alert.alert(itemId)
+          },
+        },
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "No",
+        },
+      ]
+    );
+  };
+
   const imgref = (url) => {
     firebase.storage().refFromURL(url).then((res) => {
       return res;
@@ -57,25 +100,26 @@ export default function PlantCareHomePage({navigation}) {
 
   useEffect(() => {
     (async() => {
-      const user = firebase.auth().currentUser
+      // const user = firebase.auth().currentUser
 
-      if(user){
-        await firebase.firestore()
-        .collection('PlantMonitoring').where('userId', '==' , user.uid).get()
-        .then((res) => {
-          let snap = res.docs.map(doc => { // saka gumamit ako ng map
-            const data = doc.data();
-            const id = doc.id;
-            return {id, ...data}
-          })
-          setuserSnaps(snap);
-          setsnapLoading(false)
-          // console.log();
-        })
-      }else{
-        setnoSnapMessage('Login First to Monitor your Plants')
-        setsnapLoading(false)
-      }
+      // if(user){
+      //   await firebase.firestore()
+      //   .collection('PlantMonitoring').where('userId', '==' , user.uid).get()
+      //   .then((res) => {
+      //     let snap = res.docs.map(doc => { // saka gumamit ako ng map
+      //       const data = doc.data();
+      //       const id = doc.id;
+      //       return {id, ...data}
+      //     })
+      //     setuserSnaps(snap);
+      //     setsnapLoading(false)
+      //     // console.log();
+      //   })
+      // }else{
+      //   setnoSnapMessage('Login First to Monitor your Plants')
+      //   setsnapLoading(false)
+      // }
+      onRefresh()
 
       
       // await firebase.auth().then((res) => {
@@ -84,6 +128,7 @@ export default function PlantCareHomePage({navigation}) {
     })()
   }, [])
 
+  // Refresh the list of plant albums
   async function onRefresh () {
     setsnapLoading(true)
     const user = firebase.auth().currentUser
@@ -160,40 +205,44 @@ export default function PlantCareHomePage({navigation}) {
                   horizontal={true}
                   showsHorizontalScrollIndicator={false}
                   >
+                    <TouchableOpacity onPress={() => navigation.navigate('PlantCareCamera')}>
+                      <Card style={styles.cardContainer} 
+                      // onPress={() => navigation.navigate('PlantCareCamera')}
+                      >
+                
+                        <Card.Cover 
+                          // source={require('../../assets/img/snap.png')}
+                          source={require('../../assets/img/snap.png')}
+                          resizeMode={'cover'}
+                          style={{ 
+                            height: 165, 
+                            width: 100,
+                            
+                            borderTopLeftRadius: 7, 
+                            borderTopRightRadius: 7, 
+                            borderBottomLeftRadius: 7, 
+                            borderBottomRightRadius: 7,
 
-                <Card style={styles.cardContainer} 
-                onPress={() => navigation.navigate('PlantCareCamera')}>
-          
-          <Card.Cover 
-            // source={require('../../assets/img/snap.png')}
-            source={require('../../assets/img/snap.png')}
-            resizeMode={'cover'}
-            style={{ 
-              height: 165, 
-              width: 100,
-              
-              borderTopLeftRadius: 7, 
-              borderTopRightRadius: 7, 
-              borderBottomLeftRadius: 7, 
-              borderBottomRightRadius: 7,
+                          }}
+                          // onPress={() => navigation.navigate('PlantCareCamera')}
+                        />
+                        {/* </Card> */}
 
-            }}
-          />
+                      <View 
+                        // text in front of image
+                        style={{position: 'absolute', top: 0, left: 0, right: 0, height: 190, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 7,  }}>
 
-          <View 
-            // text in front of image
-            style={{position: 'absolute', top: 0, left: 0, right: 0, height: 190, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 7,  }}>
-
-              <Image
-              source={require('../../assets/img/camera-outline.png')}
-              />
-              <Text  
-                // adjustsFontSizeToFit 
-                numberOfLines={2}
-                style={{lineHeight: 20, textAlign: 'center', color: '#ffffff', fontFamily: 'poppins-regular', color: "white", textShadowColor: 'black', textShadowOffset: { width: -1, height: 0 }, textShadowRadius: 10, fontWeight: '800' }}>Identify a Plant</Text>  
-          </View>
-          
-        </Card>
+                          <Image
+                          source={require('../../assets/img/camera-outline.png')}
+                          />
+                          <Text  
+                            // adjustsFontSizeToFit 
+                            numberOfLines={2}
+                            style={{lineHeight: 20, textAlign: 'center', color: '#ffffff', fontFamily: 'poppins-regular', color: "white", textShadowColor: 'black', textShadowOffset: { width: -1, height: 0 }, textShadowRadius: 10, fontWeight: '800' }}>Identify a Plant</Text>  
+                      </View>
+                        
+                    </Card>
+                  </TouchableOpacity>
 
                   <FlatList 
                     horizontal={true} 
@@ -202,20 +251,30 @@ export default function PlantCareHomePage({navigation}) {
                     // data={SampleData.myGarden}
                     data={userSnaps}
                     renderItem={({item}) => (
-                    
+                      <Pressable onPress={() => navigation.navigate('PlantCareAlbum',{
+                          plantMonitoringId: item.id
+                        })}>
+                        
                       <RecentSnapsItem
                           // imageURL={firebase.storage().refFromURL(item.imageURL)}
                           imageURL={item.firebaseDirectory}
                           description={item.plantName}
-                          onPress={() => alert("Hello")}/>
+                          // onPress={() => navigation.navigate('PlantCareAlbum',{
+                          //   plantMonitoringId: item.id
+                          // })}
+                          />
 
+                      </Pressable>
                       )}
                     keyExtractor={(item,index) => index}
                   />
                 </ScrollView>
                 </SafeAreaView> 
+
+
+
               </View>
-              <PFFlatList
+                <PFFlatList
                   numColumns={2}
                   noDataMessage={noSnapMessage}
                   // noDataMessage='No Plant item to post'
@@ -229,8 +288,11 @@ export default function PlantCareHomePage({navigation}) {
                       commonName={item.plantName}
                       onPress={() => navigation.navigate('PlantCareAlbum',{
                         plantMonitoringId: item.id
-                      })}/>
-                    )}
+                      })}
+
+                      onLongPress={() => showDeleteAlert(item.id)}
+                    />
+                  )}
                   keyExtractor={(item,index) => index}
                 />
             </ScrollView>

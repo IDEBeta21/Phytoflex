@@ -1,5 +1,5 @@
 import React, {Component, useState, useEffect} from 'react';
-import { Dimensions } from 'react-native';
+import { Dimensions, Pressable } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import { PFText } from '../../PFText'
@@ -14,6 +14,7 @@ export const MyGardenItem = ({
   plantType,
   commonName, 
   onPress = () => {}, 
+  onLongPress = () => {},
   style, 
   cardContentStyle}) => {
     
@@ -25,19 +26,22 @@ export const MyGardenItem = ({
 
     return(
       <View style={{...styles.cardContainer, ...style}}>
-        <Card style={{ flex: 1 }} onPress={() => onPress()}>
-          
-          <Card.Cover 
-            source={{ uri: image }} 
-            style={{ 
+        <Pressable onPress={() => onPress()} onLongPress={() => onLongPress()}>
+          {/* <Card style={{ flex: 1 }} onPress={() => onPress()}> */}
+          <Card style={{ flex: 1 }}>
+            
+            <Card.Cover 
+              source={{ uri: image }} 
+              style={{ 
 
-            }}
-          />
-          <Card.Content style={{...styles.cardContent, ...cardContentStyle}}>
-            <PFText style={{paddingTop: 0, padding: 0, margin: 0, fontSize: 15, justifyContent: 'center', backgroundColor: '#ffffff'}}>{commonName}</PFText>    
-          </Card.Content>
-          
-        </Card>
+              }}
+            />
+            <Card.Content style={{...styles.cardContent, ...cardContentStyle}}>
+              <PFText style={{paddingTop: 0, padding: 0, margin: 0, fontSize: 15, justifyContent: 'center', backgroundColor: '#ffffff'}}>{commonName}</PFText>    
+            </Card.Content>
+            
+          </Card>
+        </Pressable>
       </View>
     );
   }

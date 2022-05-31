@@ -235,10 +235,10 @@ export default function plantCareCamera({navigation}) {
                   );
                 }}
               >
-                <Text style={{ fontSize: 20, marginBottom: 10, color: "white" }}>
-                  {" "}
-                  Flip{" "}
-                </Text>
+                {/* <Text style={{ fontSize: 20, marginBottom: 10, color: "white" }}>
+                  {/* {" "} */}
+                  {/* Flip{" "} 
+                </Text> */}
               </TouchableOpacity>
               <View
                 style={{

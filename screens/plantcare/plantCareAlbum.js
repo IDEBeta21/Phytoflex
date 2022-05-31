@@ -37,7 +37,13 @@ export default function PlantCareAlbum ({navigation, route}) {
   useEffect(() => {
     (async() => {
       console.log(route.params.plantMonitoringId)
-      await firebase.firestore()
+      loadReminders()
+    })()
+  }, [])
+
+  // Load reminders
+  async function loadReminders(){
+    await firebase.firestore()
       .collection('PlantMonitoring').doc(route.params.plantMonitoringId)
       .get().then((doc) => {
         console.log(doc.data())
@@ -47,19 +53,50 @@ export default function PlantCareAlbum ({navigation, route}) {
         // setreminders(doc.data().reminders)
       })
 
-      await firebase.firestore()
-      .collection('PlantReminder').where('documentId', '==', route.params.plantMonitoringId)
-      .get().then((res) => {
-        let snap = res.docs.map(doc => { // saka gumamit ako ng map
-          const data = doc.data();
-          const id = doc.id;
-          return {id, ...data}
-        })
-        setreminders(snap)
+    await firebase.firestore()
+    .collection('PlantReminder').where('documentId', '==', route.params.plantMonitoringId)
+    .get().then((res) => {
+      let snap = res.docs.map(doc => { // saka gumamit ako ng map
+        const data = doc.data();
+        const id = doc.id;
+        return {id, ...data}
       })
-    })()
-  }, [])
-  
+      setreminders(snap)
+    })
+  } 
+
+    // Delete an Album
+    const deletePlantAlbum = async(itemId) => {
+      await firebase.firestore().collection('PlantReminder').doc(itemId).delete()
+      .then(async(res) => {
+        loadReminders()
+        Alert.alert("Removed reminder successfully")
+      })
+      
+    }
+
+  // Show the prompt to detele an Album
+  const showDeleteAlert = (itemId) =>{
+    return Alert.alert(
+      "Delete this Reminder?",
+      "Are you sure you want to remove this reminder?",
+      [
+        // The "Yes" button
+        {
+          text: "Yes",
+          onPress: () => {
+            deletePlantAlbum(itemId)
+            // Alert.alert(itemId)
+          },
+        },
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "No",
+        },
+      ]
+    );
+  };
 
   return (
 
@@ -127,6 +164,8 @@ export default function PlantCareAlbum ({navigation, route}) {
                       doneStatus: item.doneStatus,
 
                     })}
+
+                    onLongPress={() => showDeleteAlert(item.id)}
                 />
               )}
                 keyExtractor={(item,index) => index}
