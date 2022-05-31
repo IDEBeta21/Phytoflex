@@ -46,7 +46,7 @@ export default function InboxZonePage({navigation}) {
       <FAB
         icon='plus'
         style={styles.fab}
-        onPress={() => navigation.navigate('CreatePostPage')}
+        onPress={() => navigation.navigate('ChatPage')}
       />
     </View>
   );
