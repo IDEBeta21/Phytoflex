@@ -71,7 +71,7 @@ export default function LoginScreen({gotoForum, gotoSignUp, firebaseConfig, navi
                 //     0,
                 //     150
                 // );
-                seterrorMessage(str_msg)
+                seterrorMessage("Password incorrect or the email does not exist")
             });
 
             firebase.auth().onAuthStateChanged(function(user) {
