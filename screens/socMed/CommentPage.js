@@ -23,6 +23,20 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function CommentPage({navigation}) {
+  
+  const [image, setimage] = useState(null)
+  let profilePic = "";
+  let userName = "";
+  let userfullName = "";
+  refdata2.forEach((item) => {
+   profilePic = item.profilePic
+   //userName = item.userName
+   userfullName = item.fName + "  " + item.lName 
+  });
+
+  firebase.storage().ref().child(profilePic).getDownloadURL().then((url) => {
+    setimage(url);
+    })
 
   return (
     <View style={ styles.mainContainer }>
@@ -68,7 +82,7 @@ export default function CommentPage({navigation}) {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={ require('../../assets/img/profiles/Alejandre.jpg')}
+            source={{uri : image}}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.userImage}
