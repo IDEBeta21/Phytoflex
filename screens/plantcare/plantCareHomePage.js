@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 // For testing langs. Delete din later
-import { FAB, Portal, Provider, Title, } from 'react-native-paper';
+import { Card, FAB, Portal, Provider, Title, } from 'react-native-paper';
 
 import firebase from 'firebase';
 
@@ -137,6 +137,7 @@ export default function PlantCareHomePage({navigation}) {
             </View>
             :
             <ScrollView
+              contentContainerStyle={{ paddingTop: 5, paddingBottom: 3 }}
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
             >
@@ -155,6 +156,45 @@ export default function PlantCareHomePage({navigation}) {
                   null
                 } */}
                 <SafeAreaView style={{ height: 169 }}>
+                  <ScrollView 
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  >
+
+                <Card style={styles.cardContainer} 
+                onPress={() => navigation.navigate('PlantCareCamera')}>
+          
+          <Card.Cover 
+            // source={require('../../assets/img/snap.png')}
+            source={require('../../assets/img/snap.png')}
+            resizeMode={'cover'}
+            style={{ 
+              height: 165, 
+              width: 100,
+              
+              borderTopLeftRadius: 7, 
+              borderTopRightRadius: 7, 
+              borderBottomLeftRadius: 7, 
+              borderBottomRightRadius: 7,
+
+            }}
+          />
+
+          <View 
+            // text in front of image
+            style={{position: 'absolute', top: 0, left: 0, right: 0, height: 190, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 7,  }}>
+
+              <Image
+              source={require('../../assets/img/camera-outline.png')}
+              />
+              <Text  
+                // adjustsFontSizeToFit 
+                numberOfLines={2}
+                style={{lineHeight: 20, textAlign: 'center', color: '#ffffff', fontFamily: 'poppins-regular', color: "white", textShadowColor: 'black', textShadowOffset: { width: -1, height: 0 }, textShadowRadius: 10, fontWeight: '800' }}>Identify a Plant</Text>  
+          </View>
+          
+        </Card>
+
                   <FlatList 
                     horizontal={true} 
                     showsHorizontalScrollIndicator={false} 
@@ -172,6 +212,7 @@ export default function PlantCareHomePage({navigation}) {
                       )}
                     keyExtractor={(item,index) => index}
                   />
+                </ScrollView>
                 </SafeAreaView> 
               </View>
               <PFFlatList
@@ -195,11 +236,11 @@ export default function PlantCareHomePage({navigation}) {
             </ScrollView>
           }
 
-      <FAB
-        icon="camera-outline"
+      {/* <FAB
+        icon="plus"
         style={{ position: 'absolute', backgroundColor: '#ffffff', margin: 16, right: 0, bottom: -1, }} 
         onPress={() => navigation.navigate('PlantCareCamera')}
-        />
+        /> */}
 
 
     </View>
@@ -236,5 +277,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff", 
     paddingHorizontal: 0,
     marginBottom: 13,
+  },
+
+  cardContainer: {
+    marginLeft: 7, 
+    marginRight: -1,
+    height:  79,
+    width: 100,
+    borderTopLeftRadius: 7, 
+    borderTopRightRadius: 7,
+    borderBottomLeftRadius: 7, 
+    borderBottomRightRadius: 7,
+    flexDirection: 'row',
+    // width: (Dimensions.get('window').width/2) * 0.93
   },
 })

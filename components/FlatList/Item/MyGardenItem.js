@@ -2,8 +2,6 @@ import React, {Component, useState, useEffect} from 'react';
 import { Dimensions } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
-// import { PFText } from '../PFText';
-// import Colors from '../../utils/globalColors';
 import { PFText } from '../../PFText'
 import Colors from '../../../utils/globalColors'
 
@@ -36,7 +34,6 @@ export const MyGardenItem = ({
             }}
           />
           <Card.Content style={{...styles.cardContent, ...cardContentStyle}}>
-            <PFText style={{paddingTop: 0, padding: 0, margin: 0, fontSize: 12, justifyContent: 'center', backgroundColor: '#ffffff'}}>{plantType}</PFText> 
             <PFText style={{paddingTop: 0, padding: 0, margin: 0, fontSize: 15, justifyContent: 'center', backgroundColor: '#ffffff'}}>{commonName}</PFText>    
           </Card.Content>
           
@@ -53,12 +50,10 @@ const styles = StyleSheet.create({
   },
 
   cardContent: {
-    paddingTop: 10,
+    paddingTop: 8,
     paddingBottom: 5,
-    borderWidth: 1, 
-    // height: 25,
-    // borderColor: 'Colors.primary', 
-    borderColor: '#AFAFAF', 
+    borderWidth: 1,  
+    borderColor: '#1D4123', 
     borderBottomLeftRadius: 5, 
     borderBottomRightRadius: 5,
     backgroundColor: '#ffffff',
