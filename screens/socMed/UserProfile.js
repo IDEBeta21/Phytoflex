@@ -12,7 +12,7 @@ import {
   PFPrimaryButton, PFFollowedButton,
   PFFlatList, 
   AccountListItem, PlantListItem, AddressListItem, BadgeHistoryListItem, MessagaNotifItem,
-  PFCard,PFPostsCard, 
+  PFCard,PFPostsCard, PFPostsImageOnlyCard,
   PFSwitch
 } from '../../components';
 
@@ -33,16 +33,16 @@ export default function UserProfilePage({navigation}) {
           <Image
             // FAB using TouchableOpacity with an image
             // For online image
-            source={ require('../../assets/img/profiles/Alejandre.jpg')}
+            source={ require('../../assets/logo.png')}
             // For local image
             //source={require('./images/float-add-icon.png')}
             style={styles.userPhoto}
           />
           <View styles={{flexDirection: 'column', marginLeft: 10}}>
             <View style={{width: 250}}>
-              <PFText weight='semi-bold' size={20} style={{marginLeft: 10, paddingRight: 10, paddingLeft: 10, paddingTop: 0, paddingBottom: 0}}>Leila Jane L. Alejandre</PFText>
+              <PFText weight='semi-bold' size={20} style={{marginLeft: 10, paddingRight: 10, paddingLeft: 10, paddingTop: 0, paddingBottom: 0}}>Phytoflex</PFText>
             </View>
-            <PFText size={13} style={{marginLeft: 10, paddingLeft: 10, }}>@leyy</PFText>
+            <PFText size={13} style={{marginLeft: 10, paddingLeft: 10, }}>@phytoflexinc</PFText>
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity onPress={() => gotoHome()}>
                 <View style={styles.guestButtonArea}>
@@ -87,7 +87,7 @@ export default function UserProfilePage({navigation}) {
             //source={require('./images/float-add-icon.png')}
             style={styles.userPhoto1}
           />
-          <Text style={styles.txt3}>Joined Phytoflex since July 2021</Text>
+          <Text style={styles.txt3}>Joined Phytoflex since May 2022</Text>
         </View>
 
         <View>
@@ -98,9 +98,9 @@ export default function UserProfilePage({navigation}) {
           <PFFlatList
             numColumns={1}
             noDataMessage=''
-            data={SampleData.cardPostData1}
+            data={SampleData.cardPostData}
             renderItem={(item) => (
-              <PFPostsCard 
+              <PFPostsImageOnlyCard 
                 imageURL={item.imageURL}
                 userPhoto={item.userPhoto}
                 name={item.name}
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     height: 90,
     width: 90,
     borderRadius: 100,
-    marginTop: 15
+    marginTop: 5
   },
   userPhoto1: {
     height: 35,

@@ -30,7 +30,7 @@ export default function PostPage({navigation}) {
   return (
     <View style={ styles.mainContainer }>
       <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={ styles.container }>
+      <TouchableOpacity style={ styles.container } onPress={() => navigation.navigate('UserProfilePage')}>
         <Image
           // FAB using TouchableOpacity with an image
           // For online image
@@ -53,9 +53,7 @@ export default function PostPage({navigation}) {
             <PFText size={11} style={{marginLeft: 5}}>03/30/22 12:00 PM</PFText>
           </View>
         </View>
-      </View>
-
-      <PFText size={13} style={{marginTop: 10, marginBottom: 10, marginLeft: 10}}>Welcome to Phytoflex!</PFText>
+      </TouchableOpacity>
       <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => navigation.navigate('')}
@@ -63,7 +61,7 @@ export default function PostPage({navigation}) {
         <Image
           // FAB using TouchableOpacity with an image
           // For online image
-          source={ require('../../assets/img/socmed/Cover.png')}
+          source={ require('../../assets/img/socmed/img.png')}
           // For local image
           //source={require('./images/float-add-icon.png')}
           style={styles.image}
@@ -178,7 +176,8 @@ const styles = StyleSheet.create({
     flexDirection:'row'
   },
   container1: {
-    flexDirection:'row'
+    flexDirection:'row',
+    marginBottom: 10
   },
   addbtn: {
     height: 30,
