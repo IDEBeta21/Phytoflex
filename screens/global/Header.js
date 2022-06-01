@@ -165,13 +165,13 @@ export default function Header({ title, navigation, boolHome, boolClose, boolBac
 
       {title == 'Ask Community' ? /*Discussion Main Page*/
         <View style={style.headerIconContainer1}>
-          <Pressable onPress={() => navigation.navigate('AddPhotosPage')} >
+          {/*<Pressable onPress={() => navigation.navigate('AddPhotosPage')} >
             <Image
               style={style.dscheaderIcons}
               source={require('../../assets/drawerIcons/discussionIcons/ri_image-add-fill.png')}
               resizeMode='contain'
             />
-          </Pressable>
+          </Pressable> */}
           <Pressable>
             <Image
               style={style.whiteHeaderIcons}

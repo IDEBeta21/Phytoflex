@@ -1022,7 +1022,7 @@ cardContentStyle) => {
   </View>
 ); */}
 
-export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, userName, forumPost, badgePoints, date,time, bloomQuantity,
+export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, userName, forumPost, badgePoints, date,time, bloomQuantity, witherQuantity,
   onPress = () => {}, 
   onPressImage = () => {},
   onPressReact = () => {},
@@ -1094,6 +1094,7 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
            {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
             <PFText weight='light'size = {10}>{date} {time}</PFText>
           </View>
+          
           <View style={styles.SolvedBtnContainer}>
             <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
           </View>        
@@ -1125,11 +1126,12 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
            />
             </Pressable>
             <View style={{paddingRight: 8}}></View>
+            
             <PFText>{bloomQuantity}</PFText>
             
             </View>
            
-            <View style={{paddingRight: 120}}>
+            <View style={{paddingRight: 90, flexDirection:'row'}}>
             <Pressable onPress={() => setLiked2((isLiked) => !isLiked)}>
             <MaterialCommunityIcons
             name={unliked ? "seed" : "seed-outline" }
@@ -1137,9 +1139,12 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
             color={unliked ? "#1D4123" : "#1D4123"}
            />
             </Pressable>
+            
+            <View style={{paddingRight: 8}}></View>
+            
+            <PFText>{witherQuantity}</PFText>
+            
             </View>
-           
-              
        
           <TouchableOpacity
             activeOpacity={0.7}>
@@ -1163,11 +1168,12 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
 
 export const PFCommentCard2 = ({
   userPhoto, name, comment, reactionNum, replyNum, time,
-  onPress = () => {},
+  onPressDelete = () => {},
   onPressImage = () => {}},
   style, 
   cardContentStyle) => {
-
+    
+    const [liked, setLiked] = useState(false);
     const [image, setimage] = useState(null)
 
     firebase.storage().ref().child(userPhoto).getDownloadURL().then((url) => {
@@ -1192,8 +1198,19 @@ export const PFCommentCard2 = ({
         </View>
         <View style={ styles.container}>
           <TextInput style={styles.commentTxtBox} editable={false}>{comment}</TextInput>
+         
           <View style={ styles.container2}>
-            <View style={{flexDirection:'row', borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 5}}>
+
+          <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+            <MaterialCommunityIcons
+            name={liked ? "flower-tulip": "flower-tulip-outline" }
+            size={24} 
+            color={liked ? "#1D4123" : "#1D4123"}
+           />
+            </Pressable>
+            
+            <View style={{paddingRight: 8}}></View>
+            {/*<View style={{flexDirection:'row', borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 5}}>
               <Image
                 // FAB using TouchableOpacity with an image
                 // For online image
@@ -1202,7 +1219,7 @@ export const PFCommentCard2 = ({
                 //source={require('./images/float-add-icon.png')}
                 style={styles.commentReactSize}
               />
-            </View>
+            </View> */}
             {/*<View style={{borderWidth: 1, borderRadius: 100, borderColor: Colors.primary, margin: 5, marginLeft: 1}}>
               <Image
                 // FAB using TouchableOpacity with an image
@@ -1216,8 +1233,8 @@ export const PFCommentCard2 = ({
             </View>  
         </View>
         <View style={ styles.container1 }>
-          {/*<PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>*/}
-          <PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum} Delete</PFText>
+          {/*<PFText size={11} onPress={() => navigation.navigate('')} style={{marginLeft: 5}}>{replyNum}  Reply</PFText>
+          <PFText size={11} onlongPress={() =>  onPressDelete ()} style={{marginLeft: 5}}>{replyNum} Delete</PFText>*/}
         </View>
       </View>
     </View>
@@ -1517,7 +1534,10 @@ const styles = StyleSheet.create({
     flexDirection:'row'
   },
   container2: {
-    flexDirection:'row'
+    flexDirection:'row',
+    margin: 5,
+    marginTop: 7
+    
   },
   container1: {
     flexDirection:'row',

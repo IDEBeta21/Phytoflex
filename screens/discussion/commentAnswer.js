@@ -33,7 +33,6 @@ export default function CommentAnswerPage({navigation, route}) {
     setCurrentTime( hours + ':' + min );
   }, []);
 
-
   //get user info
  const [refdata2, setrefdata2] = useState([]); // declaration 
  const [refnull2, setrefnull2] = useState(true);
@@ -114,7 +113,8 @@ export default function CommentAnswerPage({navigation, route}) {
                   ansContent: ansContent,
                   ansTime: ansTime,
                   qstID: route.params.qstID,
-                  profilePic: userImage
+                  profilePic: userImage,
+                  ansID: "0",
                 }).then((res) => {
                   console.log(res.id)
                 
@@ -161,7 +161,9 @@ export default function CommentAnswerPage({navigation, route}) {
                 userPhoto={item.profilePic}
                 name={item.userfullName}
                 comment={item.ansContent}
-                time={item.ansTime}/>
+                time={item.ansTime}
+                
+                />
             )}
             keyExtractor={(item,index) => index}
           />

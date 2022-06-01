@@ -7,6 +7,8 @@ import { PFPrimaryButton, PFFlatList, PlantListItem, PFText, PFTextInput, PFCard
 import firebase from 'firebase';
 
 export default function DiscussionHomePage({navigation}) {
+  
+  
   const [refdata, setrefdata] = useState([]); // declaration
   const [refnull, setrefnull] = useState(true);
 
@@ -56,10 +58,11 @@ useEffect(() => {
                 userImage={item.profilePic}
                 badgePoints={item.userBadgePoints}
                 forumPost={item.qstContent}
-                bloomQuantity={item.qstReactQuantity}
+                bloomQuantity={item.qstReactBloomQuantity}
+                witherQuantity={item.qstReactWitherQuantity}
                 liked={item.qstReact}
                 onPressText={() => navigation.navigate('CommentAnswerPage', {qstID: item.qstID})}
-                onPressImage = {() => Alert.alert('Modal dapat e')}
+                
               />
             )}
             keyExtractor={(item,index) => index}

@@ -28,6 +28,7 @@ export default function CreateQuestionPage({navigation, route}) {
 
   const [qstDate, setCurrentDate] = useState('');
   const [qstTime, setCurrentTime] = useState('');
+
   useEffect(() => {
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
@@ -38,7 +39,6 @@ export default function CreateQuestionPage({navigation, route}) {
     setCurrentDate( date + '/' + month + '/' + year );
     setCurrentTime( hours + ':' + min );
   }, []);
-
 
            const user = firebase.auth().currentUser;
           // if (user) {
@@ -172,7 +172,7 @@ export default function CreateQuestionPage({navigation, route}) {
            {/*<Text style={styles.or}>or</Text>*/}
       </View>
       
-      <PFPrimaryButton style={{marginTop: 30, marginLeft: 25, marginRight: 20}} title={'Edit'} onPress={() => navigation.navigate('EditQuestionPage')}></PFPrimaryButton>
+      <PFPrimaryButton style={{marginTop: 15, marginLeft: 25, marginRight: 20}} title={'Add Photos'} onPress={() => navigation.navigate('AddPhotosPage')}></PFPrimaryButton>
       <PFPrimaryButton
         style={{marginTop: 15, marginLeft: 25, marginRight: 20 }}
         title="Post"
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
    marginBottom: 202
   },
   mainContainer: {
-    height:530,
+    height:500,
     borderWidth: 1,
     borderRadius: 15,
     margin: 15
