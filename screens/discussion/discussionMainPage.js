@@ -58,6 +58,7 @@ useEffect(() => {
                 userImage={item.profilePic}
                 badgePoints={item.userBadgePoints}
                 forumPost={item.qstContent}
+                status={item.qstStatus}
                 bloomQuantity={item.qstReactBloomQuantity}
                 witherQuantity={item.qstReactWitherQuantity}
                 liked={item.qstReact}

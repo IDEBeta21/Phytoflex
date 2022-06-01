@@ -1048,6 +1048,11 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
   //                  });
   //              })
   // }
+  
+    const [status, setStatus] = useState(true);
+    const toggleFunction = () => {
+      setStatus(!status)};
+
     const [unliked, setLiked2] = useState(false);
     const [liked, setLiked] = useState(false);
     const [image, setimage] = useState(null)
@@ -1095,12 +1100,20 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
             <PFText weight='light'size = {10}>{date} {time}</PFText>
           </View>
           
-          <View style={styles.SolvedBtnContainer}>
+         {/* <View style={styles.SolvedBtnContainer}>
             <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
-          </View>        
+          </View>     */}    
+        
+        <View style={styles.SolvedContainer}>
+          <TouchableOpacity onPress={() => toggleFunction()}>
+            <PFText style={styles.textContainer}>
+              {status ? 'Unsolve' : 'Solve'}
+              {/*toggle ? '#1D4123': '#1D4124'*/}
+            </PFText>
+          </TouchableOpacity>
+        </View>
         </View>
 
-        
           <Card style={{flex: 1, elevation: 0}} onPress={() => onPress()}>
             <Card.Content style={{...styles.cardForumTextArea1, ...cardContentStyle}}>
               <PFText style ={{padding:5}}>{forumPost}</PFText>
@@ -1851,9 +1864,17 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     flexGrow:1
   },
-  SolvedBtnContainer:{
+  SolvedContainer:{
     alignItems: 'flex-end',
-    flexGrow:1
+    flexGrow:1,
+    //margin: 5,
+    marginTop: 10,
+    marginRight: 5,
+  },
+  textContainer: {
+	  fontWeight: 'bold',
+	  backgroundColor: 'white',
+    
   },
   cardForumContentStyle:{
     padding: 2,
@@ -2035,4 +2056,4 @@ paddingLeft:25,
 
     },
   
-  }) 
+  })
