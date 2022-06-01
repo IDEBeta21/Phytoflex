@@ -202,7 +202,7 @@ export default function  CheckoutPage  ({ route, navigation}){
       customerName: customerName,
       date : dateNow,
       deliveredTime : "",
-      deliveryAddres : Address,
+      deliveryAddress : Address,
       orderId: "0", 
       orderedItems,
       userId: userId,
