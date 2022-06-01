@@ -1027,6 +1027,7 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
   onPressImage = () => {},
   onPressReact = () => {},
   onPressText = () => {},
+  onLongPress = () => {},
   style, 
   cardContentStyle}) =>
   
@@ -1069,112 +1070,118 @@ export const PFCardForumPost2 = ({ userPhoto, imageURL, userImage, navigation, u
      return(
 
       <View style={{...styles.cardforumPostContainer, ...style}}>
-    <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
-      <Card.Cover 
-        source={{uri: image}} 
-        style={{
-          height: 200,
-          width: (Dimensions.get('window').width) * 0.90,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-        }}
-      />
-      <Card.Content style={{...styles.cardForumPostContent, ...cardContentStyle}}>
-        <View style= {{flexDirection:'row'}}>
-          <Image 
-            source={{uri : userimage}}
-            style={{
-              height: 40,
-              width: 40,
-              borderRadius: 100,
-              marginRight: 10,
-            }}
-          />
-          <View style={{flexDirection:'column', flexShrink:1}}>
-            
-            <PFText weight='semi-bold' size = {14}>{userName} 
-            <Image source={ require('../../assets/drawerIcons/discussionIcons/award.png')}
-              style={styles.forumBadgeSize}/>
-            {badgePoints}</PFText>
-           {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
-            <PFText weight='light'size = {10}>{date} {time}</PFText>
-          </View>
-          
-         {/* <View style={styles.SolvedBtnContainer}>
-            <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
-          </View>     */}    
-        
-        <View style={styles.SolvedContainer}>
-          <TouchableOpacity onPress={() => toggleFunction()}>
-            <PFText style={styles.textContainer}>
-              {status ? 'Unsolve' : 'Solve'}
-              {/*toggle ? '#1D4123': '#1D4124'*/}
-            </PFText>
-          </TouchableOpacity>
-        </View>
-        </View>
+        <Pressable onLongPress={() => onLongPress()}>
+          <Card style={{flex: 1, elevation: 0}} onPress={() => onPressImage()}>
+            <Card.Cover 
+              source={{uri: image}} 
+              style={{
+                height: 200,
+                width: (Dimensions.get('window').width) * 0.90,
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+              }}
+            />
+            <Card.Content style={{...styles.cardForumPostContent, ...cardContentStyle}}>
+              <View style= {{flexDirection:'row'}}>
+                <Image 
+                  source={{uri : userimage}}
+                  style={{
+                    height: 40,
+                    width: 40,
+                    borderRadius: 100,
+                    marginRight: 10,
+                  }}
+                />
+                <View style={{flexDirection:'column', flexShrink:1}}>
+                  
+                  <PFText weight='semi-bold' size = {14}>{userName} 
+                  <Image source={ require('../../assets/drawerIcons/discussionIcons/award.png')}
+                    style={styles.forumBadgeSize}/>
+                  {badgePoints}</PFText>
+                {/*<PFText weight='light' size = {10}>{badgePoints}</PFText>*/}
+                  <PFText weight='light'size = {10}>{date} {time}</PFText>
+                </View>
+                
+              {/* <View style={styles.SolvedBtnContainer}>
+                  <PFPrimaryButton title={'Solved'} onPress={() => navigation.navigate('')}></PFPrimaryButton>
+                </View>     */}    
+              
+              <View style={styles.SolvedContainer}>
+                <TouchableOpacity onPress={() => toggleFunction()}>
+                  <PFText style={styles.textContainer}>
+                    {status ? 'Unsolve' : 'Solve'}
+                    {/*toggle ? '#1D4123': '#1D4124'*/}
+                  </PFText>
+                </TouchableOpacity>
+              </View>
+              </View>
 
-          <Card style={{flex: 1, elevation: 0}} onPress={() => onPress()}>
-            <Card.Content style={{...styles.cardForumTextArea1, ...cardContentStyle}}>
-              <PFText style ={{padding:5}}>{forumPost}</PFText>
-            </Card.Content>
-          </Card>
-        
-        <Pressable onPressText = {() => navigation.navigate('CommentAnswerPage')}>
-          <Card style={{flex: 1, elevation: 0}} onPress={() => onPressText()}>
-            <Card.Content style={{...styles.cardForumAnswerArea1, ...cardContentStyle}}>
-              <PFText weight='semi-bold'size = {13}>View Answer</PFText>
+              <Pressable onPress={() => onPressText()} onLongPress= {() => onLongPress()}>
+                <View>
+                  <Card style={{flex: 1, elevation: 0}}>
+                    <Card.Content style={{...styles.cardForumTextArea1, ...cardContentStyle}}>
+                      <PFText style ={{padding:5}}>{forumPost}</PFText>
+                    </Card.Content>
+                  </Card>
+              
+                {/* <Card style={{flex: 1, elevation: 0}} onPress={() => onPressText()}> */}
+                  <Card style={{flex: 1, elevation: 0}}>
+                    <Card.Content style={{...styles.cardForumAnswerArea1, ...cardContentStyle}}>
+                      <PFText weight='semi-bold'size = {13}>View Answer</PFText>
+                    </Card.Content>
+                  </Card>
+
+                </View>
+              </Pressable>
+
+              {/* ReactionSection */}
+              <View style={styles.forumReactContainer}>
+                <View style={{paddingRight: 25, flexDirection:'row'}}>
+                <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
+                  <MaterialCommunityIcons
+                  name={liked ? "flower-tulip": "flower-tulip-outline" }
+                  size={24} 
+                  color={liked ? "#1D4123" : "#1D4123"}
+                />
+                  </Pressable>
+                  <View style={{paddingRight: 8}}></View>
+                  
+                  <PFText>{bloomQuantity}</PFText>
+                  
+                  </View>
+                
+                  <View style={{paddingRight: 90, flexDirection:'row'}}>
+                  <Pressable onPress={() => setLiked2((isLiked) => !isLiked)}>
+                  <MaterialCommunityIcons
+                  name={unliked ? "seed" : "seed-outline" }
+                  size={24} 
+                  color={unliked ? "#1D4123" : "#1D4123"}
+                />
+                  </Pressable>
+                  
+                  <View style={{paddingRight: 8}}></View>
+                  
+                  <PFText>{witherQuantity}</PFText>
+                  
+                  </View>
+            
+                <TouchableOpacity
+                  activeOpacity={0.7}>
+
+                  <Image
+                    // FAB using TouchableOpacity with an image
+                    // For online image
+                    source={ require('../../assets/drawerIcons/discussionIcons/more-horizontal.png')}
+                    // For local image
+                    //source={require('./images/float-add-icon.png')}
+                    style={styles.forumReactSize}
+                  />
+                </TouchableOpacity>
+              </View>
             </Card.Content>
           </Card>
         </Pressable>
-
-        {/* ReactionSection */}
-        <View style={styles.forumReactContainer}>
-          <View style={{paddingRight: 25, flexDirection:'row'}}>
-          <Pressable onPress={() => setLiked((isLiked) => !isLiked)}>
-            <MaterialCommunityIcons
-            name={liked ? "flower-tulip": "flower-tulip-outline" }
-            size={24} 
-            color={liked ? "#1D4123" : "#1D4123"}
-           />
-            </Pressable>
-            <View style={{paddingRight: 8}}></View>
-            
-            <PFText>{bloomQuantity}</PFText>
-            
-            </View>
-           
-            <View style={{paddingRight: 90, flexDirection:'row'}}>
-            <Pressable onPress={() => setLiked2((isLiked) => !isLiked)}>
-            <MaterialCommunityIcons
-            name={unliked ? "seed" : "seed-outline" }
-            size={24} 
-            color={unliked ? "#1D4123" : "#1D4123"}
-           />
-            </Pressable>
-            
-            <View style={{paddingRight: 8}}></View>
-            
-            <PFText>{witherQuantity}</PFText>
-            
-            </View>
-       
-          <TouchableOpacity
-            activeOpacity={0.7}>
-
-            <Image
-              // FAB using TouchableOpacity with an image
-              // For online image
-              source={ require('../../assets/drawerIcons/discussionIcons/more-horizontal.png')}
-              // For local image
-              //source={require('./images/float-add-icon.png')}
-              style={styles.forumReactSize}
-            />
-          </TouchableOpacity>
-        </View>
-      </Card.Content>
-    </Card>
-  </View>
+      </View>
 
      )
   }

@@ -39,6 +39,59 @@ export default function CommentAnswerPage({navigation, route}) {
 
  const [refdata, setrefdata] = useState([]); // declaration for getAnswers function
  const [refnull, setrefnull] = useState(true);
+
+
+
+
+
+    // Delete an Album
+    const deletePlantAlbum = async(itemId) => {
+      await firebase.firestore().collection('Question').doc(route.params.qstID).collection('Answer').doc(itemId).delete()
+      .then(async(res) => {
+        Alert.alert('Comment Delete Successfully')
+        
+        getAnswers();
+        getUsers();
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      // Alert.alert(itemId)
+      
+    }
+  
+    // Show the prompt to detele an Album
+    const showDeleteAlert = (itemId) =>{
+      return Alert.alert(
+        "Delete this Comment?",
+        "Are you sure you want to remove this comment?",
+        [
+          // The "Yes" button
+          {
+            text: "Yes",
+            onPress: () => {
+              deletePlantAlbum(itemId)
+              // Alert.alert(itemId)
+            },
+          },
+          // The "No" button
+          // Does nothing but dismiss the dialog when tapped
+          {
+            text: "No",
+          },
+        ]
+      );
+    };
+
+
+
+
+
+
+
+
+
+
               //get user
                 
               const getUsers = async() => {
@@ -105,6 +158,8 @@ export default function CommentAnswerPage({navigation, route}) {
                   Alert.alert(err)
                 }) 
               }
+
+
               const [ansContent, setansContent] = useState('');
 
               function addComment(){
@@ -157,13 +212,16 @@ export default function CommentAnswerPage({navigation, route}) {
             noDataMessage='No Comment'
             data={refdata}
             renderItem={(item) => (
-              <PFCommentCard2 
-                userPhoto={item.profilePic}
-                name={item.userfullName}
-                comment={item.ansContent}
-                time={item.ansTime}
+              <Pressable onLongPress={() => showDeleteAlert(item.id2) }>
                 
-                />
+                <PFCommentCard2 
+                  userPhoto={item.profilePic}
+                  name={item.userfullName}
+                  comment={item.ansContent}
+                  time={item.ansTime}
+                  
+                  />
+              </Pressable>
             )}
             keyExtractor={(item,index) => index}
           />

@@ -12,7 +12,42 @@ export default function DiscussionHomePage({navigation}) {
   const [refdata, setrefdata] = useState([]); // declaration
   const [refnull, setrefnull] = useState(true);
 
+  // Delete an Album
+  const deletePlantAlbum = async(itemId) => {
+    await firebase.firestore().collection('Question').doc(itemId).delete()
+    .then(async(res) => {
+      Alert.alert('Post Delete Successfully')
+      getForumPost();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    // Alert.alert(itemId)
+    
+  }
 
+  // Show the prompt to detele an Album
+  const showDeleteAlert = (itemId) =>{
+    return Alert.alert(
+      "Delete this Post?",
+      "Are you sure you want to remove this post?",
+      [
+        // The "Yes" button
+        {
+          text: "Yes",
+          onPress: () => {
+            deletePlantAlbum(itemId)
+            // Alert.alert(itemId)
+          },
+        },
+        // The "No" button
+        // Does nothing but dismiss the dialog when tapped
+        {
+          text: "No",
+        },
+      ]
+    );
+  };
 
   const getForumPost = async() => {
 
@@ -63,7 +98,7 @@ useEffect(() => {
                 witherQuantity={item.qstReactWitherQuantity}
                 liked={item.qstReact}
                 onPressText={() => navigation.navigate('CommentAnswerPage', {qstID: item.qstID})}
-                
+                onLongPress={() => showDeleteAlert(item.id)}
               />
             )}
             keyExtractor={(item,index) => index}
