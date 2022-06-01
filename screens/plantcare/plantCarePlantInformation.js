@@ -195,20 +195,18 @@ export default function PlantCarePlantInformation({navigation, route}) {
                     </View>
 
                     {/* Floating icon */}
-                    <View>
-                    <TouchableOpacity
-                        activeOpacity={0.7}
-                        style={styles.iconContainer}
-                        // onPress={() => navigation.navigate('Instruction')}
-                        onPress={() => alert('Succesfully added to favorites!')}>
+                    {/* <View>
+                        <TouchableOpacity
+                            activeOpacity={0.7}
+                            style={styles.iconContainer}
+                            onPress={() => alert('Succesfully added to favorites!')}>
 
-                        <Image
-                        source={ require('../../assets/img/plantcare/icn_heart.png')}
-                        // source={ require('../../assets/img/plantcare/icn_heart-active.png')}
-                        style={styles.iconHeart}
-                        />
-                    </TouchableOpacity>
-                    </View>
+                            <Image
+                            source={ require('../../assets/img/plantcare/icn_heart.png')}
+                            style={styles.iconHeart}
+                            />
+                        </TouchableOpacity>
+                    </View> */}
 
                     {/* Plant Information */}
                     <View style={styles.plantDetailsContainer}>
