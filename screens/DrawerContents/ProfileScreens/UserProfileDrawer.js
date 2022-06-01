@@ -1,28 +1,15 @@
 import {
     View, Text, StyleSheet, ScrollView, TextInput, 
     Image, TouchableOpacity, Pressable, Button, 
-    Alert, Modal,
+    Alert, Modal
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import HomeLog from './HomeLog';
-import DiscussionLog from './DiscussionLog';
 import EditAddress from './EditAddress';
 import firebase from 'firebase';
 import React,  { useState, useEffect } from 'react';
 
-function FuncHomeLog({navigation}){
-  return(
-    <HomeLog navigation={navigation}/>
-  )
-}
-
-function FuncDiscussionLog({navigation}){
-  return(
-    <DiscussionLog navigation={navigation}/>
-  )
-}
 
 function FuncEditAddress({navigation}){
   return(
@@ -71,6 +58,13 @@ export default function UserProfileDrawer({navigation}) {
           let followers = "";
           let following = "";
           let badgePoints = "";
+          let gender = "";
+          let contactNumber = "";
+          let userEmail ="";
+          let bday= "";
+          let password= "";
+          let address= "";
+
           refdata2.forEach((item) => {
             userImage = item.profilePic
             userfullName = item.fName + "  " + item.lName 
@@ -78,8 +72,15 @@ export default function UserProfileDrawer({navigation}) {
             followers = item.followers
             following = item.following
             badgePoints = item.userBadgePoints
-
+            gender = item.gender
+            contactNumber = item.contactNumber
+            userEmail = item.userEmail
+            bday = item.bday
+            password = item.userPass
+            address = item.Address
+          
           })
+
           const [image, setimage] = useState(null)
 
 
@@ -91,6 +92,7 @@ export default function UserProfileDrawer({navigation}) {
               
               getUsers();
               }, [])
+
   return (
     <View>
     <StatusBar style="auto" />
@@ -123,7 +125,7 @@ export default function UserProfileDrawer({navigation}) {
           <View style={{ flexDirection: 'row', marginTop: 8, justifyContent: 'flex-start', marginBottom: 26}}>
               <TouchableOpacity 
                   onPress={() => navigation.navigate('EditProfile')}
-                  style={style=styles.buttonArea}>
+                  style={styles.buttonArea}>
                 <View style={{color: 'white', }}>
                   <Text style={{
                       color: '#1D4123', 
@@ -169,32 +171,105 @@ export default function UserProfileDrawer({navigation}) {
         </View>
       </View>          
     </ScrollView>
+
     <ScrollView>
-    <Tab.Navigator
-    initialRouteName="PostsLog"
-    screenOptions={{
-      tabBarActiveTintColor: '#1D4123',
-      tabBarInactiveTintColor: '#f5f5f5',
-      tabBarLabelStyle: { fontSize: 15, fontFamily: 'poppins-semiBold', textTransform: 'capitalize' },
-      tabBarStyle: { backgroundColor: '#1D4123', elevation:0  },
-      tabBarIndicatorStyle: {backgroundColor: '#f2f2f2',  borderColor: '#1D4123', height: '100%'}
-    }}  
-    >
-    <Tab.Screen
-      name="HomeLog"
-      component={FuncHomeLog}
-      options={{ tabBarLabel: 'Home' }}
-    />
-    <Tab.Screen
-      name="EditAddress"
-      component={FuncEditAddress}
-      options={{ tabBarLabel: 'Edit' }}
-    />
-    </Tab.Navigator>
+        <View style ={{width: '100%', backgroundColor: '#f2f2f2', height: '100%', padding: 6}}>
+          <View style={styles.containerInfo}>
+            <View style={styles.sectionStyle1}>
+              <Text style={styles.textLabel1}>
+                  Name
+              </Text>
+            <TextInput
+                  editable={false} 
+                  selectTextOnFocus={false}
+                  style={styles.textInfo1}
+                  placeholder= {userfullName}
+                  underlineColorAndroid="transparent"
+            />       
+            </View>   
+            <View style={styles.sectionStyle}>
+              <Text style={styles.textLabel1}>
+                  Username
+              </Text>
+            <TextInput
+                  editable={false} 
+                  selectTextOnFocus={false}
+                  style={styles.textInfo1}
+                  placeholder= {userName}
+                  underlineColorAndroid="transparent"
+            />                   
+            </View>
+            <View style={styles.sectionStyle}>
+              <Text style={styles.textLabel1}>
+                  Gender
+              </Text>
+            <TextInput
+                  editable={false} 
+                  selectTextOnFocus={false}
+                  style={styles.textInfo1}
+                  placeholder= {gender}
+                  underlineColorAndroid="transparent"
+            />                   
+            </View>
+            <View style={styles.sectionStyle}>
+              <Text style={styles.textLabel1}>
+                  Birthday
+              </Text>
+            <TextInput
+                  editable={false} 
+                  selectTextOnFocus={false}
+                  style={styles.textInfo1}
+                  placeholder= {bday}
+                  underlineColorAndroid="transparent"
+            />                   
+            </View>
+            <View style={styles.sectionStyle}>
+              <Text style={styles.textLabel1}>
+                  Email
+              </Text>
+            <TextInput
+                  editable={false} 
+                  selectTextOnFocus={false}
+                  style={styles.textInfo1}
+                  placeholder={userEmail}
+                  underlineColorAndroid="transparent"
+                  keyboardType="email-address"
+            />                   
+            </View>
+            <View style={styles.sectionStyle}>
+              <Text style={styles.textLabel1}>
+                  Phone Number
+              </Text>
+            <TextInput
+                  editable={false} 
+                  selectTextOnFocus={false}
+                  style={styles.textInfo1}
+                  placeholder= {contactNumber}
+                  underlineColorAndroid="transparent"
+                  maxLength={11}
+                  keyboardType="phone-pad"
+            />                   
+            </View>
+            <View style={styles.sectionStyle}>
+              <Text style={styles.textLabel1}>
+                  Address
+              </Text>
+            <Text
+                  editable={false} 
+                  selectTextOnFocus={false}
+                  style={styles.textInfo1}
+                  placeholder= {address}
+                  multiline={true} 
+                  underlineColorAndroid="transparent"
+            />                   
+            </View>
+          </View>
+        </View>         
     </ScrollView>    
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -239,20 +314,32 @@ const styles = StyleSheet.create({
     padding: 8,
     paddingBottom: 8,
     borderRadius: 1,
-    elevation: 1,
-    marginTop: 16,
-    marginBottom: 20,
+    elevation: 0.5,
+    marginTop: 20,
+    marginBottom: 10,
   },
-    sectionStyle: {
+  sectionStyle: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 0.5,
     borderColor: 'transparent',
-    height: 40,
+    height: 19,
     borderRadius: 10,
     margin: 10,
     backgroundColor: 'transparent',
+  },
+  sectionStyle1: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 0.5,
+    borderColor: 'transparent',
+    height: 19,
+    borderRadius: 10,
+    margin: 10,
+    backgroundColor: 'transparent',
+    marginTop: 16,
   },
   imageStyle: {
     padding: 8,
@@ -275,7 +362,21 @@ const styles = StyleSheet.create({
   textLabel: {
     color: '#1D4123', 
     fontFamily: 'poppins-semiBold', 
-    fontSize: 14
+    fontSize: 14,
+
+  },
+  textInfo1: {
+    flex: 1 ,
+    color: '#1D4123',
+    fontSize: 14,
+    fontFamily: 'poppins-regular',
+    textAlign: 'right',
+    justifyContent: 'center',
+  },
+  textLabel1: {
+    color: '#1D4123', 
+    fontFamily: 'poppins-semiBold', 
+    fontSize: 16,
   },
   buttonArea: {
         
@@ -380,11 +481,11 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 50,
-      height: 100
+      height: 100,
     },
     shadowOpacity: 0.50,
     shadowRadius: 4,
-    elevation:10
+    elevation:10,
   },
   btnModal: {
         marginTop: 16,
@@ -407,6 +508,5 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 1,
         elevation: 5,
-
     }
 })
