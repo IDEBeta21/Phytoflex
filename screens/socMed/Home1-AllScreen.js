@@ -103,7 +103,7 @@ export default function AllScreenPage({navigation}) {
   return (
     <View style={ styles.mainContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
+        {/* <View>
           <PFFlatList
             numColumns={1}
             noDataMessage='No Followers'
@@ -120,10 +120,9 @@ export default function AllScreenPage({navigation}) {
             )}
             keyExtractor={(item,index) => index}
           />
-        </View>
-      </ScrollView>
-      <View>
-      <PFFlatList
+        </View> */}
+        <View>
+          <PFFlatList
             numColumns={1}
             noDataMessage='Loading...'
             data={refdata}
@@ -143,40 +142,41 @@ export default function AllScreenPage({navigation}) {
             )}
             keyExtractor={(item,index) => index}
           />
-      </View>
+        </View>
+      </ScrollView>
       <View style={styles.createpost}>
-            <View>
-              <TouchableOpacity 
-              activeOpacity={0.7}
-              onPress={() => navigation.navigate('UserProfilePage')}
-              >
-                <Image
-                  // FAB using TouchableOpacity with an image
-                  // For online image
-                  source={{uri : image}}
-                  //source={ require('../../assets/img/profiles/Alejandre.jpg')}
-                  // For local image
-                  //source={require('./images/float-add-icon.png')}
-                  style={styles.userPhoto}
-                  //style={styles.userImage}
-                />
-              </TouchableOpacity>
-            </View>
-            <PFText weight='semi-bold' size={15} style={styles.textFormat}>{userfullName}</PFText>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={() => navigation.navigate('CreatePostPage')}
-            >
-              <Image
-                // FAB using TouchableOpacity with an image
-                // For online image
-                source={ require('../../assets/drawerIcons/socmedIcons/add_post.png')}
-                // For local image
-                //source={require('./images/float-add-icon.png')}
-                style={styles.createpostIcon}
-              />
-            </TouchableOpacity>
-          </View>
+        <View>
+          <TouchableOpacity 
+          activeOpacity={0.7}
+          onPress={() => navigation.navigate('UserProfilePage')}
+          >
+            <Image
+              // FAB using TouchableOpacity with an image
+              // For online image
+              source={{uri : image}}
+              //source={ require('../../assets/img/profiles/Alejandre.jpg')}
+              // For local image
+              //source={require('./images/float-add-icon.png')}
+              style={styles.userPhoto}
+              //style={styles.userImage}
+            />
+          </TouchableOpacity>
+        </View>
+        <PFText weight='semi-bold' size={15} style={styles.textFormat}>{userfullName}</PFText>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => navigation.navigate('CreatePostPage')}
+        >
+          <Image
+            // FAB using TouchableOpacity with an image
+            // For online image
+            source={ require('../../assets/drawerIcons/socmedIcons/add_post.png')}
+            // For local image
+            //source={require('./images/float-add-icon.png')}
+            style={styles.createpostIcon}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
