@@ -23,8 +23,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function CommentPage({navigation}) {
-  
-  const [image, setimage] = useState(null)
+  const [refdata2, setrefdata2] = useState([]);
+  const [image, setimage] = useState(null);
+
   let profilePic = "";
   let userName = "";
   let userfullName = "";

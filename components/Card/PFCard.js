@@ -303,7 +303,7 @@ export const PFPostsImageOnlyCard = ({ userPhoto, imageURL, name, description, t
   
           
             <Card style={{flex: 1, elevation: 0}} onPress={() => onPress()}>
-              <Card.Content style={{...styles.cardPostContent, ...cardContentStyle}}>
+              <Card.Content style={{...cardContentStyle}}>
                 <PFText style ={{padding:5}}>{postPost}</PFText>
               </Card.Content>
             </Card>
