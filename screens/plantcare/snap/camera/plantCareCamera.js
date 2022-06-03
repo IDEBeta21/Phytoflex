@@ -57,27 +57,10 @@ export default function plantCareCamera({navigation}) {
     let str = photo['uri'].toString();
     console.log(str);
     setimageurl(str);
-    // console.log(imageurl);
-    // console.log(capturedImage);
-    // navigation.navigate("PlantCareCameraPreview", {photoData: imageurl})
-    // console.log(capturedImage);
-    // uploadImageAsync(photo.uri.toString());
+    setPreviewVisible(true)
+
     await uploadImageAsync(photo.uri);
-    
-    // await tf.ready()
-    // const model = await mobilenet.load()
 
-    // const image = photo['uri']
-    // // const imageAssetPath = Image.resolveAssetSource(image);
-    // // const response = await fetch(imageAssetPath.uri, {}, { isBinary: true });
-    // const response = await fetch(image, {}, {isBinary: true})
-
-    // const imageData = await response.arrayBuffer()
-    // const imageTensor = jpeg.decode(imageData)
-    // const prediction = await model.classify(imageTensor)
-    // console.log(`${prediction[0]['className']} ${prediction[0]['probability']}`)
-    
-    // setPreviewVisible(true);
     setLoadingCapture(false)
   };
 
@@ -125,35 +108,10 @@ export default function plantCareCamera({navigation}) {
       })
     }); 
 
-    // const response = await fetch(tfjsuri, {}, { isBinary: true });
-
-    // const imageData = await response.arrayBuffer();
-
-    // // const imageTensor = decodeJpeg(imageData);
-    // const imageTensor = jpeg.decode(imageData);
-
-    // const prediction = await model.classify(imageTensor);
-
-    // console.log(`${prediction[0]['className']} ${prediction[0]['probability']}`)
-
-
-
-
-
-    // console.log(downloadUrl);
-
-    // const snapshot = await ref.put(blob);
-    // console.log(blob);
     blob.close();
   }
 
   const photoPress = async () => {
-    // const user = await firebase.auth().currentUser
-    // if(user){
-    //   console.log(user.uid)
-    // }else{
-    //   console.log("No user")
-    // }
     navigation.navigate('PlantCarePlantInformation');
   }
 
@@ -162,14 +120,14 @@ export default function plantCareCamera({navigation}) {
       // style={{flex: 1,}}
       style={styles.container}
     >
-      {previewVisible ? (
         <View>
+      {previewVisible ? (
           <ImageBackground
             source={{ uri: capturedImage && capturedImage.uri }}
             // style={{flex: 1}}
             style={styles.cameraContainer}
           >
-            <View
+            {/* <View
               style={{
                 flex: 1,
                 flexDirection: "column",
@@ -179,32 +137,52 @@ export default function plantCareCamera({navigation}) {
             >
               <View
                 style={{
+                  flex:1,
                   flexDirection: "row",
                   justifyContent: "space-between",
                 }}
               >
+                              <TouchableOpacity
+                style={{
+                  position: "absolute",
+                  top: "5%",
+                  left: "5%",
+                }}
+                onPress={() => {
+                  setType(
+                    type === Camera.Constants.Type.back
+                      ? Camera.Constants.Type.front
+                      : Camera.Constants.Type.back
+                  );
+                }}
+              >
+                <Text style={{ fontSize: 20, marginBottom: 10, color: "white" }}>
+                  {" "}
+                  Flip{" "} 
+                </Text>
+              </TouchableOpacity>
               </View>
-            </View>
+            </View> */}
           </ImageBackground>
-          <View style={{flexDirection: 'row', marginTop: 20}}>
-            <View style={{flex:1, alignItems: 'center'}}>
-              <PFSecondaryButton 
-                title={'Re-take'}
-                onPress={() => setPreviewVisible(false)}
-                style={{width: 150,}}
-                labelStyle={{fontSize: 16}}/>
-            </View>
-            <View style={{flex:1, alignItems: 'center'}}>
-              <PFPrimaryButton 
-                title={'Done'} 
-                onPress={() => uploadImageAsync(imageurl)}
-                style={{width: 150}}
-                labelStyle={{fontSize: 16}}/>
-            </View>
-          </View>
-        </View>
+        //   <View style={{flexDirection: 'row', marginTop: 20}}>
+        //     <View style={{flex:1, alignItems: 'center'}}>
+        //       <PFSecondaryButton 
+        //         title={'Re-take'}
+        //         onPress={() => setPreviewVisible(false)}
+        //         style={{width: 150,}}
+        //         labelStyle={{fontSize: 16}}/>
+        //     </View>
+        //     <View style={{flex:1, alignItems: 'center'}}>
+        //       <PFPrimaryButton 
+        //         title={'Done'} 
+        //         onPress={() => uploadImageAsync(imageurl)}
+        //         style={{width: 150}}
+        //         labelStyle={{fontSize: 16}}/>
+        //     </View>
+        //   </View>
+        // </View>
       ) : (
-        <View>
+        // <View>
           <Camera
             // style={{ flex: 1 }}
             style={styles.cameraContainer}
@@ -214,7 +192,7 @@ export default function plantCareCamera({navigation}) {
             }}
             // ref = {camera}
           >
-            <View
+            {/* <View
               style={{
                 flex: 1,
                 backgroundColor: "transparent",
@@ -235,10 +213,10 @@ export default function plantCareCamera({navigation}) {
                   );
                 }}
               >
-                {/* <Text style={{ fontSize: 20, marginBottom: 10, color: "white" }}>
-                  {/* {" "} */}
-                  {/* Flip{" "} 
-                </Text> */}
+                <Text style={{ fontSize: 20, marginBottom: 10, color: "white" }}>
+                  {" "}
+                  Flip{" "} 
+                </Text>
               </TouchableOpacity>
               <View
                 style={{
@@ -268,10 +246,11 @@ export default function plantCareCamera({navigation}) {
                       backgroundColor: "#fff",
                     }}
                   />
-                </View> */}
+                </View> *
               </View>
-            </View>
+            </View> */}
           </Camera>
+      )} 
           <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
             <View style={{flex: 5, alignItems: 'center', justifyContent: 'center', paddingLeft: 10 }}>
               {/* <TouchableOpacity 
@@ -324,7 +303,6 @@ export default function plantCareCamera({navigation}) {
             </View>
           </View>
         </View> 
-      )} 
     </View>
   );
 }

@@ -27,10 +27,15 @@ export default function PlantCareDescription({navigation, route}) {
             plantDescription: userPlantDesc,
             userId: firebase.auth().currentUser.uid
         }).then((res) => {
-            navigation.navigate('PlantCareMonitor',{
-                documentId: res.id,
-                reminderImageUrl: route.params.imageUrl
-            }) 
+            // navigation.navigate('PlantCareMonitor',{
+            //     documentId: res.id,
+            //     reminderImageUrl: route.params.imageUrl
+            // }) 
+            
+            navigation.navigate('PlantCareReminderCamera', { 
+              documentId: res.id,
+              reminderImageUrl: route.params.imageUrl
+          }) 
             console.log('Document Id: ' + res.id)
         }).catch((err) => {
             console.log(err)

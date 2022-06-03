@@ -7,6 +7,7 @@ import 'react-native-gesture-handler';
 import PlantCareHomePage from "../../screens/plantcare/plantCareHomePage";
 import PlantCareSearchPage from "./plantCareSearch";
 import PlantCareCamera from './snap/camera/plantCareCamera';
+import PlantCareReminderCamera from './snap/camera/plantCareReminderCamera';
 
 import PlantCare from './plantCare';
 import PlantCarePlantInformation from './plantCarePlantInformation';
@@ -68,6 +69,10 @@ function FuncPlantCareHealthCare({navigation}) {
 
 function FuncPlantCareCamera({route, navigation}){
   return(<PlantCareCamera navigation={navigation} route={route}/>);
+}
+
+function FuncPlantCareReminderCamera({route, navigation}){
+  return(<PlantCareReminderCamera navigation={navigation} route={route}/>);
 }
 
 function FuncPlantCarePlantInformation({navigation, route}) {
@@ -284,6 +289,25 @@ function App({navigation}) {
             headerTitle: (props) => 
               <PlantCareHeader 
                 title={'Capture'} 
+                navigation={navigation} 
+                screenDescription={"CameraScreen"}
+              />, 
+            headerStyle: {
+              backgroundColor: '#1D4123'
+            },
+            headerTintColor: 'white',
+            // headerShown: false,
+            
+          }}
+        />
+
+        <Stack.Screen
+          name="PlantCareReminderCamera"
+          component={FuncPlantCareReminderCamera}
+          options={{ 
+            headerTitle: (props) => 
+              <PlantCareHeader 
+                title={'Capture for Monitoring'} 
                 navigation={navigation} 
                 screenDescription={"CameraScreen"}
               />, 

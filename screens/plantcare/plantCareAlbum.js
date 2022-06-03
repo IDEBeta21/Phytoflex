@@ -177,7 +177,8 @@ export default function PlantCareAlbum ({navigation, route}) {
         <FAB
           style={{ position: 'absolute', backgroundColor: '#ffffff', margin: 16, right: 0, bottom: -1, }} 
           icon="plus"
-          onPress={() => {navigation.navigate('PlantCareMonitor', { 
+          // onPress={() => {navigation.navigate('PlantCareMonitor', { 
+          onPress={() => {navigation.navigate('PlantCareReminderCamera', { 
             documentId: route.params.plantMonitoringId,
             reminderImageUrl: plantImageUrl
           }) }}
